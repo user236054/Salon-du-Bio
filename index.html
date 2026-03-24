@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon du Bio - Deux Plateaux Cocody</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <img src="./20260123_185534548_iOS.jpg" alt="Logo Salon Bio" />
+            <span class="logo-text">Salon du Bio</span>
+          </div>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#accueil" class="nav-link">Accueil</a></li>
+            <li><a href="#programme" class="nav-link">Programme</a></li>
+            <li><a href="#exposants" class="nav-link">Exposants</a></li>
+
+            <li><a href="#billetterie" class="nav-link">Billetterie</a></li>
+            <li>
+              <a href="#devenirexposants" class="nav-link">Devenir Exposants</a>
+            </li>
+            <li><a href="#infos" class="nav-link">Infos Pratiques</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section id="accueil" class="hero">
+      <div class="hero-content">
+        <h1>Salon du Bio 2026</h1>
+        <p>
+          Découvrez les meilleurs produits biologiques et producteurs locaux
+        </p>
+        <div class="countdown">
+          <h3>Ouverture dans:</h3>
+          <div class="timer" id="timer">
+            <div class="time-unit">
+              <span id="days">00</span>
+              <p>Jours</p>
+            </div>
+            <div class="time-unit">
+              <span id="hours">00</span>
+              <p>Heures</p>
+            </div>
+            <div class="time-unit">
+              <span id="minutes">00</span>
+              <p>Minutes</p>
+            </div>
+            <div class="time-unit">
+              <span id="seconds">00</span>
+              <p>Secondes</p>
+            </div>
+          </div>
+        </div>
+        <a href="#billetterie" class="btn btn-primary">Réserver votre place</a>
+      </div>
+      <img src="./salon du bio.jpg" alt="Salon Bio" class="hero-img" />
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="info-box">
+        <div class="info-icon">📍</div>
+        <h3>Lieu</h3>
+        <p>Deux Plateaux Cocody</p>
+      </div>
+      <div class="info-box">
+        <div class="info-icon">📅</div>
+        <h3>Dates</h3>
+        <p>15-17 Avril 2026</p>
+      </div>
+      <div class="info-box">
+        <div class="info-icon">🕐</div>
+        <h3>Horaires</h3>
+        <p>08h - 18h</p>
+      </div>
+      <div class="info-box">
+        <div class="info-icon">💵</div>
+        <h3>Entrée</h3>
+        <p>1000 FCFA</p>
+      </div>
+    </section>
+
+    <!-- Programme Section -->
+    <section id="programme" class="section">
+      <div class="container">
+        <h2>Programme</h2>
+        <div class="programme-grid">
+          <div class="programme-card">
+            <div class="time">09:00 - 10:00</div>
+            <h4>Ouverture officielle</h4>
+            <p>Discours d'accueil et visite des autorités</p>
+          </div>
+          <div class="programme-card">
+            <div class="time">10:00 - 12:00</div>
+            <h4>Conférence: L'Agriculture Bio</h4>
+            <p>Débat sur les pratiques durables et l'avenir du bio</p>
+          </div>
+          <div class="programme-card">
+            <div class="time">12:00 - 14:00</div>
+            <h4>Pause déjeuner</h4>
+            <p>Dégustation de produits bio locaux</p>
+          </div>
+          <div class="programme-card">
+            <div class="time">14:00 - 16:00</div>
+            <h4>Ateliers pratiques</h4>
+            <p>Cuisine bio, permaculture, cosmétiques naturels</p>
+          </div>
+          <div class="programme-card">
+            <div class="time">16:00 - 17:30</div>
+            <h4>Table ronde</h4>
+            <p>Rencontre avec producteurs et experts</p>
+          </div>
+          <div class="programme-card">
+            <div class="time">17:30 - 18:00</div>
+            <h4>Clôture & Tirage au sort</h4>
+            <p>Remise de prix et fermeture du salon</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exposants Section -->
+    <section id="exposants" class="section">
+      <div class="container">
+        <h2>Nos Exposants</h2>
+        <div class="exposants-grid">
+          <div class="exposant-card">
+            <div class="exposant-icon">🌾</div>
+            <h4>Fermes Bio Locales</h4>
+            <p>Fruits, légumes et céréales cultivés sans pesticides</p>
+          </div>
+          <div class="exposant-card">
+            <div class="exposant-icon">🍯</div>
+            <h4>Miel & Ruches</h4>
+            <p>Miel 100% naturel et produits de la ruche</p>
+          </div>
+          <div class="exposant-card">
+            <div class="exposant-icon">🥛</div>
+            <h4>Produits Laitiers</h4>
+            <p>Fromage, yaourt et lait bio fermier</p>
+          </div>
+          <div class="exposant-card">
+            <div class="exposant-icon">🌿</div>
+            <h4>Cosmétiques Bio</h4>
+            <p>Savons, huiles et produits naturels</p>
+          </div>
+          <div class="exposant-card">
+            <div class="exposant-icon">☕</div>
+            <h4>Café & Thé Bio</h4>
+            <p>Sélection de cafés et thés issus du commerce équitable</p>
+          </div>
+          <div class="exposant-card">
+            <div class="exposant-icon">🥜</div>
+            <h4>Artisanat Bio</h4>
+            <p>Produits artisanaux et vêtements écologiques</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Billetterie Section -->
+    <section id="billetterie" class="section">
+      <div class="container">
+        <h2>Réservez votre entrée</h2>
+        <div class="billetterie-container">
+          <div class="ticket-info">
+            <h3>Comment ça marche?</h3>
+            <ol>
+              <li>Remplissez le formulaire avec vos coordonnées</li>
+              <li>Effectuez le paiement de 1000 FCFA</li>
+              <li>Recevez votre QR code par email</li>
+              <li>Présentez le QR code à l'entrée du salon</li>
+            </ol>
+            <div class="ticket-price">
+              <h4>Prix:</h4>
+              <p class="price">1000 FCFA</p>
+              <p class="price-info">(Incluant 1 accès complet + programme)</p>
+            </div>
+          </div>
+          <div class="ticket-form">
+            <h3>Formulaire de réservation</h3>
+            <p class="form-note">
+              Veuillez remplir ce formulaire Google pour réserver votre place
+            </p>
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe2sdSIiIHNeDGh9L1I6neQOkhhnUUGguNH-qe2Yg2Rman0QA/viewform?usp=publish-editor"
+              target="_blank"
+              class="btn btn-primary btn-large"
+            >
+              Accéder au formulaire
+            </a>
+            <p class="form-note" style="margin-top: 20px">
+              Remplacez le lien par votre formulaire Google
+            </p>
+            <div class="qr-generation">
+              <h4>Générateur de QR Code (Test)</h4>
+              <input
+                type="text"
+                id="qrInput"
+                placeholder="Entrez un numéro de réservation (ex: SALON-001)"
+                maxlength="50"
+              />
+              <button onclick="generateQR()" class="btn btn-secondary">
+                Générer QR Code
+              </button>
+              <div id="qrcode" style="margin-top: 20px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Devenir exposant -->
+    <section id="devenirexposants" class="section">
+      <div class="container">
+        <h2>Devenir exposant</h2>
+        <div class="exposant-registration">
+          <div class="exposant-info">
+            <p>
+              Réservez un stand pour seulement <strong>10 000 FCFA</strong>.
+              Complétez le formulaire ci-dessous. Le paiement s'effectuera via
+              votre solution préférée (Orange Money, MTN Mobile Money, Banque).
+            </p>
+            <ul>
+              <li>Nom</li>
+              <li>Prénom</li>
+              <li>Numéro de téléphone</li>
+              <li>Adresse email</li>
+              <li>Mot de passe sécurisé</li>
+            </ul>
+          </div>
+          <form class="exposant-form" onsubmit="handleExposantSubmit(event)">
+            <div class="form-grid">
+              <input type="text" name="nom" placeholder="Nom" required />
+              <input type="text" name="prenom" placeholder="Prénom" required />
+              <input
+                type="tel"
+                name="telephone"
+                placeholder="Téléphone"
+                required
+              />
+              <input type="email" name="email" placeholder="Email" required />
+              <input
+                type="password"
+                name="motdepasse"
+                placeholder="Mot de passe"
+                required
+                minlength="8"
+              />
+              <input
+                type="text"
+                name="stand"
+                placeholder="Référence Stand (ex: S10)"
+                required
+              />
+            </div>
+            <p class="price-info">
+              Prix de réservation du stand: <strong>10 000 FCFA</strong>
+            </p>
+            <button type="submit" class="btn btn-primary">
+              Réserver Stand
+            </button>
+            <p class="form-note">
+              Vous recevrez un QR code de confirmation après soumission.
+            </p>
+            <div id="qrExposant" style="margin-top: 20px"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Infos Pratiques -->
+    <section id="infos" class="section">
+      <div class="container">
+        <h2>Infos Pratiques</h2>
+        <div class="infos-grid">
+          <div class="infos-card">
+            <h4>🚗 Accès & Parking</h4>
+            <p>
+              Parking gratuit disponible sur place. Accès par la route
+              principale de Cocody. Navettes gratuites depuis le centre
+              commercial le plus proche.
+            </p>
+          </div>
+          <div class="infos-card">
+            <h4>♿ Accessibilité</h4>
+            <p>
+              Les installations sont accessibles aux personnes en fauteuil
+              roulant. Toilettes PMR disponibles. Points de repos aménagés.
+            </p>
+          </div>
+          <div class="infos-card">
+            <h4>🍽️ Restauration</h4>
+            <p>
+              Food court avec produits bio. Bars à jus frais. Pas d'alcool.
+              Possibilité de pique-nique. Eau gratuite.
+            </p>
+          </div>
+          <div class="infos-card">
+            <h4>📱 Connectivité</h4>
+            <p>
+              WiFi gratuit dans tout le salon. Signal mobile bon. Prises USB
+              disponibles dans les zones de repos.
+            </p>
+          </div>
+          <div class="infos-card">
+            <h4>👶 Enfants</h4>
+            <p>
+              Espace jeux pour enfants aménagé. Activités éducatives. Aire
+              d'allaitement. Poussettes tolérées.
+            </p>
+          </div>
+          <div class="infos-card">
+            <h4>🎫 Tarifs</h4>
+            <p>
+              <strong>Adulte:</strong> 1000 FCFA<br /><strong
+                >Enfant (5-12ans):</strong
+              >
+              500 FCFA<br /><strong>Gratuit:</strong> Moins de 5 ans<br /><strong
+                >Groupe (10+):</strong
+              >
+              -10%
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <!-- <section class="section">
+      <div class="container">
+        <h2>Questions Fréquentes</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <h4>Puis-je annuler ma réservation?</h4>
+            <p>
+              Oui, jusqu'à 48 heures avant l'événement. Un remboursement complet
+              sera effectué.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>Le ticket est-il valable 3 jours?</h4>
+            <p>
+              Oui, votre QR code vous donne accès à tous les jours du salon
+              (15-17 Avril).
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>Puis-je partager mon QR code?</h4>
+            <p>
+              Non, le QR code est personnel. Une personne différente doit
+              acheter son propre billet.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h4>Que faire si j'ai perdu mon QR code?</h4>
+            <p>
+              Contactez-nous avec votre email. Nous pouvons vous renvoyer un
+              nouvelle version.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Nous Contacter</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <div class="contact-item">
+              <h4>📞 Téléphone</h4>
+              <p>+225 XX XX XX XX</p>
+            </div>
+            <div class="contact-item">
+              <h4>📧 Email</h4>
+              <p>info@salonbio.ci</p>
+            </div>
+            <div class="contact-item">
+              <h4>📍 Adresse</h4>
+              <p>Deux Plateaux Cocody, Abidjan, Côte d'Ivoire</p>
+            </div>
+            <div class="contact-item">
+              <h4>🌐 Réseaux Sociaux</h4>
+              <div class="social-links">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" onsubmit="handleContactSubmit(event)">
+            <input type="text" placeholder="Votre nom" required />
+            <input type="email" placeholder="Votre email" required />
+            <textarea placeholder="Votre message" rows="5" required></textarea>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2026 Salon du Bio. Tous droits réservés.</p>
+        <p>Créé pour promouvoir l'agriculture biologique responsable</p>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
