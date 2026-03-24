@@ -193,7 +193,7 @@
           <div class="ticket-form">
             <h3>Formulaire de réservation</h3>
             <p class="form-note">
-              Veuillez remplir ce formulaire Google pour réserver votre place
+              Veuillez remplir ce formulaire pour réserver votre place
             </p>
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSe2sdSIiIHNeDGh9L1I6neQOkhhnUUGguNH-qe2Yg2Rman0QA/viewform?usp=publish-editor"
@@ -202,27 +202,20 @@
             >
               Accéder au formulaire
             </a>
-            <p class="form-note" style="margin-top: 20px">
-              Remplacez le lien par votre formulaire Google
-            </p>
+            <p class="form-note" style="margin-top: 20px"></p>
+
             <div class="qr-generation">
-              <h4>Générateur de QR Code (Test)</h4>
-              <input
-                type="text"
-                id="qrInput"
-                placeholder="Entrez un numéro de réservation (ex: SALON-001)"
-                maxlength="50"
-              />
-              <button onclick="generateQR()" class="btn btn-secondary">
-                Générer QR Code
-              </button>
-              <div id="qrcode" style="margin-top: 20px"></div>
-            </div>
+              <div class="qr-fixed">
+  <h4>Scanner pour réserver</h4>
+  <div id="qrcode" style="margin-top: 20px;"></div>
+</div>
           </div>
         </div>
       </div>
     </section>
 
+
+    
     <!-- Devenir exposant -->
     <section id="devenirexposants" class="section">
       <div class="container">
@@ -232,7 +225,8 @@
             <p>
               Réservez un stand pour seulement <strong>10 000 FCFA</strong>.
               Complétez le formulaire ci-dessous. Le paiement s'effectuera via
-              votre solution préférée (Orange Money, MTN Mobile Money, Banque).
+              votre solution préférée (Orange Money, MTN Mobile Money,Moov
+              Money,Wave,Carte Bancaire....)
             </p>
             <ul>
               <li>Nom</li>
@@ -260,12 +254,7 @@
                 required
                 minlength="8"
               />
-              <input
-                type="text"
-                name="stand"
-                placeholder="Référence Stand (ex: S10)"
-                required
-              />
+              <p class="price-info"></p>
             </div>
             <p class="price-info">
               Prix de réservation du stand: <strong>10 000 FCFA</strong>
@@ -274,7 +263,7 @@
               Réserver Stand
             </button>
             <p class="form-note">
-              Vous recevrez un QR code de confirmation après soumission.
+              
             </p>
             <div id="qrExposant" style="margin-top: 20px"></div>
           </form>

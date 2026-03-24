@@ -54,33 +54,17 @@ if (document.readyState === 'loading') {
     startCountdown();
 }
 
-function generateQR() {
-    const input = document.getElementById('qrInput').value.trim();
-    
-    if (!input) {
-        alert('Veuillez entrer un numéro de réservation');
-        return;
-    }
+document.addEventListener('DOMContentLoaded', () => {
     const qrContainer = document.getElementById('qrcode');
-    qrContainer.innerHTML = '';
-
-
     new QRCode(qrContainer, {
-        text: `https://salon-bio.ci/verify/${input}`,
+        text: "https://salon-bio.ci/reservation", 
         width: 200,
         height: 200,
         colorDark: '#2D5016',
         colorLight: '#FFFBF5',
         correctLevel: QRCode.CorrectLevel.H
     });
-    const messageDiv = document.createElement('p');
-    messageDiv.style.marginTop = '15px';
-    messageDiv.style.color = '#4CAF50';
-    messageDiv.style.fontWeight = 'bold';
-    messageDiv.style.textAlign = 'center';
-    messageDiv.innerText = `✓ QR Code généré pour: ${input}`;
-    qrContainer.appendChild(messageDiv);
-}
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const qrInput = document.getElementById('qrInput');
