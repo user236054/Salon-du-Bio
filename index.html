@@ -9,34 +9,636 @@
   </head>
   <body>
     <!-- Navigation -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="nav-container">
-          <div class="logo">
-    <span class="logo-text">SIBIO 2026</span>
-</div>
-          <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <ul class="nav-menu" id="navMenu">
-            <li><a href="#accueil" class="nav-link">Accueil</a></li>
-            <li><a href="#programme" class="nav-link">Programme</a></li>
-            <li><a href="#exposants" class="nav-link">Exposants</a></li>
-            <li><a href="#exposants" class="nav-link">Regions</a></li>
+  
 
-            <li><a href="#billetterie" class="nav-link">Billetterie</a></li>
-            <li>
-              <a href="#devenirexposants" class="nav-link">Devenir Exposant</a>
-            </li>
-            <li><a href="#infos" class="nav-link">Infos Pratiques</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-            <li><a href="#apropos" class="nav-link">A Propos</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+   <style>
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  padding-top: 80px;
+}
+
+/* NAVBAR */
+.header {
+  background: #0b3d2e;
+  padding: 15px 40px;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #c87137;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+/* état caché */
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  min-width: 220px;
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+/* IMPORTANT : hover sur parent OU menu */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ouverture */
+.dropdown.active .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* items stylés */
+.dropdown-menu li {
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.dropdown-menu li a:hover {
+  background: #0b3d2e;
+  color: white;
+  transform: translateX(4px);
+}
+
+/* effet hover navbar (desktop) */
+@media (min-width: 900px) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+.dropdown.active .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* BOUTIQUE */
+.boutique-btn {
+  background: linear-gradient(135deg, #c87137, #2d5016);
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+/* REGION */
+.region-btn {
+  background: white;
+  color: #2d5016;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.region-menu {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.small-title,
+.subtitle,
+.main-title,
+.brand-title,
+.edition {
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
+}
+
+.small-title {
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-size: 42px;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+.brand-title {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #fff, #a7ffe2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.edition {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .brand-title { font-size: 48px; }
+  .main-title { font-size: 28px; }
+}
+</style>
+  </head>
+
+ <header class="header">
+  <nav class="nav-container">
+
+    <div class="logo">
+      <span class="logo-text">SIBIO 2026</span>
+    </div>
+
+    <ul class="nav-menu">
+
+      <!-- Accueil / découverte -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Découvrir ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="#">Programme</a></li>
+        </ul>
+      </li>
+
+      <!-- Éditions (historique) -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Éditions ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#sibio2022">SIBIO 2022</a></li>
+          
+          <li><a href="#sibio2024">SIBIO 2024</a></li>
+        </ul>
+      </li>
+
+      <!-- Salon -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Salon ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Exposants</a></li>
+          <li><a href="#">Exposer</a></li>
+        </ul>
+      </li>
+
+      <!-- Infos -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Infos ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">À propos</a></li>
+        </ul>
+      </li>
+
+      <!-- Boutique -->
+      <li>
+        <a href="./boutique.html" target="_blank" class="nav-link boutique-btn">
+          Boutique 🛒
+        </a>
+      </li>
+
+      <!-- Région -->
+      <li class="dropdown">
+        <a href="#" class="nav-link region-btn">
+          📍 <span id="currentRegion">Abidjan</span> ▾
+        </a>
+
+        <ul class="dropdown-menu region-menu">
+          <li>Abidjan</li>
+          <li>Yamoussoukro</li>
+          <li>San-Pédro</li>
+          <li>Gbêkê</li>
+          <li>Poro</li>
+          <li>Tchologo</li>
+          <li>Bagoué</li>
+          <li>Béré</li>
+          <li>Worodougou</li>
+          <li>Kabadougou</li>
+          <li>Folon</li>
+          <li>Gontougo</li>
+          <li>Iffou</li>
+          <li>N’Zi</li>
+          <li>Mé</li>
+          <li>Sud-Comoé</li>
+          <li>Indénié-Djuablin</li>
+          <li>Agnéby-Tiassa</li>
+          <li>Grands-Ponts</li>
+          <li>Lôh-Djiboua</li>
+          <li>Marahoué</li>
+          <li>Gôh</li>
+          <li>Cavally</li>
+          <li>Guémon</li>
+          <li>Tonkpi</li>
+          <li>Nawa</li>
+          <li>Gbôklè</li>
+          <li>La Mé</li>
+          <li>Bélier</li>
+        </ul>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+<script>
+
+  document.querySelectorAll(".dropdown > a").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const parent = btn.parentElement;
+
+    // fermer autres dropdowns
+    document.querySelectorAll(".dropdown").forEach(d => {
+      if (d !== parent) d.classList.remove("active");
+    });
+
+    // toggle actuel
+    parent.classList.toggle("active");
+  });
+});
+
+// fermer si clic dehors
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown").forEach(d => {
+      d.classList.remove("active");
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* DROPDOWN */
+  document.querySelectorAll(".dropdown > a").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      btn.parentElement.classList.toggle("active");
+    });
+  });
+  document.querySelectorAll(".dropdown > a").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const parent = btn.parentElement;
+
+    document.querySelectorAll(".dropdown").forEach(d => {
+      if (d !== parent) d.classList.remove("active");
+    });
+
+    parent.classList.toggle("active");
+  });
+});
+
+  /* HERO SLIDER PRO */
+  const images = [
+    "https://blog.sevellia.com/wp-content/uploads/2018/09/le-cafe-bio-et-equitable.jpg",
+    "https://tech-n-bio.com/wp-content/uploads/2025/04/Photo_TB_Ambiance-village_CreditMissTerre-2.jpg",
+    "https://proeventinsight.com/wp-content/uploads/2026/02/Capture-decran-2026-02-12-153736-780x470.png",
+    "https://cdn-s-www.estrepublicain.fr/images/B7C6383B-AA28-4449-8E65-92C3597B1CBE/NW_raw/120-exposants-50-conferences-le-salon-bio-amp-co-revient-pour-une-17-e-edition-en-avril-photo-archives-franck-hakmoun-1710446660.jpg"
+  ];
+
+  const bg = document.querySelector(".hero-bg");
+  let index = 0;
+
+  bg.style.backgroundImage = `url(${images[0]})`;
+
+  function nextSlide() {
+    const nextIndex = (index + 1) % images.length;
+
+    const temp = document.createElement("div");
+    temp.className = "hero-bg";
+    temp.style.backgroundImage = `url(${images[nextIndex]})`;
+    document.querySelector(".hero").appendChild(temp);
+
+    gsap.fromTo(temp,
+      { x: "100%", scale: 1.1 },
+      { x: "0%", duration: 1.5, ease: "power3.out" }
+    );
+
+    gsap.to(bg, {
+      x: "-10%",
+      scale: 1.2,
+      duration: 1.5,
+      onComplete: () => {
+        bg.style.backgroundImage = temp.style.backgroundImage;
+        bg.style.transform = "scale(1.2)";
+        temp.remove();
+      }
+    });
+
+    index = nextIndex;
+  }
+
+  setInterval(nextSlide, 5000);
+
+});
+</script>
+    <!-- HERO -->
+    <section id="accueil" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg next"></div>
+
+  <div class="hero-content">
+    <h2 class="small-title">FAP-BIO</h2>
+    <p class="subtitle">
+      Forum Africain des Produits Biologiques présente le
+    </p>
+
+    <h1 class="main-title">Salon International du Bio</h1>
+    <h2 class="brand-title">SIBIO 2026</h2>
+
+    <div class="edition">3ᵉ ÉDITION</div>
+  </div>
+</section>
+    <style>
+    
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transition: background-image 1s ease-in-out;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  
+}
+
+.small-title,
+.subtitle,
+.main-title,
+.brand-title,
+.edition {
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+  color: white;
+}
+
+/* images en fond */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: translateX(0);
+  transition: transform 1s ease;
+}
+
+/* couche suivante */
+.hero-bg.next {
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+/* couche active */
+.hero-bg.active {
+  z-index: 2;
+  transform: translateX(0);
+}
+
+/* animation sortie */
+.hero-bg.slide-out {
+  transform: translateX(-100%);
+}
+
+
+
+
+/* ASSOMBRESSEMENT DE L’IMAGE */
+
+
+/* effet lumineux léger (optionnel) */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  transform: rotate(25deg);
+  z-index: 1;
+}
+
+
+
+.small-title {
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-size: 42px;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+.brand-title {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #ffffff, #a7ffe2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.edition {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .brand-title {
+    font-size: 48px;
+  }
+
+  .main-title {
+    font-size: 28px;
+  }
+}
+
+      .small-title {
+        font-size: 22px;
+        letter-spacing: 3px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        margin-top: 10px;
+        opacity: 0.85;
+      }
+
+      .main-title {
+        font-size: 42px;
+        margin-top: 25px;
+        font-weight: 600;
+      }
+
+      .brand-title {
+        font-size: 72px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        margin: 10px 0;
+        background: linear-gradient(90deg, #ffffff, #a7ffe2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .edition {
+        margin-top: 20px;
+        display: inline-block;
+        padding: 8px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 30px;
+        font-size: 14px;
+        letter-spacing: 2px;
+      }
+
+      /* responsive */
+      @media (max-width: 768px) {
+        .brand-title {
+          font-size: 48px;
+        }
+
+        .main-title {
+          font-size: 28px;
+        }
+      }
+    </style>
+
+
 
 
 
@@ -47,14 +649,9 @@
     
 
     <!-- Hero -->
-    <section id="accueil" class="hero">
-      <div class="hero-content">
-        <h1>FAP-BIO | Le Forum Africain Pour La Promotion du Bio organise : </h1>
-        <h1>SIBIO 2026 Salon International Du Bio </h1>
-        <h2 style="color: #c87137; font-size: 2.2rem; margin-bottom: 1rem">
-          3<sup>ème</sup> édition • Novembre 2026
-        </h2>
-        <p style="font-size: 1.4rem; color: #2d5016; margin-bottom: 1.5rem">
+   
+        
+        <!-- <p style="font-size: 1.4rem; color: #2d5016; margin-bottom: 1.5rem">
           <strong>La Côte d’Ivoire, leader du Bio en Afrique !</strong><br />
           Agir ensemble pour préserver notre biodiversité et nos terres
         </p>
@@ -87,8 +684,8 @@
           Constant Ibo Boga</strong> 
         </p>
       </div>
-      <img src="./salon du bio.jpg" alt="SIBIO 2026" class="hero-img" />
-    </section>
+      
+    </section> -->
 
    <!-- Info Section -->
     <section class="info-section">
@@ -564,6 +1161,111 @@
       </div>
     </section>
 
+
+    <style>
+  .sibio2022 {
+    padding: 90px 20px;
+    background: linear-gradient(180deg, #178665, #576e67);
+    color: white;
+  }
+
+  .sibio2022-container {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  .sibio2022-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+
+  .sibio2022-title span {
+    color: #a7ffe2;
+  }
+
+  .sibio2022-subtitle {
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.85;
+    margin-bottom: 50px;
+  }
+
+  .sibio2022-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .sibio2022-card strong {
+    color: #a7ffe2;
+    font-weight: 700;
+  }
+
+  .sibio2022-tags {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .tag.highlight {
+    background: rgba(167,255,226,0.15);
+    border: 1px solid #a7ffe2;
+  }
+</style>
+
+<section class="sibio2022" id="sibio2022">
+  <div class="sibio2022-container">
+
+    <div class="sibio2022-title">
+      SIBIO <span>2022</span>
+    </div>
+
+    <div class="sibio2022-subtitle">
+      Première édition du Salon International du Bio
+    </div>
+
+    <div class="sibio2022-card">
+
+      La première édition du Salon International du Bio, <strong>SIBIO22</strong>, s'est tenue avec succès les 25 et 26 novembre 2022 au village Brebo à Amado LAGUNA.  
+      Organisé sous le thème <strong>"Produits Bio, symbole d'une consommation authentique et naturelle"</strong>, cet événement a rassemblé un large public dont la chefferie villageoise et a été marqué par une participation active de divers acteurs du secteur.
+
+      <br><br>
+
+      <strong>Partenaires :</strong>  
+      Placé sous le parrainage du <strong>Député-Maire de la commune de Bingerville l’honorable ISSOUF Doumbia</strong>, le Ministère du Tourisme a apporté un soutien institutionnel crucial pour la réalisation de cet événement, démontrant ainsi son engagement envers le développement du secteur bio.  
+      La collaboration avec l’entreprise de sécurité <strong>BERET-CI</strong> et la <strong>SIDAF-CI</strong> (Société Internationale pour le Développement Agricole et Forestier de Côte d'Ivoire) a également été essentielle pour la promotion des pratiques agricoles durables et la sensibilisation à l'importance des produits bio.
+
+      <div class="sibio2022-tags">
+        <span class="tag highlight">SIBIO22</span>
+        <span class="tag">25–26 Novembre 2022</span>
+        <span class="tag">Village Brebo</span>
+        <span class="tag">Amado LAGUNA</span>
+        <span class="tag">Ministère du Tourisme</span>
+        <span class="tag">BERET-CI</span>
+        <span class="tag">SIDAF-CI</span>
+        <span class="tag highlight">Agriculture biologique</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
     <section id="apropos" class="section apropos-section" style="background:#f7f7f7; padding:4rem 2rem;">
   <div class="container" style="max-width:1000px; margin:0 auto;">
     <h2 style="text-align:center; color:#2d5016; margin-bottom:2rem;">À propos de SIBIO & FAP-BIO</h2>
@@ -604,15 +1306,125 @@
   </div>
 </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2026 Salon du Bio. Tous droits réservés.</p>
-        <p>Créé pour promouvoir l'agriculture biologique responsable</p>
-        <p>SIBIO 2023 | SIBIO 2024 | SIBIO 2026 en cours</p>
-      </div>
-    </footer>
 
+
+
+
+   <!-- FOOTER MODERNE -->
+<style>
+  .footer {
+    background: linear-gradient(135deg, #061a14, #0b3d2e);
+    color: #fff;
+    padding: 60px 20px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  .footer-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-box h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #a7ffe2;
+    letter-spacing: 1px;
+  }
+
+  .footer-box p {
+    font-size: 14px;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+
+  .footer-links a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  .footer-links a:hover {
+    opacity: 1;
+    transform: translateX(5px);
+    color: #a7ffe2;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 13px;
+    opacity: 0.7;
+  }
+
+  .badge-sibio {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-size: 12px;
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-box">
+      <h3>SIBIO 2026</h3>
+      <p>Salon International du Bio dédié à la promotion de l’agriculture biologique et durable en Afrique.</p>
+      <span class="badge-sibio">Édition officielle</span>
+    </div>
+
+    <div class="footer-box footer-links">
+      <h3>Navigation</h3>
+      <a href="#">Accueil</a>
+      <a href="#">Boutique</a>
+      <a href="#">Exposants</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="footer-box footer-links">
+      <h3>Éditions</h3>
+      <a href="#sibio2022" id="sibio2022">SIBIO 2022</a>
+      <a href="#">SIBIO 2024</a>
+      <a href="#">SIBIO 2026</a>
+    </div>
+
+    <div class="footer-box">
+      <h3>Engagement</h3>
+      <p>Créé pour promouvoir une agriculture responsable, durable et respectueuse de l’environnement.</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2026 Salon du Bio — Tous droits réservés | SIBIO 2023 • SIBIO 2024 • SIBIO 2026
+  </div>
+</footer>
+
+<script src="./script.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

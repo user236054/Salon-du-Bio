@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion SIBIO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --vert: #4caf50;
+        --vert-hover: #45a049;
+        --beige: #f9f4e8;
+        --text-dark: #333;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #e6f4ea, #f9f4e8);
+        background-image: url("./salon-du-bio.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+      .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 380px;
+        animation: fadeIn 1s ease;
+      }
+      h2 {
+        text-align: center;
+        color: var(--vert);
+        margin-bottom: 25px;
+        font-weight: 600;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 14px 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--vert);
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 15px;
+        border-radius: 12px;
+        border: none;
+        background: var(--vert);
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        background: var(--vert-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 420px) {
+        .form-container {
+          width: 90%;
+          padding: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Connexion SIBIO</h2>
+      <form id="connexionForm">
+        <input type="text" placeholder="Nom" id="nom" required />
+        <input type="text" placeholder="Prénom" id="prenom" required />
+        <input type="email" placeholder="Email" id="email" required />
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          id="password"
+          required
+        />
+        <input
+          type="tel"
+          placeholder="Numéro de téléphone"
+          id="phone"
+          required
+        />
+        <select id="region" required>
+          <option value="">Choisir ma région</option>
+          <option value="nord">Nord</option>
+          <option value="sud">Sud</option>
+          <option value="est">Est</option>
+          <option value="ouest">Ouest</option>
+          <option value="centre">Centre</option>
+          <option value="antilles">Antilles</option>
+          <option value="corse">Corse</option>
+          <option value="alsace">Alsace</option>
+        </select>
+        <button type="submit">Se connecter</button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("connexionForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const region = document.getElementById("region").value;
+        localStorage.setItem("region", region);
+        alert(`Connexion réussie pour la région : ${region}`);
+        window.location.href = "index.html"; // redirection vers la page principale
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boutique SIBIO 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green: #2d5016;
+        --green-light: #3f6b22;
+        --accent: #c87137;
+        --bg: #f5f7f6;
+        --card: #ffffff;
+        --text: #1f2a1f;
+        --muted: #6b6b6b;
+        --radius: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* HEADER */
+      .header {
+        background: linear-gradient(135deg, var(--green), var(--green-light));
+        color: white;
+        padding: 18px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .header h1 {
+        font-size: 22px;
+        margin: 0;
+      }
+
+      .back-btn {
+        background: var(--accent);
+        color: white;
+        padding: 8px 14px;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      /* FILTERS */
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 18px;
+        justify-content: center;
+        background: white;
+        border-bottom: 1px solid #eaeaea;
+      }
+
+      .filters input {
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        min-width: 190px;
+        outline: none;
+      }
+
+      .filters input:focus {
+        border-color: var(--green);
+      }
+
+      /* CUSTOM SELECT */
+      .custom-select {
+        position: relative;
+        min-width: 190px;
+        user-select: none;
+      }
+
+      .select-selected {
+        background: linear-gradient(145deg, #ffffff, #f3f7f3);
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .select-selected:after {
+        content: "▾";
+        color: var(--green);
+        margin-left: 10px;
+      }
+
+      .select-items {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        display: none;
+        z-index: 50;
+        overflow: hidden;
+      }
+
+      .select-items div {
+        padding: 10px 12px;
+        cursor: pointer;
+      }
+
+      .select-items div:hover {
+        background: #e8f3e1;
+        color: var(--green);
+      }
+
+      .select-items.show {
+        display: block;
+      }
+
+      /* PRODUCTS */
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 22px;
+        padding: 28px;
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+      }
+
+      .card-content {
+        padding: 14px;
+      }
+
+      .price {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .badge {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        background: #e8f3e1;
+        color: var(--green);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>🛒 Boutique SIBIO 2026</h1>
+      <a href="index.html" class="back-btn">← Retour</a>
+    </div>
+
+    <div class="filters">
+      <input type="text" id="search" placeholder="Rechercher un produit..." />
+
+      <div class="custom-select" data-filter="category">
+        <div class="select-selected">Toutes les catégories</div>
+        <div class="select-items">
+          <div data-value="">Toutes les catégories</div>
+          <div data-value="alimentaire">Alimentaire</div>
+          <div data-value="cosmetique">Cosmétique</div>
+          <div data-value="artisanat">Artisanat</div>
+        </div>
+      </div>
+
+      <div class="custom-select" data-filter="region">
+        <div class="select-selected">Toutes les régions</div>
+        <div class="select-items" id="regionList"></div>
+      </div>
+
+      <div class="custom-select" data-filter="price">
+        <div class="select-selected">Tous les prix</div>
+        <div class="select-items">
+          <div data-value="">Tous les prix</div>
+          <div data-value="1">- 5 000 FCFA</div>
+          <div data-value="2">5 000 - 10 000 FCFA</div>
+          <div data-value="3">10 000+ FCFA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="products" id="productsContainer"></div>
+
+    <script>
+      const products = [
+        {
+          name: "Miel Bio",
+          price: 3000,
+          category: "alimentaire",
+          region: "Abidjan",
+          img: "https://images.unsplash.com/photo-1587049352851-8d4e89133924",
+        },
+        {
+          name: "Savon Naturel",
+          price: 2000,
+          category: "cosmetique",
+          region: "Yamoussoukro",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf2IcxndKG3qfMqQrA1iS5QGEd8qQHKd_chg&s",
+        },
+        {
+          name: "Café Bio",
+          price: 7000,
+          category: "alimentaire",
+          region: "San-Pédro",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQqtVirbr0GESyw15LitUgcXbELffRWPvog&s",
+        },
+        {
+          name: "Huile de coco",
+          price: 12000,
+          category: "cosmetique",
+          region: "Gbêkê",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgeh9NVrPq4iBH5fMpok0vaWnXDJIg3gTO_Q&s",
+        },
+        {
+          name: "Sac artisanal",
+          price: 9000,
+          category: "artisanat",
+          region: "Tonkpi",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
+        },
+      ];
+
+      const regions = [
+        "Abidjan",
+        "Yamoussoukro",
+        "San-Pédro",
+        "Gbêkê",
+        "Hambol",
+        "Poro",
+        "Tonkpi",
+      ];
+
+      let filters = {
+        category: "",
+        region: "",
+        price: "",
+      };
+
+      /* REGION LIST */
+      const regionList = document.getElementById("regionList");
+      regions.forEach((r) => {
+        const div = document.createElement("div");
+        div.textContent = r;
+        div.dataset.value = r;
+        regionList.appendChild(div);
+      });
+
+      /* CUSTOM DROPDOWN */
+      document.querySelectorAll(".custom-select").forEach((select) => {
+        const selected = select.querySelector(".select-selected");
+        const items = select.querySelector(".select-items");
+
+        selected.addEventListener("click", () => {
+          document.querySelectorAll(".select-items").forEach((el) => {
+            if (el !== items) el.classList.remove("show");
+          });
+          items.classList.toggle("show");
+        });
+
+        items.querySelectorAll("div").forEach((option) => {
+          option.addEventListener("click", () => {
+            selected.textContent = option.textContent;
+            items.classList.remove("show");
+
+            const type = select.dataset.filter;
+            filters[type] = option.dataset.value || "";
+            filterProducts();
+          });
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".custom-select")) {
+          document
+            .querySelectorAll(".select-items")
+            .forEach((el) => el.classList.remove("show"));
+        }
+      });
+
+      /* PRODUCTS */
+      function display(list) {
+        const container = document.getElementById("productsContainer");
+        container.innerHTML = "";
+        list.forEach((p) => {
+          container.innerHTML += `
+            <div class="card">
+              <img src="${p.img}">
+              <div class="card-content">
+                <h3>${p.name}</h3>
+                <p>${p.region}</p>
+                <span class="badge">${p.category}</span>
+                <p class="price">${p.price} FCFA</p>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      function filterProducts() {
+        const search = document.getElementById("search").value.toLowerCase();
+
+        const filtered = products.filter((p) => {
+          return (
+            p.name.toLowerCase().includes(search) &&
+            (filters.category === "" || p.category === filters.category) &&
+            (filters.region === "" || p.region === filters.region) &&
+            (filters.price === "" ||
+              (filters.price === "1" && p.price < 5000) ||
+              (filters.price === "2" && p.price >= 5000 && p.price <= 10000) ||
+              (filters.price === "3" && p.price > 10000))
+          );
+        });
+
+        display(filtered);
+      }
+
+      document
+        .getElementById("search")
+        .addEventListener("input", filterProducts);
+
+      display(products);
+    </script>
+  </body>
+</html>

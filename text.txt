@@ -1,0 +1,55 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* DROPDOWN */
+  document.querySelectorAll(".dropdown > a").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      btn.parentElement.classList.toggle("active");
+    });
+  });
+
+  /* HERO SLIDER PRO */
+  const images = [
+    "https://blog.sevellia.com/wp-content/uploads/2018/09/le-cafe-bio-et-equitable.jpg",
+    "https://tech-n-bio.com/wp-content/uploads/2025/04/Photo_TB_Ambiance-village_CreditMissTerre-2.jpg",
+    "https://proeventinsight.com/wp-content/uploads/2026/02/Capture-decran-2026-02-12-153736-780x470.png",
+    "https://cdn-s-www.estrepublicain.fr/images/B7C6383B-AA28-4449-8E65-92C3597B1CBE/NW_raw/120-exposants-50-conferences-le-salon-bio-amp-co-revient-pour-une-17-e-edition-en-avril-photo-archives-franck-hakmoun-1710446660.jpg"
+  ];
+
+  const bg = document.querySelector(".hero-bg");
+  let index = 0;
+
+  bg.style.backgroundImage = `url(${images[0]})`;
+
+  function nextSlide() {
+    const nextIndex = (index + 1) % images.length;
+
+    const temp = document.createElement("div");
+    temp.className = "hero-bg";
+    temp.style.backgroundImage = `url(${images[nextIndex]})`;
+    document.querySelector(".hero").appendChild(temp);
+
+    gsap.fromTo(temp,
+      { x: "100%", scale: 1.1 },
+      { x: "0%", duration: 1.5, ease: "power3.out" }
+    );
+
+    gsap.to(bg, {
+      x: "-10%",
+      scale: 1.2,
+      duration: 1.5,
+      onComplete: () => {
+        bg.style.backgroundImage = temp.style.backgroundImage;
+        bg.style.transform = "scale(1.2)";
+        temp.remove();
+      }
+    });
+
+    index = nextIndex;
+  }
+
+  setInterval(nextSlide, 5000);
+
+});
+</script>
