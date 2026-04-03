@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Panier</title>
+
+    <style>
+      :root {
+        --green: #2d5016;
+        --green2: #3f6b22;
+        --accent: #f0b429;
+        --bg: #f4f6f5;
+        --card: #ffffff;
+        --text: #2b2b2b;
+        --muted: #7a7a7a;
+        --danger: #ff3b30;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      /* HEADER */
+      header {
+        background: linear-gradient(135deg, var(--green), var(--green2));
+        color: white;
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h2 {
+        margin: 0;
+        font-size: 18px;
+      }
+
+      header a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.9;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      header a:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* LAYOUT */
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      /* CART LIST */
+      .cart-items {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .item {
+        display: grid;
+        grid-template-columns: 75% 25%;
+        background: var(--card);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        transition: 0.2s;
+      }
+
+      .item:hover {
+        transform: translateY(-2px);
+      }
+
+      /* LEFT */
+      .item-left {
+        display: flex;
+        gap: 14px;
+        padding: 14px;
+        align-items: center;
+      }
+
+      .item-left img {
+        width: 95px;
+        height: 95px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .info h4 {
+        margin: 0;
+        font-size: 15px;
+        color: var(--text);
+      }
+
+      .info p {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .price {
+        margin-top: 6px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      /* RIGHT */
+      .item-right {
+        background: #fafafa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border-left: 1px solid #eee;
+        padding: 10px;
+      }
+
+      /* bloc quantité propre */
+      .qty {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .qty button {
+        width: 34px;
+        height: 34px;
+        border: none;
+        border-radius: 10px;
+        background: var(--green);
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .qty button:hover {
+        transform: scale(1.05);
+      }
+
+      .qty span {
+        min-width: 26px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      /* delete button plus clean */
+      .delete {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #fff;
+        border: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .delete:hover {
+        transform: scale(1.05);
+        border-color: var(--danger);
+      }
+
+      .delete img {
+        width: 35px;
+        height: 26px;
+      }
+      .delete:hover {
+        transform: scale(1.05);
+      }
+
+      /* SUMMARY */
+      .summary {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+        height: fit-content;
+      }
+
+      .summary h3 {
+        margin-top: 0;
+      }
+
+      .total-global {
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--green);
+        margin: 10px 0 20px;
+        text-align: center;
+      }
+
+      /* FORM */
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      label {
+        font-size: 12px;
+        font-weight: 700;
+        display: block;
+        margin-bottom: 5px;
+        color: var(--text);
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        font-size: 1rem;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      label span {
+        font-weight: bold;
+        color: var(--danger);
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        outline: none;
+      }
+
+      input:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 0 2px rgba(45, 80, 22, 0.15);
+      }
+
+      /* BUTTONS */
+      .btn-checkout {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--green), var(--green2));
+        color: white;
+        font-weight: 800;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .btn-checkout:hover {
+        opacity: 0.95;
+      }
+
+      /* EMPTY */
+      .empty {
+        text-align: center;
+        padding: 50px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h2>Mon Panier</h2>
+      <a href="boutique.html">← Continuer vos achats</a>
+    </header>
+
+    <div class="container">
+      <!-- CART -->
+      <div class="cart-items" id="cartItems"></div>
+
+      <!-- SUMMARY -->
+      <div class="summary">
+        <h3>Récapitulatif</h3>
+        <div class="total-global" id="total">Total: 0 FCFA</div>
+
+        <div class="form-group">
+          <label>Nom complet <span>*</span></label>
+          <input id="name" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label>Adresse de livraison <span>*</span></label>
+          <input id="address" type="text" />
+        </div>
+
+        <div class="form-group">
+          <label>Numéro de téléphone <span>*</span></label>
+          <input id="phone" type="text" />
+        </div>
+
+        <button class="btn-checkout" onclick="orderAll()">
+          Valider la commande
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      /* DISPLAY */
+      function display() {
+        const container = document.getElementById("cartItems");
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+          container.innerHTML = `<div class="empty">Votre panier est vide</div>`;
+          document.getElementById("total").textContent = "Total: 0 FCFA";
+          return;
+        }
+
+        let total = 0;
+
+        cart.forEach((item, i) => {
+          let subTotal = item.price * item.qty;
+          total += subTotal;
+
+          container.innerHTML += `
+      <div class="item">
+
+        <div class="item-left">
+          <img src="${item.img}">
+          <div class="info">
+            <h4>${item.name}</h4>
+            
+            <div class="price">Total: ${subTotal} FCFA</div>
+          </div>
+        </div>
+
+        <div class="item-right">
+
+          <div class="qty">
+            <button onclick="minus(${i})">-</button>
+            <span>${item.qty}</span>
+            <button onclick="plus(${i})">+</button>
+          </div>
+
+          <button class="delete" onclick="removeItem(${i})">
+  <img src="https://www.clipartmax.com/png/middle/84-842915_delete-icon-png-red.png" alt="delete">
+</button>
+
+        </div>
+
+      </div>
+    `;
+        });
+
+        document.getElementById("total").textContent =
+          "Total: " + total + " FCFA";
+      }
+
+      /* PLUS */
+      function plus(i) {
+        cart[i].qty++;
+        save();
+        display();
+      }
+
+      /* MINUS */
+      function minus(i) {
+        if (cart[i].qty > 1) {
+          cart[i].qty--;
+        } else {
+          cart.splice(i, 1);
+        }
+        save();
+        display();
+      }
+
+      /* DELETE */
+      function removeItem(i) {
+        cart.splice(i, 1);
+        save();
+        display();
+      }
+
+      /* SAVE */
+      function save() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+
+      /* ORDER */
+      function orderAll() {
+        let name = document.getElementById("name").value;
+        let address = document.getElementById("address").value;
+        let phone = document.getElementById("phone").value;
+
+        if (!name || !address || !phone) {
+          alert("Veuillez remplir tous les champs");
+          return;
+        }
+
+        alert("Commande validée avec succès");
+        localStorage.removeItem("cart");
+        cart = [];
+        display();
+      }
+
+      /* INIT */
+      display();
+    </script>
+  </body>
+</html>

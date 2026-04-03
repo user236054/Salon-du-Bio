@@ -44,7 +44,7 @@
         align-items: center;
         position: sticky;
         top: 0;
-        z-index: 10;
+        z-index: 1000;
       }
 
       .header h1 {
@@ -61,27 +61,61 @@
         font-size: 14px;
       }
 
-      /* FILTERS */
-      .filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        padding: 18px;
-        justify-content: center;
-        background: white;
-        border-bottom: 1px solid #eaeaea;
-      }
-
       .filters input {
         padding: 12px 14px;
         border-radius: 12px;
         border: 1px solid #ddd;
         min-width: 190px;
         outline: none;
+        background: white;
       }
 
       .filters input:focus {
         border-color: var(--green);
+        box-shadow: 0 0 0 2px rgba(45, 80, 22, 0.15);
+      }
+
+      /* alignement filters */
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 18px;
+        align-items: center;
+        justify-content: flex-start;
+
+        position: sticky;
+        top: 70px; /* en dessous du header */
+        z-index: 900;
+        background: var(--bg);
+      }
+
+      /* bouton panier dans filters */
+      .cart-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        margin-left: auto;
+
+        padding: 12px 16px;
+        border-radius: 12px;
+
+        background: linear-gradient(135deg, #f7c948, #f0b429);
+
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        transition: 0.25s;
+
+        position: relative; /* IMPORTANT pour badge */
+      }
+
+      .cart-btn:hover {
+        transform: translateY(-2px);
+        border-color: yellow;
       }
 
       /* CUSTOM SELECT */
@@ -119,7 +153,13 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         display: none;
         z-index: 50;
+        pointer-events: auto;
         overflow: hidden;
+      }
+      .custom-select {
+        position: relative;
+        min-width: 190px;
+        user-select: none;
       }
 
       .select-items div {
@@ -165,6 +205,18 @@
       .card-content {
         padding: 14px;
       }
+      .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: red;
+        color: white;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 50%;
+        display: none;
+        font-weight: bold;
+      }
 
       .price {
         color: var(--accent);
@@ -180,13 +232,64 @@
         background: #e8f3e1;
         color: var(--green);
       }
+      /* ACTIONS */
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      /* BOUTON PRINCIPAL */
+      .btn-order {
+        flex: 1;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        background: linear-gradient(135deg, var(--green), var(--green-light));
+        color: white;
+        transition: 0.25s;
+      }
+
+      .btn-order:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(45, 80, 22, 0.3);
+      }
+
+      /* ICÔNE PANIER */
+      .btn-cart {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+
+        background: rgba(179, 197, 21, 0.26); /* fond blanc */
+        color: var(--green); /* icône bien visible */
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* relief */
+        transition: 0.25s;
+      }
+
+      .btn-cart:hover {
+        background-color: yellow;
+        transform: scale(1.08);
+      }
     </style>
   </head>
 
   <body>
     <div class="header">
       <h1>🛒 Boutique SIBIO 2026</h1>
-      <a href="index.html" class="back-btn">← Retour</a>
+      <a href="index.html" class="back-btn">Accueil</a>
     </div>
 
     <div class="filters">
@@ -216,8 +319,13 @@
           <div data-value="3">10 000+ FCFA</div>
         </div>
       </div>
-    </div>
 
+      <div class="cart-btn" onclick="goToCart()" style="position: relative">
+        🛒 <span style="color: white">Panier</span>
+        <span id="cart-count" class="cart-count">0</span>
+      </div>
+    </div>
+    <!-- mais quand il retire un produit un produit on remet l'icone du panier pour lui dire qu'il rzajoutr dansle panier -->
     <div class="products" id="productsContainer"></div>
 
     <script>
@@ -257,6 +365,34 @@
           region: "Tonkpi",
           img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
         },
+        {
+          name: "Légumes Frais Bio",
+          price: 500,
+          category: "alimentaire",
+          region: "Sassandra",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
+        },
+        {
+          name: "Beure de Kariter",
+          price: 200,
+          category: "cosmétique",
+          region: "Tonkpi",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
+        },
+        {
+          name: "Fruit Bio",
+          price: 2000,
+          category: "aliment",
+          region: "Tonkpi",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
+        },
+        {
+          name: "Colier en Feuille",
+          price: 1500,
+          category: "artisanat",
+          region: "Tonkpi",
+          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
+        },
       ];
 
       const regions = [
@@ -289,13 +425,20 @@
         const selected = select.querySelector(".select-selected");
         const items = select.querySelector(".select-items");
 
-        selected.addEventListener("click", () => {
+        // OUVERTURE AU SURVOL
+        select.addEventListener("mouseenter", () => {
           document.querySelectorAll(".select-items").forEach((el) => {
             if (el !== items) el.classList.remove("show");
           });
-          items.classList.toggle("show");
+          items.classList.add("show");
         });
 
+        // GARDE OUVERT TANT QU'ON EST DEDANS
+        select.addEventListener("mouseleave", () => {
+          items.classList.remove("show");
+        });
+
+        // SELECTION OPTION
         items.querySelectorAll("div").forEach((option) => {
           option.addEventListener("click", () => {
             selected.textContent = option.textContent;
@@ -308,6 +451,7 @@
         });
       });
 
+      // fermeture si clic hors dropdown
       document.addEventListener("click", (e) => {
         if (!e.target.closest(".custom-select")) {
           document
@@ -317,24 +461,89 @@
       });
 
       /* PRODUCTS */
+
+      /* PRODUCTS */
       function display(list) {
         const container = document.getElementById("productsContainer");
         container.innerHTML = "";
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
         list.forEach((p) => {
+          const isInCart = cart.some((item) => item.name === p.name);
+
           container.innerHTML += `
-            <div class="card">
-              <img src="${p.img}">
-              <div class="card-content">
-                <h3>${p.name}</h3>
-                <p>${p.region}</p>
-                <span class="badge">${p.category}</span>
-                <p class="price">${p.price} FCFA</p>
-              </div>
-            </div>
-          `;
+      <div class="card">
+        <img src="${p.img}">
+        <div class="card-content">
+          <h3>${p.name}</h3>
+          <p>${p.region}</p>
+          <span class="badge">${p.category}</span>
+          <p class="price">${p.price} FCFA</p>
+
+          <div class="actions">
+            <button class="btn-order"
+              onclick="goToOrder('${p.name}', ${p.price}, '${p.img}')">
+              Commander
+            </button>
+
+            <button class="btn-cart"
+              onclick="toggleCart('${p.name}', ${p.price}, '${p.img}', this)">
+              ${isInCart ? "✔" : "🛒"}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
         });
       }
 
+      function goToOrder(name, price, img) {
+        const url = `commande.html?name=${encodeURIComponent(name)}&price=${price}&img=${encodeURIComponent(img)}`;
+        window.location.href = url;
+      }
+
+      /* COMPTEUR PANIER */
+      function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart.length;
+
+        const badge = document.getElementById("cart-count");
+
+        if (count > 0) {
+          badge.style.display = "block";
+          badge.textContent = count;
+        } else {
+          badge.style.display = "none";
+        }
+      }
+
+      /* TOGGLE PANIER (AJOUT / RETRAIT) */
+      function toggleCart(name, price, img, btn) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        let index = cart.findIndex((item) => item.name === name);
+
+        if (index !== -1) {
+          // retirer
+          cart.splice(index, 1);
+          btn.textContent = "🛒";
+        } else {
+          // ajouter
+          cart.push({
+            name,
+            price,
+            img,
+            qty: 1,
+          });
+          btn.textContent = "✔";
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      /* FILTRE */
       function filterProducts() {
         const search = document.getElementById("search").value.toLowerCase();
 
@@ -357,7 +566,14 @@
         .getElementById("search")
         .addEventListener("input", filterProducts);
 
+      /* NAVIGATION */
+      function goToCart() {
+        window.location.href = "panier.html";
+      }
+
+      /* INIT */
       display(products);
+      updateCartCount();
     </script>
   </body>
 </html>

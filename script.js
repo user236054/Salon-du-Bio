@@ -215,3 +215,288 @@ function copyLink(link) {
 }
 console.log('✓ Script Salon du Bio chargé avec succès');
 console.log('Fonctionnalités: Countdown timer, QR Code generator, Mobile menu, Smooth scroll');
+
+
+
+
+
+const data = {
+        abidjan: [
+          {
+            t: "Cacao urbain",
+            d: "Production locale premium",
+            p: "Produit très recherché sur le marché international.",
+          },
+          {
+            t: "Légumes bio",
+            d: "Culture sans pesticides",
+            p: "Idéal pour une alimentation saine.",
+          },
+          {
+            t: "Transformation agro",
+            d: "Produits finis locaux",
+            p: "Valorisation de l’économie locale.",
+          },
+        ],
+        bafing: [
+          {
+            t: "Ignames bio",
+            d: "Culture traditionnelle",
+            p: "Riche en énergie naturelle.",
+          },
+          { t: "Miel pur", d: "Apiculture locale", p: "Renforce l’immunité." },
+          {
+            t: "Maïs",
+            d: "Production vivrière",
+            p: "Base alimentaire essentielle.",
+          },
+        ],
+        bas_sassandra: [
+          {
+            t: "Huile de palme",
+            d: "Extraction naturelle",
+            p: "Très utilisée en cuisine.",
+          },
+          {
+            t: "Cacao",
+            d: "Culture export",
+            p: "Produit stratégique ivoirien.",
+            img: "https://images.rtl.fr/~c/2000v2000/rtl/www/1294836-des-fruits-et-legumes-bio-illustration.jpg",
+          },
+          { t: "Poisson", d: "Pêche locale", p: "Fraîcheur garantie." },
+        ],
+        denguele: [
+          { t: "Mil", d: "Céréale sèche", p: "Résistant au climat." },
+          {
+            t: "Coton",
+            d: "Culture industrielle",
+            p: "Source de revenus importante.",
+          },
+          { t: "Karité", d: "Produit naturel", p: "Utilisé en cosmétique." },
+        ],
+        goh: [
+          { t: "Café", d: "Production locale", p: "Saveur riche et exportée." },
+          { t: "Banane", d: "Culture fruitière", p: "Énergie naturelle." },
+          { t: "Manioc", d: "Aliment de base", p: "Très consommé localement." },
+        ],
+        gbeke: [
+          { t: "Ananas", d: "Culture fruitière", p: "Très sucré et exporté." },
+          { t: "Riz", d: "Production locale", p: "Alimentation quotidienne." },
+          { t: "Maïs", d: "Culture vivrière", p: "Base alimentaire." },
+        ],
+        grands_ponts: [
+          {
+            t: "Palmier à huile",
+            d: "Culture industrielle",
+            p: "Fort potentiel économique.",
+          },
+          { t: "Manioc", d: "Culture vivrière", p: "Très consommé." },
+          { t: "Poisson", d: "Pêche artisanale", p: "Produit frais local." },
+        ],
+        guemon: [
+          {
+            t: "Cacao",
+            d: "Culture principale",
+            p: "Produit d’exportation clé.",
+          },
+          { t: "Café", d: "Production locale", p: "Très apprécié." },
+          { t: "Riz", d: "Culture vivrière", p: "Base alimentaire." },
+        ],
+        hambol: [
+          { t: "Maïs", d: "Culture céréalière", p: "Alimentation de base." },
+          { t: "Igname", d: "Tubercule local", p: "Très nutritif." },
+          { t: "Coton", d: "Culture industrielle", p: "Revenu agricole." },
+        ],
+        iffou: [
+          {
+            t: "Manioc",
+            d: "Culture vivrière",
+            p: "Très consommé localement.",
+          },
+          { t: "Maïs", d: "Céréale locale", p: "Alimentation essentielle." },
+          { t: "Ananas", d: "Fruit tropical", p: "Très sucré." },
+        ],
+        indenie: [
+          { t: "Cacao", d: "Culture dominante", p: "Produit d’exportation." },
+          { t: "Café", d: "Culture locale", p: "Très recherché." },
+          { t: "Banane", d: "Fruit tropical", p: "Énergie naturelle." },
+        ],
+        kabadougou: [
+          { t: "Mil", d: "Céréale résistante", p: "Adapté au climat sec." },
+          { t: "Coton", d: "Culture industrielle", p: "Source de revenus." },
+          { t: "Karité", d: "Produit naturel", p: "Cosmétique bio." },
+        ],
+        la_me: [
+          { t: "Manioc", d: "Culture vivrière", p: "Base alimentaire." },
+          { t: "Palmier", d: "Culture industrielle", p: "Production d’huile." },
+          { t: "Banane", d: "Fruit local", p: "Très consommé." },
+        ],
+        lagunes: [
+          { t: "Poisson", d: "Pêche lagunaire", p: "Très frais." },
+          { t: "Riz", d: "Culture locale", p: "Alimentation quotidienne." },
+          { t: "Légumes", d: "Agriculture urbaine", p: "Bio et sain." },
+        ],
+        marahoue: [
+          { t: "Cacao", d: "Culture principale", p: "Export important." },
+          { t: "Cola", d: "Produit local", p: "Traditionnel." },
+          { t: "Ignames", d: "Tubercules", p: "Très nutritif." },
+        ],
+        moronou: [
+          { t: "Manioc", d: "Culture locale", p: "Aliment de base." },
+          { t: "Ananas", d: "Fruit tropical", p: "Très sucré." },
+          { t: "Maïs", d: "Céréale", p: "Très consommée." },
+        ],
+        nawa: [
+          { t: "Cacao", d: "Culture dominante", p: "Export majeur." },
+          { t: "Hévéa", d: "Caoutchouc", p: "Industrie importante." },
+          { t: "Riz", d: "Culture locale", p: "Alimentation." },
+        ],
+        poro: [
+          { t: "Mil", d: "Céréale sèche", p: "Très résistant." },
+          { t: "Coton", d: "Culture industrielle", p: "Revenus agricoles." },
+          { t: "Maïs", d: "Culture vivrière", p: "Base alimentaire." },
+        ],
+        san_pedro: [
+          { t: "Cacao", d: "Export portuaire", p: "Très stratégique." },
+          { t: "Poisson", d: "Pêche maritime", p: "Produit frais." },
+          { t: "Palmier", d: "Huile végétale", p: "Très utilisé." },
+        ],
+        sud_comoe: [
+          { t: "Ananas", d: "Culture fruitière", p: "Très exporté." },
+          { t: "Cacao", d: "Culture locale", p: "Très rentable." },
+          { t: "Palmier", d: "Huile naturelle", p: "Industrie locale." },
+        ],
+        tchologo: [
+          { t: "Coton", d: "Culture industrielle", p: "Très important." },
+          { t: "Mil", d: "Céréale", p: "Résistant." },
+          { t: "Maïs", d: "Culture locale", p: "Alimentation." },
+        ],
+        tonkpi: [
+          { t: "Café", d: "Culture d’altitude", p: "Très aromatique." },
+          { t: "Cacao", d: "Culture locale", p: "Export clé." },
+          { t: "Riz", d: "Culture vivrière", p: "Base alimentaire." },
+        ],
+        worodougou: [
+          { t: "Coton", d: "Culture industrielle", p: "Revenus agricoles." },
+          { t: "Mil", d: "Céréale", p: "Très résistant." },
+          { t: "Maïs", d: "Culture locale", p: "Alimentation." },
+        ],
+        zanzan: [
+          { t: "Igname", d: "Tubercule", p: "Très nourrissant." },
+          { t: "Coton", d: "Culture industrielle", p: "Export." },
+          { t: "Maïs", d: "Céréale", p: "Base alimentaire." },
+        ],
+        gbokle: [
+          { t: "Poisson", d: "Pêche locale", p: "Très frais." },
+          { t: "Manioc", d: "Culture vivrière", p: "Très consommé." },
+          { t: "Palmier", d: "Huile", p: "Industrie locale." },
+        ],
+        loh_djiboua: [
+          { t: "Cacao", d: "Culture locale", p: "Export important." },
+          { t: "Riz", d: "Culture vivrière", p: "Base alimentaire." },
+          { t: "Manioc", d: "Culture locale", p: "Très consommé." },
+        ],
+        bere: [
+          { t: "Coton", d: "Culture industrielle", p: "Revenus agricoles." },
+          { t: "Mil", d: "Céréale", p: "Résistant." },
+          { t: "Maïs", d: "Culture locale", p: "Alimentation." },
+        ],
+        folon: [
+          { t: "Karité", d: "Produit naturel", p: "Cosmétique bio." },
+          { t: "Mil", d: "Céréale", p: "Très résistant." },
+          { t: "Coton", d: "Culture industrielle", p: "Export." },
+        ],
+        belier: [
+          { t: "Igname", d: "Tubercule", p: "Très nutritif." },
+          { t: "Maïs", d: "Céréale", p: "Alimentation." },
+          { t: "Riz", d: "Culture locale", p: "Base alimentaire." },
+        ],
+        yacoli: [
+          { t: "Riz", d: "Culture présidentielle", p: "Zone stratégique." },
+          { t: "Poisson", d: "Production locale", p: "Très frais." },
+          { t: "Légumes", d: "Agriculture urbaine", p: "Bio et sain." },
+        ],
+      };
+
+      const grid = document.getElementById("exposantsGrid");
+      const currentRegionBtn = document.getElementById("currentRegion");
+
+      function setActive(region) {
+        document.querySelectorAll(".region-item").forEach((item) => {
+          item.classList.toggle("active", item.dataset.region === region);
+        });
+      }
+
+      /* render avec animation */
+      function render(region, save = true) {
+        /* fade out */
+        grid.classList.add("fade-out");
+
+        setTimeout(() => {
+          grid.innerHTML = "";
+
+          const items = data[region] || [];
+
+          items.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "exposant-card";
+            card.innerHTML = `
+        <img src="${item.img || "https://via.placeholder.com/150?text=Produit"}" alt="${item.t}">
+        <h4>${item.t}</h4>
+        <p>${item.d}</p>
+        <p class="promo">${item.p}</p>
+      `;
+            grid.appendChild(card);
+          });
+
+          /* update navbar label avec 📍 */
+          currentRegionBtn.textContent = "📍 " + region + " ▾";
+
+          /* fade in */
+          grid.classList.remove("fade-out");
+        }, 200);
+
+        if (save) {
+          localStorage.setItem("region", region);
+        }
+      }
+
+      /* click régions */
+      document.querySelectorAll(".region-item").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const region = el.dataset.region;
+
+          setActive(region);
+          render(region);
+
+          document.querySelector(".dropdown").classList.remove("active");
+        });
+      });
+
+      /* load saved region */
+      window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("region") || "abidjan";
+
+        setActive(saved);
+        render(saved, false);
+      });
+
+      /* dropdown logic */
+      const dropdowns = document.querySelectorAll(".dropdown");
+
+      dropdowns.forEach((d) => {
+        const t = d.querySelector(".nav-link");
+        t.addEventListener("click", (e) => {
+          e.preventDefault();
+          dropdowns.forEach((x) => x !== d && x.classList.remove("active"));
+          d.classList.toggle("active");
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".dropdown")) {
+          dropdowns.forEach((d) => d.classList.remove("active"));
+        }
+      });

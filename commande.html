@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Commande</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green: #2d5016;
+        --green-light: #3f6b22;
+        --bg: #f5f7f6;
+        --card: #fff;
+        --muted: #6b6b6b;
+      }
+
+      body {
+        margin: 0;
+        font-family: Poppins;
+        background: var(--bg);
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 25px auto;
+        background: var(--card);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      /* HEADER PRODUIT */
+      .top {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+      }
+
+      .top img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      h2 {
+        margin: 0;
+      }
+
+      .price {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      /* DESCRIPTION */
+      .desc {
+        padding: 0 20px;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      /* BADGES CONFIANCE */
+      .badges {
+        display: flex;
+        gap: 10px;
+        padding: 0 20px 15px;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        font-size: 12px;
+        background: #e9f3e6;
+        color: var(--green);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+
+      /* BODY */
+      .body {
+        padding: 20px;
+      }
+
+      /* QTY */
+      .qtyBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .qtyControls {
+        display: flex;
+        gap: 10px;
+        background: #f3f5f3;
+        padding: 6px 10px;
+        border-radius: 10px;
+      }
+
+      .qtyControls button {
+        width: 30px;
+        height: 30px;
+        border: none;
+        background: white;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+
+      .total {
+        font-weight: 700;
+        color: var(--green);
+      }
+
+      /* INPUT */
+      .group {
+        margin-bottom: 12px;
+      }
+
+      label {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      input {
+        width: 90%;
+        padding: 11px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--green);
+        box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.15);
+      }
+
+      /* BUTTON */
+      .submit {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 15px;
+        color: white;
+        background: linear-gradient(135deg, #2d5016, #3f6b22);
+        box-shadow: 0 6px 15px rgba(45, 80, 22, 0.25);
+        transition: 0.25s;
+      }
+
+      .submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 22px rgba(45, 80, 22, 0.35);
+      }
+      /* SUCCESS */
+      .success {
+        display: none;
+        text-align: center;
+        margin-top: 10px;
+        color: var(--green);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- PRODUIT -->
+      <div class="top">
+        <img id="img" />
+        <div>
+          <h2 id="name"></h2>
+          <div class="price" id="price"></div>
+        </div>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="desc" id="desc"></div>
+
+      <!-- BADGES -->
+      <div class="badges">
+        <div class="badge">🚚 Livraison rapide</div>
+        <div class="badge">💳 Paiement à la livraison</div>
+        <div class="badge">🌿 Produit local</div>
+      </div>
+
+      <div class="body">
+        <!-- QTY -->
+        <div class="qtyBox">
+          <div class="qtyControls">
+            <button onclick="changeQty(-1)">-</button>
+            <div id="qty">1</div>
+            <button onclick="changeQty(1)">+</button>
+          </div>
+
+          <div class="total">Total: <span id="total"></span> FCFA</div>
+        </div>
+
+        <!-- CLIENT -->
+        <div class="group">
+          <label
+            ><strong
+              >Nom & prénom <span style="color: #2d5016">*</span></strong
+            ></label
+          >
+          <input id="clientName" />
+        </div>
+
+        <div class="group">
+          <label
+            ><strong
+              >Téléphone <span style="color: #2d5016">*</span></strong
+            ></label
+          >
+          <input id="phone" />
+        </div>
+
+        <div class="group">
+          <label
+            ><strong
+              >Adresse <span style="color: #2d5016">*</span></strong
+            ></label
+          >
+          <input
+            id="location"
+            placeholder="Ex: Abidjan, Cocody Deux Plateaux"
+          />
+        </div>
+
+        <!-- BUTTON -->
+        <button class="submit" onclick="submitOrder()">
+          Valider la commande
+        </button>
+
+        <div class="success" id="success">Commande envoyée avec succès</div>
+      </div>
+    </div>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+
+      const name = params.get("name");
+      const price = parseInt(params.get("price"));
+      const img = params.get("img");
+
+      document.getElementById("name").textContent = name;
+      document.getElementById("price").textContent = `(${price} FCFA)`;
+      document.getElementById("img").src = img;
+
+      /* DESCRIPTION AUTOMATIQUE */
+      document.getElementById("desc").textContent =
+        `${name} est un produit de qualité soigneusement sélectionné. 
+Idéal pour un usage quotidien, il allie authenticité, efficacité et fiabilité. 
+Profitez d’un produit local apprécié pour sa qualité supérieure.`;
+
+      /* QTY */
+      let qty = 1;
+
+      function changeQty(v) {
+        qty += v;
+        if (qty < 1) qty = 1;
+
+        document.getElementById("qty").textContent = qty;
+        document.getElementById("total").textContent = price * qty;
+      }
+
+      document.getElementById("total").textContent = price;
+
+      function submitOrder() {
+        const n = document.getElementById("clientName").value;
+        const p = document.getElementById("phone").value;
+
+        if (!n || !p) {
+          alert("Remplis les champs obligatoires");
+          return;
+        }
+
+        document.getElementById("success").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
