@@ -20,6 +20,15 @@ body {
   padding-top: 100px; /* place espace pour header + ticker */
 }
 
+   <style>
+    
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  overflow-x: hidden;
+  padding-top: 100px; /* place espace pour header + ticker */
+}
+
 
 
 
@@ -138,8 +147,7 @@ body {
   position: relative;
 }
 
-.dropdown-menu,
-.region-menu {
+.dropdown-menu {
   position: absolute;
   top: 45px;
   min-width: 220px;
@@ -159,51 +167,17 @@ body {
   transition: 0.2s ease;
 }
 
-.dropdown.active .dropdown-menu,
-.dropdown.active .region-menu {
+.dropdown.active .dropdown-menu {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-      .dropdown-menu li,
-      .region-menu li {
+      .dropdown-menu li {
         list-style: none;
       }
 
-
-      /* SOUS-MENU (niveau 3) */
-.sub-region-menu {
-  position: absolute;
-  top: 0;
-  left: 100%;
-
-  min-width: 220px;
-
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(12px);
-
-  border-radius: 14px;
-  padding: 8px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
-  opacity: 0;
-  transform: translateX(10px);
-  pointer-events: none;
-
-  transition: 0.2s ease;
-  z-index: 5000;
-}
-
-/* OUVERTURE AU CLIC */
-.sub-dropdown.open .sub-region-menu {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-    .dropdown-menu a,
-.region-menu a {
+.dropdown-menu a {
   display: block;
   padding: 10px 12px;
   border-radius: 10px;
@@ -213,22 +187,13 @@ body {
   transition: 0.2s;
 }
 
-.dropdown-menu a:hover,
-.region-menu a:hover {
+.dropdown-menu a:hover {
   background: #22c55e;
   color: white;
   transform: translateX(5px);
 }
 
-      .region-btn {
-  background: linear-gradient(135deg, var(--gold), var(--green));
-  padding: 10px 18px;
-  border-radius: 25px;
-  color: rgb(165, 25, 25);
-  font-weight: 600;
-  cursor: pointer;
-}
-
+      
 
 /* BOUTIQUE */
 .boutique-btn {
@@ -238,19 +203,6 @@ body {
   color: white;
 }
 
-/* REGION */
-.region-btn {
-  background: white;
-  color: #2d5016;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-}
-
-.region-menu {
-  max-height: 250px;
-  overflow-y: auto;
-}
 
 /* HERO */
 .hero {
@@ -299,7 +251,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 5px;
 }
 
 
@@ -327,7 +279,21 @@ body {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 0px;
+}
+
+.edition-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-left: 4px solid #00c853;
+  padding: 10px 12px;
+  min-width: 170px;
+  max-width: 190px;
+  width: auto;
+  height: fit-content;
 }
 
 /* édition alignée avec SIBIO */
@@ -363,7 +329,7 @@ body {
 
 .subtitle {
   font-size: 18px;
-  margin-top: 5px;
+  margin-top: 0px;
   opacity: 0.9;
   margin-right: 26px;
 }
@@ -389,7 +355,7 @@ body {
   align-items: center; /* correction alignement vertical */
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 /* SIBIO 2026 */
@@ -408,18 +374,17 @@ body {
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #a7ffe2;
-  padding: 6px 14px;
-
-  display: flex;
+  color: #ffe8a7;
+  padding: 8px 12px;
+  display: inline-flex;
   align-items: center;
-
-  border-left: 3px solid #00c853; /* trait plus épais */
-  height: fit-content;
+  justify-content: center;
+  width: 100%;
+  background: rgba(0, 200, 83, 0.08);
+  border-radius: 22px;
   line-height: 1;
   text-transform: uppercase;
-  height: 50px;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 /* responsive */
@@ -431,7 +396,6 @@ body {
 
   .edition-badge {
     border-left: none;
-    border-top: 3px solid #00c853;
   }
 }
 /* TICKER */
@@ -450,8 +414,7 @@ body {
   z-index: 1500;
 }
 
-.dropdown-menu,
-.region-menu {
+.dropdown-menu {
   position: absolute;
   top: 45px;
   min-width: 220px;
@@ -482,6 +445,7 @@ body {
   letter-spacing: 1px;
  
   color: white;
+  
 
 }
 
@@ -557,63 +521,10 @@ body {
         </a>
       </li>
 
-      <!-- Région -->
-<li class="dropdown">
-  <a href="#" class="nav-link">Representation des sections ▾</a>
-
-  <!-- NIVEAU 2 -->
-  <ul class="region-menu">
-
-    <!-- ABIDJAN -->
-    <li class="sub-dropdown">
-      <a href="#">Cote d'Ivoire ▸</a>
-
-      <!-- NIVEAU 3 -->
-      <ul class="sub-region-menu">
-        <li><a href="#" data-region="bafing">Bafing</a></li>
-        <li><a href="#" data-region="bas_sassandra">Bas-Sassandra</a></li>
-        <li><a href="#" data-region="denguele">Denguélé</a></li>
-        <li><a href="#" data-region="goh">Gôh</a></li>
-        <li><a href="#" data-region="gbeke">Gbêkê</a></li>
-        <li><a href="#" data-region="grands_ponts">Grands-Ponts</a></li>
-        <li><a href="#" data-region="guemon">Guémon</a></li>
-        <li><a href="#" data-region="hambol">Hambol</a></li>
-        <li><a href="#" data-region="iffou">Iffou</a></li>
-        <li><a href="#" data-region="indenie">Indénié</a></li>
-        <li><a href="#" data-region="kabadougou">Kabadougou</a></li>
-        <li><a href="#" data-region="la_me">La Mé</a></li>
-        <li><a href="#" data-region="lagunes">Lagunes</a></li>
-        <li><a href="#" data-region="marahoue">Marahoué</a></li>
-        <li><a href="#" data-region="moronou">Moronou</a></li>
-        <li><a href="#" data-region="nawa">Nawa</a></li>
-        <li><a href="#" data-region="poro">Poro</a></li>
-        <li><a href="#" data-region="san_pedro">San-Pedro</a></li>
-        <li><a href="#" data-region="sud_comoe">Sud-Comoé</a></li>
-        <li><a href="#" data-region="tchologo">Tchologo</a></li>
-        <li><a href="#" data-region="tonkpi">Tonkpi</a></li>
-        <li><a href="#" data-region="worodougou">Worodougou</a></li>
-        <li><a href="#" data-region="zanzan">Zanzan</a></li>
-        <li><a href="#" data-region="gbokle">Gbôklé</a></li>
-        <li><a href="#" data-region="loh_djiboua">Lôh-Djiboua</a></li>
-        <li><a href="#" data-region="bere">Béré</a></li>
-        <li><a href="#" data-region="folon">Folon</a></li>
-        <li><a href="#" data-region="belier">Bélier</a></li>
-        <li><a href="#" data-region="yacoli">Yamoussoukro</a></li>
-      </ul>
-    </li>
-
-    <!-- CANADA -->
-    <li class="sub-dropdown">
-      <a href="#">Canada ▸</a>
-
-      <!-- NIVEAU 3 -->
-      <ul class="sub-region-menu">
-        <li><a href="#" data-region="montreal">Montréal</a></li>
-      </ul>
-    </li>
-
-  </ul>
-</li>
+      <!-- Sections -->
+      <li>
+        <a href="./region.html" class="nav-link">Représentations des sections</a>
+      </li>
 
     </ul>
   </nav>
@@ -650,10 +561,777 @@ body {
 
  <div class="sibio-line">
   <h2 class="brand-title">SIBIO 2026</h2>
-  <span class="edition-badge">3ᵉ ÉDITION</span>
+  <div class="edition-block">
+    <span class="edition-badge">3ᵉ ÉDITION</span>
+    <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2026">
+  </div>
 </div>
 </div>
 </section>
+<!-- SLIDER SIBIO 2026 -->
+
+
+<style>
+.sibio-slider {
+  width: 100%;
+  max-width: 1000px;
+  height: 420px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.sibio-slider .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.sibio-slider .slide.active {
+  opacity: 1;
+}
+
+.sibio-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
+
+
+
+<section class="impact-message">
+  <h2 id="typed-text"></h2>
+</section>
+
+
+
+    <style>
+    
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  overflow: visible;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  transition: background-image 1s ease-in-out;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  
+}
+/* SECTION */
+.impact-message {
+  text-align: center;
+  padding: 80px 20px;
+  background: radial-gradient(circle at center, #145c3a, #0b3d2e);
+  color: white;
+  overflow: hidden;
+}
+
+/* TEXTE */
+.impact-message h2 {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: auto;
+  letter-spacing: 1.5px;
+
+  /* effet apparition */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+
+  /* glow */
+  text-shadow: 
+    0 0 10px rgba(34,197,94,0.6),
+    0 0 20px rgba(34,197,94,0.4),
+    0 0 40px rgba(34,197,94,0.2);
+}
+
+/* animation entrée */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* curseur */
+.impact-message h2::after {
+  content: "|";
+  margin-left: 6px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .impact-message h2 {
+    font-size: 26px;
+  }
+}
+
+.small-title,
+.subtitle,
+.main-title,
+.brand-title,
+.edition {
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
+}
+.hero {
+  position: relative;
+  overflow: visible;
+  height: 80vh;
+  color: white;
+}
+
+/* images en fond */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: translateX(0);
+  transition: transform 1s ease;
+}
+
+/* couche suivante */
+.hero-bg.next {
+  transform: translateX(100%);
+  z-index: 1;
+}
+
+/* couche active */
+.hero-bg.active {
+  z-index: 2;
+  transform: translateX(0);
+}
+
+/* animation sortie */
+.hero-bg.slide-out {
+  transform: translateX(-100%);
+}
+
+
+
+
+/* ASSOMBRESSEMENT DE L’IMAGE */
+
+
+/* effet lumineux léger (optionnel) */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.08),
+    transparent 60%
+  );
+  transform: rotate(25deg);
+  z-index: 1;
+}
+
+
+
+.small-title {
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-top: 0px;
+  opacity: 0.9;
+}
+
+.main-title {
+  font-size: 42px;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+.brand-title {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #ffffff, #a7ffe2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.edition {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 2;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .brand-title {
+    font-size: 48px;
+  }
+
+  .main-title {
+    font-size: 28px;
+  }
+}
+
+      .small-title {
+        font-size: 22px;
+        letter-spacing: 3px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        margin-top: 0px;
+        opacity: 0.85;
+      }
+
+
+
+/* NAVBAR */
+.header {
+  background: linear-gradient(135deg, #0b3d2e, #145c3a);
+  padding: 12px 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2500; /* augmenté */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1250px;
+  margin: auto;
+}
+
+.nav-container {
+  position: relative;
+  z-index: 3000;
+}
+
+/* bloc logo */
+/* bloc logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+}
+
+/* LOGO IMAGE → plus visible sur fond vert */
+
+
+.logo-img {
+  width: 110px; /* augmente un peu pour lisibilité */
+  height: auto;
+
+  padding: 0; /* enlève le padding inutile */
+  border-radius: 0;
+
+  background: transparent; /* important */
+  box-shadow: none; /* optionnel pour clean */
+}
+.logo-img {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+
+/* bloc texte */
+
+
+/* FAP-BIO dominant */
+.logo-main {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1;
+  color: #ffffff;
+
+  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+
+/* définition sous texte */
+.logo-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.85);
+
+  max-width: 180px;
+  margin-top: 4px;
+}
+
+/* option: léger badge pour détacher du fond */
+.logo-text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.12);
+  backdrop-filter: blur(6px);
+
+  line-height: 1.2;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.nav-link:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  min-width: 220px;
+
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(12px);
+
+  border-radius: 14px;
+  padding: 8px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+
+  transition: 0.2s ease;
+}
+
+.dropdown.active .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+      .dropdown-menu li {
+        list-style: none;
+      }
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #1f2937;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background: #22c55e;
+  color: white;
+  transform: translateX(5px);
+}
+
+      
+
+/* BOUTIQUE */
+.boutique-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  padding: 10px 18px;
+  border-radius: 25px;
+  color: white;
+}
+
+
+/* HERO */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 120px 20px;
+  color: white;
+  overflow: visible;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.small-title,
+.subtitle,
+.main-title,
+.brand-title,
+.edition {
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
+  list-style: none;
+}
+/* bloc logo + FAP-BIO */
+.top-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+/* logo sibio */
+.sibio-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* FAP-BIO plus visible + vert */
+.fap-bio {
+  font-size: 54px;
+  font-weight: 900;
+  color: #00c853; /* vert type logo */
+  letter-spacing: 30px;
+  text-transform: uppercase;
+  
+  
+}
+
+/* ligne SIBIO + édition */
+.sibio-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 0px;
+}
+
+/* édition alignée avec SIBIO */
+.edition-inline {
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 25px;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .fap-bio {
+    font-size: 36px;
+  }
+
+  .sibio-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .sibio-line {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.small-title {
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-top: 0px;
+  opacity: 0.9;
+  margin-right: 26px;
+}
+
+.main-title {
+  font-size: 42px;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+.brand-title {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin: 10px 0;
+  background: linear-gradient(90deg, #fff, #a7ffe2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sibio-line {
+  display: flex;
+  align-items: center; /* correction alignement vertical */
+  justify-content: center;
+  gap: 20px;
+  margin-top: 0px;
+}
+
+/* SIBIO 2026 */
+.brand-title {
+  font-size: 72px;
+  font-weight: 800;
+  letter-spacing: 0px;
+  line-height: 1; /* évite décalage vertical */
+  background: linear-gradient(90deg, #ffffff, #a7ffe2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* badge édition mieux centré */
+.edition-badge {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #a7ffe2;
+  padding: 8px 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: rgba(0, 200, 83, 0.08);
+  border-radius: 22px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-top: 0px;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .sibio-line {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edition-badge {
+    border-left: none;
+  }
+}
+.logo-png {
+  border-radius: 18px;
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  object-fit: cover;
+  margin-top: 0px;
+}
+/* TICKER */
+.ticker {
+  position: fixed;
+  top: 95px; /* avant 80px → maintenant plus bas */
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(90deg, #0b3d2e, #145c3a);
+  color: white;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.header {
+  z-index: 1500;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  min-width: 220px;
+
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(12px);
+
+  border-radius: 14px;
+  padding: 8px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+
+  transition: 0.2s ease;
+
+  z-index: 4000; /* AJOUT IMPORTANT */
+}
+
+.ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: scrollTicker 20s linear infinite;
+  font-weight: 500;
+  letter-spacing: 1px;
+ 
+  color: white;
+  
+
+}
+
+/* animation */
+@keyframes scrollTicker {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+</style>
+  </head>
+
+ <header class="header">
+  <nav class="nav-container">
+
+    <div class="logo">
+      
+      
+      <img src="./fap-bio.png" alt="logo" class="logo-img" />
+     
+</div>
+
+    <ul class="nav-menu">
+
+      <!-- Accueil / découverte -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Découvrir ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#programme">Programme</a></li>
+          <li><a href="#programme">Activité</a></li>
+        </ul>
+      </li>
+
+      <!-- Éditions (historique) -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Éditions ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#sibio2022">SIBIO 2022</a></li>
+          
+          <li><a href="#sibio2024">SIBIO 2024</a></li>
+        </ul>
+      </li>
+
+      <!-- Salon -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Salon ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#exposants">Exposants</a></li>
+          
+        </ul>
+      </li>
+
+      <!-- Infos -->
+      <li class="dropdown">
+        <a href="#" class="nav-link">Infos ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#apropos">À propos</a></li>
+        </ul>
+      </li>
+
+      <!-- Boutique -->
+      <li>
+        <a href="./boutique.html" target="_blank" class="nav-link boutique-btn">
+          Boutique 🛒
+        </a>
+      </li>
+
+      <!-- Sections -->
+      <li>
+        <a href="./region.html" class="nav-link">Representation des Sections</a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+<!-- BANDEAU DÉFILANT -->
+<div class="ticker">
+  <div class="ticker-content">
+    🌱 FAP-BIO — Forum Africain pour la Promotion du Bio présente le Salon International du Bio SIBIO 2026 • 3ᵉ ÉDITION • 
+    🌍 Thème : "Innovation durable et agriculture biologique pour une Afrique résiliente" • 
+    
+  </div>
+</div>
+
+
+  
 <!-- SLIDER SIBIO 2026 -->
 
 
@@ -865,7 +1543,7 @@ setInterval(() => {
 
 .subtitle {
   font-size: 18px;
-  margin-top: 10px;
+  margin-top: 0px;
   opacity: 0.9;
 }
 
@@ -917,7 +1595,7 @@ setInterval(() => {
 
       .subtitle {
         font-size: 18px;
-        margin-top: 10px;
+        margin-top: 0px;
         opacity: 0.85;
       }
 
@@ -1002,12 +1680,12 @@ setInterval(() => {
 
 /* bouton */
 .btn-large {
-  margin-top: 10px;
+  margin-top: 0px;
 }
 
 /* texte bas */
 .countdown-info {
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 14px;
   text-align: center;
   max-width: 600px;
@@ -1326,8 +2004,7 @@ setInterval(() => {
         <div class="exposant-registration">
           <div class="exposant-info">
             <p>
-              Réservez un stand pour seulement <strong>10 000 FCFA</strong>.
-              Complétez le formulaire ci-dessous. Le paiement s'effectuera via
+              Réservez un stand pour seulement <strong>10 000 FCFA</strong>              Complétez le formulaire ci-dessous. Le paiement s'effectuera via
               votre solution préférée (Orange Money, MTN Mobile Money,Moov
               Money,Wave,Carte Bancaire....)
             </p>
@@ -1443,36 +2120,30 @@ setInterval(() => {
             <p>
               Parking gratuit disponible sur place. Accès par la route
               principale de Cocody. Navettes gratuites depuis le centre
-              commercial le plus proche.
-            </p>
+              commercial le plus proche            </p>
           </div>
           <div class="infos-card">
             <h4>♿ Accessibilité</h4>
             <p>
               Les installations sont accessibles aux personnes en fauteuil
-              roulant. Toilettes PMR disponibles. Points de repos aménagés.
-            </p>
+              roulant. Toilettes PMR disponibles. Points de repos aménagés            </p>
           </div>
           <div class="infos-card">
             <h4>🍽️ Restauration</h4>
             <p>
-              Food court avec produits bio. Bars à jus frais. Pas d'alcool.
-              Possibilité de pique-nique. Eau gratuite.
-            </p>
+              Food court avec produits bio. Bars à jus frais. Pas d'alcool              Possibilité de pique-nique. Eau gratuite            </p>
           </div>
           <div class="infos-card">
             <h4>A propos</h4>
             <p>
               WiFi gratuit dans tout le salon. Signal mobile bon. Prises USB
-              disponibles dans les zones de repos.
-            </p>
+              disponibles dans les zones de repos            </p>
           </div>
           <div class="infos-card">
             <h4>👶 Enfants</h4>
             <p>
               Espace jeux pour enfants aménagé. Activités éducatives. Aire
-              d'allaitement. Poussettes tolérées.
-            </p>
+              d'allaitement. Poussettes tolérées            </p>
           </div>
           
           <div class="infos-card">
@@ -1502,29 +2173,25 @@ setInterval(() => {
             <h4>Puis-je annuler ma réservation?</h4>
             <p>
               Oui, jusqu'à 48 heures avant l'événement. Un remboursement complet
-              sera effectué.
-            </p>
+              sera effectué            </p>
           </div>
           <div class="faq-item">
             <h4>Le ticket est-il valable 3 jours?</h4>
             <p>
               Oui, votre QR code vous donne accès à tous les jours du salon
-              (15-17 Avril).
-            </p>
+              (15-17 Avril)            </p>
           </div>
           <div class="faq-item">
             <h4>Puis-je partager mon QR code?</h4>
             <p>
               Non, le QR code est personnel. Une personne différente doit
-              acheter son propre billet.
-            </p>
+              acheter son propre billet            </p>
           </div>
           <div class="faq-item">
             <h4>Que faire si j'ai perdu mon QR code?</h4>
             <p>
               Contactez-nous avec votre email. Nous pouvons vous renvoyer un
-              nouvelle version.
-            </p>
+              nouvelle version            </p>
           </div>
         </div>
       </div>
@@ -1640,7 +2307,10 @@ setInterval(() => {
     <!-- Titre style identique 2024/2026 -->
     <div class="sibio-line">
       <h2 class="brand-title">SIBIO 2022</h2>
-      <span class="edition-badge">1ʳᵉ ÉDITION</span>
+      <div class="edition-block">
+        <span class="edition-badge">1ʳᵉ ÉDITION</span>
+        <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2022">
+      </div>
     </div>
 
     <div class="sibio2022-subtitle">
@@ -1650,14 +2320,12 @@ setInterval(() => {
     <div class="sibio2022-card">
 
       La première édition du Salon International du Bio, <strong>SIBIO22</strong>, s'est tenue les 25 et 26 novembre 2022 au village Brebo à Amado LAGUNA.  
-      Organisé sous le thème <strong>"Produits Bio, symbole d'une consommation authentique et naturelle"</strong>.
-
+      Organisé sous le thème <strong>"Produits Bio, symbole d'une consommation authentique et naturelle"</strong>
       <br><br>
 
       <strong>Partenaires :</strong>  
       Placé sous le parrainage du <strong>Député-Maire de Bingerville ISSOUF Doumbia</strong>, avec le soutien du Ministère du Tourisme.  
-      Collaboration avec <strong>BERET-CI</strong> et <strong>SIDAF-CI</strong>.
-
+      Collaboration avec <strong>BERET-CI</strong> et <strong>SIDAF-CI</strong>
       <div class="sibio2022-tags">
         <span class="tag highlight">SIBIO22</span>
         <span class="tag">25–26 Novembre 2022</span>
@@ -1672,7 +2340,7 @@ setInterval(() => {
       <!-- CTA identique 2024/2026 -->
       <div class="sibio-cta">
         <a href="LIEN_DU_SITE_2022" class="sibio-btn">
-          SIBIO 2024 en images
+          SIBIO 2022 en images
         </a>
       </div>
 
@@ -1741,7 +2409,7 @@ setInterval(() => {
 
   .sibio2024-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 25px;
     margin: 40px 0;
   }
@@ -1836,9 +2504,12 @@ setInterval(() => {
 
     <!-- Titre principal -->
     <div class="sibio-line">
-  <h2 class="brand-title">SIBIO 2024</h2>
-  <span class="edition-badge">2ᵉ ÉDITION</span>
-</div>
+      <h2 class="brand-title">SIBIO 2024</h2>
+      <div class="edition-block">
+        <span class="edition-badge">2ᵉ ÉDITION</span>
+        <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2024">
+      </div>
+    </div>
 
 
       <p style="text-align: center;">
@@ -1940,7 +2611,7 @@ setInterval(() => {
           </ul>
         </div>
 
-        
+        <div class="sibio2024-box" style="grid-column: span 2;">
           <h4>Perspectives</h4>
           <p>Alignement avec les CDN de la Côte d’Ivoire (réduction de 30,41 % des GES d’ici 2030)<br>
           Digitalisation (marketing digital, IA, drones)<br>
@@ -1954,8 +2625,26 @@ setInterval(() => {
 
       <!-- Retour en images -->
       <p style="text-align:center; margin-top:40px; font-style:italic;">
-        📸 Retour en images : un événement riche en échanges, en savoirs et en engagements concrets pour l’avenir du bio en Afrique.
-      </p>
+        📸 Retour en images : un événement riche en échanges, en savoirs et en engagements concrets pour l’avenir du bio en Afrique      </p>
+
+      <!-- BOUTON ICI -->
+      
+<div class="sibio-cta" style="text-align:center; margin-top:30px; display:flex; flex-direction:column; gap:12px; align-items:center;">
+
+  <!-- Bouton site -->
+  <a href="https://fapbio.webflow.io/" target="_blank" rel="noopener" class="sibio-btn">
+    SIBIO 2024 en images
+  </a>
+  <p style="text-align:center; opacity:0.75; font-size:0.95rem;">
+    Rapport complet de la 2ᵉ édition du Salon International du Bio – FAP-BIO 2024
+  </p>
+
+  <!-- Bouton PDF -->
+  <a href="./assets/rapport-sibio-2024.pdf" download="rapport-sibio-2024.pdf" target="_blank" rel="noopener" class="sibio-btn download">
+    Télécharger le rapport PDF
+  </a>
+
+</div>
 
       <!-- Tags finaux -->
       <div style="text-align:center; margin-top:50px;">
@@ -1972,26 +2661,6 @@ setInterval(() => {
       </div>
 
     </div>
-
-    <!-- BOUTON ICI -->
-    
-<div class="sibio-cta" style="text-align:center; margin-top:30px; display:flex; flex-direction:column; gap:12px; align-items:center;">
-
-  <!-- Bouton site -->
-  <a href="https://fapbio.webflow.io/" class="sibio-btn">
-    SIBIO 2024 en images
-  </a>
-  <p style="text-align:center; opacity:0.75; font-size:0.95rem;">
-    Rapport complet de la 2ᵉ édition du Salon International du Bio – FAP-BIO 2024
-  </p>
-
-  <!-- Bouton PDF -->
-  <a href="./assets/rapport-sibio-2024.pdf" class="sibio-btn download">
-    Télécharger le rapport PDF
-  </a>
-
-</div>
-
 
   </div>
 </section>
@@ -2010,18 +2679,14 @@ setInterval(() => {
           Le <strong>FAP-BIO</strong> (Forum Africain pour la Promotion du Bio) est une organisation panafricaine
           qui promeut l’agriculture biologique, la protection de la biodiversité et le développement durable
           à travers l’Afrique. Il vise à sensibiliser, former et rassembler les acteurs du secteur bio pour
-          construire un avenir plus vert et responsable.
-        </p>
+          construire un avenir plus vert et responsable        </p>
       </div>
 
       <div class="apropos-card" style="background:white; padding:1.5rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
         <h3 style="color:#c87137; margin-bottom:1rem;">SIBIO</h3>
         <p>
-          Le <strong>SIBIO</strong> (Salon International du Bio) est organisé par FAP-BIO et se déroule à Abidjan.
-          Il constitue un carrefour d’échanges entre producteurs, exposants, startups et passionnés du bio.
-          L’objectif est de présenter innovations, projets et bonnes pratiques en agriculture biologique,
-          préserver la biodiversité et promouvoir la consommation responsable à l’échelle nationale et internationale.
-        </p>
+          Le <strong>SIBIO</strong> (Salon International du Bio) est organisé par FAP-BIO et se déroule à Abidjan          Il constitue un carrefour d’échanges entre producteurs, exposants, startups et passionnés du bio          L’objectif est de présenter innovations, projets et bonnes pratiques en agriculture biologique,
+          préserver la biodiversité et promouvoir la consommation responsable à l’échelle nationale et internationale        </p>
       </div>
 
       <div class="apropos-card" style="grid-column:span 2; background:white; padding:1.5rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
@@ -2140,7 +2805,7 @@ setInterval(() => {
 
   .badge-sibio {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 0px;
     padding: 6px 14px;
     border-radius: 30px;
     background: rgba(255,255,255,0.08);
@@ -2160,17 +2825,17 @@ setInterval(() => {
 
     <div class="footer-box footer-links">
       <h3>Navigation</h3>
-      <a href="#">Accueil</a>
-      <a href="#">Boutique</a>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="./boutique.html">Boutique</a></li>
       <a href="#">Exposants</a>
-      <a href="#">Contact</a>
+        <li><a href="#contact">Contact</a></li>
     </div>
 
     <div class="footer-box footer-links">
       <h3>Éditions</h3>
       <a href="#sibio2022" id="sibio2022">SIBIO 2022</a>
-      <a href="#">SIBIO 2024</a>
-      <a href="#">SIBIO 2026</a>
+      <a href="#sibio2024">SIBIO 2024</a>
+      <a href="#">SIBIO 2026 en cours.....</a>
       
     </div>
 
@@ -2189,61 +2854,7 @@ setInterval(() => {
 document.addEventListener("DOMContentLoaded", () => {
 
   const dropdowns = document.querySelectorAll(".dropdown");
-  const subDropdowns = document.querySelectorAll(".sub-dropdown");
-
-  // MENU PRINCIPAL (hover)
-  dropdowns.forEach((drop) => {
-    let timeout;
-
-    const open = () => {
-      dropdowns.forEach((d) => {
-        if (d !== drop) d.classList.remove("active");
-      });
-      drop.classList.add("active");
-    };
-
-    const close = () => {
-      timeout = setTimeout(() => {
-        drop.classList.remove("active");
-      }, 150);
-    };
-
-    const cancelClose = () => {
-      clearTimeout(timeout);
-    };
-
-    drop.addEventListener("mouseenter", () => {
-      cancelClose();
-      open();
-    });
-
-    drop.addEventListener("mouseleave", close);
-
-    const menu = drop.querySelector(".region-menu");
-
-    if (menu) {
-      menu.addEventListener("mouseenter", cancelClose);
-      menu.addEventListener("mouseleave", close);
-    }
-  });
-
-  // SOUS-MENU (clic)
-  subDropdowns.forEach((sub) => {
-    const link = sub.querySelector("a");
-
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      subDropdowns.forEach((s) => {
-        if (s !== sub) s.classList.remove("open");
-      });
-
-      sub.classList.toggle("open");
-    });
-  });
-
-  // clic extérieur ferme tout
+ // clic extérieur ferme tout
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".dropdown")) {
       dropdowns.forEach((d) => d.classList.remove("active"));
@@ -2332,7 +2943,35 @@ window.onload = () => {
 
 
 
+<script>
+// SLIDER D'IMAGES - SECTION EXPOSANTS
+document.addEventListener("DOMContentLoaded", () => {
+  const sliderTrack = document.getElementById("sliderTrack");
+  const slides = document.querySelectorAll(".slider-track .slide");
+  const prevBtn = document.querySelector(".slider-btn.prev");
+  const nextBtn = document.querySelector(".slider-btn.next");
+  
+  if (!sliderTrack || slides.length === 0) return; // sécurité
+  
+  let currentIndex = 0;
+  
+  function updateSlider() {
+    const offset = -currentIndex * 100;
+    sliderTrack.style.transform = `translateX(${offset}%)`;
+  }
+  
+  prevBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider();
+  });
+  
+  nextBtn?.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+  });
+});
+</script>
+
 <script src="./script.js"></script>
-    <script src="./script.js"></script>
   </body>
 </html>

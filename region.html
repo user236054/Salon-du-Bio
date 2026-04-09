@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Représentation des sections</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+}
+.top-bar {
+  max-width: 800px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.top-bar a {
+  color: #0b6;
+  text-decoration: none;
+  font-weight: 700;
+}
+.top-bar h1 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #eaeaea;
+}
+
+.hidden {
+  display: none;
+}
+
+.back {
+  margin-bottom: 15px;
+  cursor: pointer;
+  color: blue;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="top-bar">
+  <h1>Représentation des sections</h1>
+  <a href="./index.html">← Retour au site</a>
+</div>
+
+<div class="container">
+
+  <h2 id="title">Pays</h2>
+
+  <div id="backBtn" class="back hidden">⬅ Retour</div>
+
+  <div id="content"></div>
+
+</div>
+
+<script>
+
+// ================= DATA =================
+
+const data = {
+  "Côte d'Ivoire": {
+    "Abidjan": ["Cocody", "Adjamé", "Yopougon", "Treichville", "Marcory"],
+    "Yamoussoukro": ["Attiégouakro"],
+    "Bouaké": ["Koko", "Air France"],
+    "San-Pédro": ["Grand-Béréby"],
+    "Korhogo": ["Sinématiali"],
+    "Daloa": ["Issia"],
+    "Man": ["Danané"],
+    "Gagnoa": ["Oumé"],
+    "Abengourou": ["Agnibilékrou"],
+    "Bondoukou": ["Bouna"],
+    "Odienné": ["Minignan"],
+    "Séguéla": ["Mankono"],
+    "Dimbokro": ["Bocanda"],
+    "Daoukro": ["M'Bahiakro"],
+    "Toumodi": ["Djékanou"],
+    "Aboisso": ["Adiaké"],
+    "Grand-Bassam": ["Bonoua"],
+    "Agboville": ["Adzopé"],
+    "Tiassalé": ["Sikensi"],
+    "Soubré": ["Buyo"],
+    "Guiglo": ["Toulepleu"],
+    "Tabou": ["Grabo"],
+    "Ferkessédougou": ["Ouangolodougou"],
+    "Boundiali": ["Tengrela"],
+    "Katiola": ["Niakaramandougou"],
+    "Bongouanou": ["Arrah"],
+    "Lakota": ["Divo"],
+    "Sassandra": ["Fresco"],
+    "Zuénoula": ["Vavoua"],
+    "Kong": ["Téhini"],
+    "Madinani": ["Séguéla"]
+  },
+
+  "Canada": {
+    "Montréal": ["Plateau-Mont-Royal", "Laval", "Longueuil"]
+  }
+};
+
+// ================= LOGIC =================
+
+const content = document.getElementById("content");
+const title = document.getElementById("title");
+const backBtn = document.getElementById("backBtn");
+
+let history = [];
+
+// afficher liste
+function displayList(obj, levelName) {
+  content.innerHTML = "";
+  title.textContent = levelName;
+
+  for (let key in obj) {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.textContent = key;
+
+    div.onclick = () => {
+      history.push({obj, name: levelName});
+
+      if (Array.isArray(obj[key])) {
+        displayArray(obj[key], key);
+      } else {
+        displayList(obj[key], key);
+      }
+
+      backBtn.classList.remove("hidden");
+    };
+
+    content.appendChild(div);
+  }
+}
+
+// afficher tableau (communes)
+function displayArray(arr, regionName) {
+  content.innerHTML = "";
+  title.textContent = regionName;
+
+  arr.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.textContent = item;
+    content.appendChild(div);
+  });
+}
+
+// retour
+backBtn.onclick = () => {
+  const last = history.pop();
+
+  if (!last) return;
+
+  displayList(last.obj, last.name);
+
+  if (history.length === 0) {
+    backBtn.classList.add("hidden");
+  }
+};
+
+// ================= INIT =================
+
+displayList(data, "Pays");
+
+</script>
+
+</body>
+</html>
