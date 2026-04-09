@@ -48,6 +48,69 @@ function startCountdown() {
     }, 1000);
 }
 
+const sibio2022Images = [
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVrGZ0517pUy7Zd9W5-6X27MxHdZo2smRubQ&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQybuT5dDG1ZgUorNPMR9Xnpan-J6ky4LPUYg&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs56TAIvWHxHy1txlFG4ZJluadCUnxQEc1Jw&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf2IcxndKG3qfMqQrA1iS5QGEd8qQHKd_chg&s'
+];
+const sibio2022ImagesPerPage = 3;
+let sibio2022Page = 0;
+
+function renderGallery2022Page() {
+    const galleryImages = document.getElementById('gallery2022-images');
+    const prevButton = document.getElementById('gallery2022-prev');
+    const nextButton = document.getElementById('gallery2022-next');
+
+    if (!galleryImages || !prevButton || !nextButton) return;
+
+    const start = sibio2022Page * sibio2022ImagesPerPage;
+    const pageImages = sibio2022Images.slice(start, start + sibio2022ImagesPerPage);
+
+    galleryImages.innerHTML = pageImages.map((src, index) => {
+        return `<img src="${src}" alt="Image SIBIO 2022 ${start + index + 1}">`;
+    }).join('');
+
+    const images = galleryImages.querySelectorAll('img');
+    images.forEach(img => {
+        img.classList.remove('loaded');
+        img.onload = () => img.classList.add('loaded');
+        if (img.complete) {
+            img.classList.add('loaded');
+        }
+    });
+
+    prevButton.style.display = sibio2022Page === 0 ? 'none' : 'inline-block';
+    nextButton.style.display = (start + pageImages.length) >= sibio2022Images.length ? 'none' : 'inline-block';
+}
+
+function toggleGallery2022() {
+    const gallery = document.getElementById('gallery2022');
+    if (!gallery) return;
+
+    if (gallery.style.display === 'block') {
+        gallery.style.display = 'none';
+    } else {
+        sibio2022Page = 0;
+        renderGallery2022Page();
+        gallery.style.display = 'block';
+    }
+}
+
+function gallery2022Next() {
+    if ((sibio2022Page + 1) * sibio2022ImagesPerPage < sibio2022Images.length) {
+        sibio2022Page += 1;
+        renderGallery2022Page();
+    }
+}
+
+function gallery2022Prev() {
+    if (sibio2022Page > 0) {
+        sibio2022Page -= 1;
+        renderGallery2022Page();
+    }
+}
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', startCountdown);
 } else {
@@ -487,16 +550,55 @@ const data = {
       const dropdowns = document.querySelectorAll(".dropdown");
 
       dropdowns.forEach((d) => {
-        const t = d.querySelector(".nav-link");
-        t.addEventListener("click", (e) => {
+        let timeoutId;
+        let isLocked = false;
+
+        const navLink = d.querySelector(".nav-link");
+
+        // Hover pour ouvrir
+        d.addEventListener("mouseenter", () => {
+          if (!isLocked) {
+            clearTimeout(timeoutId);
+            dropdowns.forEach((x) => {
+              x.classList.remove("active");
+              x.isLocked = false; // Déverrouille les autres
+            });
+            d.classList.add("active");
+          }
+        });
+
+        // Hover pour fermer avec délai
+        d.addEventListener("mouseleave", () => {
+          if (!isLocked) {
+            timeoutId = setTimeout(() => {
+              d.classList.remove("active");
+            }, 200);
+          }
+        });
+
+        // Clic pour verrouiller/ouvrir
+        navLink.addEventListener("click", (e) => {
           e.preventDefault();
-          dropdowns.forEach((x) => x !== d && x.classList.remove("active"));
-          d.classList.toggle("active");
+          isLocked = !isLocked;
+          if (isLocked) {
+            dropdowns.forEach((x) => {
+              x.classList.remove("active");
+              x.isLocked = false;
+            });
+            d.classList.add("active");
+            d.isLocked = true;
+          } else {
+            d.classList.remove("active");
+          }
         });
       });
 
+      // Clic ailleurs pour fermer et déverrouiller
       document.addEventListener("click", (e) => {
         if (!e.target.closest(".dropdown")) {
-          dropdowns.forEach((d) => d.classList.remove("active"));
+          dropdowns.forEach((d) => {
+            d.classList.remove("active");
+            d.isLocked = false;
+          });
         }
       });

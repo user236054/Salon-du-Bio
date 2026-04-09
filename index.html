@@ -2104,7 +2104,7 @@ setInterval(() => {
         </div>
       </div>
       <div class="sibio-cta">
-  <a href="dossier-sponsoring-sibio2026.pdf" class="sibio-btn" download>
+  <a href="./Dossier de sponsoring SIBIO 2026.pdf" class="sibio-btn" download>
     Télécharger le dossier de sponsoring
   </a>
 </div>
@@ -2339,9 +2339,19 @@ setInterval(() => {
 
       <!-- CTA identique 2024/2026 -->
       <div class="sibio-cta">
-        <a href="LIEN_DU_SITE_2022" class="sibio-btn">
+        <button onclick="toggleGallery2022()" class="sibio-btn">
           SIBIO 2022 en images
-        </a>
+        </button>
+      </div>
+
+      <!-- Galerie d'images SIBIO 2022 -->
+      <div id="gallery2022" class="sibio2022-gallery">
+        <h4>Galerie SIBIO 2022</h4>
+        <div class="sibio2022-slider-wrapper">
+          <button id="gallery2022-prev" class="slider-btn prev" type="button" onclick="gallery2022Prev()">&#10094;</button>
+          <div id="gallery2022-images" class="sibio2022-gallery-images"></div>
+          <button id="gallery2022-next" class="slider-btn next" type="button" onclick="gallery2022Next()">&#10095;</button>
+        </div>
       </div>
 
     </div>
@@ -2640,7 +2650,7 @@ setInterval(() => {
   </p>
 
   <!-- Bouton PDF -->
-  <a href="./assets/rapport-sibio-2024.pdf" download="rapport-sibio-2024.pdf" target="_blank" rel="noopener" class="sibio-btn download">
+  <a href="./Correction du rapport Sibio 2024_123632.pdf" download="rapport-sibio-2024.pdf" target="_blank" rel="noopener" class="sibio-btn download">
     Télécharger le rapport PDF
   </a>
 
@@ -2710,109 +2720,279 @@ setInterval(() => {
 
    <!-- FOOTER MODERNE -->
 <style>
+
   .sibio-cta {
+
   text-align: center;
+
   margin-top: 20px;
+
   cursor: pointer;
+
 }
+
 .sibio2024-card::before {
+
   pointer-events: none;
+
 }
+
+
 
 .sibio-btn {
+
   cursor: pointer;
+
   display: inline-block;
+
   padding: 12px 22px;
+
   border-radius: 30px;
+
   text-decoration: none;
+
   font-weight: 600;
+
   letter-spacing: 1px;
 
+
+
   background: linear-gradient(135deg, #22c55e, #16a34a);
+
   color: white;
 
+
+
   transition: 0.3s ease;
+
 }
+
+
 
 .sibio-btn:hover {
+
   transform: translateY(-3px);
+
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
 }
+
+.sibio2022-gallery {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+.sibio2022-gallery h4 {
+  color: #a7ffe2;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+.sibio2022-gallery-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  min-height: 340px;
+}
+.sibio2022-gallery-images img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.sibio2022-gallery-images img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sibio2022-slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.slider-btn {
+  width: 50px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.97);
+  color: #2D5016;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.slider-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.slider-btn.prev {
+  order: 0;
+}
+.slider-btn.next {
+  order: 2;
+}
+
   .footer {
+
     background: linear-gradient(135deg, #061a14, #0b3d2e);
+
     color: #fff;
+
     padding: 60px 20px 30px;
+
     position: relative;
+
     overflow: hidden;
+
   }
+
+
 
   .footer::before {
+
     content: "";
+
     position: absolute;
+
     inset: 0;
+
     background: url("https://www.transparenttextures.com/patterns/dark-leather.png");
+
     opacity: 0.08;
+
     pointer-events: none;
+
   }
+
+
 
   .footer-container {
+
     max-width: 1100px;
+
     margin: auto;
+
     display: grid;
+
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
     gap: 30px;
+
     position: relative;
+
     z-index: 2;
+
   }
+
+
 
   .footer-box h3 {
+
     font-size: 18px;
+
     margin-bottom: 15px;
+
     color: #a7ffe2;
+
     letter-spacing: 1px;
+
   }
+
+
 
   .footer-box p {
+
     font-size: 14px;
+
     opacity: 0.85;
+
     line-height: 1.6;
+
   }
+
+
 
   .footer-links a {
+
     display: block;
+
     color: #fff;
+
     text-decoration: none;
+
     margin-bottom: 8px;
+
     font-size: 14px;
+
     opacity: 0.8;
+
     transition: 0.3s;
+
   }
+
+
 
   .footer-links a:hover {
+
     opacity: 1;
+
     transform: translateX(5px);
+
     color: #a7ffe2;
+
   }
+
+
 
   .footer-bottom {
+
     text-align: center;
+
     margin-top: 40px;
+
     padding-top: 20px;
+
     border-top: 1px solid rgba(255,255,255,0.1);
+
     font-size: 13px;
+
     opacity: 0.7;
+
   }
 
+
+
   .badge-sibio {
+
     display: inline-block;
+
     margin-top: 0px;
+
     padding: 6px 14px;
+
     border-radius: 30px;
+
     background: rgba(255,255,255,0.08);
+
     border: 1px solid rgba(255,255,255,0.2);
+
     font-size: 12px;
+
   }
+
 </style>
+
 
 <footer class="footer">
   <div class="footer-container">
