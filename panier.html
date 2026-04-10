@@ -1,421 +1,603 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Panier</title>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - SIBIO 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --green: #2d5016;
-        --green2: #3f6b22;
-        --accent: #f0b429;
-        --bg: #f4f6f5;
-        --card: #ffffff;
-        --text: #2b2b2b;
-        --muted: #7a7a7a;
-        --danger: #ff3b30;
-      }
+        :root {
+            --primary-color: #2d5016; /* Vert bio principal */
+            --secondary-color: #3498db; /* Bleu professionnel */
+            --accent-color: #3f6b22; /* Vert bio accent */
+            --success-color: #27ae60; /* Vert succès */
+            --warning-color: #f39c12; /* Orange warning */
+            --light-bg: #f5f7f6; /* Fond bio */
+            --dark-text: #2c3e50; /* Texte professionnel */
+            --border-color: #e8f5e8; /* Bordure verte douce */
+            --shadow: 0 4px 6px rgba(45, 80, 22, 0.1); /* Ombre verte */
+            --transition: all 0.3s ease;
+            --bio-green: #2d5016;
+            --bio-green-light: #3f6b22;
+            --pro-blue: #3498db;
+            --pro-blue-dark: #2980b9;
+        }
 
-      * {
-        box-sizing: border-box;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-      }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e8f8f5 0%, #d4edce 25%, #667eea 75%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
 
-      /* HEADER */
-      header {
-        background: linear-gradient(135deg, var(--green), var(--green2));
-        color: white;
-        padding: 16px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-      header h2 {
-        margin: 0;
-        font-size: 18px;
-      }
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.5s ease;
+        }
 
-      header a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        opacity: 0.9;
-        padding: 8px 12px;
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.1);
-      }
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-      header a:hover {
-        background: rgba(255, 255, 255, 0.2);
-      }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--bio-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-      /* LAYOUT */
-      .container {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
-        padding: 20px;
-      }
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
 
-      /* CART LIST */
-      .cart-items {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-      }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
-      .item {
-        display: grid;
-        grid-template-columns: 75% 25%;
-        background: var(--card);
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-        transition: 0.2s;
-      }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--bio-green);
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
 
-      .item:hover {
-        transform: translateY(-2px);
-      }
+        .nav-links a:hover {
+            background: linear-gradient(135deg, var(--bio-green), var(--pro-blue));
+            color: white;
+        }
 
-      /* LEFT */
-      .item-left {
-        display: flex;
-        gap: 14px;
-        padding: 14px;
-        align-items: center;
-      }
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-      .item-left img {
-        width: 95px;
-        height: 95px;
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
-      }
+        .cart-section, .summary-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+            border: 1px solid var(--border-color);
+        }
 
-      .info h4 {
-        margin: 0;
-        font-size: 15px;
-        color: var(--text);
-      }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-      .info p {
-        margin: 4px 0 0;
-        font-size: 13px;
-        color: var(--muted);
-      }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--bio-green);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-      .price {
-        margin-top: 6px;
-        font-weight: 700;
-        color: var(--accent);
-      }
+        .section-title::before {
+            content: '🛒';
+        }
 
-      /* RIGHT */
-      .item-right {
-        background: #fafafa;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        border-left: 1px solid #eee;
-        padding: 10px;
-      }
+        /* Cart Items */
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: var(--transition);
+            background: white;
+        }
 
-      /* bloc quantité propre */
-      .qty {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: white;
-        padding: 6px 10px;
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      }
+        .cart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-      .qty button {
-        width: 34px;
-        height: 34px;
-        border: none;
-        border-radius: 10px;
-        background: var(--green);
-        color: white;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: 0.2s;
-      }
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-      .qty button:hover {
-        transform: scale(1.05);
-      }
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
 
-      .qty span {
-        min-width: 26px;
-        text-align: center;
-        font-weight: 700;
-        font-size: 15px;
-      }
+        .item-details {
+            flex: 1;
+        }
 
-      /* delete button plus clean */
-      .delete {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-        background: #fff;
-        border: 1px solid #f0f0f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: 0.2s;
-      }
+        .item-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--bio-green);
+            margin-bottom: 5px;
+        }
 
-      .delete:hover {
-        transform: scale(1.05);
-        border-color: var(--danger);
-      }
+        .item-price {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
 
-      .delete img {
-        width: 35px;
-        height: 26px;
-      }
-      .delete:hover {
-        transform: scale(1.05);
-      }
+        .item-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 1px solid var(--border-color);
+        }
 
-      /* SUMMARY */
-      .summary {
-        background: var(--card);
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
-        height: fit-content;
-      }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 6px 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
 
-      .summary h3 {
-        margin-top: 0;
-      }
+        .qty-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 10px;
+            background: var(--bio-green);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
 
-      .total-global {
-        font-size: 18px;
-        font-weight: 800;
-        color: var(--green);
-        margin: 10px 0 20px;
-        text-align: center;
-      }
+        .qty-btn:hover {
+            background: var(--bio-green-light);
+            transform: scale(1.05);
+        }
 
-      /* FORM */
-      .form-group {
-        margin-bottom: 12px;
-      }
+        .qty-display {
+            min-width: 26px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+        }
 
-      label {
-        font-size: 12px;
-        font-weight: 700;
-        display: block;
-        margin-bottom: 5px;
-        color: var(--text);
-        color: rgb(0, 0, 0);
-        font-weight: bold;
-        font-size: 1rem;
-        font-family: Arial, Helvetica, sans-serif;
-      }
+        .delete-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-      label span {
-        font-weight: bold;
-        color: var(--danger);
-      }
+        .delete-btn:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-color);
+        }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid #ddd;
-        outline: none;
-      }
+        .delete-btn img {
+            width: 35px;
+            height: 26px;
+        }
 
-      input:focus {
-        border-color: var(--green);
-        box-shadow: 0 0 0 2px rgba(45, 80, 22, 0.15);
-      }
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
 
-      /* BUTTONS */
-      .btn-checkout {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--green), var(--green2));
-        color: white;
-        font-weight: 800;
-        cursor: pointer;
-        margin-top: 10px;
-        font-size: 14px;
-      }
+        .empty-cart::before {
+            content: '🛒';
+            font-size: 48px;
+            display: block;
+            margin-bottom: 20px;
+        }
 
-      .btn-checkout:hover {
-        opacity: 0.95;
-      }
+        /* Summary Section */
+        .summary-title::before {
+            content: '📋';
+        }
 
-      /* EMPTY */
-      .empty {
-        text-align: center;
-        padding: 50px;
-        color: var(--muted);
-      }
+        .total-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bio-green);
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #e8f8f5 0%, #d4edce 100%);
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--bio-green);
+            margin-bottom: 8px;
+        }
+
+        .form-label span {
+            color: var(--accent-color);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--bio-green);
+            box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.1);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--bio-green) 0%, var(--pro-blue) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(45, 80, 22, 0.3);
+        }
+
+        .checkout-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--bio-green);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--pro-blue);
+        }
+
+        .copyright {
+            color: var(--bio-green);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .item-right {
+                border-left: none;
+                border-top: 1px solid var(--border-color);
+                padding-top: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        .cart-item:nth-child(odd) {
+            animation-delay: 0.1s;
+        }
+
+        .cart-item:nth-child(even) {
+            animation-delay: 0.2s;
+        }
     </style>
-  </head>
-
-  <body>
-    <header>
-      <h2>Mon Panier</h2>
-      <a href="boutique.html">← Continuer vos achats</a>
-    </header>
-
+</head>
+<body>
     <div class="container">
-      <!-- CART -->
-      <div class="cart-items" id="cartItems"></div>
+        <!-- Header -->
+        <header class="header">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="SIBIO 2026" onerror="this.style.display='none'">
+                SIBIO 2026
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Accueil</a>
+                <a href="boutique.html">Boutique</a>
+                <a href="regions.html">Régions</a>
+                <a href="panier.html">Panier</a>
+            </nav>
+        </header>
 
-      <!-- SUMMARY -->
-      <div class="summary">
-        <h3>Récapitulatif</h3>
-        <div class="total-global" id="total">Total: 0 FCFA</div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Cart Section -->
+            <section class="cart-section">
+                <h2 class="section-title">Votre Panier</h2>
+                <div id="cart-items">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+            </section>
 
-        <div class="form-group">
-          <label>Nom complet <span>*</span></label>
-          <input id="name" type="text" />
+            <!-- Summary Section -->
+            <section class="summary-section">
+                <h2 class="section-title summary-title">Récapitulatif</h2>
+                <div id="total-amount" class="total-amount">Total: 0 FCFA</div>
+
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nom complet <span>*</span></label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="form-label">Adresse de livraison <span>*</span></label>
+                        <input type="text" id="address" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Numéro de téléphone <span>*</span></label>
+                        <input type="tel" id="phone" class="form-input" required>
+                    </div>
+
+                    <button type="button" onclick="orderAll()" class="checkout-btn">
+                        🛍️ Valider la commande
+                    </button>
+                </form>
+            </section>
         </div>
 
-        <div class="form-group">
-          <label>Adresse de livraison <span>*</span></label>
-          <input id="address" type="text" />
-        </div>
-
-        <div class="form-group">
-          <label>Numéro de téléphone <span>*</span></label>
-          <input id="phone" type="text" />
-        </div>
-
-        <button class="btn-checkout" onclick="orderAll()">
-          Valider la commande
-        </button>
-      </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="copyright">
+                    © 2024 SIBIO 2026 - Salon International du Bio. Tous droits réservés.
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Accueil</a>
+                    <a href="boutique.html">Boutique</a>
+                    <a href="regions.html">Régions</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      /* DISPLAY */
-      function display() {
-        const container = document.getElementById("cartItems");
-        container.innerHTML = "";
+        function display() {
+            const cartItems = document.getElementById("cart-items");
+            const totalAmount = document.getElementById("total-amount");
 
-        if (cart.length === 0) {
-          container.innerHTML = `<div class="empty">Votre panier est vide</div>`;
-          document.getElementById("total").textContent = "Total: 0 FCFA";
-          return;
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div>Votre panier est vide</div>
+                        <p>Découvrez nos produits dans la <a href="boutique.html" style="color: var(--secondary-color); text-decoration: none; font-weight: 600;">boutique</a></p>
+                    </div>
+                `;
+                totalAmount.textContent = "Total: 0 FCFA";
+                return;
+            }
+
+            let total = 0;
+            cartItems.innerHTML = cart.map((item, i) => {
+                const subTotal = item.price * item.qty;
+                total += subTotal;
+                return `
+                    <div class="cart-item">
+                        <div class="item-left">
+                            <img src="${item.img || item.image}" alt="${item.name}" class="item-image" onerror="this.src='assets/placeholder.png'">
+                            <div class="item-details">
+                                <div class="item-name">${item.name}</div>
+                                <div class="item-price">Prix unitaire: ${item.price} FCFA</div>
+                                <div class="item-price" style="margin-top: 5px;">Sous-total: ${subTotal} FCFA</div>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="minus(${i})">-</button>
+                                <span class="qty-display">${item.qty}</span>
+                                <button class="qty-btn" onclick="plus(${i})">+</button>
+                            </div>
+                            <button class="delete-btn" onclick="removeItem(${i})">
+                                <img src="https://www.clipartmax.com/png/middle/84-842915_delete-icon-png-red.png" alt="delete">
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalAmount.textContent = `Total: ${total} FCFA`;
         }
 
-        let total = 0;
-
-        cart.forEach((item, i) => {
-          let subTotal = item.price * item.qty;
-          total += subTotal;
-
-          container.innerHTML += `
-      <div class="item">
-
-        <div class="item-left">
-          <img src="${item.img}">
-          <div class="info">
-            <h4>${item.name}</h4>
-            
-            <div class="price">Total: ${subTotal} FCFA</div>
-          </div>
-        </div>
-
-        <div class="item-right">
-
-          <div class="qty">
-            <button onclick="minus(${i})">-</button>
-            <span>${item.qty}</span>
-            <button onclick="plus(${i})">+</button>
-          </div>
-
-          <button class="delete" onclick="removeItem(${i})">
-  <img src="https://www.clipartmax.com/png/middle/84-842915_delete-icon-png-red.png" alt="delete">
-</button>
-
-        </div>
-
-      </div>
-    `;
-        });
-
-        document.getElementById("total").textContent =
-          "Total: " + total + " FCFA";
-      }
-
-      /* PLUS */
-      function plus(i) {
-        cart[i].qty++;
-        save();
-        display();
-      }
-
-      /* MINUS */
-      function minus(i) {
-        if (cart[i].qty > 1) {
-          cart[i].qty--;
-        } else {
-          cart.splice(i, 1);
-        }
-        save();
-        display();
-      }
-
-      /* DELETE */
-      function removeItem(i) {
-        cart.splice(i, 1);
-        save();
-        display();
-      }
-
-      /* SAVE */
-      function save() {
-        localStorage.setItem("cart", JSON.stringify(cart));
-      }
-
-      /* ORDER */
-      function orderAll() {
-        let name = document.getElementById("name").value;
-        let address = document.getElementById("address").value;
-        let phone = document.getElementById("phone").value;
-
-        if (!name || !address || !phone) {
-          alert("Veuillez remplir tous les champs");
-          return;
+        function plus(i) {
+            cart[i].qty++;
+            save();
+            display();
         }
 
-        alert("Commande validée avec succès");
-        localStorage.removeItem("cart");
-        cart = [];
-        display();
-      }
+        function minus(i) {
+            if (cart[i].qty > 1) {
+                cart[i].qty--;
+            } else {
+                removeItem(i);
+                return;
+            }
+            save();
+            display();
+        }
 
-      /* INIT */
-      display();
+        function removeItem(i) {
+            cart.splice(i, 1);
+            save();
+            display();
+        }
+
+        function save() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        function orderAll() {
+            const name = document.getElementById("name").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+
+            if (!name || !address || !phone) {
+                alert("Veuillez remplir tous les champs obligatoires");
+                return;
+            }
+
+            // Validation supplémentaire
+            if (phone.length < 8) {
+                alert("Veuillez entrer un numéro de téléphone valide");
+                return;
+            }
+
+            if (cart.length === 0) {
+                alert("Votre panier est vide");
+                return;
+            }
+
+            alert(`✅ Commande validée avec succès !\n\nNom: ${name}\nAdresse: ${address}\nTéléphone: ${phone}\nTotal: ${document.getElementById("total-amount").textContent.split(': ')[1]}`);
+            localStorage.removeItem("cart");
+            cart = [];
+            display();
+        }
+
+        // Initialize
+        display();
     </script>
-  </body>
+</body>
 </html>

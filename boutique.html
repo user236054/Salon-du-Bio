@@ -13,14 +13,16 @@
 
     <style>
       :root {
-        --green: #2d5016;
-        --green-light: #3f6b22;
-        --accent: #c87137;
-        --bg: #f5f7f6;
+        --green: #3a7d3b;
+        --green-light: #7ec850;
+        --accent: #e6a756;
+        --bg: #f6fbe9;
         --card: #ffffff;
         --text: #1f2a1f;
         --muted: #6b6b6b;
-        --radius: 14px;
+        --radius: 18px;
+        --shadow: 0 6px 24px rgba(60, 120, 60, 0.10);
+        --transition: all 0.25s cubic-bezier(.4,0,.2,1);
       }
 
       * {
@@ -29,9 +31,11 @@
 
       body {
         margin: 0;
-        font-family: "Poppins", sans-serif;
+        font-family: "Poppins", "Segoe UI", Arial, sans-serif;
         background: var(--bg);
         color: var(--text);
+        min-height: 100vh;
+        letter-spacing: 0.01em;
       }
 
       /* HEADER */
@@ -45,20 +49,36 @@
         position: sticky;
         top: 0;
         z-index: 1000;
+        box-shadow: var(--shadow);
       }
 
       .header h1 {
-        font-size: 22px;
+        font-size: 2.1rem;
         margin: 0;
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        letter-spacing: 0.02em;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
 
       .back-btn {
         background: var(--accent);
         color: white;
-        padding: 8px 14px;
+        padding: 10px 20px;
         border-radius: 999px;
         text-decoration: none;
-        font-size: 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(230, 167, 86, 0.13);
+        transition: var(--transition);
+        border: none;
+      }
+      .back-btn:hover {
+        background: #f7c948;
+        color: var(--green);
+        transform: translateY(-2px) scale(1.04);
       }
 
       .filters input {
@@ -79,38 +99,40 @@
       .filters {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        padding: 18px;
+        gap: 16px;
+        padding: 18px 24px;
         align-items: center;
         justify-content: flex-start;
-
         position: sticky;
-        top: 70px; /* en dessous du header */
+        top: 70px;
         z-index: 900;
         background: var(--bg);
+        box-shadow: 0 2px 8px rgba(60, 120, 60, 0.04);
+        border-bottom-left-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
       }
 
       /* bouton panier dans filters */
       .cart-btn {
         display: flex;
         align-items: center;
-        gap: 6px;
-
+        gap: 8px;
         margin-left: auto;
-
-        padding: 12px 16px;
-        border-radius: 12px;
-
-        background: linear-gradient(135deg, #f7c948, #f0b429);
-
+        padding: 14px 22px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #f7c948, #7ec850);
         cursor: pointer;
-        font-weight: 600;
-        font-size: 14px;
-
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        transition: 0.25s;
-
-        position: relative; /* IMPORTANT pour badge */
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 6px 18px rgba(60, 120, 60, 0.13);
+        transition: var(--transition);
+        position: relative;
+        border: none;
+      }
+      .cart-btn:hover {
+        background: linear-gradient(135deg, #e6a756, #3a7d3b);
+        color: #fff;
+        transform: scale(1.05);
       }
 
       .cart-btn:hover {
@@ -126,20 +148,24 @@
       }
 
       .select-selected {
-        background: linear-gradient(145deg, #ffffff, #f3f7f3);
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid #ddd;
+        background: linear-gradient(145deg, #ffffff, #e6f4e6);
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 1.5px solid #c7e6c7;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: var(--transition);
       }
 
       .select-selected:after {
         content: "▾";
         color: var(--green);
         margin-left: 10px;
+        font-size: 1.2em;
       }
 
       .select-items {
@@ -154,7 +180,8 @@
         display: none;
         z-index: 50;
         pointer-events: auto;
-        overflow: hidden;
+        max-height: 200px;
+        overflow-y: auto;
       }
       .custom-select {
         position: relative;
@@ -163,13 +190,17 @@
       }
 
       .select-items div {
-        padding: 10px 12px;
+        padding: 12px 16px;
         cursor: pointer;
+        font-size: 1rem;
+        border-bottom: 1px solid #f0f0f0;
+        transition: var(--transition);
       }
 
       .select-items div:hover {
-        background: #e8f3e1;
+        background: #e6f4e6;
         color: var(--green);
+        font-weight: 600;
       }
 
       .select-items.show {
@@ -179,109 +210,184 @@
       /* PRODUCTS */
       .products {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 22px;
-        padding: 28px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 28px;
+        padding: 32px 18px 18px 18px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        transition: var(--transition);
       }
 
       .card {
         background: var(--card);
         border-radius: var(--radius);
         overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-        transition: 0.3s;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1.5px solid #e6f4e6;
+        display: flex;
+        flex-direction: column;
+        min-height: 420px;
       }
-
       .card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 32px rgba(60, 120, 60, 0.18);
+        border-color: var(--green-light);
       }
 
       .card img {
         width: 100%;
-        height: 170px;
+        height: 180px;
         object-fit: cover;
+        border-bottom: 1.5px solid #e6f4e6;
+        background: #f0f0f0;
+        transition: var(--transition);
+      }
+      .card:hover img {
+        filter: brightness(0.95) saturate(1.1);
+        transform: scale(1.04);
       }
 
       .card-content {
-        padding: 14px;
+        padding: 18px 16px 12px 16px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
       }
       .cart-count {
         position: absolute;
-        top: -6px;
-        right: -6px;
-        background: red;
+        top: -8px;
+        right: -8px;
+        background: #e74c3c;
         color: white;
-        font-size: 12px;
-        padding: 2px 6px;
+        font-size: 13px;
+        padding: 2px 7px;
         border-radius: 50%;
         display: none;
         font-weight: bold;
+        min-width: 22px;
+        text-align: center;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 6px rgba(60, 120, 60, 0.10);
       }
 
       .price {
         color: var(--accent);
         font-weight: 700;
+        font-size: 1.15rem;
+        margin: 8px 0 0 0;
       }
 
       .badge {
         display: inline-block;
         margin-top: 8px;
-        padding: 4px 10px;
+        padding: 5px 14px;
         border-radius: 999px;
-        font-size: 11px;
-        background: #e8f3e1;
+        font-size: 12px;
+        background: linear-gradient(135deg, #e6f4e6, #f6fbe9);
         color: var(--green);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        box-shadow: 0 1px 4px rgba(60, 120, 60, 0.04);
       }
       /* ACTIONS */
       .actions {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-top: 12px;
+        gap: 12px;
+        margin-top: 18px;
       }
 
       /* BOUTON PRINCIPAL */
       .btn-order {
         flex: 1;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 12px 0;
+        border-radius: 12px;
         border: none;
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 1rem;
+        font-weight: 700;
         cursor: pointer;
         background: linear-gradient(135deg, var(--green), var(--green-light));
         color: white;
-        transition: 0.25s;
+        transition: var(--transition);
+        box-shadow: 0 2px 8px rgba(60, 120, 60, 0.08);
       }
-
       .btn-order:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 14px rgba(45, 80, 22, 0.3);
+        background: linear-gradient(135deg, var(--green-light), var(--green));
+        color: #fff;
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 6px 18px rgba(60, 120, 60, 0.13);
       }
 
       /* ICÔNE PANIER */
       .btn-cart {
-        width: 42px;
-        height: 42px;
-        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
         border: none;
         cursor: pointer;
-
-        background: rgba(179, 197, 21, 0.26); /* fond blanc */
-        color: var(--green); /* icône bien visible */
-
+        background: linear-gradient(135deg, #f7c948, #7ec850);
+        color: var(--green);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
-
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* relief */
-        transition: 0.25s;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 12px rgba(60, 120, 60, 0.08);
+        transition: var(--transition);
+        position: relative;
+      }
+      .btn-cart:hover {
+        background: linear-gradient(135deg, #e6a756, #3a7d3b);
+        color: #fff;
+        transform: scale(1.08);
       }
 
-      .btn-cart:hover {
-        background-color: yellow;
-        transform: scale(1.08);
+      /* Responsive */
+      @media (max-width: 1100px) {
+        .products {
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 18px;
+        }
+        .header {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+        }
+        .filters {
+          flex-direction: column;
+          gap: 10px;
+          align-items: stretch;
+        }
+      }
+      @media (max-width: 700px) {
+        .products {
+          grid-template-columns: 1fr;
+          padding: 12px 2vw;
+        }
+        .header {
+          padding: 10px 4vw;
+        }
+        .filters {
+          padding: 10px 4vw;
+        }
+        .card {
+          min-height: 340px;
+        }
+        .btn-order, .btn-cart {
+          font-size: 0.98rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 1.2rem;
+        }
+        .btn-order, .btn-cart {
+          font-size: 0.92rem;
+        }
+        .card-content {
+          padding: 10px 6px 8px 6px;
+        }
       }
     </style>
   </head>
@@ -289,7 +395,14 @@
   <body>
     <div class="header">
       <h1>🛒 Boutique SIBIO 2026</h1>
-      <a href="index.html" class="back-btn">Accueil</a>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <a href="index.html" class="back-btn">Accueil</a>
+      </div>
+    </div>
+    <!-- Panier flottant centré -->
+    <div class="cart-btn" onclick="goToCart()" style="position:fixed;right:32px;bottom:80px;z-index:3000;box-shadow:0 6px 15px rgba(0,0,0,0.18);">
+      🛒 <span style="color: white">Panier</span>
+      <span id="cart-count" class="cart-count">0</span>
     </div>
 
     <div class="filters">
@@ -302,6 +415,9 @@
           <div data-value="alimentaire">Alimentaire</div>
           <div data-value="cosmetique">Cosmétique</div>
           <div data-value="artisanat">Artisanat</div>
+          <div data-value="épicerie">Épicerie</div>
+          <div data-value="boisson">Boisson</div>
+          <div data-value="textile">Textile</div>
         </div>
       </div>
 
@@ -319,90 +435,51 @@
           <div data-value="3">10 000+ FCFA</div>
         </div>
       </div>
-
-      <div class="cart-btn" onclick="goToCart()" style="position: relative">
-        🛒 <span style="color: white">Panier</span>
-        <span id="cart-count" class="cart-count">0</span>
-      </div>
     </div>
     <!-- mais quand il retire un produit un produit on remet l'icone du panier pour lui dire qu'il rzajoutr dansle panier -->
     <div class="products" id="productsContainer"></div>
 
     <script>
       const products = [
-        {
-          name: "Miel Bio",
-          price: 3000,
-          category: "alimentaire",
-          region: "Abidjan",
-          img: "https://images.unsplash.com/photo-1587049352851-8d4e89133924",
-        },
-        {
-          name: "Savon Naturel",
-          price: 2000,
-          category: "cosmetique",
-          region: "Yamoussoukro",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf2IcxndKG3qfMqQrA1iS5QGEd8qQHKd_chg&s",
-        },
-        {
-          name: "Café Bio",
-          price: 7000,
-          category: "alimentaire",
-          region: "San-Pédro",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQqtVirbr0GESyw15LitUgcXbELffRWPvog&s",
-        },
-        {
-          name: "Huile de coco",
-          price: 12000,
-          category: "cosmetique",
-          region: "Gbêkê",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgeh9NVrPq4iBH5fMpok0vaWnXDJIg3gTO_Q&s",
-        },
-        {
-          name: "Sac artisanal",
-          price: 9000,
-          category: "artisanat",
-          region: "Tonkpi",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
-        },
-        {
-          name: "Légumes Frais Bio",
-          price: 500,
-          category: "alimentaire",
-          region: "Sassandra",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
-        },
-        {
-          name: "Beure de Kariter",
-          price: 200,
-          category: "cosmétique",
-          region: "Tonkpi",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
-        },
-        {
-          name: "Fruit Bio",
-          price: 2000,
-          category: "aliment",
-          region: "Tonkpi",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
-        },
-        {
-          name: "Colier en Feuille",
-          price: 1500,
-          category: "artisanat",
-          region: "Tonkpi",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s",
-        },
+        { name: "Miel Bio", price: 3000, category: "alimentaire", region: "Abidjan", img: "https://images.unsplash.com/photo-1587049352851-8d4e89133924" },
+        { name: "Savon Naturel", price: 2000, category: "cosmetique", region: "Yamoussoukro", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf2IcxndKG3qfMqQrA1iS5QGEd8qQHKd_chg&s" },
+        { name: "Café Bio", price: 7000, category: "alimentaire", region: "San-Pédro", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQqtVirbr0GESyw15LitUgcXbELffRWPvog&s" },
+        { name: "Huile de coco", price: 12000, category: "cosmetique", region: "Gbêkê", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgeh9NVrPq4iBH5fMpok0vaWnXDJIg3gTO_Q&s" },
+        { name: "Sac artisanal", price: 9000, category: "artisanat", region: "Tonkpi", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9_L1fSqI1NXW4awEqHYf0tOVS1RsJ-e7XHw&s" },
+        { name: "Légumes Frais Bio", price: 500, category: "alimentaire", region: "Sassandra", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTxkP8hksUE2_YXR1n5vpb9I0eUPw1J8x-CA&s" },
+        { name: "Beurre de Karité", price: 200, category: "cosmetique", region: "Tonkpi", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4kVTBgxJ2aMlqQNL1DQRGo6fPdPT_2E2-A&s" },
+        { name: "Fruit Bio", price: 2000, category: "alimentaire", region: "Tonkpi", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEnKz9M4APLZd45nUImX7btuAmeERTZmBQqQ&s" },
+        { name: "Collier en Feuille", price: 1500, category: "artisanat", region: "Tonkpi", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaG8IWRtzv1qzyi_Ugf7Z6ABKMrEjoPAe2XQ&s" },
+        // 20 nouveaux produits, 3 nouvelles catégories : "épicerie", "boisson", "textile"
+        { name: "Riz Local", price: 3500, category: "épicerie", region: "Agnéby-Tiassa", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836" },
+        { name: "Jus de Bissap", price: 1200, category: "boisson", region: "Bafing", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c" },
+        { name: "Tissu Pagne Baoulé", price: 8000, category: "textile", region: "Bélier", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Noix de Cajou", price: 4000, category: "épicerie", region: "Cavally", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc" },
+        { name: "Vin de Palme", price: 2500, category: "boisson", region: "Folon", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c" },
+        { name: "T-shirt Coton Bio", price: 6000, category: "textile", region: "Gôh", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Farine de Manioc", price: 1800, category: "épicerie", region: "Gôh-Djiboua", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836" },
+        { name: "Bière Locale", price: 2000, category: "boisson", region: "Grands-Ponts", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c" },
+        { name: "Robe Wax", price: 9500, category: "textile", region: "Guémon", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Sel de Mer", price: 700, category: "épicerie", region: "Indénié-Djuablin", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc" },
+        { name: "Eau Minérale", price: 500, category: "boisson", region: "Kabadougou", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c" },
+        { name: "Chemise Lin", price: 7000, category: "textile", region: "Lôh-Djiboua", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Moutarde Locale", price: 1200, category: "épicerie", region: "Marahoué", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836" },
+        { name: "Soda Gingembre", price: 900, category: "boisson", region: "Moronou", img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c" },
+        { name: "Jupe Tissée", price: 6500, category: "textile", region: "Nawa", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Pâte d'Arachide", price: 2200, category: "épicerie", region: "N'zi", img: "https://images.unsplash.com/photo-1502741338009-cac2772e18bc" },
+        { name: "Limonade Artisanale", price: 800, category: "boisson", region: "San-Pédro", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu2eHWpdutqgaAUnad4iOLSAB4g8UmK0ljog&s" },
+        { name: "Short Coton", price: 4000, category: "textile", region: "Sud-Comoé", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
+        { name: "Pois du Cap", price: 1600, category: "épicerie", region: "Tchologo", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836" },
+        { name: "Thé Local", price: 1200, category: "boisson", region: "Worodougou", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-aKksHiADn1Y7_QU7fpP1TFn5rUDrVMoLRg&s" },
+        { name: "Foulard Wax", price: 3000, category: "textile", region: "Yamoussoukro", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f" },
       ];
 
       const regions = [
-        "Abidjan",
-        "Yamoussoukro",
-        "San-Pédro",
-        "Gbêkê",
-        "Hambol",
-        "Poro",
-        "Tonkpi",
+        "Abidjan", "Agnéby-Tiassa", "Bafing", "Bagoué", "Bélier", "Bere",
+        "Boukani", "Cavally", "Folon", "Gbêkê", "Gôh", "Gôh-Djiboua", "Grands-Ponts",
+        "Guémon", "Hambol", "Haut-Sassandra", "Indénié-Djuablin", "Kabadougou", "La Mé",
+        "Lôh-Djiboua", "Marahoué", "Moronou", "Nawa", "N'zi", "Poro", "San-Pédro",
+        "Sud-Comoé", "Tchologo", "Tonkpi", "Worodougou", "Yamoussoukro"
       ];
 
       let filters = {

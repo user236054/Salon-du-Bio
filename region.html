@@ -1,195 +1,277 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Représentation des sections</title>
-
-<style>
-body {
-  font-family: Arial;
-  margin: 0;
-  padding: 20px;
-  background: #f5f5f5;
-}
-.top-bar {
-  max-width: 800px;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.top-bar a {
-  color: #0b6;
-  text-decoration: none;
-  font-weight: 700;
-}
-.top-bar h1 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-h2 {
-  margin-bottom: 10px;
-}
-
-.container {
-  max-width: 800px;
-  margin: auto;
-}
-
-.card {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.card:hover {
-  background: #eaeaea;
-}
-
-.hidden {
-  display: none;
-}
-
-.back {
-  margin-bottom: 15px;
-  cursor: pointer;
-  color: blue;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="top-bar">
-  <h1>Représentation des sections</h1>
-  <a href="./index.html">← Retour au site</a>
-</div>
-
-<div class="container">
-
-  <h2 id="title">Pays</h2>
-
-  <div id="backBtn" class="back hidden">⬅ Retour</div>
-
-  <div id="content"></div>
-
-</div>
-
-<script>
-
-// ================= DATA =================
-
-const data = {
-  "Côte d'Ivoire": {
-    "Abidjan": ["Cocody", "Adjamé", "Yopougon", "Treichville", "Marcory"],
-    "Yamoussoukro": ["Attiégouakro"],
-    "Bouaké": ["Koko", "Air France"],
-    "San-Pédro": ["Grand-Béréby"],
-    "Korhogo": ["Sinématiali"],
-    "Daloa": ["Issia"],
-    "Man": ["Danané"],
-    "Gagnoa": ["Oumé"],
-    "Abengourou": ["Agnibilékrou"],
-    "Bondoukou": ["Bouna"],
-    "Odienné": ["Minignan"],
-    "Séguéla": ["Mankono"],
-    "Dimbokro": ["Bocanda"],
-    "Daoukro": ["M'Bahiakro"],
-    "Toumodi": ["Djékanou"],
-    "Aboisso": ["Adiaké"],
-    "Grand-Bassam": ["Bonoua"],
-    "Agboville": ["Adzopé"],
-    "Tiassalé": ["Sikensi"],
-    "Soubré": ["Buyo"],
-    "Guiglo": ["Toulepleu"],
-    "Tabou": ["Grabo"],
-    "Ferkessédougou": ["Ouangolodougou"],
-    "Boundiali": ["Tengrela"],
-    "Katiola": ["Niakaramandougou"],
-    "Bongouanou": ["Arrah"],
-    "Lakota": ["Divo"],
-    "Sassandra": ["Fresco"],
-    "Zuénoula": ["Vavoua"],
-    "Kong": ["Téhini"],
-    "Madinani": ["Séguéla"]
-  },
-
-  "Canada": {
-    "Montréal": ["Plateau-Mont-Royal", "Laval", "Longueuil"]
-  }
-};
-
-// ================= LOGIC =================
-
-const content = document.getElementById("content");
-const title = document.getElementById("title");
-const backBtn = document.getElementById("backBtn");
-
-let history = [];
-
-// afficher liste
-function displayList(obj, levelName) {
-  content.innerHTML = "";
-  title.textContent = levelName;
-
-  for (let key in obj) {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.textContent = key;
-
-    div.onclick = () => {
-      history.push({obj, name: levelName});
-
-      if (Array.isArray(obj[key])) {
-        displayArray(obj[key], key);
-      } else {
-        displayList(obj[key], key);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Régions & Villes de Côte d'Ivoire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #3a7d3b;
+      --green-light: #7ec850;
+      --accent: #e6a756;
+      --bg: #f6fbe9;
+      --card: #fff;
+      --text: #1f2a1f;
+      --muted: #6b6b6b;
+      --radius: 18px;
+      --shadow: 0 6px 24px rgba(60, 120, 60, 0.10);
+      --transition: all 0.25s cubic-bezier(.4,0,.2,1);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .header-region {
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: #fff;
+      padding: 24px 0 18px 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .header-region h1 {
+      margin: 0;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .header-region .back-btn {
+      position: absolute;
+      left: 24px;
+      top: 28px;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(230, 167, 86, 0.13);
+      transition: var(--transition);
+      border: none;
+      z-index: 1001;
+    }
+    .header-region .back-btn:hover {
+      background: #f7c948;
+      color: var(--green);
+      transform: scale(1.04);
+    }
+    .container-region {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 18px 24px 18px;
+    }
+    .region-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 28px;
+      margin-top: 24px;
+    }
+    .region-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 22px 18px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: var(--transition);
+      border: 1.5px solid #e6f4e6;
+      cursor: pointer;
+      min-height: 180px;
+      position: relative;
+    }
+    .region-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 32px rgba(60, 120, 60, 0.18);
+      border-color: var(--green-light);
+      background: #f6fbe9;
+    }
+    .region-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .region-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .city-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .city-badge {
+      background: linear-gradient(135deg, #e6f4e6, #f6fbe9);
+      color: var(--green);
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 4px rgba(60, 120, 60, 0.04);
+      letter-spacing: 0.01em;
+      border: 1px solid #e6f4e6;
+      transition: var(--transition);
+    }
+    .city-badge:hover {
+      background: #d6f5d6;
+      color: var(--green-light);
+    }
+    .back-btn-main {
+      display: none;
+      margin-bottom: 18px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(230, 167, 86, 0.13);
+      transition: var(--transition);
+    }
+    .back-btn-main.visible {
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .container-region {
+        padding: 18px 4vw 18px 4vw;
       }
+      .region-list {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 16px;
+      }
+      .region-card {
+        padding: 18px 10px 12px 10px;
+      }
+    }
+    @media (max-width: 600px) {
+      .header-region h1 {
+        font-size: 1.1rem;
+      }
+      .container-region {
+        padding: 8px 2vw 8px 2vw;
+      }
+      .region-list {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .region-card {
+        min-height: 120px;
+      }
+      .back-btn-main {
+        width: 100%;
+        font-size: 0.98rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-region">
+    <a href="./index.html" class="back-btn">← Accueil</a>
+    <h1>🌍 Régions & Villes de Côte d'Ivoire</h1>
+  </div>
+  <div class="container-region">
+    <button id="backBtnMain" class="back-btn-main">⬅ Retour aux régions</button>
+    <div id="regionTitle" class="region-title" style="font-size:1.5rem;margin-bottom:18px;display:none;"></div>
+    <div id="regionDesc" class="region-desc" style="display:none;"></div>
+    <div id="regionList" class="region-list"></div>
+  </div>
+  <script>
+    // DATA : 31 régions, chaque région avec 3-5 villes principales (exemple, à adapter)
+    const regionsData = [
+      { name: "Abidjan", desc: "Capitale économique, centre urbain majeur.", cities: ["Cocody", "Adjamé", "Yopougon", "Treichville", "Marcory"] },
+      { name: "Agnéby-Tiassa", desc: "Région agricole du sud.", cities: ["Agboville", "Tiassalé", "Sikensi"] },
+      { name: "Bafing", desc: "Région de l'ouest, riche en forêts.", cities: ["Touba", "Ouaninou", "Koro"] },
+      { name: "Bagoué", desc: "Nord, zone de cultures vivrières.", cities: ["Boundiali", "Tengrela", "Kouto"] },
+      { name: "Bélier", desc: "Centre, réputée pour ses pagnes.", cities: ["Toumodi", "Djékanou", "Didiévi"] },
+      { name: "Bere", desc: "Nord-ouest, zone de savane.", cities: ["Mankono", "Dianra", "Tieningboué"] },
+      { name: "Boukani", desc: "Nord-est, terres de savane.", cities: ["Bouna", "Doropo", "Téhini"] },
+      { name: "Cavally", desc: "Ouest, proche du Libéria.", cities: ["Guiglo", "Toulepleu", "Bloléquin"] },
+      { name: "Folon", desc: "Nord-ouest, zone frontalière.", cities: ["Minignan", "Kaniasso", "Tengréla"] },
+      { name: "Gbêkê", desc: "Centre, grande région agricole.", cities: ["Bouaké", "Béoumi", "Bodokro"] },
+      { name: "Gôh", desc: "Centre-ouest, réputée pour le cacao.", cities: ["Gagnoa", "Oumé", "Guibéroua"] },
+      { name: "Gôh-Djiboua", desc: "Sud-ouest, zone de cultures.", cities: ["Divo", "Lakota", "Guitry"] },
+      { name: "Grands-Ponts", desc: "Sud, zone côtière.", cities: ["Dabou", "Grand-Lahou", "Jacqueville"] },
+      { name: "Guémon", desc: "Ouest montagneux.", cities: ["Man", "Bangolo", "Kouibly"] },
+      { name: "Hambol", desc: "Centre-nord, zone de coton.", cities: ["Katiola", "Niakaramandougou", "Dabakala"] },
+      { name: "Haut-Sassandra", desc: "Centre-ouest, zone agricole.", cities: ["Daloa", "Issia", "Vavoua"] },
+      { name: "Indénié-Djuablin", desc: "Est, réputée pour le cacao.", cities: ["Abengourou", "Agnibilékrou", "Bettié"] },
+      { name: "Kabadougou", desc: "Nord-ouest, zone de savane.", cities: ["Odienné", "Samatiguila", "Gbéléban"] },
+      { name: "La Mé", desc: "Sud-est, proche d'Abidjan.", cities: ["Adzopé", "Alépé", "Akoupé"] },
+      { name: "Lôh-Djiboua", desc: "Sud, zone agricole.", cities: ["Divo", "Guitry", "Lakota"] },
+      { name: "Marahoué", desc: "Centre, zone de cultures.", cities: ["Bouaflé", "Sinfra", "Zuenoula"] },
+      { name: "Moronou", desc: "Centre-est, jeune région.", cities: ["Bongouanou", "Arrah", "M'Batto"] },
+      { name: "Nawa", desc: "Sud-ouest, zone forestière.", cities: ["Soubré", "Buyo", "Méagui"] },
+      { name: "N'zi", desc: "Centre, zone de cultures.", cities: ["Dimbokro", "Bocanda", "Kouassi-Kouassikro"] },
+      { name: "Poro", desc: "Nord, zone de coton.", cities: ["Korhogo", "Sinématiali", "M'Bengué"] },
+      { name: "San-Pédro", desc: "Sud-ouest, port important.", cities: ["San-Pédro", "Tabou", "Grand-Béréby"] },
+      { name: "Sud-Comoé", desc: "Sud-est, zone lagunaire.", cities: ["Aboisso", "Adiaké", "Assinie"] },
+      { name: "Tchologo", desc: "Nord, zone de cultures.", cities: ["Ferkessédougou", "Ouangolodougou", "Kong"] },
+      { name: "Tonkpi", desc: "Ouest montagneux.", cities: ["Man", "Danané", "Biankouma"] },
+      { name: "Worodougou", desc: "Nord-ouest, zone de savane.", cities: ["Séguéla", "Mankono", "Kani"] },
+      { name: "Yamoussoukro", desc: "Capitale politique et administrative.", cities: ["Yamoussoukro", "Attiégouakro"] },
+    ];
 
-      backBtn.classList.remove("hidden");
-    };
+    const regionList = document.getElementById('regionList');
+    const regionTitle = document.getElementById('regionTitle');
+    const regionDesc = document.getElementById('regionDesc');
+    const backBtnMain = document.getElementById('backBtnMain');
 
-    content.appendChild(div);
-  }
-}
+    function showRegions() {
+      regionList.innerHTML = '';
+      regionTitle.style.display = 'none';
+      regionDesc.style.display = 'none';
+      backBtnMain.classList.remove('visible');
+      regionsData.forEach(region => {
+        const card = document.createElement('div');
+        card.className = 'region-card';
+        card.innerHTML = `<div class="region-title">${region.name}</div><div class="region-desc">${region.desc}</div>`;
+        card.onclick = () => showCities(region);
+        regionList.appendChild(card);
+      });
+    }
 
-// afficher tableau (communes)
-function displayArray(arr, regionName) {
-  content.innerHTML = "";
-  title.textContent = regionName;
+    function showCities(region) {
+      regionList.innerHTML = '';
+      regionTitle.textContent = region.name;
+      regionTitle.style.display = 'block';
+      regionDesc.textContent = region.desc;
+      regionDesc.style.display = 'block';
+      backBtnMain.classList.add('visible');
+      const cityWrap = document.createElement('div');
+      cityWrap.className = 'city-list';
+      region.cities.forEach(city => {
+        const badge = document.createElement('div');
+        badge.className = 'city-badge';
+        badge.textContent = city;
+        cityWrap.appendChild(badge);
+      });
+      regionList.appendChild(cityWrap);
+    }
 
-  arr.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.textContent = item;
-    content.appendChild(div);
-  });
-}
+    backBtnMain.onclick = showRegions;
 
-// retour
-backBtn.onclick = () => {
-  const last = history.pop();
-
-  if (!last) return;
-
-  displayList(last.obj, last.name);
-
-  if (history.length === 0) {
-    backBtn.classList.add("hidden");
-  }
-};
-
-// ================= INIT =================
-
-displayList(data, "Pays");
-
-</script>
-
+    // INIT
+    showRegions();
+  </script>
 </body>
 </html>
