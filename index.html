@@ -20,7 +20,7 @@ body {
   padding-top: 100px; /* place espace pour header + ticker */
 }
 
-   <style>
+   
     
 body {
   margin: 0;
@@ -207,15 +207,11 @@ body {
 /* HERO */
 .hero {
   position: relative;
-  text-align: center;
-  padding: 120px 20px;
-  color: white;
-  overflow: visible;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 400px;   /* ✅ contrôle propre */
+  padding: 0;      /* ❌ enlève le gros padding */
+  overflow: hidden;
 }
+
 
 .hero::before {
   content: "";
@@ -478,11 +474,11 @@ body {
 
       <!-- Accueil / découverte -->
       <li class="dropdown">
-        <a href="#" class="nav-link">Découvrir ▾</a>
+        <a class="nav-link">Découvrir ▾</a>
         <ul class="dropdown-menu">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#programme">Programme</a></li>
-          <li><a href="#programme">Activité</a></li>
+          <li><a href="#exposants">Activité</a></li>
         </ul>
       </li>
 
@@ -611,33 +607,9 @@ body {
 
     <style>
     
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 120px 20px;
-  color: white;
-  overflow: visible;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  transition: background-image 1s ease-in-out;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
   
-}
+
 /* SECTION */
 .impact-message {
   text-align: center;
@@ -702,22 +674,9 @@ body {
 .edition {
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
 }
-.hero {
-  position: relative;
-  overflow: visible;
-  height: 80vh;
-  color: white;
-}
 
-/* images en fond */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: translateX(0);
-  transition: transform 1s ease;
-}
+
+
 
 /* couche suivante */
 .hero-bg.next {
@@ -1001,17 +960,7 @@ body {
 
 
 /* HERO */
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 120px 20px;
-  color: white;
-  overflow: visible;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .hero::before {
   content: "";
@@ -1274,7 +1223,10 @@ body {
         <ul class="dropdown-menu">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#programme">Programme</a></li>
-          <li><a href="#programme">Activité</a></li>
+           
+          <li><a href="#exposants">Activité</a></li>
+        
+        
         </ul>
       </li>
 
@@ -1292,8 +1244,8 @@ body {
       <li class="dropdown">
         <a href="#" class="nav-link">Salon ▾</a>
         <ul class="dropdown-menu">
-          <li><a href="#exposants">Exposants</a></li>
-          
+          <li><a href="#buy">Acheter un ticker</a></li>
+           <li><a href="#stand">Reservez un stand</a></li>
         </ul>
       </li>
 
@@ -1376,9 +1328,7 @@ setInterval(() => {
 }, 60000); // 1 minute
 </script>
 
-<section class="impact-message">
-  <h2 id="typed-text"></h2>
-</section>
+
 
 
 
@@ -1478,7 +1428,7 @@ setInterval(() => {
 .hero {
   position: relative;
   overflow: visible;
-  height: 80vh;
+  height: 100vh;
   color: white;
 }
 
@@ -1761,7 +1711,7 @@ setInterval(() => {
       <p>Heures</p>
     </div>
 
-    <div class="time-unit">
+    <div class="time-unit">;
       <span id="minutes">00</span>
       <p>Minutes</p>
     </div>
@@ -1772,7 +1722,7 @@ setInterval(() => {
     </div>
   </div>
 
-  <a href="#billetterie" class="btn btn-primary btn-large">
+  <a href="#buy" class="btn btn-primary btn-large">
     Réserver votre place
   </a>
 
@@ -1931,7 +1881,7 @@ setInterval(() => {
       </div>
     </section>
 <section id="exposants">
-  <h2>Sibio en Image</h2>
+  <h2>Au coeur du Bio</h2>
 
   <div class="slider-wrapper">
 
@@ -1939,10 +1889,12 @@ setInterval(() => {
 
     <div class="slider-track" id="sliderTrack">
 
-      <img src="./20260123_185534548_iOS.jpg" class="slide active">
-      <img src="./images.jpg" class="slide">
-      <img src="./img/sibio3.jpg" class="slide">
-      <img src="./img/sibio4.jpg" class="slide">
+      <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg" class="slide active">
+      <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (1).jpeg" class="slide">
+      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (3).jpeg" class="slide">
+      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg" class="slide">
+      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (1).jpeg" class="slide">
+     
 
     </div>
 
@@ -1953,7 +1905,7 @@ setInterval(() => {
     
 
     <!-- Billetterie Section -->
-    <section id="billetterie" class="section">
+    <section id="buy" class="section">
       <div class="container">
         <h2>Réservez votre entrée</h2>
         <div class="billetterie-container">
@@ -1998,7 +1950,7 @@ setInterval(() => {
 
     
     <!-- Devenir exposant -->
-    <section id="devenirexposants" class="section">
+    <section id="stand" class="section">
       <div class="container">
         <h2>Devenir exposant</h2>
         <div class="exposant-registration">
@@ -3018,6 +2970,7 @@ setInterval(() => {
       <a href="#">SIBIO 2026 en cours.....</a>
       
     </div>
+    
 
     <div class="footer-box">
       <h3>Engagement</h3>
@@ -3046,10 +2999,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!bg) return; // sécurité
 
   const images = [
-    "https://blog.sevellia.com/wp-content/uploads/2018/09/le-cafe-bio-et-equitable.jpg",
-    "https://tech-n-bio.com/wp-content/uploads/2025/04/Photo_TB_Ambiance-village_CreditMissTerre-2.jpg",
-    "https://proeventinsight.com/wp-content/uploads/2026/02/Capture-decran-2026-02-12-153736-780x470.png",
-    "https://cdn-s-www.estrepublicain.fr/images/B7C6383B-AA28-4449-8E65-92C3597B1CBE/NW_raw/120-exposants-50-conferences-le-salon-bio-amp-co-revient-pour-une-17-e-edition-en-avril-photo-archives-franck-hakmoun-1710446660.jpg"
+   "https://imgs.search.brave.com/uWlY8MH2quGPv3xzmJIrHIlM5LfvRlwq_lHXbpFh0UY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWZyaWNhLWJpLmNv/bS9zdG9yYWdlL2Fy/dGljbGVzL2NvdmVy/cy8xNjk1MDU1MDI3/LmpwZw"
   ];
 
   let slideIndex = 0;
@@ -3064,17 +3014,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".hero").appendChild(temp);
 
     gsap.fromTo(temp,
-      { x: "100%", scale: 1.1 },
+      { x: "100%", scale: 1.01 },
       { x: "0%", duration: 1.5, ease: "power3.out" }
     );
 
     gsap.to(bg, {
       x: "-10%",
-      scale: 1.2,
+      scale: 1.05,
       duration: 1.5,
       onComplete: () => {
         bg.style.backgroundImage = temp.style.backgroundImage;
-        bg.style.transform = "scale(1.2)";
+        bg.style.transform = "scale(1)";
         temp.remove();
       }
     });
@@ -3088,12 +3038,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
 
-// TYPING
-// TYPING (corrigé)
-// const text =
-//   "La Côte d’Ivoire, leader du Bio en Afrique !\nAgir ensemble pour préserver notre biodiversité et nos terres";
+document.addEventListener("DOMContentLoaded", () => {
+  const el = document.getElementById("typed-text");
+  if (!el) return;
 
-// let i = 0;
+  const text = "La Côte d’Ivoire, leader du Bio en Afrique !\nAgir ensemble pour préserver notre biodiversité et nos terres";
+  let i = 0;
+  let started = false; // pour éviter que ça recommence
+
+  function typeEffect() {
+    el.innerHTML = text.substring(0, i).replace("\n", "<br>");
+    i++;
+
+    if (i <= text.length) {
+      setTimeout(typeEffect, 50);
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !started) {
+        started = true;
+        typeEffect();
+      }
+    });
+  }, {
+    threshold: 0.5 // déclenche quand 50% visible
+  });
+
+  observer.observe(el);
+});
+
 
 function typeEffect() {
   const el = document.getElementById("typed-text");
