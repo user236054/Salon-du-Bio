@@ -21,11 +21,13 @@ if (hamburger) {
 
 function startCountdown() {
    
-    const salonDate = new Date('April 15, 2026 08:00:00').getTime();
+    const salonDate = new Date();
+salonDate.setMonth(salonDate.getMonth() + 1);
+const targetTime = salonDate.getTime();
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
-        const distance = salonDate - now;
+        const distance = targetTime - now;
 
         if (distance < 0) {
             clearInterval(timer);
