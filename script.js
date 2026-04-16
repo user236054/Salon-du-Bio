@@ -49,10 +49,9 @@ function startCountdown() {
 }
 
 const sibio2022Images = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVrGZ0517pUy7Zd9W5-6X27MxHdZo2smRubQ&s',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQybuT5dDG1ZgUorNPMR9Xnpan-J6ky4LPUYg&s',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs56TAIvWHxHy1txlFG4ZJluadCUnxQEc1Jw&s',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf2IcxndKG3qfMqQrA1iS5QGEd8qQHKd_chg&s'
+    'https://cdn.prod.website-files.com/65ad7426d216e61fc22903fb/665600715197a1418caadb5e_photo_5874977797766760082_x-p-500.jpg',
+    'https://cdn.prod.website-files.com/65ad7426d216e61fc22903fb/66560071c4e2287c5706310c_photo_5874977797766760081_x-p-500.jpg',
+    'https://cdn.prod.website-files.com/65ad7426d216e61fc22903fb/66560071074789ae00e9b7e8_photo_5874977797766760083_x.jpg'
 ];
 const sibio2022ImagesPerPage = 3;
 let sibio2022Page = 0;

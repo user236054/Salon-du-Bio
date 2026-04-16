@@ -236,6 +236,15 @@
     const regionDesc = document.getElementById('regionDesc');
     const backBtnMain = document.getElementById('backBtnMain');
 
+    function normalizeRegionName(value) {
+      return (value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/['’]/g, '')
+        .toLowerCase()
+        .trim();
+    }
+
     function showRegions() {
       regionList.innerHTML = '';
       regionTitle.style.display = 'none';
@@ -270,8 +279,24 @@
 
     backBtnMain.onclick = showRegions;
 
-    // INIT
-    showRegions();
+    const params = new URLSearchParams(window.location.search);
+    const regionFromQuery = params.get('region');
+    const regionFromHash = window.location.hash ? decodeURIComponent(window.location.hash.slice(1)) : '';
+    const requestedRegion = regionFromQuery || regionFromHash;
+
+    if (requestedRegion) {
+      const targetRegion = regionsData.find(
+        (region) => normalizeRegionName(region.name) === normalizeRegionName(requestedRegion)
+      );
+
+      if (targetRegion) {
+        showCities(targetRegion);
+      } else {
+        showRegions();
+      }
+    } else {
+      showRegions();
+    }
   </script>
 </body>
 </html>

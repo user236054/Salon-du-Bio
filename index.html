@@ -506,6 +506,7 @@ body {
         <a href="#" class="nav-link">Infos ▾</a>
         <ul class="dropdown-menu">
           <li><a href="#contact">Contact</a></li>
+          li><a href="#annonceurs">Annonceurs</a></li>
           <li><a href="#apropos">À propos</a></li>
         </ul>
       </li>
@@ -602,7 +603,327 @@ body {
 <section class="impact-message">
   <h2 id="typed-text"></h2>
 </section>
+<style>
+.team-hierarchy-section {
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #f5fbf6 0%, #eaf6ed 100%);
+}
 
+.team-hierarchy-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.team-title-block {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.team-title-block h2 {
+  margin: 0;
+  color: #0b3d2e;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.team-title-block p {
+  margin-top: 12px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #25443a;
+  line-height: 1.6;
+}
+
+.team-level {
+  margin-top: 35px;
+}
+
+.team-level h3 {
+  margin-bottom: 14px;
+  color: #145c3a;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.team-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
+  border: 1px solid #d4e9da;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+}
+
+.team-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #22c55e;
+}
+
+.team-card h4 {
+  margin: 10px 0 5px;
+  color: #123429;
+}
+
+.team-card p {
+  margin: 6px 0 0;
+  color: #31584b;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* PRESIDENT SPECIAL */
+.team-featured {
+  max-width: 420px;
+  margin: 0 auto;
+  background: linear-gradient(160deg, #0f5b3a, #17864f);
+  color: white;
+}
+
+.team-featured p,
+.team-featured h4 {
+  color: white;
+}
+
+/* REGION */
+.region-nav {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 2px dashed #aacfb7;
+}
+
+.region-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.region-link {
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #c8e2d1;
+  text-decoration: none;
+  color: #0f4c33;
+  font-weight: 600;
+}
+
+.region-link:hover {
+  background: #1b7f4b;
+  color: white;
+}
+
+/* FIX IMPORTANT: ANIMATION OFF PROBLEM */
+.team-reveal.is-visible .team-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-animate {
+  opacity: 1; /* IMPORTANT FIX */
+  transform: translateY(0);
+}
+</style>
+
+<section id="bureau-national" class="team-hierarchy-section team-reveal is-visible">
+
+  <div class="team-hierarchy-container">
+
+    <!-- TITRE -->
+    <div class="team-title-block team-animate delay-1">
+      <h2>Bureau National FAP-BIO</h2>
+      <p>Organisation hiérarchique du bureau exécutif et des structures associées.</p>
+    </div>
+
+    <!-- PRESIDENT -->
+    <div class="team-level team-animate delay-2">
+      <h3>Président</h3>
+<style>
+  .team-featured img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.3);
+
+}
+</style>
+      <div class="team-single">
+        <article class="team-card team-featured">
+          <img src="./WhatsApp Image 2026-04-13 at 16.56.35.jpeg" alt="Président">
+
+          <h4>Constant Ibo Boga</h4>
+
+          <p><strong>Rôles</strong></p>
+          <p>
+            • Président du FAP-BIO<br>
+            • Commissaire Général du SIBIO
+          </p>
+
+          <p><strong>Biographie</strong></p>
+          <p>
+            Acteur engagé dans la promotion de l’agriculture biologique en Côte d’Ivoire,
+            il assure la coordination stratégique du FAP-BIO et supervise les grandes orientations du SIBIO.
+          </p>
+        </article>
+      </div>
+    </div>
+
+    <!-- VICE PRESIDENTS -->
+    <div class="team-level team-animate delay-3">
+      <h3>Vice-Présidents</h3>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=32">
+          <h4>Nathalie Kouamé</h4>
+          <p><strong>Rôles</strong><br>• Vice-Présidente 1</p>
+          <p>Appui stratégique et gouvernance institutionnelle.</p>
+        </article>
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=41">
+          <h4>Yao Hervé Assi</h4>
+          <p><strong>Rôles</strong><br>• Vice-Président 2</p>
+          <p>Coordination des décisions majeures et partenariats.</p>
+        </article>
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=22">
+          <h4>Amina Coulibaly</h4>
+          <p><strong>Rôles</strong><br>• Vice-Présidente 3</p>
+          <p>Suivi des projets et représentation externe.</p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- SECRETARIAT GENERAL -->
+    <div class="team-level team-animate delay-4">
+      <h3>Secrétariat Général</h3>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=5">
+          <h4>Didier Dibi</h4>
+          <p><strong>Rôles</strong><br>• Secrétaire Général</p>
+          <p>Coordination administrative et organisation interne.</p>
+        </article>
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=56">
+          <h4>Fatoumata Touré</h4>
+          <p><strong>Rôles</strong><br>• Secrétaire Général Adjoint</p>
+          <p>Assistance et suivi administratif.</p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- TRESORERIE -->
+    <div class="team-level team-animate delay-4">
+
+      <h3>Trésorerie</h3>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=18">
+          <h4>Jean-Marc Bamba</h4>
+          <p><strong>Rôles</strong><br>• Trésorier Général</p>
+          <p>Gestion financière et budget du FAP-BIO.</p>
+        </article>
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=45">
+          <h4>Clarisse Dacoury</h4>
+          <p><strong>Rôles</strong><br>• Trésorière Générale Adjointe</p>
+          <p>Suivi et contrôle des opérations financières.</p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- SECRETAIRES -->
+    <div class="team-level team-animate delay-5">
+
+      <h3>Secrétariats Techniques</h3>
+
+      <div class="team-grid">
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=67">
+          <h4>Ismaël Zadi</h4>
+          <p><strong>Rôles</strong><br>• Communication</p>
+          <p>Gestion de l’image et relations médias.</p>
+        </article>
+
+        <article class="team-card">
+          <img src="https://i.pravatar.cc/180?img=49">
+          <h4>Emmanuelle Aka</h4>
+          <p><strong>Rôles</strong><br>• Organisation</p>
+          <p>Coordination des événements et logistique.</p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- REGION NAV (IMPORTANT EN BAS) -->
+    <div class="region-nav team-animate delay-5">
+
+      <h3>Représentations des régions</h3>
+      <p>Cliquez sur une région pour ouvrir directement sa représentation.</p>
+
+      <div class="region-links">
+       <a class="region-link" href="./region.html?region=Abidjan">Abidjan</a>
+<a class="region-link" href="./region.html?region=Agn%C3%A9by-Tiassa">Agnéby-Tiassa</a>
+<a class="region-link" href="./region.html?region=Bafing">Bafing</a>
+<a class="region-link" href="./region.html?region=Bagou%C3%A9">Bagoué</a>
+<a class="region-link" href="./region.html?region=B%C3%A9lier">Bélier</a>
+<a class="region-link" href="./region.html?region=Bouak%C3%A9">Bouaké</a>
+<a class="region-link" href="./region.html?region=Bounkani">Bounkani</a>
+<a class="region-link" href="./region.html?region=Cavally">Cavally</a>
+<a class="region-link" href="./region.html?region=Folon">Folon</a>
+<a class="region-link" href="./region.html?region=Gb%C3%AAk%C3%AA">Gbêkê</a>
+<a class="region-link" href="./region.html?region=G%C3%B4h">Gôh</a>
+<a class="region-link" href="./region.html?region=G%C3%B4h-Djiboua">Gôh-Djiboua</a>
+<a class="region-link" href="./region.html?region=Grands-Ponts">Grands-Ponts</a>
+<a class="region-link" href="./region.html?region=Gu%C3%A9mon">Guémon</a>
+<a class="region-link" href="./region.html?region=Hambol">Hambol</a>
+<a class="region-link" href="./region.html?region=Haut-Sassandra">Haut-Sassandra</a>
+<a class="region-link" href="./region.html?region=Ind%C3%A9ni%C3%A9-Djuablin">Indénié-Djuablin</a>
+<a class="region-link" href="./region.html?region=Kabadougou">Kabadougou</a>
+<a class="region-link" href="./region.html?region=La%20M%C3%A9">La Mé</a>
+<a class="region-link" href="./region.html?region=L%C3%B4h-Djiboua">Lôh-Djiboua</a>
+<a class="region-link" href="./region.html?region=Marahou%C3%A9">Marahoué</a>
+<a class="region-link" href="./region.html?region=Moronou">Moronou</a>
+<a class="region-link" href="./region.html?region=Nawa">Nawa</a>
+<a class="region-link" href="./region.html?region=N%27zi">N’zi</a>
+<a class="region-link" href="./region.html?region=Poro">Poro</a>
+<a class="region-link" href="./region.html?region=San-P%C3%A9dro">San-Pédro</a>
+<a class="region-link" href="./region.html?region=Sud-Como%C3%A9">Sud-Comoé</a>
+<a class="region-link" href="./region.html?region=Tchologo">Tchologo</a>
+<a class="region-link" href="./region.html?region=Tonkpi">Tonkpi</a>
+<a class="region-link" href="./region.html?region=Worodougou">Worodougou</a>
+<a class="region-link" href="./region.html?region=Yamoussoukro">Yamoussoukro</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
 
     <style>
@@ -1880,6 +2201,113 @@ setInterval(() => {
         </div>
       </div>
     </section>
+
+<section id="courriers" class="courrier-section">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Agenda des Courriers</h2>
+      <p>Gestion des courriers entrants et sortants.</p>
+    </div>
+
+    <div class="courrier-tabs">
+
+      <button class="tab active">Arrivées</button>
+      <button class="tab">Départs</button>
+
+    </div>
+
+    <!-- ARRIVÉES -->
+    <div class="courrier-table">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Expéditeur</th>
+            <th>Objet</th>
+            <th>Référence</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>10/04/2026</td>
+            <td>Ministère Agriculture</td>
+            <td>Invitation réunion</td>
+            <td>REF-001</td>
+          </tr>
+
+          <tr>
+            <td>12/04/2026</td>
+            <td>ONG BIO Côte d’Ivoire</td>
+            <td>Partenariat projet</td>
+            <td>REF-002</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+<style>
+  .courrier-section {
+  padding: 80px 20px;
+  background: #eef7f1;
+}
+
+.courrier-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #cfe3d6;
+}
+
+.tab.active {
+  background: #1b7f4b;
+  color: white;
+}
+
+.courrier-table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #e2efe6;
+  text-align: left;
+}
+
+th {
+  background: #0f5b3a;
+  color: white;
+}
+</style>
+
+
+
 <section id="exposants">
   <h2>Au coeur du Bio</h2>
 
@@ -2183,6 +2611,23 @@ setInterval(() => {
             <button type="submit" class="btn btn-primary">Envoyer</button>
           </form>
         </div>
+        <section class="social-follow" id="social-fapbio">
+          <div class="social-follow-box">
+            <img
+              class="social-follow-logo"
+              src="https://imgs.search.brave.com/f_YE2xKEAw1Kl7dlq8j6WuxcsKDm3jZkIiec1kyINlU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZmF2cG5nLmNvbS8x/Ni8yMy8xMS9sb2dv/LWZhY2Vib29rLWlu/Yy1zb2NpYWwtbWVk/aWEtbmFzZGFxLWZi/LXBuZy1mYXZwbmct/Mnl0TkZkR1RreXpU/cm5nbk0xajc5UDl2/UV90LmpwZw"
+              alt="Logo Facebook"
+            />
+            <div class="social-follow-content">
+              <h3>Suivez-nous sur Facebook</h3>
+              <p>Retrouvez les actualités officielles du FAP-BIO et du SIBIO.</p>
+              <div class="social-follow-links">
+                <a href="https://www.facebook.com/professional_dashboard/" target="_blank" rel="noopener noreferrer">Facebook FAP-BIO</a>
+                <a href="https://www.facebook.com/profile.php?id=61569797848118" target="_blank" rel="noopener noreferrer">Facebook SIBIO</a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -2261,7 +2706,7 @@ setInterval(() => {
       <h2 class="brand-title">SIBIO 2022</h2>
       <div class="edition-block">
         <span class="edition-badge">1ʳᵉ ÉDITION</span>
-        <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2022">
+        <img class="logo-png" src="./WhatsApp Image 2026-04-13 at 11.44.08.jpeg" alt="Logo SIBIO 2022">
       </div>
     </div>
 
@@ -2290,10 +2735,19 @@ setInterval(() => {
       </div>
 
       <!-- CTA identique 2024/2026 -->
-      <div class="sibio-cta">
+      <div class="sibio-cta" style="display:flex; flex-direction:column; gap:12px; align-items:center;">
         <button onclick="toggleGallery2022()" class="sibio-btn">
           SIBIO 2022 en images
         </button>
+        <a
+          href="./SIBIO22 RAPPORT D'ACTIVITES.docx"
+          download="rapport-sibio-2022.docx"
+          target="_blank"
+          rel="noopener"
+          class="sibio-btn download"
+        >
+          Télécharger le rapport
+        </a>
       </div>
 
       <!-- Galerie d'images SIBIO 2022 -->
@@ -2459,6 +2913,20 @@ setInterval(() => {
   background: #a7ffe2;
   color: #0b3d2e;
 }
+
+/* Zoom logo uniquement pour 1re et 2e édition */
+#sibio2022 .logo-png,
+#sibio2024 .logo-png {
+  max-width: 185px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  #sibio2022 .logo-png,
+  #sibio2024 .logo-png {
+    max-width: 165px;
+  }
+}
 </style>
 
 <section class="sibio2024" id="sibio2024">
@@ -2469,7 +2937,7 @@ setInterval(() => {
       <h2 class="brand-title">SIBIO 2024</h2>
       <div class="edition-block">
         <span class="edition-badge">2ᵉ ÉDITION</span>
-        <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2024">
+        <img class="logo-png" src="./WhatsApp Image 2026-04-13 at 11.44.08.jpeg" alt="Logo SIBIO 2024">
       </div>
     </div>
 
@@ -2627,7 +3095,83 @@ setInterval(() => {
   </div>
 </section>
 
+<section id="annonceurs" class="sponsors-section">
 
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Annonceurs & Partenaires</h2>
+      <p>Entreprises et organisations soutenant le FAP-BIO.</p>
+    </div>
+
+    <div class="sponsors-grid">
+
+      <article class="sponsor-card">
+        <img src="./logo1.png" alt="Sponsor">
+        <h4>Nom Entreprise</h4>
+        <p>Soutien officiel du développement du FAP-BIO.</p>
+      </article>
+
+      <article class="sponsor-card">
+        <img src="./logo2.png" alt="Sponsor">
+        <h4>Nom Entreprise</h4>
+        <p>Partenaire dans la promotion de l’agriculture biologique.</p>
+      </article>
+
+      <article class="sponsor-card">
+        <img src="./logo3.png" alt="Sponsor">
+        <h4>Nom Entreprise</h4>
+        <p>Appui logistique et institutionnel.</p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  .sponsors-section {
+  padding: 80px 20px;
+  background: #f6fbf7;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h2 {
+  color: #0b3d2e;
+  font-size: 2rem;
+}
+
+.section-title p {
+  color: #355c4b;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.sponsor-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  text-align: center;
+  border: 1px solid #d4e9da;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.sponsor-card img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+</style>
 
 
     <section id="apropos" class="section apropos-section" style="background:#f7f7f7; padding:4rem 2rem;">
@@ -2669,6 +3213,78 @@ setInterval(() => {
 
 
 
+
+<style>
+.social-follow {
+  padding: 34px 20px;
+  background: #f3fbf5;
+}
+
+.social-follow-box {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #cfe6d6;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(24, 86, 52, 0.08);
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social-follow-logo {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.social-follow-content h3 {
+  margin: 0 0 4px;
+  color: #1c6f43;
+}
+
+.social-follow-content p {
+  margin: 0 0 10px;
+  color: #335d4c;
+}
+
+.social-follow-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.social-follow-links a {
+  text-decoration: none;
+  color: #0f5f38;
+  background: #ecf8f0;
+  border: 1px solid #c5e3d0;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.social-follow-links a:hover {
+  background: #2f8f55;
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .social-follow-box {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .social-follow-logo {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>
 
    <!-- FOOTER MODERNE -->
 <style>
@@ -2748,9 +3364,11 @@ setInterval(() => {
   min-height: 340px;
 }
 .sibio2022-gallery-images img {
-  width: 300px;
+  width: min(31%, 300px);
+  aspect-ratio: 4 / 3;
   height: auto;
   border-radius: 10px;
+  object-fit: cover;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   opacity: 0;
   transform: translateY(12px);
@@ -2983,6 +3601,38 @@ setInterval(() => {
     &copy; 2026 Salon du Bio — Tous droits réservés | SIBIO 2023 • SIBIO 2024 • SIBIO 2026
   </div>
 </footer>
+
+<style>
+/* Ajustement ciblé: navbar + footer uniquement */
+.header {
+  background: linear-gradient(135deg, #e8f6ea, #d8efdf) !important;
+  box-shadow: 0 8px 24px rgba(25, 88, 53, 0.12) !important;
+}
+
+.nav-link {
+  color: #1d4f37 !important;
+}
+
+.nav-link:hover {
+  background: rgba(47, 143, 85, 0.14) !important;
+}
+
+.footer {
+  background: linear-gradient(135deg, #ebf7ee, #dbeee2) !important;
+  color: #1f3b2f !important;
+}
+
+.footer-box h3,
+.footer-links a {
+  color: #1f6b40 !important;
+}
+
+.footer-box p,
+.footer-bottom {
+  color: #365949 !important;
+  opacity: 1 !important;
+}
+</style>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -3097,7 +3747,6 @@ window.onload = () => {
 </script>
 
 
-
 <script>
 // SLIDER D'IMAGES - SECTION EXPOSANTS
 document.addEventListener("DOMContentLoaded", () => {
@@ -3124,6 +3773,27 @@ document.addEventListener("DOMContentLoaded", () => {
     currentIndex = (currentIndex + 1) % slides.length;
     updateSlider();
   });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const teamSection = document.querySelector(".team-reveal");
+  if (!teamSection) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          teamSection.classList.add("is-visible");
+          obs.unobserve(teamSection);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  observer.observe(teamSection);
 });
 </script>
 
