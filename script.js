@@ -20,6 +20,16 @@ if (hamburger) {
 
 
 function startCountdown() {
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const countdownBox = document.querySelector('.countdown');
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !countdownBox) {
+        return;
+    }
+
    
     const salonDate = new Date();
 salonDate.setMonth(salonDate.getMonth() + 1);
@@ -31,11 +41,11 @@ const targetTime = salonDate.getTime();
 
         if (distance < 0) {
             clearInterval(timer);
-            document.getElementById('days').innerText = '00';
-            document.getElementById('hours').innerText = '00';
-            document.getElementById('minutes').innerText = '00';
-            document.getElementById('seconds').innerText = '00';
-            document.querySelector('.countdown').innerHTML = '<h3 style="color: #2D5016; text-align: center;">🎉 Le salon a commencé!</h3>';
+            daysEl.innerText = '00';
+            hoursEl.innerText = '00';
+            minutesEl.innerText = '00';
+            secondsEl.innerText = '00';
+            countdownBox.innerHTML = '<h3 style="color: #2D5016; text-align: center;">🎉 Le salon a commencé!</h3>';
             return;
         }
 
@@ -43,10 +53,10 @@ const targetTime = salonDate.getTime();
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-   document.getElementById('days').innerText = String(days).padStart(2, '0');
-        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        daysEl.innerText = String(days).padStart(2, '0');
+        hoursEl.innerText = String(hours).padStart(2, '0');
+        minutesEl.innerText = String(minutes).padStart(2, '0');
+        secondsEl.innerText = String(seconds).padStart(2, '0');
     }, 1000);
 }
 
@@ -120,6 +130,9 @@ if (document.readyState === 'loading') {
 
 document.addEventListener('DOMContentLoaded', () => {
     const qrContainer = document.getElementById('qrcode');
+    if (!qrContainer || typeof QRCode === 'undefined') {
+        return;
+    }
     new QRCode(qrContainer, {
         text: "https://salon-bio.ci/reservation", 
         width: 200,
@@ -166,7 +179,8 @@ function handleExposantSubmit(event) {
     const telephone = form.querySelector('input[name="telephone"]').value.trim();
     const email = form.querySelector('input[name="email"]').value.trim();
     const motdepasse = form.querySelector('input[name="motdepasse"]').value;
-    const stand = form.querySelector('input[name="stand"]').value.trim();
+    const standInput = form.querySelector('input[name="stand"]');
+    const stand = standInput ? standInput.value.trim() : 'SIBIO';
 
     if (!nom || !prenom || !telephone || !email || !motdepasse || !stand) {
         alert('Tous les champs sont obligatoires pour devenir exposant.');
@@ -184,6 +198,9 @@ function handleExposantSubmit(event) {
     const qrText = `https://salon-bio.ci/exposant/${encodeURIComponent(reservationCode)}`;
 
     const qrContainer = document.getElementById('qrExposant');
+    if (!qrContainer || typeof QRCode === 'undefined') {
+        return;
+    }
     qrContainer.innerHTML = '';
     new QRCode(qrContainer, {
         text: qrText,
@@ -493,6 +510,10 @@ const data = {
 
       /* render avec animation */
       function render(region, save = true) {
+        if (!grid || !currentRegionBtn) {
+          return;
+        }
+
         /* fade out */
         grid.classList.add("fade-out");
 
@@ -541,6 +562,10 @@ const data = {
 
       /* load saved region */
       window.addEventListener("DOMContentLoaded", () => {
+        if (!grid || !currentRegionBtn) {
+          return;
+        }
+
         const saved = localStorage.getItem("region") || "abidjan";
 
         setActive(saved);

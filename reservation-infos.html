@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIBIO | Réservation & Infos pratiques</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./site-shell.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  </head>
+  <body
+    data-page-title="Réservation & Infos pratiques"
+    data-page-subtitle="Billetterie, réservation de stand, informations pratiques et contacts liés à la participation."
+  >
+    <header class="site-hero">
+      <div class="hero-shell">
+        <div class="hero-row">
+          <div class="hero-brand hero-brand-left">
+            <img src="./fap-bio.png" alt="Logo FAP-BIO" />
+          </div>
+          <div class="hero-title-block">
+            <p class="hero-kicker">Participation</p>
+            <h1 class="hero-title" id="site-dynamic-title">Réservation & Infos pratiques</h1>
+            <p class="hero-subtitle" id="site-dynamic-subtitle">
+              Billetterie, réservation de stand, informations pratiques et contacts liés à la participation.
+            </p>
+            <div class="hero-badge">Réserver, préparer, contacter</div>
+            <div class="hero-countdown">
+              <p class="hero-countdown-label">Ouverture dans :</p>
+              <div class="timer">
+                <div class="time-unit">
+                  <span id="hero-days">00</span>
+                  <p>Jours</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-hours">00</span>
+                  <p>Heures</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-minutes">00</span>
+                  <p>Minutes</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-seconds">00</span>
+                  <p>Secondes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-brand hero-brand-right">
+            <img src="./logo_sibio_nouveau_transparent.png" alt="Logo SIBIO" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <div class="nav-inner">
+        <ul class="nav-menu">
+          <li><a href="./index.html">Accueil FAP-BIO</a></li>
+          <li><a href="./a-propos-fapbio.html">À propos FAP-BIO</a></li>
+          <li><a href="./salon.html">Accueil SIBIO</a></li>
+          <li><a href="./programme-editions.html">Programme & Éditions</a></li>
+          <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
+          <li><a href="./reservation-infos.html">Réservation & Infos</a></li>
+          <li><a class="nav-shop" href="./boutique.html">Boutique 🛒</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sibio-ticker">
+      <div class="sibio-ticker-track">
+        🌱 FAP-BIO présente le Salon International du Bio • SIBIO 2026 • 3ᵉ ÉDITION •
+        Innovation durable • agriculture biologique • biodiversité • rencontres • exposants •
+        visiteurs • tickets • stands • sponsoring •
+      </div>
+    </div>
+
+    <main>
+      <section id="buy" class="page-section section-alt">
+        <span class="eyebrow">Billetterie</span>
+        <h2>Réservez votre entrée</h2>
+        <div class="split-grid">
+          <article class="content-card">
+            <h3>Comment ça marche ?</h3>
+            <ol>
+              <li>Remplissez le formulaire avec vos coordonnées.</li>
+              <li>Effectuez le paiement de 1 000 FCFA.</li>
+              <li>Recevez votre QR code par email.</li>
+              <li>Présentez le QR code à l'entrée du salon.</li>
+            </ol>
+            <p><strong>Prix :</strong> 1 000 FCFA (incluant 1 accès complet + programme).</p>
+          </article>
+          <div class="content-card">
+            <h3>Formulaire de réservation</h3>
+            <p>Veuillez remplir ce formulaire pour réserver votre place.</p>
+            <div class="button-row">
+              <a
+                class="btn btn-primary"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe2sdSIiIHNeDGh9L1I6neQOkhhnUUGguNH-qe2Yg2Rman0QA/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener"
+              >
+                Accéder au formulaire
+              </a>
+            </div>
+            <div style="margin-top: 20px;">
+              <h4>Scanner pour réserver</h4>
+              <div id="qrcode" style="margin-top: 12px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stand" class="page-section">
+        <span class="eyebrow">Exposants</span>
+        <h2>Devenir exposant</h2>
+        <div class="split-grid">
+          <article class="content-card">
+            <p>
+              Réservez un stand pour seulement <strong>10 000 FCFA</strong>.
+              Complétez le formulaire ci-dessous. Le paiement s'effectuera via
+              votre solution préférée.
+            </p>
+            <ul>
+              <li>Nom</li>
+              <li>Prénom</li>
+              <li>Numéro de téléphone</li>
+              <li>Adresse email</li>
+              <li>Mot de passe sécurisé</li>
+              <li>Référence stand</li>
+            </ul>
+          </article>
+          <form class="exposant-form content-card" onsubmit="handleExposantSubmit(event)">
+            <input type="text" name="nom" placeholder="Nom" required />
+            <input type="text" name="prenom" placeholder="Prénom" required />
+            <input type="tel" name="telephone" placeholder="Téléphone" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="password" name="motdepasse" placeholder="Mot de passe" required minlength="8" />
+            <input type="text" name="stand" placeholder="Référence stand" required />
+            <p>Prix de réservation du stand : <strong>10 000 FCFA</strong></p>
+            <button type="submit" class="btn btn-primary">Réserver Stand</button>
+            <div id="qrExposant" style="margin-top: 12px;"></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="infos" class="page-section section-alt">
+        <span class="eyebrow">Infos pratiques</span>
+        <h2>Préparer sa venue</h2>
+        <div class="cards-grid">
+          <article class="infos-card">
+            <h3>🚗 Accès & Parking</h3>
+            <p>Parking gratuit disponible sur place. Accès par la route principale de Cocody.</p>
+          </article>
+          <article class="infos-card">
+            <h3>♿ Accessibilité</h3>
+            <p>Installations accessibles aux personnes à mobilité réduite avec zones de repos aménagées.</p>
+          </article>
+          <article class="infos-card">
+            <h3>🍽️ Restauration</h3>
+            <p>Food court avec produits bio, bars à jus frais, eau gratuite et possibilité de pique-nique.</p>
+          </article>
+          <article class="infos-card">
+            <h3>📶 Services</h3>
+            <p>WiFi gratuit, signal mobile correct et prises USB disponibles dans certaines zones de repos.</p>
+          </article>
+          <article class="infos-card">
+            <h3>👶 Enfants</h3>
+            <p>Espace jeux pour enfants, activités éducatives et aire d'allaitement.</p>
+          </article>
+          <article class="infos-card">
+            <h3>🎫 Tarifs</h3>
+            <p><strong>Adulte :</strong> 1 000 FCFA<br /><strong>Enfant (5-12 ans) :</strong> 500 FCFA<br /><strong>Moins de 5 ans :</strong> gratuit</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="page-section">
+        <span class="eyebrow">Contact</span>
+        <h2>Nous contacter</h2>
+        <div class="contact-grid">
+          <div class="content-card">
+            <h3>Coordonnées</h3>
+            <p><strong>Téléphone :</strong> +225 XX XX XX XX</p>
+            <p><strong>Email :</strong> fapbio2023@gmail.com</p>
+            <p><strong>Adresse :</strong> Deux Plateaux Cocody, Abidjan, Côte d'Ivoire</p>
+            <div class="social-follow">
+              <div class="social-follow-box">
+                <img
+                  class="social-follow-logo"
+                  src="https://imgs.search.brave.com/f_YE2xKEAw1Kl7dlq8j6WuxcsKDm3jZkIiec1kyINlU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZmF2cG5nLmNvbS8xNi8yMy8xMS9sb2dvLWZhY2Vib29rLWluYy1zb2NpYWwtbWVk/aWEtbmFzZGFxLWZi/LXBuZy1mYXZwbmct/Mnl0TkZkR1RreXpU/cm5nbk0xajc5UDl2/UV90LmpwZw"
+                  alt="Logo Facebook"
+                />
+                <div>
+                  <h3>Suivez-nous sur Facebook</h3>
+                  <p>Retrouvez les actualités officielles du FAP-BIO et du SIBIO.</p>
+                  <div class="social-follow-links">
+                    <a href="https://www.facebook.com/professional_dashboard/" target="_blank" rel="noopener">Facebook FAP-BIO</a>
+                    <a href="https://www.facebook.com/profile.php?id=61569797848118" target="_blank" rel="noopener">Facebook SIBIO</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form content-card" onsubmit="handleContactSubmit(event)">
+            <input type="text" placeholder="Votre nom" required />
+            <input type="email" placeholder="Votre email" required />
+            <textarea placeholder="Votre message" rows="5" required></textarea>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h3>SIBIO</h3>
+          <p>Billetterie, stands et informations pratiques sont maintenant regroupés dans une seule page claire.</p>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Réserver</h3>
+          <a href="./reservation-infos.html#buy">Acheter un ticket</a>
+          <a href="./reservation-infos.html#stand">Réserver un stand</a>
+          <a href="./Dossier de sponsoring SIBIO 2026.pdf">Dossier sponsoring</a>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Navigation</h3>
+          <a href="./salon.html">Accueil SIBIO</a>
+          <a href="./programme-editions.html">Programme & Éditions</a>
+          <a href="./exposants-partenaires.html">Partenaires & Sponsoring</a>
+        </div>
+        <div class="footer-box">
+          <h3>Support</h3>
+          <p>Une page pensée pour aller directement vers l'action sans mélanger la présentation générale du salon.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 FAP-BIO / SIBIO - Réservation et informations pratiques.</div>
+    </footer>
+
+    <script src="./site-shell.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIBIO | Accueil</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./site-shell.css" />
+    <style>
+      .sibio-highlight {
+        background: linear-gradient(180deg, #145c3a 0%, #0b3d2e 100%);
+        color: white;
+      }
+
+      .sibio-highlight h2,
+      .sibio-highlight h3 {
+        color: white;
+      }
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+      }
+
+      .why-card {
+        padding: 24px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.14);
+      }
+
+      .why-card h3 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .why-card p {
+        margin: 0 0 14px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .why-points {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .why-points li {
+        margin-bottom: 8px;
+        line-height: 1.55;
+      }
+
+      .hero-gallery {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 18px;
+      }
+
+      .hero-gallery .gallery-item img {
+        aspect-ratio: 16 / 10;
+        transition: opacity 0.5s ease;
+      }
+
+      .hero-gallery-side {
+        display: grid;
+        gap: 18px;
+      }
+
+      .main-gallery-slider {
+        margin-top: 14px;
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(15, 81, 50, 0.08);
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .main-gallery-track {
+        display: flex;
+        width: max-content;
+        animation: main-gallery-scroll 28s linear infinite;
+      }
+
+      .main-gallery-track img {
+        width: 260px;
+        height: 164px;
+        object-fit: cover;
+        flex: 0 0 auto;
+      }
+
+      .hero-countdown {
+        margin-top: 12px;
+        padding: 18px 20px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        box-shadow: 0 20px 40px rgba(15, 81, 50, 0.12);
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-countdown-label {
+        margin: 0 0 12px;
+        color: #145c3a;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+      }
+
+      .hero-countdown .timer {
+        gap: 12px;
+        margin: 0;
+      }
+
+      .hero-countdown .time-unit {
+        min-width: 88px;
+      }
+
+      .hero-countdown .time-unit span {
+        font-size: 1.7rem;
+        background: rgba(20, 92, 58, 0.08);
+        color: #145c3a;
+      }
+
+      .hero-countdown .time-unit p {
+        margin-top: 6px;
+        color: #365949;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+
+      .experience-card {
+        padding: 24px;
+        border-radius: 22px;
+        background: #ffffff;
+        border: 1px solid rgba(15, 81, 50, 0.08);
+        box-shadow: 0 18px 36px rgba(15, 81, 50, 0.08);
+      }
+
+      .experience-card h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #145c3a;
+      }
+
+      .experience-card p {
+        margin: 0 0 14px;
+        color: #365949;
+        line-height: 1.7;
+      }
+
+      .experience-meta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(20, 92, 58, 0.08);
+        color: #145c3a;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .experience-list {
+        margin: 0;
+        padding-left: 18px;
+        color: #2d5142;
+      }
+
+      .experience-list li {
+        margin-bottom: 8px;
+        line-height: 1.55;
+      }
+
+      @keyframes main-gallery-scroll {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero-gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-hero">
+      <div class="hero-shell">
+        <div class="hero-row">
+          <div class="hero-brand hero-brand-left">
+            <img src="./fap-bio.png" alt="Logo FAP-BIO" />
+          </div>
+
+          <div class="hero-title-block">
+            <p class="hero-kicker">Evenement officiel</p>
+            <h1 class="hero-title" id="site-dynamic-title">
+              <span class="hero-title-top">SIBIO </span>
+              <span class="hero-title-bottom">Salon International du Bio</span>
+            </h1>
+            <p class="hero-subtitle" id="site-dynamic-subtitle">
+              Le grand rendez-vous du bio, de l'innovation durable et des acteurs engages.
+            </p>
+            <div class="hero-badge">Accueil du salon</div>
+            <div class="hero-countdown">
+              <p class="hero-countdown-label">Ouverture dans :</p>
+              <div class="timer" id="hero-timer">
+                <div class="time-unit">
+                  <span id="hero-days">00</span>
+                  <p>Jours</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-hours">00</span>
+                  <p>Heures</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-minutes">00</span>
+                  <p>Minutes</p>
+                </div>
+                <div class="time-unit">
+                  <span id="hero-seconds">00</span>
+                  <p>Secondes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-brand hero-brand-right">
+            <img src="./logo_sibio_nouveau_transparent.png" alt="Logo SIBIO" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <div class="nav-inner">
+        <ul class="nav-menu">
+          <li><a href="./index.html">Accueil FAP-BIO</a></li>
+          <li><a href="./a-propos-fapbio.html">À propos FAP-BIO</a></li>
+          <li><a href="./salon.html">Accueil SIBIO</a></li>
+          <li><a href="./programme-editions.html">Programme & Éditions</a></li>
+          <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
+          <li><a href="./reservation-infos.html">Réservation & Infos</a></li>
+          <li><a class="nav-shop" href="./boutique.html">Boutique 🛒</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="sibio-ticker">
+      <div class="sibio-ticker-track">
+        🌱 FAP-BIO présente le Salon International du Bio • SIBIO 2026 • 3ᵉ ÉDITION •
+        Innovation durable • agriculture biologique • biodiversité • rencontres • exposants •
+        visiteurs • tickets • stands • sponsoring •
+      </div>
+    </div>
+
+    <main>
+      <section class="page-section section-alt">
+        <span class="eyebrow">Accueil</span>
+        <h2>Une page d'accueil centrée sur l'expérience SIBIO</h2>
+        <p class="section-intro">
+          Cette page présente uniquement l'univers du salon: ses images, ses raisons d'etre,
+          ses grandes activites et les appels a l'action pour participer.
+        </p>
+
+        <div class="hero-gallery">
+          <figure class="gallery-item reveal-on-scroll">
+            <img
+              id="sibio-gallery-main"
+              src="./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg"
+              alt="Vue du SIBIO"
+            />
+            <figcaption>Une immersion directe dans l'ambiance du salon.</figcaption>
+            <div class="main-gallery-slider" aria-label="Images défilantes du SIBIO">
+              <div class="main-gallery-track">
+                <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg" alt="Ambiance du salon" />
+                <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg" alt="Visiteurs du SIBIO" />
+                <img src="./20260123_185534548_iOS.jpg" alt="Moment fort du SIBIO" />
+                <img src="./salon du bio.jpg" alt="Univers visuel du salon" />
+                <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg" alt="Ambiance du salon" />
+                <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg" alt="Visiteurs du SIBIO" />
+                <img src="./20260123_185534548_iOS.jpg" alt="Moment fort du SIBIO" />
+                <img src="./salon du bio.jpg" alt="Univers visuel du salon" />
+              </div>
+            </div>
+          </figure>
+
+          <div class="hero-gallery-side">
+            <figure class="gallery-item reveal-on-scroll">
+              <img
+                id="sibio-gallery-side-1"
+                src="./WhatsApp Image 2026-03-31 at 16.15.34 (1).jpeg"
+                alt="Stands du SIBIO"
+              />
+              <figcaption>Des stands, des rencontres et des produits bio.</figcaption>
+            </figure>
+            <figure class="gallery-item reveal-on-scroll">
+              <img
+                id="sibio-gallery-side-2"
+                src="./WhatsApp Image 2026-03-31 at 16.15.33 (3).jpeg"
+                alt="Animation au SIBIO"
+              />
+              <figcaption>Des animations et des moments utiles pour les visiteurs.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section sibio-highlight">
+        <span class="eyebrow" style="background: rgba(255,255,255,0.14); color: white;">Pourquoi choisir le SIBIO</span>
+        <h2>Pourquoi choisir le SIBIO ?</h2>
+        <div class="why-grid">
+          <article class="why-card">
+            <h3>Un positionnement clair et specialise</h3>
+            <p>Le SIBIO est pense comme un salon de reference autour du bio, de la biodiversite, de l'agriculture durable et des solutions concretes pour demain.</p>
+            <ul class="why-points">
+              <li>Un theme lisible et coherent pour les visiteurs.</li>
+              <li>Une identite forte qui valorise les initiatives serieuses.</li>
+              <li>Un cadre adapte aux marques, projets et institutions engagees.</li>
+            </ul>
+          </article>
+          <article class="why-card">
+            <h3>Des rencontres qui ont une utilite reelle</h3>
+            <p>Le salon relie visiteurs, exposants, institutions, startups, producteurs, partenaires et medias dans un meme espace de visibilite et d'echange.</p>
+            <ul class="why-points">
+              <li>Rencontres B2B et prises de contact directes.</li>
+              <li>Ouverture vers des partenariats institutionnels ou commerciaux.</li>
+              <li>Possibilite de faire connaitre rapidement son offre.</li>
+            </ul>
+          </article>
+          <article class="why-card">
+            <h3>Une visibilite forte pour les exposants</h3>
+            <p>Pour les marques, projets et porteurs de solutions, c'est une occasion concrete de montrer leur savoir-faire et de toucher un public cible et engage.</p>
+            <ul class="why-points">
+              <li>Exposition des produits et des innovations.</li>
+              <li>Visibilite sur place et dans les contenus du salon.</li>
+              <li>Valorisation de l'image de marque dans un cadre premium.</li>
+            </ul>
+          </article>
+          <article class="why-card">
+            <h3>Un evenement porteur de sens et de confiance</h3>
+            <p>Le SIBIO s'inscrit dans une dynamique de biodiversite, de consommation responsable, d'innovation durable et de transition agricole au service du territoire.</p>
+            <ul class="why-points">
+              <li>Un discours aligne avec les attentes actuelles du marche.</li>
+              <li>Une experience utile autant pour le grand public que pour les professionnels.</li>
+              <li>Un rendez-vous qui donne du sens a la participation.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <span class="eyebrow">Activites</span>
+        <h2>Ce qu'on vient vivre au salon</h2>
+        <p class="section-intro">
+          Le SIBIO n'est pas seulement un lieu de passage. C'est une experience complete ou l'on vient
+          decouvrir, apprendre, rencontrer, deguster, comparer et creer de nouvelles opportunites.
+        </p>
+        <div class="experience-grid">
+          <article class="experience-card">
+            <div class="experience-meta">Exposition</div>
+            <h3>Explorer les stands et les produits</h3>
+            <p>Le parcours exposants permet de voir les produits, d'echanger avec les marques et de comprendre les demarches bio presentes sur le salon.</p>
+            <ul class="experience-list">
+              <li>Rencontres directes avec les exposants.</li>
+              <li>Presentation de produits et de savoir-faire.</li>
+              <li>Decouverte de filieres et d'initiatives innovantes.</li>
+            </ul>
+          </article>
+          <article class="experience-card">
+            <div class="experience-meta">Contenus</div>
+            <h3>Comprendre les grands enjeux</h3>
+            <p>Les conferences, echanges et prises de parole permettent de mieux saisir les questions liees a l'agriculture biologique, a l'innovation durable et a la biodiversite.</p>
+            <ul class="experience-list">
+              <li>Interventions de professionnels et d'acteurs engages.</li>
+              <li>Regards croises sur les pratiques durables.</li>
+              <li>Approche pedagogique pour visiteurs et partenaires.</li>
+            </ul>
+          </article>
+          <article class="experience-card">
+            <div class="experience-meta">Experience</div>
+            <h3>Vivre des demonstrations concretes</h3>
+            <p>Le salon donne a voir des solutions applicables sur le terrain a travers des ateliers, animations, degustations et demonstrations.</p>
+            <ul class="experience-list">
+              <li>Moments interactifs autour des pratiques bio.</li>
+              <li>Animations utiles pour mieux comprendre les usages.</li>
+              <li>Valorisation des produits et des solutions locales.</li>
+            </ul>
+          </article>
+          <article class="experience-card">
+            <div class="experience-meta">Reseau</div>
+            <h3>Creer des opportunites et des connexions</h3>
+            <p>Le SIBIO facilite les liens entre entreprises, institutions, porteurs de projets, investisseurs et public qualifie.</p>
+            <ul class="experience-list">
+              <li>Prises de contact B2B et partenariats.</li>
+              <li>Visibilite accrue pour les marques et projets.</li>
+              <li>Ouverture vers de nouveaux marches et collaborations.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section section-alt">
+        <span class="eyebrow">Images</span>
+        <h2>Le SIBIO en images</h2>
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal-on-scroll">
+            <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg" alt="Visiteurs du SIBIO" />
+            <figcaption>Circulation des visiteurs et mise en valeur des activites.</figcaption>
+          </figure>
+          <figure class="gallery-item reveal-on-scroll">
+            <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (1).jpeg" alt="Exposants du SIBIO" />
+            <figcaption>Un salon pense pour l'echange entre acteurs du bio.</figcaption>
+          </figure>
+          <figure class="gallery-item reveal-on-scroll">
+            <img src="./20260123_185534548_iOS.jpg" alt="Ambiance du SIBIO" />
+            <figcaption>Une ambiance professionnelle, accessible et vivante.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="page-section">
+        <span class="eyebrow">Participer</span>
+        <h2>Passer a l'action</h2>
+        <p class="section-intro">
+          Les autres rubriques ont leurs pages dediees. Depuis l'accueil, on doit surtout
+          comprendre le salon puis aller vers l'action.
+        </p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="./reservation-infos.html#buy">Acheter un ticket</a>
+          <a class="btn btn-primary" href="./reservation-infos.html#stand">Reserver un stand</a>
+          <a class="btn btn-secondary" href="./programme-editions.html">Voir le programme</a>
+          <a class="btn btn-secondary" href="./exposants-partenaires.html">Voir partenaires & sponsoring</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h3>SIBIO</h3>
+          <p>Accueil recentre sur la decouverte du salon, ses images et ses raisons d'y participer.</p>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Rubriques</h3>
+          <a href="./programme-editions.html">Programme & Éditions</a>
+          <a href="./exposants-partenaires.html">Partenaires & Sponsoring</a>
+          <a href="./reservation-infos.html">Réservation & Infos</a>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Actions</h3>
+          <a href="./reservation-infos.html#buy">Acheter un ticket</a>
+          <a href="./reservation-infos.html#stand">Reserver un stand</a>
+          <a href="./boutique.html">Boutique</a>
+        </div>
+        <div class="footer-box">
+          <h3>Organisation</h3>
+          <p>Le salon est porte par le FAP-BIO dans une logique de visibilite, d'innovation et de mise en relation.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 FAP-BIO / SIBIO - Accueil SIBIO.</div>
+    </footer>
+
+    <script src="./site-shell.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const rotations = {
+          "sibio-gallery-main": [
+            { src: "./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg", alt: "Vue du SIBIO" },
+            { src: "./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg", alt: "Visiteurs au SIBIO" },
+            { src: "./20260123_185534548_iOS.jpg", alt: "Ambiance du SIBIO" },
+            { src: "./salon du bio.jpg", alt: "Univers visuel du SIBIO" }
+          ],
+          "sibio-gallery-side-1": [
+            { src: "./WhatsApp Image 2026-03-31 at 16.15.34 (1).jpeg", alt: "Stands du SIBIO" },
+            { src: "./sibio_png.jpeg", alt: "Identite visuelle du SIBIO" },
+            { src: "./images.jpg", alt: "Produits exposes au SIBIO" },
+            { src: "./téléchargement (1).jpg", alt: "Presentation de produits biologiques" }
+          ],
+          "sibio-gallery-side-2": [
+            { src: "./WhatsApp Image 2026-03-31 at 16.15.33 (3).jpeg", alt: "Animation au SIBIO" },
+            { src: "./WhatsApp Image 2026-03-31 at 16.15.33 (1).jpeg", alt: "Public du SIBIO" },
+            { src: "./WhatsApp Image 2026-04-13 at 11.44.08.jpeg", alt: "Edition precedente du SIBIO" },
+            { src: "./WhatsApp Image 2026-04-13 at 11.44.08 (1).jpeg", alt: "Souvenir du SIBIO" }
+          ]
+        };
+
+        Object.entries(rotations).forEach(([id, images]) => {
+          const target = document.getElementById(id);
+          if (!target || images.length < 2) return;
+
+          let index = 0;
+          window.setInterval(() => {
+            index = (index + 1) % images.length;
+            target.style.opacity = "0.35";
+            window.setTimeout(() => {
+              target.src = images[index].src;
+              target.alt = images[index].alt;
+              target.style.opacity = "1";
+            }, 220);
+          }, 60000);
+        });
+      });
+    </script>
+  </body>
+</html>

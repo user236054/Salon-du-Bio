@@ -3,3800 +3,532 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Salon du Bio - Deux Plateaux Cocody</title>
+    <title>FAP-BIO | Accueil</title>
     <link rel="stylesheet" href="./style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  </head>
-  <body>
-    <!-- Navigation -->
-  
+    <link rel="stylesheet" href="./site-shell.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Poppins, sans-serif;
+        overflow-x: hidden;
+        padding-top: 100px;
+      }
 
-   <style>
-    
-body {
-  margin: 0;
-  font-family: Poppins, sans-serif;
-  overflow-x: hidden;
-  padding-top: 100px; /* place espace pour header + ticker */
-}
+      .header {
+        background: linear-gradient(135deg, #0b3d2e, #145c3a);
+        padding: 12px 30px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 2500;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
 
-   
-    
-body {
-  margin: 0;
-  font-family: Poppins, sans-serif;
-  overflow-x: hidden;
-  padding-top: 100px; /* place espace pour header + ticker */
-}
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1250px;
+        margin: auto;
+      }
 
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
 
+      .logo-img {
+        width: 110px;
+        height: auto;
+        filter: brightness(1.2) contrast(1.1);
+      }
 
+      .nav-menu {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
 
-/* NAVBAR */
-.header {
-  background: linear-gradient(135deg, #0b3d2e, #145c3a);
-  padding: 12px 30px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2500; /* augmenté */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
+      .nav-link {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 10px;
+        border-radius: 8px;
+        transition: 0.2s;
+      }
 
+      .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1250px;
-  margin: auto;
-}
+      .dropdown {
+        position: relative;
+      }
 
-.nav-container {
-  position: relative;
-  z-index: 3000;
-}
+      .dropdown-menu {
+        position: absolute;
+        top: 45px;
+        min-width: 220px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        border-radius: 14px;
+        padding: 8px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: 0.2s ease;
+      }
 
-/* bloc logo */
-/* bloc logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  
-}
-
-/* LOGO IMAGE → plus visible sur fond vert */
-
-
-.logo-img {
-  width: 110px; /* augmente un peu pour lisibilité */
-  height: auto;
-
-  padding: 0; /* enlève le padding inutile */
-  border-radius: 0;
-
-  background: transparent; /* important */
-  box-shadow: none; /* optionnel pour clean */
-}
-.logo-img {
-  filter: brightness(1.2) contrast(1.1);
-}
-
-
-/* bloc texte */
-
-
-/* FAP-BIO dominant */
-.logo-main {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  line-height: 1;
-  color: #ffffff;
-
-  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
-}
-
-/* définition sous texte */
-.logo-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,0.85);
-
-  max-width: 180px;
-  margin-top: 4px;
-}
-
-/* option: léger badge pour détacher du fond */
-.logo-text-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.12);
-  backdrop-filter: blur(6px);
-
-  line-height: 1.2;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: 0.2s;
-}
-
-.nav-link:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 45px;
-  min-width: 220px;
-
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(12px);
-
-  border-radius: 14px;
-  padding: 8px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-
-  transition: 0.2s ease;
-}
-
-.dropdown.active .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+      .dropdown.active .dropdown-menu {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
 
       .dropdown-menu li {
         list-style: none;
       }
 
-.dropdown-menu a {
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #1f2937;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.dropdown-menu a:hover {
-  background: #22c55e;
-  color: white;
-  transform: translateX(5px);
-}
-
-      
-
-/* BOUTIQUE */
-.boutique-btn {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  padding: 10px 18px;
-  border-radius: 25px;
-  color: white;
-}
-
-
-/* HERO */
-.hero {
-  position: relative;
-  height: 400px;   /* ✅ contrôle propre */
-  padding: 0;      /* ❌ enlève le gros padding */
-  overflow: hidden;
-}
-
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 1;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.small-title,
-.subtitle,
-.main-title,
-.brand-title,
-.edition {
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
-  list-style: none;
-}
-/* bloc logo + FAP-BIO */
-.top-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-
-/* logo sibio */
-.sibio-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-/* FAP-BIO plus visible + vert */
-.fap-bio {
-  font-size: 54px;
-  font-weight: 900;
-  color: #00c853; /* vert type logo */
-  letter-spacing: 30px;
-  text-transform: uppercase;
-  
-  
-}
-
-/* ligne SIBIO + édition */
-.sibio-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 0px;
-}
-
-.edition-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border-left: 4px solid #00c853;
-  padding: 10px 12px;
-  min-width: 170px;
-  max-width: 190px;
-  width: auto;
-  height: fit-content;
-}
-
-/* édition alignée avec SIBIO */
-.edition-inline {
-  padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 25px;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .fap-bio {
-    font-size: 36px;
-  }
-
-  .sibio-logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  .sibio-line {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-.small-title {
-  font-size: 22px;
-  letter-spacing: 3px;
-  font-weight: 500;
-}
-
-.subtitle {
-  font-size: 18px;
-  margin-top: 0px;
-  opacity: 0.9;
-  margin-right: 26px;
-}
-
-.main-title {
-  font-size: 42px;
-  margin-top: 25px;
-  font-weight: 600;
-}
-
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  margin: 10px 0;
-  background: linear-gradient(90deg, #fff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sibio-line {
-  display: flex;
-  align-items: center; /* correction alignement vertical */
-  justify-content: center;
-  gap: 20px;
-  margin-top: 0px;
-}
-
-/* SIBIO 2026 */
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 0px;
-  line-height: 1; /* évite décalage vertical */
-  background: linear-gradient(90deg, #ffffff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* badge édition mieux centré */
-.edition-badge {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #ffe8a7;
-  padding: 8px 12px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: rgba(0, 200, 83, 0.08);
-  border-radius: 22px;
-  line-height: 1;
-  text-transform: uppercase;
-  margin-top: 0px;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .sibio-line {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .edition-badge {
-    border-left: none;
-  }
-}
-/* TICKER */
-.ticker {
-  position: fixed;
-  top: 95px; /* avant 80px → maintenant plus bas */
-  width: 100%;
-  z-index: 1000;
-  background: linear-gradient(90deg, #0b3d2e, #145c3a);
-  color: white;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.header {
-  z-index: 1500;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 45px;
-  min-width: 220px;
-
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(12px);
-
-  border-radius: 14px;
-  padding: 8px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-
-  transition: 0.2s ease;
-
-  z-index: 4000; /* AJOUT IMPORTANT */
-}
-
-.ticker-content {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: scrollTicker 20s linear infinite;
-  font-weight: 500;
-  letter-spacing: 1px;
- 
-  color: white;
-  
-
-}
-
-/* animation */
-@keyframes scrollTicker {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-
-
-</style>
-  </head>
-
- <header class="header">
-  <nav class="nav-container">
-
-    <div class="logo">
-      
-      
-      <img src="./fap-bio-header-logo.png" alt="logo" class="logo-img" />
-     
-</div>
-
-    <ul class="nav-menu">
-
-      <!-- Accueil / découverte -->
-      <li class="dropdown">
-        <a class="nav-link">Découvrir ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#programme">Programme</a></li>
-          <li><a href="#exposants">Activité</a></li>
-        </ul>
-      </li>
-
-      <!-- Éditions (historique) -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Éditions ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#sibio2022">SIBIO 2022</a></li>
-          
-          <li><a href="#sibio2024">SIBIO 2024</a></li>
-        </ul>
-      </li>
-
-      <!-- Salon -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Salon ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#exposants">Exposants</a></li>
-          
-        </ul>
-      </li>
-
-      <!-- Infos -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Infos ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#contact">Contact</a></li>
-          li><a href="#annonceurs">Annonceurs</a></li>
-          <li><a href="#apropos">À propos</a></li>
-        </ul>
-      </li>
-
-      <!-- Boutique -->
-      <li>
-        <a href="./boutique.html" target="_blank" class="nav-link boutique-btn">
-          Boutique 🛒
-        </a>
-      </li>
-
-      <!-- Sections -->
-      <li>
-        <a href="./region.html" class="nav-link">Représentations des sections</a>
-      </li>
-
-    </ul>
-  </nav>
-</header>
-<!-- BANDEAU DÉFILANT -->
-<div class="ticker">
-  <div class="ticker-content">
-    🌱 FAP-BIO — Forum Africain pour la Promotion du Bio présente le Salon International du Bio SIBIO 2026 • 3ᵉ ÉDITION • 
-    🌍 Thème : "Innovation durable et agriculture biologique pour une Afrique résiliente" • 
-    
-  </div>
-</div>
-
-
-    <!-- HERO -->
-    <section id="accueil" class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg next"></div>
-
-  <div class="hero-content">
-  <div class="top-title">
-    
-    <h2 class="fap-bio">FAP-BIO</h2>
-  </div>
-
-  <p class="subtitle">
-    Forum Africain pour la Promotion du Bio 
-  </p>
-  <p class="subtitle">
-    presente le
-  </p>
-
-  <h1 class="main-title">Salon International du Bio</h1>
-
- <div class="sibio-line">
-  <h2 class="brand-title">SIBIO 2026</h2>
-  <div class="edition-block">
-    <span class="edition-badge">3ᵉ ÉDITION</span>
-    <img class="logo-png" src="./Capture d’écran du 2026-04-07 09-37-34.png" alt="Logo SIBIO 2026">
-  </div>
-</div>
-</div>
-</section>
-<!-- SLIDER SIBIO 2026 -->
-
-
-<style>
-.sibio-slider {
-  width: 100%;
-  max-width: 1000px;
-  height: 420px;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.sibio-slider .slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.sibio-slider .slide.active {
-  opacity: 1;
-}
-
-.sibio-slider img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
-
-
-
-<section class="impact-message">
-  <h2 id="typed-text"></h2>
-</section>
-<style>
-.team-hierarchy-section {
-  padding: 80px 20px;
-  background: linear-gradient(180deg, #f5fbf6 0%, #eaf6ed 100%);
-}
-
-.team-hierarchy-container {
-  max-width: 1180px;
-  margin: 0 auto;
-}
-
-.team-title-block {
-  text-align: center;
-  margin-bottom: 36px;
-}
-
-.team-title-block h2 {
-  margin: 0;
-  color: #0b3d2e;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
-}
-
-.team-title-block p {
-  margin-top: 12px;
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #25443a;
-  line-height: 1.6;
-}
-
-.team-level {
-  margin-top: 35px;
-}
-
-.team-level h3 {
-  margin-bottom: 14px;
-  color: #145c3a;
-  text-transform: uppercase;
-  font-size: 1.05rem;
-}
-
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
-}
-
-.team-card {
-  background: white;
-  border-radius: 16px;
-  padding: 18px;
-  text-align: center;
-  border: 1px solid #d4e9da;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-}
-
-.team-card img {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #22c55e;
-}
-
-.team-card h4 {
-  margin: 10px 0 5px;
-  color: #123429;
-}
-
-.team-card p {
-  margin: 6px 0 0;
-  color: #31584b;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-/* PRESIDENT SPECIAL */
-.team-featured {
-  max-width: 420px;
-  margin: 0 auto;
-  background: linear-gradient(160deg, #0f5b3a, #17864f);
-  color: white;
-}
-
-.team-featured p,
-.team-featured h4 {
-  color: white;
-}
-
-/* REGION */
-.region-nav {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 2px dashed #aacfb7;
-}
-
-.region-links {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-}
-
-.region-link {
-  text-align: center;
-  padding: 10px;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid #c8e2d1;
-  text-decoration: none;
-  color: #0f4c33;
-  font-weight: 600;
-}
-
-.region-link:hover {
-  background: #1b7f4b;
-  color: white;
-}
-
-/* FIX IMPORTANT: ANIMATION OFF PROBLEM */
-.team-reveal.is-visible .team-animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.team-animate {
-  opacity: 1; /* IMPORTANT FIX */
-  transform: translateY(0);
-}
-</style>
-
-<section id="bureau-national" class="team-hierarchy-section team-reveal is-visible">
-
-  <div class="team-hierarchy-container">
-
-    <!-- TITRE -->
-    <div class="team-title-block team-animate delay-1">
-      <h2>Bureau National FAP-BIO</h2>
-      <p>Organisation hiérarchique du bureau exécutif et des structures associées.</p>
-    </div>
-
-    <!-- PRESIDENT -->
-    <div class="team-level team-animate delay-2">
-      <h3>Président</h3>
-<style>
-  .team-featured img {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.3);
-
-}
-</style>
-      <div class="team-single">
-        <article class="team-card team-featured">
-          <img src="./WhatsApp Image 2026-04-13 at 16.56.35.jpeg" alt="Président">
-
-          <h4>Constant Ibo Boga</h4>
-
-          <p><strong>Rôles</strong></p>
-          <p>
-            • Président du FAP-BIO<br>
-            • Commissaire Général du SIBIO
-          </p>
-
-          <p><strong>Biographie</strong></p>
-          <p>
-            Acteur engagé dans la promotion de l’agriculture biologique en Côte d’Ivoire,
-            il assure la coordination stratégique du FAP-BIO et supervise les grandes orientations du SIBIO.
-          </p>
-        </article>
-      </div>
-    </div>
-
-    <!-- VICE PRESIDENTS -->
-    <div class="team-level team-animate delay-3">
-      <h3>Vice-Présidents</h3>
-
-      <div class="team-grid">
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=32">
-          <h4>Nathalie Kouamé</h4>
-          <p><strong>Rôles</strong><br>• Vice-Présidente 1</p>
-          <p>Appui stratégique et gouvernance institutionnelle.</p>
-        </article>
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=41">
-          <h4>Yao Hervé Assi</h4>
-          <p><strong>Rôles</strong><br>• Vice-Président 2</p>
-          <p>Coordination des décisions majeures et partenariats.</p>
-        </article>
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=22">
-          <h4>Amina Coulibaly</h4>
-          <p><strong>Rôles</strong><br>• Vice-Présidente 3</p>
-          <p>Suivi des projets et représentation externe.</p>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- SECRETARIAT GENERAL -->
-    <div class="team-level team-animate delay-4">
-      <h3>Secrétariat Général</h3>
-
-      <div class="team-grid">
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=5">
-          <h4>Didier Dibi</h4>
-          <p><strong>Rôles</strong><br>• Secrétaire Général</p>
-          <p>Coordination administrative et organisation interne.</p>
-        </article>
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=56">
-          <h4>Fatoumata Touré</h4>
-          <p><strong>Rôles</strong><br>• Secrétaire Général Adjoint</p>
-          <p>Assistance et suivi administratif.</p>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- TRESORERIE -->
-    <div class="team-level team-animate delay-4">
-
-      <h3>Trésorerie</h3>
-
-      <div class="team-grid">
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=18">
-          <h4>Jean-Marc Bamba</h4>
-          <p><strong>Rôles</strong><br>• Trésorier Général</p>
-          <p>Gestion financière et budget du FAP-BIO.</p>
-        </article>
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=45">
-          <h4>Clarisse Dacoury</h4>
-          <p><strong>Rôles</strong><br>• Trésorière Générale Adjointe</p>
-          <p>Suivi et contrôle des opérations financières.</p>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- SECRETAIRES -->
-    <div class="team-level team-animate delay-5">
-
-      <h3>Secrétariats Techniques</h3>
-
-      <div class="team-grid">
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=67">
-          <h4>Ismaël Zadi</h4>
-          <p><strong>Rôles</strong><br>• Communication</p>
-          <p>Gestion de l’image et relations médias.</p>
-        </article>
-
-        <article class="team-card">
-          <img src="https://i.pravatar.cc/180?img=49">
-          <h4>Emmanuelle Aka</h4>
-          <p><strong>Rôles</strong><br>• Organisation</p>
-          <p>Coordination des événements et logistique.</p>
-        </article>
-
-      </div>
-    </div>
-
-    <!-- REGION NAV (IMPORTANT EN BAS) -->
-    <div class="region-nav team-animate delay-5">
-
-      <h3>Représentations des régions</h3>
-      <p>Cliquez sur une région pour ouvrir directement sa représentation.</p>
-
-      <div class="region-links">
-       <a class="region-link" href="./region.html?region=Abidjan">Abidjan</a>
-<a class="region-link" href="./region.html?region=Agn%C3%A9by-Tiassa">Agnéby-Tiassa</a>
-<a class="region-link" href="./region.html?region=Bafing">Bafing</a>
-<a class="region-link" href="./region.html?region=Bagou%C3%A9">Bagoué</a>
-<a class="region-link" href="./region.html?region=B%C3%A9lier">Bélier</a>
-<a class="region-link" href="./region.html?region=Bouak%C3%A9">Bouaké</a>
-<a class="region-link" href="./region.html?region=Bounkani">Bounkani</a>
-<a class="region-link" href="./region.html?region=Cavally">Cavally</a>
-<a class="region-link" href="./region.html?region=Folon">Folon</a>
-<a class="region-link" href="./region.html?region=Gb%C3%AAk%C3%AA">Gbêkê</a>
-<a class="region-link" href="./region.html?region=G%C3%B4h">Gôh</a>
-<a class="region-link" href="./region.html?region=G%C3%B4h-Djiboua">Gôh-Djiboua</a>
-<a class="region-link" href="./region.html?region=Grands-Ponts">Grands-Ponts</a>
-<a class="region-link" href="./region.html?region=Gu%C3%A9mon">Guémon</a>
-<a class="region-link" href="./region.html?region=Hambol">Hambol</a>
-<a class="region-link" href="./region.html?region=Haut-Sassandra">Haut-Sassandra</a>
-<a class="region-link" href="./region.html?region=Ind%C3%A9ni%C3%A9-Djuablin">Indénié-Djuablin</a>
-<a class="region-link" href="./region.html?region=Kabadougou">Kabadougou</a>
-<a class="region-link" href="./region.html?region=La%20M%C3%A9">La Mé</a>
-<a class="region-link" href="./region.html?region=L%C3%B4h-Djiboua">Lôh-Djiboua</a>
-<a class="region-link" href="./region.html?region=Marahou%C3%A9">Marahoué</a>
-<a class="region-link" href="./region.html?region=Moronou">Moronou</a>
-<a class="region-link" href="./region.html?region=Nawa">Nawa</a>
-<a class="region-link" href="./region.html?region=N%27zi">N’zi</a>
-<a class="region-link" href="./region.html?region=Poro">Poro</a>
-<a class="region-link" href="./region.html?region=San-P%C3%A9dro">San-Pédro</a>
-<a class="region-link" href="./region.html?region=Sud-Como%C3%A9">Sud-Comoé</a>
-<a class="region-link" href="./region.html?region=Tchologo">Tchologo</a>
-<a class="region-link" href="./region.html?region=Tonkpi">Tonkpi</a>
-<a class="region-link" href="./region.html?region=Worodougou">Worodougou</a>
-<a class="region-link" href="./region.html?region=Yamoussoukro">Yamoussoukro</a>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-    <style>
-    
-
-  
-
-/* SECTION */
-.impact-message {
-  text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at center, #145c3a, #0b3d2e);
-  color: white;
-  overflow: hidden;
-}
-
-/* TEXTE */
-.impact-message h2 {
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: auto;
-  letter-spacing: 1.5px;
-
-  /* effet apparition */
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
-
-  /* glow */
-  text-shadow: 
-    0 0 10px rgba(34,197,94,0.6),
-    0 0 20px rgba(34,197,94,0.4),
-    0 0 40px rgba(34,197,94,0.2);
-}
-
-/* animation entrée */
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* curseur */
-.impact-message h2::after {
-  content: "|";
-  margin-left: 6px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .impact-message h2 {
-    font-size: 26px;
-  }
-}
-
-.small-title,
-.subtitle,
-.main-title,
-.brand-title,
-.edition {
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
-}
-
-
-
-
-/* couche suivante */
-.hero-bg.next {
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-/* couche active */
-.hero-bg.active {
-  z-index: 2;
-  transform: translateX(0);
-}
-
-/* animation sortie */
-.hero-bg.slide-out {
-  transform: translateX(-100%);
-}
-
-
-
-
-/* ASSOMBRESSEMENT DE L’IMAGE */
-
-
-/* effet lumineux léger (optionnel) */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.08),
-    transparent 60%
-  );
-  transform: rotate(25deg);
-  z-index: 1;
-}
-
-
-
-.small-title {
-  font-size: 22px;
-  letter-spacing: 3px;
-  font-weight: 500;
-  opacity: 0.95;
-}
-
-.subtitle {
-  font-size: 18px;
-  margin-top: 0px;
-  opacity: 0.9;
-}
-
-.main-title {
-  font-size: 42px;
-  margin-top: 25px;
-  font-weight: 600;
-}
-
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  margin: 10px 0;
-  background: linear-gradient(90deg, #ffffff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.edition {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
-  font-size: 14px;
-  letter-spacing: 2px;
-  position: relative;
-  z-index: 2;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .brand-title {
-    font-size: 48px;
-  }
-
-  .main-title {
-    font-size: 28px;
-  }
-}
-
-      .small-title {
-        font-size: 22px;
-        letter-spacing: 3px;
-        font-weight: 500;
-        opacity: 0.9;
+      .dropdown-menu a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #1f2937;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+
+      .dropdown-menu a:hover {
+        background: #22c55e;
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .boutique-btn {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        padding: 10px 18px;
+        border-radius: 25px;
+        color: white;
+      }
+
+      .ticker {
+        position: fixed;
+        top: 72px;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        background: #f3fbf5;
+        color: #145c3a;
+        z-index: 2400;
+        border-top: 1px solid rgba(20, 92, 58, 0.08);
+        border-bottom: 1px solid rgba(20, 92, 58, 0.08);
+      }
+
+      .ticker-content {
+        display: inline-block;
+        padding: 10px 0;
+        min-width: 200%;
+        animation: ticker-scroll 24s linear infinite;
+        font-weight: 700;
+      }
+
+      .hero {
+        position: relative;
+        height: 400px;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 60%);
+        z-index: 1;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background: url("./salon du bio arriere plan.jpeg") center/cover no-repeat;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 0 20px;
+      }
+
+      .fap-bio,
+      .subtitle,
+      .main-title,
+      .brand-title,
+      .edition-badge {
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
+      }
+
+      .fap-bio {
+        margin: 0;
+        font-size: 2.2rem;
+        font-weight: 900;
+        letter-spacing: 0.14em;
       }
 
       .subtitle {
-        font-size: 18px;
-        margin-top: 0px;
-        opacity: 0.85;
-      }
-
-
-
-/* NAVBAR */
-.header {
-  background: linear-gradient(135deg, #0b3d2e, #145c3a);
-  padding: 12px 30px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 2500; /* augmenté */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1250px;
-  margin: auto;
-}
-
-.nav-container {
-  position: relative;
-  z-index: 3000;
-}
-
-/* bloc logo */
-/* bloc logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  
-}
-
-/* LOGO IMAGE → plus visible sur fond vert */
-
-
-.logo-img {
-  width: 110px; /* augmente un peu pour lisibilité */
-  height: auto;
-
-  padding: 0; /* enlève le padding inutile */
-  border-radius: 0;
-
-  background: transparent; /* important */
-  box-shadow: none; /* optionnel pour clean */
-}
-.logo-img {
-  filter: brightness(1.2) contrast(1.1);
-}
-
-
-/* bloc texte */
-
-
-/* FAP-BIO dominant */
-.logo-main {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  line-height: 1;
-  color: #ffffff;
-
-  text-shadow: 0 4px 12px rgba(0,0,0,0.35);
-}
-
-/* définition sous texte */
-.logo-sub {
-  font-size: 11px;
-  color: rgba(255,255,255,0.85);
-
-  max-width: 180px;
-  margin-top: 4px;
-}
-
-/* option: léger badge pour détacher du fond */
-.logo-text-block {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.12);
-  backdrop-filter: blur(6px);
-
-  line-height: 1.2;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 10px;
-  border-radius: 8px;
-  transition: 0.2s;
-}
-
-.nav-link:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 45px;
-  min-width: 220px;
-
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(12px);
-
-  border-radius: 14px;
-  padding: 8px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-
-  transition: 0.2s ease;
-}
-
-.dropdown.active .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-      .dropdown-menu li {
-        list-style: none;
-      }
-
-.dropdown-menu a {
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #1f2937;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-.dropdown-menu a:hover {
-  background: #22c55e;
-  color: white;
-  transform: translateX(5px);
-}
-
-      
-
-/* BOUTIQUE */
-.boutique-btn {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  padding: 10px 18px;
-  border-radius: 25px;
-  color: white;
-}
-
-
-/* HERO */
-
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 1;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-.small-title,
-.subtitle,
-.main-title,
-.brand-title,
-.edition {
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
-  list-style: none;
-}
-/* bloc logo + FAP-BIO */
-.top-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-
-/* logo sibio */
-.sibio-logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-/* FAP-BIO plus visible + vert */
-.fap-bio {
-  font-size: 54px;
-  font-weight: 900;
-  color: #00c853; /* vert type logo */
-  letter-spacing: 30px;
-  text-transform: uppercase;
-  
-  
-}
-
-/* ligne SIBIO + édition */
-.sibio-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 0px;
-}
-
-/* édition alignée avec SIBIO */
-.edition-inline {
-  padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 25px;
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .fap-bio {
-    font-size: 36px;
-  }
-
-  .sibio-logo {
-    width: 45px;
-    height: 45px;
-  }
-
-  .sibio-line {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-.small-title {
-  font-size: 22px;
-  letter-spacing: 3px;
-  font-weight: 500;
-}
-
-.subtitle {
-  font-size: 18px;
-  margin-top: 0px;
-  opacity: 0.9;
-  margin-right: 26px;
-}
-
-.main-title {
-  font-size: 42px;
-  margin-top: 25px;
-  font-weight: 600;
-}
-
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  margin: 10px 0;
-  background: linear-gradient(90deg, #fff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.sibio-line {
-  display: flex;
-  align-items: center; /* correction alignement vertical */
-  justify-content: center;
-  gap: 20px;
-  margin-top: 0px;
-}
-
-/* SIBIO 2026 */
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 0px;
-  line-height: 1; /* évite décalage vertical */
-  background: linear-gradient(90deg, #ffffff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* badge édition mieux centré */
-.edition-badge {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #a7ffe2;
-  padding: 8px 12px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: rgba(0, 200, 83, 0.08);
-  border-radius: 22px;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  margin-top: 0px;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .sibio-line {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .edition-badge {
-    border-left: none;
-  }
-}
-.logo-png {
-  border-radius: 18px;
-  width: 100%;
-  max-width: 140px;
-  height: auto;
-  object-fit: cover;
-  margin-top: 0px;
-}
-/* TICKER */
-.ticker {
-  position: fixed;
-  top: 95px; /* avant 80px → maintenant plus bas */
-  width: 100%;
-  z-index: 1000;
-  background: linear-gradient(90deg, #0b3d2e, #145c3a);
-  color: white;
-  overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.header {
-  z-index: 1500;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 45px;
-  min-width: 220px;
-
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(12px);
-
-  border-radius: 14px;
-  padding: 8px;
-
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-
-  transition: 0.2s ease;
-
-  z-index: 4000; /* AJOUT IMPORTANT */
-}
-
-.ticker-content {
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: scrollTicker 20s linear infinite;
-  font-weight: 500;
-  letter-spacing: 1px;
- 
-  color: white;
-  
-
-}
-
-/* animation */
-@keyframes scrollTicker {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-
-
-</style>
-  </head>
-
- <header class="header">
-  <nav class="nav-container">
-
-    <div class="logo">
-      
-      
-      <img src="./fap-bio.png" alt="logo" class="logo-img" />
-     
-</div>
-
-    <ul class="nav-menu">
-
-      <!-- Accueil / découverte -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Découvrir ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#programme">Programme</a></li>
-           
-          <li><a href="#exposants">Activité</a></li>
-        
-        
-        </ul>
-      </li>
-
-      <!-- Éditions (historique) -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Éditions ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#sibio2022">SIBIO 2022</a></li>
-          
-          <li><a href="#sibio2024">SIBIO 2024</a></li>
-        </ul>
-      </li>
-
-      <!-- Salon -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Salon ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#buy">Acheter un ticker</a></li>
-           <li><a href="#stand">Reservez un stand</a></li>
-        </ul>
-      </li>
-
-      <!-- Infos -->
-      <li class="dropdown">
-        <a href="#" class="nav-link">Infos ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#apropos">À propos</a></li>
-        </ul>
-      </li>
-
-      <!-- Boutique -->
-      <li>
-        <a href="./boutique.html" target="_blank" class="nav-link boutique-btn">
-          Boutique 🛒
-        </a>
-      </li>
-
-      <!-- Sections -->
-      <li>
-        <a href="./region.html" class="nav-link">Representation des Sections</a>
-      </li>
-
-    </ul>
-  </nav>
-</header>
-<!-- BANDEAU DÉFILANT -->
-<div class="ticker">
-  <div class="ticker-content">
-    🌱 FAP-BIO — Forum Africain pour la Promotion du Bio présente le Salon International du Bio SIBIO 2026 • 3ᵉ ÉDITION • 
-    🌍 Thème : "Innovation durable et agriculture biologique pour une Afrique résiliente" • 
-    
-  </div>
-</div>
-
-
-  
-<!-- SLIDER SIBIO 2026 -->
-
-
-<style>
-.sibio-slider {
-  width: 100%;
-  max-width: 1000px;
-  height: 420px;
-  margin: 20px auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.sibio-slider .slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.sibio-slider .slide.active {
-  opacity: 1;
-}
-
-.sibio-slider img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
-
-<script>
-let index = 0;
-const slides = document.querySelectorAll(".sibio-slider .slide");
-
-setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 60000); // 1 minute
-</script>
-
-
-
-
-
-    <style>
-    
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 120px 20px;
-  color: white;
-  overflow: visible;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  transition: background-image 1s ease-in-out;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  
-}
-/* SECTION */
-.impact-message {
-  text-align: center;
-  padding: 80px 20px;
-  background: radial-gradient(circle at center, #145c3a, #0b3d2e);
-  color: white;
-  overflow: hidden;
-}
-
-/* TEXTE */
-.impact-message h2 {
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.6;
-  max-width: 900px;
-  margin: auto;
-  letter-spacing: 1.5px;
-
-  /* effet apparition */
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1s ease forwards;
-
-  /* glow */
-  text-shadow: 
-    0 0 10px rgba(34,197,94,0.6),
-    0 0 20px rgba(34,197,94,0.4),
-    0 0 40px rgba(34,197,94,0.2);
-}
-
-/* animation entrée */
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* curseur */
-.impact-message h2::after {
-  content: "|";
-  margin-left: 6px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .impact-message h2 {
-    font-size: 26px;
-  }
-}
-
-.small-title,
-.subtitle,
-.main-title,
-.brand-title,
-.edition {
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.85);
-}
-.hero {
-  position: relative;
-  overflow: visible;
-  height: 100vh;
-  color: white;
-}
-
-/* images en fond */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transform: translateX(0);
-  transition: transform 1s ease;
-}
-
-/* couche suivante */
-.hero-bg.next {
-  transform: translateX(100%);
-  z-index: 1;
-}
-
-/* couche active */
-.hero-bg.active {
-  z-index: 2;
-  transform: translateX(0);
-}
-
-/* animation sortie */
-.hero-bg.slide-out {
-  transform: translateX(-100%);
-}
-
-
-
-
-/* ASSOMBRESSEMENT DE L’IMAGE */
-
-
-/* effet lumineux léger (optionnel) */
-.hero::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.08),
-    transparent 60%
-  );
-  transform: rotate(25deg);
-  z-index: 1;
-}
-
-
-
-.small-title {
-  font-size: 22px;
-  letter-spacing: 3px;
-  font-weight: 500;
-  opacity: 0.95;
-}
-
-.subtitle {
-  font-size: 18px;
-  margin-top: 0px;
-  opacity: 0.9;
-}
-
-.main-title {
-  font-size: 42px;
-  margin-top: 25px;
-  font-weight: 600;
-}
-
-.brand-title {
-  font-size: 72px;
-  font-weight: 800;
-  letter-spacing: 4px;
-  margin: 10px 0;
-  background: linear-gradient(90deg, #ffffff, #a7ffe2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.edition {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 8px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
-  font-size: 14px;
-  letter-spacing: 2px;
-  position: relative;
-  z-index: 2;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .brand-title {
-    font-size: 48px;
-  }
-
-  .main-title {
-    font-size: 28px;
-  }
-}
-
-      .small-title {
-        font-size: 22px;
-        letter-spacing: 3px;
-        font-weight: 500;
-        opacity: 0.9;
-      }
-
-      .subtitle {
-        font-size: 18px;
-        margin-top: 0px;
-        opacity: 0.85;
+        margin: 6px 0;
       }
 
       .main-title {
-        font-size: 42px;
-        margin-top: 25px;
-        font-weight: 600;
+        margin: 10px 0 16px;
+        font-size: clamp(2.2rem, 5vw, 4.4rem);
+      }
+
+      .sibio-line {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .brand-title {
-        font-size: 72px;
-        font-weight: 800;
-        letter-spacing: 4px;
-        margin: 10px 0;
-        background: linear-gradient(90deg, #ffffff, #a7ffe2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        color: #00c853;
       }
 
-      .edition {
-        margin-top: 20px;
-        display: inline-block;
-        padding: 8px 18px;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        border-radius: 30px;
-        font-size: 14px;
-        letter-spacing: 2px;
+      .edition-badge {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
-      /* responsive */
-      @media (max-width: 768px) {
-        .brand-title {
-          font-size: 48px;
-        }
-
-        .main-title {
-          font-size: 28px;
-        }
+      .logo-png {
+        max-width: 150px;
       }
-      .countdown {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
 
-/* titre */
-.countdown h3 {
-  font-size: 22px;
-  margin: 0;
-}
-
-/* timer */
-.timer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* blocs temps */
-.time-unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 80px;
-}
-
-/* chiffres */
-.time-unit span {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-/* labels */
-.time-unit p {
-  margin: 4px 0 0;
-  font-size: 13px;
-}
-
-/* bouton */
-.btn-large {
-  margin-top: 0px;
-}
-
-/* texte bas */
-.countdown-info {
-  margin-top: 0px;
-  font-size: 14px;
-  text-align: center;
-  max-width: 600px;
-}
-
-.slider-wrapper {
-  position: relative;
-  max-width: 900px;
-  margin: auto;
-  overflow: hidden;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
-
-.slide {
-  min-width: 100%;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  font-size: 30px;
-  cursor: pointer;
-  padding: 10px 15px;
-  z-index: 10;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
-
-.slider-btn:hover {
-  background: rgba(0,0,0,0.8);
-}
-
-      
+      @keyframes ticker-scroll {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
+      }
     </style>
-
-
-
-
-
-
-
-
-
-    
-
-    <!-- Hero -->
-   
-        
-        
-        <div class="countdown">
-  <h3>Ouverture dans :</h3>
-
-  <div class="timer" id="timer">
-    <div class="time-unit">
-      <span id="days">00</span>
-      <p>Jours</p>
-    </div>
-
-    <div class="time-unit">
-      <span id="hours">00</span>
-      <p>Heures</p>
-    </div>
-
-    <div class="time-unit">
-      <span id="minutes">00</span>
-      <p>Minutes</p>
-    </div>
-
-    <div class="time-unit">
-      <span id="seconds">00</span>
-      <p>Secondes</p>
-    </div>
-  </div>
-
-  <a href="#buy" class="btn btn-primary btn-large">
-    Réserver votre place
-  </a>
-
-  <p class="countdown-info">
-    Organisé par le <strong>FAP-BIO</strong> • Commissaire Général :
-    <strong>M. Constant Ibo Boga</strong>
-  </p>
-</div>
-      
-    </section>
-
-   <!-- Info Section -->
-    <section class="info-section">
-      <div class="info-box">
-        <div class="info-icon">📍</div>
-        <h3>Lieu</h3>
-        <p>Deux Plateaux Cocody, Abidjan</p>
-      </div>
-      <div class="info-box">
-        <div class="info-icon">📅</div>
-        <h3>Dates</h3>
-        <p>17-21 Novembre 2026</p>
-      </div>
-      <div class="info-box">
-        <div class="info-icon">🕐</div>
-        <h3>Horaires</h3>
-        <p>08h - 18h</p>
-      </div>
-      <div class="info-box">
-        <div class="info-icon">💵</div>
-        <h3>Entrée</h3>
-        <p>1 000 FCFA</p>
-      </div>
-    </section>
-
-
-     <!-- Programme (nouveau agenda complet) -->
-    <section id="programme" class="section">
-      <div class="container">
-        <h2>Programme Officiel – 5 jours</h2>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 2rem">
-          <thead>
-            <tr style="background: #2d5016; color: white">
-              <th style="padding: 1rem; text-align: left">Jour</th>
-              <th style="padding: 1rem; text-align: left">Thème</th>
-              <th style="padding: 1rem; text-align: left">
-                Activités principales
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Mardi
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Économie Bleu, Vert et Jaune
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Cérémonie d’ouverture + Panels + Ateliers
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Mercredi
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Climat
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Diplomatie verte + Solutions face au changement climatique
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Jeudi
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Biodiversité
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Préservation de la biodiversité + Ateliers
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Vendredi
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Désertification
-              </td>
-              <td style="padding: 1rem; border-bottom: 1px solid #ddd">
-                Vision 2030 + Pitch IA & Bio + Clôture Label Lbio
-              </td>
-            </tr>
-            <tr>
-              <td style="padding: 1rem">Samedi</td>
-              <td style="padding: 1rem">Cultures ancestrales</td>
-              <td style="padding: 1rem">
-                Exhibitions + Dîner Bio de récompense
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <p
-          style="
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 0.95rem;
-            color: #666;
-          "
-        >
-          Lancement officiel du <strong>Label Bio (Lbio)</strong> • Pitch
-          projets « IA & Bio » • Communautés Bio
-        </p>
-      </div>
-    </section>
-    
-
-    <!-- Programme Section -->
-    <section id="programme" class="section">
-      <div class="container">
-        <h2>Repartition</h2>
-        <div class="programme-grid">
-          <div class="programme-card">
-            <div class="time">09:00 - 10:00</div>
-            <h4>Ouverture officielle</h4>
-            <p>Discours d'accueil et visite des autorités</p>
-          </div>
-          <div class="programme-card">
-            <div class="time">10:00 - 12:00</div>
-            <h4>Conférence: L'Agriculture Bio</h4>
-            <p>Débat sur les pratiques durables et l'avenir du bio</p>
-          </div>
-          <div class="programme-card">
-            <div class="time">12:00 - 14:00</div>
-            <h4>Pause déjeuner</h4>
-            <p>Dégustation de produits bio locaux</p>
-          </div>
-          <div class="programme-card">
-            <div class="time">14:00 - 16:00</div>
-            <h4>Ateliers pratiques</h4>
-            <p>Cuisine bio, permaculture, cosmétiques naturels</p>
-          </div>
-          <div class="programme-card">
-            <div class="time">16:00 - 17:30</div>
-            <h4>Table ronde</h4>
-            <p>Rencontre avec producteurs et experts</p>
-          </div>
-          <div class="programme-card">
-            <div class="time">17:30 - 18:00</div>
-            <h4>Clôture & Tirage au sort</h4>
-            <p>Remise de prix et fermeture du salon</p>
-          </div>
+  </head>
+  <body
+    data-page-title="FAP-BIO"
+    data-page-subtitle="Forum Africain pour la Promotion du Bio : organisation, membres et dynamique terrain."
+  >
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">
+          <img src="./fap-bio-header-logo.png" alt="logo" class="logo-img" />
         </div>
-      </div>
-    </section>
 
-<section id="courriers" class="courrier-section">
-
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Agenda des Courriers</h2>
-      <p>Gestion des courriers entrants et sortants.</p>
-    </div>
-
-    <div class="courrier-tabs">
-
-      <button class="tab active">Arrivées</button>
-      <button class="tab">Départs</button>
-
-    </div>
-
-    <!-- ARRIVÉES -->
-    <div class="courrier-table">
-
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Expéditeur</th>
-            <th>Objet</th>
-            <th>Référence</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>10/04/2026</td>
-            <td>Ministère Agriculture</td>
-            <td>Invitation réunion</td>
-            <td>REF-001</td>
-          </tr>
-
-          <tr>
-            <td>12/04/2026</td>
-            <td>ONG BIO Côte d’Ivoire</td>
-            <td>Partenariat projet</td>
-            <td>REF-002</td>
-          </tr>
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-<style>
-  .courrier-section {
-  padding: 80px 20px;
-  background: #eef7f1;
-}
-
-.courrier-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.tab {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 10px;
-  background: white;
-  cursor: pointer;
-  font-weight: bold;
-  border: 1px solid #cfe3d6;
-}
-
-.tab.active {
-  background: #1b7f4b;
-  color: white;
-}
-
-.courrier-table {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #e2efe6;
-  text-align: left;
-}
-
-th {
-  background: #0f5b3a;
-  color: white;
-}
-</style>
-
-
-
-<section id="exposants">
-  <h2>Au coeur du Bio</h2>
-
-  <div class="slider-wrapper">
-
-    <button class="slider-btn prev">&#10094;</button>
-
-    <div class="slider-track" id="sliderTrack">
-
-      <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (2).jpeg" class="slide active">
-      <img src="./WhatsApp Image 2026-03-31 at 16.15.34 (1).jpeg" class="slide">
-      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (3).jpeg" class="slide">
-      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (2).jpeg" class="slide">
-      <img src="./WhatsApp Image 2026-03-31 at 16.15.33 (1).jpeg" class="slide">
-     
-
-    </div>
-
-    <button class="slider-btn next">&#10095;</button>
-
-  </div>
-</section>
-    
-
-    <!-- Billetterie Section -->
-    <section id="buy" class="section">
-      <div class="container">
-        <h2>Réservez votre entrée</h2>
-        <div class="billetterie-container">
-          <div class="ticket-info">
-            <h3>Comment ça marche?</h3>
-            <ol>
-              <li>Remplissez le formulaire avec vos coordonnées</li>
-              <li>Effectuez le paiement de 1000 FCFA</li>
-              <li>Recevez votre QR code par email</li>
-              <li>Présentez le QR code à l'entrée du salon</li>
-            </ol>
-            <div class="ticket-price">
-              <h4>Prix:</h4>
-              <p class="price">1000 FCFA</p>
-              <p class="price-info">(Incluant 1 accès complet + programme)</p>
-            </div>
-          </div>
-          <div class="ticket-form">
-            <h3>Formulaire de réservation</h3>
-            <p class="form-note">
-              Veuillez remplir ce formulaire pour réserver votre place
-            </p>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSe2sdSIiIHNeDGh9L1I6neQOkhhnUUGguNH-qe2Yg2Rman0QA/viewform?usp=publish-editor"
-              target="_blank"
-              class="btn btn-primary btn-large"
-            >
-              Accéder au formulaire
-            </a>
-            <p class="form-note" style="margin-top: 20px"></p>
-
-            <div class="qr-generation">
-              <div class="qr-fixed">
-  <h4>Scanner pour réserver</h4>
-  <div id="qrcode" style="margin-top: 20px;"></div>
-</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    
-    <!-- Devenir exposant -->
-    <section id="stand" class="section">
-      <div class="container">
-        <h2>Devenir exposant</h2>
-        <div class="exposant-registration">
-          <div class="exposant-info">
-            <p>
-              Réservez un stand pour seulement <strong>10 000 FCFA</strong>              Complétez le formulaire ci-dessous. Le paiement s'effectuera via
-              votre solution préférée (Orange Money, MTN Mobile Money,Moov
-              Money,Wave,Carte Bancaire....)
-            </p>
-            <ul>
-              <li>Nom</li>
-              <li>Prénom</li>
-              <li>Numéro de téléphone</li>
-              <li>Adresse email</li>
-              <li>Mot de passe sécurisé</li>
+        <ul class="nav-menu">
+          <li class="dropdown">
+            <a class="nav-link">Découvrir ▾</a>
+            <ul class="dropdown-menu">
+              <li><a href="./index.html">Accueil FAP-BIO</a></li>
+              <li><a href="./a-propos-fapbio.html">À propos FAP-BIO</a></li>
+              <li><a href="./salon.html">Accueil SIBIO</a></li>
             </ul>
-          </div>
-          <form class="exposant-form" onsubmit="handleExposantSubmit(event)">
-            <div class="form-grid">
-              <input type="text" name="nom" placeholder="Nom" required />
-              <input type="text" name="prenom" placeholder="Prénom" required />
-              <input
-                type="tel"
-                name="telephone"
-                placeholder="Téléphone"
-                required
-              />
-              <input type="email" name="email" placeholder="Email" required />
-              <input
-                type="password"
-                name="motdepasse"
-                placeholder="Mot de passe"
-                required
-                minlength="8"
-              />
-              <p class="price-info"></p>
-            </div>
-            <p class="price-info">
-              Prix de réservation du stand: <strong>10 000 FCFA</strong>
-            </p>
-            <button type="submit" class="btn btn-primary">
-              Réserver Stand
-            </button>
-            <p class="form-note">
-              
-            </p>
-            <div id="qrExposant" style="margin-top: 20px"></div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-
-    
-
-     <!-- Sponsoring (NOUVELLE SECTION) -->
-    <section id="sponsoring" class="section" style="background: #f5f1e8">
-      <div class="container">
-        <h2>Nos Packages de Sponsoring</h2>
-        <div class="programme-grid">
-          <div class="programme-card">
-            <div class="time" style="background: #2d5016; color: white">
-              100 000 FCFA
-            </div>
-            <h4>Statut Initiateur</h4>
-            <p>Mention officielle • Visibilité digitale • Accès réseau</p>
-          </div>
-          <div class="programme-card">
-            <div class="time" style="background: #c87137; color: white">
-              300 000 FCFA
-            </div>
-            <h4>Partenaire Engagé</h4>
-            <p>Visibilité supports officiels • Accès exposition</p>
-          </div>
-          <div class="programme-card">
-            <div class="time" style="background: #2d5016; color: white">
-              750 000 FCFA
-            </div>
-            <h4>Partenaire Structurant</h4>
-            <p>Branding renforcé • Journée thématique • B2B privilégié</p>
-          </div>
-          <div class="programme-card">
-            <div class="time" style="background: #c87137; color: white">
-              1 500 000 FCFA
-            </div>
-            <h4>Partenaire Stratégique</h4>
-            <p>Co-branding • Prise de parole institutionnelle</p>
-          </div>
-          <div class="programme-card">
-            <div class="time" style="background: #2d5016; color: white">
-              3 000 000 FCFA
-            </div>
-            <h4>Partenaire Fondateur</h4>
-            <p>Association Label Lbio • Plaidoyer • Visibilité régionale</p>
-          </div>
-          <div class="programme-card">
-            <div class="time" style="background: #c87137; color: white">
-              5 500 000 FCFA
-            </div>
-            <h4>Partenaire de Référence</h4>
-            <p>Sponsor Officiel • Co-signature Manifeste • Héritage durable</p>
-          </div>
-        </div>
-      </div>
-      <div class="sibio-cta">
-  <a href="./Dossier de sponsoring SIBIO 2026.pdf" class="sibio-btn" download>
-    Télécharger le dossier de sponsoring
-  </a>
-</div>
-    </section>
-
-    <!-- Infos Pratiques -->
-    <section id="infos" class="section">
-      <div class="container">
-        <h2>Infos Pratiques</h2>
-        <div class="infos-grid">
-          <div class="infos-card">
-            <h4>🚗 Accès & Parking</h4>
-            <p>
-              Parking gratuit disponible sur place. Accès par la route
-              principale de Cocody. Navettes gratuites depuis le centre
-              commercial le plus proche            </p>
-          </div>
-          <div class="infos-card">
-            <h4>♿ Accessibilité</h4>
-            <p>
-              Les installations sont accessibles aux personnes en fauteuil
-              roulant. Toilettes PMR disponibles. Points de repos aménagés            </p>
-          </div>
-          <div class="infos-card">
-            <h4>🍽️ Restauration</h4>
-            <p>
-              Food court avec produits bio. Bars à jus frais. Pas d'alcool              Possibilité de pique-nique. Eau gratuite            </p>
-          </div>
-          <div class="infos-card">
-            <h4>A propos</h4>
-            <p>
-              WiFi gratuit dans tout le salon. Signal mobile bon. Prises USB
-              disponibles dans les zones de repos            </p>
-          </div>
-          <div class="infos-card">
-            <h4>👶 Enfants</h4>
-            <p>
-              Espace jeux pour enfants aménagé. Activités éducatives. Aire
-              d'allaitement. Poussettes tolérées            </p>
-          </div>
-          
-          <div class="infos-card">
-            <h4>🎫 Tarifs</h4>
-            <p>
-              <strong>Adulte:</strong> 1000 FCFA<br /><strong
-                >Enfant (5-12ans):</strong
-              >
-              500 FCFA<br /><strong>Gratuit:</strong> Moins de 5 ans<br /><strong
-                >Groupe (10+):</strong
-              >
-              -10%
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-  
-    <!-- <section class="section">
-      <div class="container">
-        <h2>Questions Fréquentes</h2>
-        <div class="faq-container">
-          <div class="faq-item">
-            <h4>Puis-je annuler ma réservation?</h4>
-            <p>
-              Oui, jusqu'à 48 heures avant l'événement. Un remboursement complet
-              sera effectué            </p>
-          </div>
-          <div class="faq-item">
-            <h4>Le ticket est-il valable 3 jours?</h4>
-            <p>
-              Oui, votre QR code vous donne accès à tous les jours du salon
-              (15-17 Avril)            </p>
-          </div>
-          <div class="faq-item">
-            <h4>Puis-je partager mon QR code?</h4>
-            <p>
-              Non, le QR code est personnel. Une personne différente doit
-              acheter son propre billet            </p>
-          </div>
-          <div class="faq-item">
-            <h4>Que faire si j'ai perdu mon QR code?</h4>
-            <p>
-              Contactez-nous avec votre email. Nous pouvons vous renvoyer un
-              nouvelle version            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2>Nous Contacter</h2>
-        <div class="contact-container">
-          <div class="contact-info">
-            <div class="contact-item">
-              <h4>📞 Téléphone</h4>
-              <p>+225 XX XX XX XX</p>
-            </div>
-            <div class="contact-item">
-              <h4>📧 Email</h4>
-              <p>fapbio2023@gmail.com</p>
-            </div>
-            <div class="contact-item">
-              <h4>📍 Adresse</h4>
-              <p>Deux Plateaux Cocody, Abidjan, Côte d'Ivoire</p>
-            </div>
-            <div class="contact-item">
-              <h4>🌐 Réseaux Sociaux</h4>
-              <div class="social-links">
-                <a href="#" class="social-link">Facebook</a>
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">WhatsApp</a>
-              </div>
-            </div>
-          </div>
-          <form class="contact-form" onsubmit="handleContactSubmit(event)">
-            <input type="text" placeholder="Votre nom" required />
-            <input type="email" placeholder="Votre email" required />
-            <textarea placeholder="Votre message" rows="5" required></textarea>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-          </form>
-        </div>
-        <section class="social-follow" id="social-fapbio">
-          <div class="social-follow-box">
-            <img
-              class="social-follow-logo"
-              src="https://imgs.search.brave.com/f_YE2xKEAw1Kl7dlq8j6WuxcsKDm3jZkIiec1kyINlU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZmF2cG5nLmNvbS8x/Ni8yMy8xMS9sb2dv/LWZhY2Vib29rLWlu/Yy1zb2NpYWwtbWVk/aWEtbmFzZGFxLWZi/LXBuZy1mYXZwbmct/Mnl0TkZkR1RreXpU/cm5nbk0xajc5UDl2/UV90LmpwZw"
-              alt="Logo Facebook"
-            />
-            <div class="social-follow-content">
-              <h3>Suivez-nous sur Facebook</h3>
-              <p>Retrouvez les actualités officielles du FAP-BIO et du SIBIO.</p>
-              <div class="social-follow-links">
-                <a href="https://www.facebook.com/professional_dashboard/" target="_blank" rel="noopener noreferrer">Facebook FAP-BIO</a>
-                <a href="https://www.facebook.com/profile.php?id=61569797848118" target="_blank" rel="noopener noreferrer">Facebook SIBIO</a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
-
-
-    <style>
-  .sibio2022 {
-    padding: 90px 20px;
-    background: linear-gradient(180deg, #178665, #576e67);
-    color: white;
-  }
-
-  .sibio2022-container {
-    max-width: 1100px;
-    margin: auto;
-  }
-
-  .sibio2022-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 800;
-    margin-bottom: 15px;
-  }
-
-  .sibio2022-title span {
-    color: #a7ffe2;
-  }
-
-  .sibio2022-subtitle {
-    text-align: center;
-    font-size: 16px;
-    opacity: 0.85;
-    margin-bottom: 50px;
-  }
-
-  .sibio2022-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 18px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    line-height: 1.7;
-    font-size: 15px;
-  }
-
-  .sibio2022-card strong {
-    color: #a7ffe2;
-    font-weight: 700;
-  }
-
-  .sibio2022-tags {
-    margin-top: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .tag {
-    padding: 6px 12px;
-    font-size: 12px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-  }
-
-  .tag.highlight {
-    background: rgba(167,255,226,0.15);
-    border: 1px solid #a7ffe2;
-  }
-</style>
-
-<section class="sibio2022" id="sibio2022">
-  <div class="sibio2022-container">
-
-    <!-- Titre style identique 2024/2026 -->
-    <div class="sibio-line">
-      <h2 class="brand-title">SIBIO 2022</h2>
-      <div class="edition-block">
-        <span class="edition-badge">1ʳᵉ ÉDITION</span>
-        <img class="logo-png" src="./WhatsApp Image 2026-04-13 at 11.44.08.jpeg" alt="Logo SIBIO 2022">
-      </div>
-    </div>
-
-    <div class="sibio2022-subtitle">
-      Première édition du Salon International du Bio
-    </div>
-
-    <div class="sibio2022-card">
-
-      La première édition du Salon International du Bio, <strong>SIBIO22</strong>, s'est tenue les 25 et 26 novembre 2022 au village Brebo à Amado LAGUNA.  
-      Organisé sous le thème <strong>"Produits Bio, symbole d'une consommation authentique et naturelle"</strong>
-      <br><br>
-
-      <strong>Partenaires :</strong>  
-      Placé sous le parrainage du <strong>Député-Maire de Bingerville ISSOUF Doumbia</strong>, avec le soutien du Ministère du Tourisme.  
-      Collaboration avec <strong>BERET-CI</strong> et <strong>SIDAF-CI</strong>
-      <div class="sibio2022-tags">
-        <span class="tag highlight">SIBIO22</span>
-        <span class="tag">25–26 Novembre 2022</span>
-        <span class="tag">Village Brebo</span>
-        <span class="tag">Amado LAGUNA</span>
-        <span class="tag">Ministère du Tourisme</span>
-        <span class="tag">BERET-CI</span>
-        <span class="tag">SIDAF-CI</span>
-        <span class="tag highlight">Agriculture biologique</span>
-      </div>
-
-      <!-- CTA identique 2024/2026 -->
-      <div class="sibio-cta" style="display:flex; flex-direction:column; gap:12px; align-items:center;">
-        <button onclick="toggleGallery2022()" class="sibio-btn">
-          SIBIO 2022 en images
-        </button>
-        <a
-          href="./SIBIO22 RAPPORT D'ACTIVITES.docx"
-          download="rapport-sibio-2022.docx"
-          target="_blank"
-          rel="noopener"
-          class="sibio-btn download"
-        >
-          Télécharger le rapport
-        </a>
-      </div>
-
-      <!-- Galerie d'images SIBIO 2022 -->
-      <div id="gallery2022" class="sibio2022-gallery">
-        <h4>Galerie SIBIO 2022</h4>
-        <div class="sibio2022-slider-wrapper">
-          <button id="gallery2022-prev" class="slider-btn prev" type="button" onclick="gallery2022Prev()">&#10094;</button>
-          <div id="gallery2022-images" class="sibio2022-gallery-images"></div>
-          <button id="gallery2022-next" class="slider-btn next" type="button" onclick="gallery2022Next()">&#10095;</button>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-
-
-<!-- ====================== SECTION SIBIO 2024 ====================== -->
-<style>
-  .sibio2024 {
-    padding: 100px 20px 80px;
-    background: linear-gradient(180deg, #0b3d2e, #145c3a);
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .sibio2024::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url("https://images.unsplash.com/photo-1589924691995-400dc9b5d8f0?ixlib=rb-4.0.3&auto=format&fit=crop&q=80") center/cover no-repeat;
-    opacity: 0.12;
-    z-index: 0;
-  }
-
-  .sibio2024-container {
-    max-width: 1180px;
-    margin: auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .sibio2024-title {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
-  }
-
-  .sibio2024-title span {
-    color: #a7ffe2;
-  }
-
-  .sibio2024-subtitle {
-    text-align: center;
-    font-size: 19px;
-    opacity: 0.9;
-    margin-bottom: 60px;
-    font-weight: 500;
-  }
-
-  .sibio2024-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(167,255,226,0.2);
-    border-radius: 20px;
-    padding: 40px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    margin-bottom: 50px;
-  }
-
-  .sibio2024-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin: 40px 0;
-  }
-
-  .sibio2024-box {
-    background: rgba(255,255,255,0.06);
-    border-radius: 16px;
-    padding: 25px;
-    border: 1px solid rgba(167,255,226,0.15);
-  }
-
-  .sibio2024-box h4 {
-    color: #a7ffe2;
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    margin: 35px 0;
-  }
-
-  .stat-card {
-    text-align: center;
-    background: rgba(255,255,255,0.1);
-    border-radius: 16px;
-    padding: 20px 15px;
-    border: 2px solid #a7ffe2;
-  }
-
-  .stat-number {
-    font-size: 2.4rem;
-    font-weight: 900;
-    color: #a7ffe2;
-    line-height: 1;
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 8px 18px;
-    background: rgba(167,255,226,0.15);
-    color: #a7ffe2;
-    border-radius: 30px;
-    font-size: 13px;
-    font-weight: 600;
-    margin: 4px;
-  }
-
-  .highlight {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  .people {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin: 30px 0;
-  }
-
-  .person {
-    text-align: center;
-    max-width: 220px;
-  }
-
-  .person-role {
-    font-size: 0.95rem;
-    opacity: 0.85;
-    margin-top: 8px;
-  }
-
-  .sibio-btn.download {
-  background: rgba(167,255,226,0.15);
-  border: 1px solid #a7ffe2;
-}
-
-.sibio-btn.download:hover {
-  background: #a7ffe2;
-  color: #0b3d2e;
-}
-
-/* Zoom logo uniquement pour 1re et 2e édition */
-#sibio2022 .logo-png,
-#sibio2024 .logo-png {
-  max-width: 185px;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  #sibio2022 .logo-png,
-  #sibio2024 .logo-png {
-    max-width: 165px;
-  }
-}
-</style>
-
-<section class="sibio2024" id="sibio2024">
-  <div class="sibio2024-container">
-
-    <!-- Titre principal -->
-    <div class="sibio-line">
-      <h2 class="brand-title">SIBIO 2024</h2>
-      <div class="edition-block">
-        <span class="edition-badge">2ᵉ ÉDITION</span>
-        <img class="logo-png" src="./WhatsApp Image 2026-04-13 at 11.44.08.jpeg" alt="Logo SIBIO 2024">
-      </div>
-    </div>
-
-
-      <p style="text-align: center;">
-  <strong>26 → 28 Juillet 2024 • Moossou, Grand-Bassam</strong>
-</p>
-    </div>
-
-    <div class="sibio2024-card">
-
-      <h2 style="text-align:center; font-size:28px; margin-bottom:25px; color:#a7ffe2;">
-        Thème : « Production Biologique dans une Approche Agroécologique : Quels Avantages pour l’Afrique ? »
-      </h2>
-
-      <!-- Autorités & Patrons -->
-      <h3 style="margin-bottom:20px; border-bottom:2px solid rgba(167,255,226,0.3); padding-bottom:12px;">
-        Hauts Responsables & Partenaires Institutionnels
-      </h3>
-
-      <div class="people">
-        <div class="person">
-          <strong>Dr Eugène Aka OUELE</strong><br>
-          <span class="person-role">Patron du SIBIO 2024<br>Président du CESEC et du Conseil Régional Sud-Comoé</span>
-        </div>
-        <div class="person">
-          <strong>M. Kobenan Kouassi ADJOUMANI</strong><br>
-          <span class="person-role">Ministre d’État, Ministre de l’Agriculture, du Développement Rural et des Productions Vivrières</span>
-        </div>
-        <div class="person">
-          <strong>Mme Nassou SIDIBÉ</strong><br>
-          <span class="person-role">Préfet du département de Grand-Bassam</span>
-        </div>
-        <div class="person">
-          <strong>M. Jean Louis Moulot</strong><br>
-          <span class="person-role">Maire de Grand-Bassam & Parrain du SIBIO</span>
-        </div>
-        <div class="person">
-          <strong>Sa Majesté Nana Kyeremaa Abrafi Koto</strong><br>
-          <span class="person-role">Reine Mère des communautés de la CEDEAO</span>
-        </div>
-      </div>
-
-      <!-- Commissaire Général -->
-      <p style="text-align:center; font-size:1.1rem; margin:30px 0 15px;">
-        <strong>Président du FAP-BIO & Commissaire Général du SIBIO</strong><br>
-        <span style="font-size:1.4rem; color:#a7ffe2;">M. Constant Ibo Boga</span>
-      </p>
-
-      <p style="text-align:center; opacity:0.9; max-width:800px; margin:0 auto 40px;">
-        « C’est le cœur empli de gratitudes envers nos autorités et tous les acteurs de cette deuxième édition que nous dressons ce rapport. »
-      </p>
-
-      <!-- Statistiques -->
-      <h3 style="text-align:center; margin:40px 0 20px; color:#a7ffe2;">Chiffres Clés du SIBIO 2024</h3>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">+ 30</div>
-          <p>Stands</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">+ 3 200</div>
-          <p>Visiteurs</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">+ 20</div>
-          <p>Docteurs (PhD)</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">08</div>
-          <p>Médias</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">04</div>
-          <p>Universités impliquées</p>
-        </div>
-      </div>
-
-      <!-- Quintessence & Contenu du rapport -->
-      <h3 style="margin-top:50px; margin-bottom:20px;">Quintessence du SIBIO 2024</h3>
-      <p>Commissaire scientifique : <strong>Dr Karry Venance</strong></p>
-      <p>Le SIBIO 2024 a mis en lumière l’urgence d’une transition vers une agriculture biologique et agroécologique en Côte d’Ivoire et en Afrique. Face à la perte de 250 000 hectares de forêt par an et à l’épuisement des sols (> 30 %), l’agriculture bio représente une solution stratégique pour la sécurité alimentaire, la régénération des sols, le stockage du carbone et la résilience climatique.</p>
-
-      <div class="sibio2024-grid">
-        <div class="sibio2024-box">
-          <h4>Structure porteuse</h4>
-          <p><strong>FAP-BIO</strong> (Forum Africain pour la Promotion du Bio) – ONG créée en 2018<br>
-          Vision : Promotion et valorisation des produits biologiques (agriculture & élevage).<br>
-          7 axes d’intervention : sensibilisation, formation, intermédiation, marché digital, vermicomposte, réseau de producteurs, Label LBIO.</p>
-        </div>
-
-        <div class="sibio2024-box">
-          <h4>Impact & Alignement stratégique</h4>
-          <ul style="line-height:1.7;">
-            <li>Agroforesterie & intrants bio</li>
-            <li>Valorisation des déchets (biogaz, compost)</li>
-            <li>Promotion du Label FAP-BIO</li>
-            <li>Filières innovantes (élevage de grenouilles, myciculture)</li>
-            <li>Incubation des jeunes agripreneurs</li>
-            <li>Recommandations politiques : subventions, formation universitaire, accès au financement</li>
-          </ul>
-        </div>
-
-        <div class="sibio2024-box" style="grid-column: span 2;">
-          <h4>Perspectives</h4>
-          <p>Alignement avec les CDN de la Côte d’Ivoire (réduction de 30,41 % des GES d’ici 2030)<br>
-          Digitalisation (marketing digital, IA, drones)<br>
-          Expansion des marchés bio • Création d’emplois verts • Résilience face à la dégradation des terres (65 % des sols arables africains dégradés)</p>
-        </div>
-      </div>
-
-      <!-- Méthodologie rapide -->
-      <h3 style="margin-top:40px;">Méthodologie de l’événement</h3>
-      <p>3 jours thématiques • Conférences • Ateliers • Expositions • Rencontres B2B • Démonstrations • Présence digitale renforcée</p>
-
-      <!-- Retour en images -->
-      <p style="text-align:center; margin-top:40px; font-style:italic;">
-        📸 Retour en images : un événement riche en échanges, en savoirs et en engagements concrets pour l’avenir du bio en Afrique      </p>
-
-      <!-- BOUTON ICI -->
-      
-<div class="sibio-cta" style="text-align:center; margin-top:30px; display:flex; flex-direction:column; gap:12px; align-items:center;">
-
-  <!-- Bouton site -->
-  <a href="https://fapbio.webflow.io/" target="_blank" rel="noopener" class="sibio-btn">
-    SIBIO 2024 en images
-  </a>
-  <p style="text-align:center; opacity:0.75; font-size:0.95rem;">
-    Rapport complet de la 2ᵉ édition du Salon International du Bio – FAP-BIO 2024
-  </p>
-
-  <!-- Bouton PDF -->
-  <a href="./Correction du rapport Sibio 2024_123632.pdf" download="rapport-sibio-2024.pdf" target="_blank" rel="noopener" class="sibio-btn download">
-    Télécharger le rapport PDF
-  </a>
-
-</div>
-
-      <!-- Tags finaux -->
-      <div style="text-align:center; margin-top:50px;">
-        <span class="tag">2ᵉ Édition</span>
-        <span class="tag">Grand-Bassam</span>
-        <span class="tag">Agroécologie</span>
-        <span class="tag">Label LBIO</span>
-        <span class="tag highlight">FAP-BIO</span>
-        <span class="tag">Dr Eugène Aka OUELE</span>
-        <span class="tag">M. Constant Ibo Boga</span>
-        <span class="tag">Dr Karry Venance</span>
-        <span class="tag">Agriculture Biologique</span>
-        <span class="tag">Développement Durable</span>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section id="annonceurs" class="sponsors-section">
-
-  <div class="container">
-
-    <div class="section-title">
-      <h2>Annonceurs & Partenaires</h2>
-      <p>Entreprises et organisations soutenant le FAP-BIO.</p>
-    </div>
-
-    <div class="sponsors-grid">
-
-      <article class="sponsor-card">
-        <img src="./logo1.png" alt="Sponsor">
-        <h4>Nom Entreprise</h4>
-        <p>Soutien officiel du développement du FAP-BIO.</p>
-      </article>
-
-      <article class="sponsor-card">
-        <img src="./logo2.png" alt="Sponsor">
-        <h4>Nom Entreprise</h4>
-        <p>Partenaire dans la promotion de l’agriculture biologique.</p>
-      </article>
-
-      <article class="sponsor-card">
-        <img src="./logo3.png" alt="Sponsor">
-        <h4>Nom Entreprise</h4>
-        <p>Appui logistique et institutionnel.</p>
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-<style>
-  .sponsors-section {
-  padding: 80px 20px;
-  background: #f6fbf7;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.section-title h2 {
-  color: #0b3d2e;
-  font-size: 2rem;
-}
-
-.section-title p {
-  color: #355c4b;
-}
-
-.sponsors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
-
-.sponsor-card {
-  background: white;
-  border-radius: 16px;
-  padding: 18px;
-  text-align: center;
-  border: 1px solid #d4e9da;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.sponsor-card img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-</style>
-
-
-    <section id="apropos" class="section apropos-section" style="background:#f7f7f7; padding:4rem 2rem;">
-  <div class="container" style="max-width:1000px; margin:0 auto;">
-    <h2 style="text-align:center; color:#2d5016; margin-bottom:2rem;">À propos de SIBIO & FAP-BIO</h2>
-    <div class="apropos-content" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem;">
-      
-      <div class="apropos-card" style="background:white; padding:1.5rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-        <h3 style="color:#c87137; margin-bottom:1rem;">FAP-BIO</h3>
-        <p>
-          Le <strong>FAP-BIO</strong> (Forum Africain pour la Promotion du Bio) est une organisation panafricaine
-          qui promeut l’agriculture biologique, la protection de la biodiversité et le développement durable
-          à travers l’Afrique. Il vise à sensibiliser, former et rassembler les acteurs du secteur bio pour
-          construire un avenir plus vert et responsable        </p>
-      </div>
-
-      <div class="apropos-card" style="background:white; padding:1.5rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-        <h3 style="color:#c87137; margin-bottom:1rem;">SIBIO</h3>
-        <p>
-          Le <strong>SIBIO</strong> (Salon International du Bio) est organisé par FAP-BIO et se déroule à Abidjan          Il constitue un carrefour d’échanges entre producteurs, exposants, startups et passionnés du bio          L’objectif est de présenter innovations, projets et bonnes pratiques en agriculture biologique,
-          préserver la biodiversité et promouvoir la consommation responsable à l’échelle nationale et internationale        </p>
-      </div>
-
-      <div class="apropos-card" style="grid-column:span 2; background:white; padding:1.5rem; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-        <h3 style="color:#2d5016; margin-bottom:1rem;">Objectifs du Salon</h3>
-        <ul style="list-style-type:disc; padding-left:1.5rem; color:#333;">
-          <li>Rassembler les acteurs de l’agriculture biologique en Afrique.</li>
-          <li>Promouvoir la biodiversité et les pratiques durables.</li>
-          <li>Présenter des innovations et projets responsables.</li>
-          <li>Établir des partenariats entre producteurs, startups et consommateurs.</li>
-          <li>Lancer le <strong>Label Bio (Lbio)</strong> pour valoriser les initiatives locales et internationales.</li>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link">Explorer ▾</a>
+            <ul class="dropdown-menu">
+              <li><a href="./programme-editions.html">Programme & Éditions</a></li>
+              <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
+              <li><a href="./reservation-infos.html">Réservation & Infos</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="./region.html" class="nav-link">Représentations des sections</a>
+          </li>
+          <li>
+            <a href="./boutique.html" target="_blank" class="nav-link boutique-btn">
+              Boutique 🛒
+            </a>
+          </li>
         </ul>
+      </nav>
+    </header>
+
+    <div class="ticker">
+      <div class="ticker-content">
+        🌱 FAP-BIO — Forum Africain pour la Promotion du Bio présente le Salon International du Bio •
+        SIBIO 2026 • 3ᵉ ÉDITION • 🌍 Thème : "Innovation durable et agriculture biologique pour une
+        Afrique résiliente" •
       </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<style>
-.social-follow {
-  padding: 34px 20px;
-  background: #f3fbf5;
-}
-
-.social-follow-box {
-  max-width: 980px;
-  margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid #cfe6d6;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(24, 86, 52, 0.08);
-  padding: 22px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.social-follow-logo {
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.social-follow-content h3 {
-  margin: 0 0 4px;
-  color: #1c6f43;
-}
-
-.social-follow-content p {
-  margin: 0 0 10px;
-  color: #335d4c;
-}
-
-.social-follow-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.social-follow-links a {
-  text-decoration: none;
-  color: #0f5f38;
-  background: #ecf8f0;
-  border: 1px solid #c5e3d0;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-.social-follow-links a:hover {
-  background: #2f8f55;
-  color: #ffffff;
-}
-
-@media (max-width: 640px) {
-  .social-follow-box {
-    align-items: flex-start;
-    padding: 18px;
-  }
-
-  .social-follow-logo {
-    width: 40px;
-    height: 40px;
-  }
-}
-</style>
-
-   <!-- FOOTER MODERNE -->
-<style>
-
-  .sibio-cta {
-
-  text-align: center;
-
-  margin-top: 20px;
-
-  cursor: pointer;
-
-}
-
-.sibio2024-card::before {
-
-  pointer-events: none;
-
-}
-
-
-
-.sibio-btn {
-
-  cursor: pointer;
-
-  display: inline-block;
-
-  padding: 12px 22px;
-
-  border-radius: 30px;
-
-  text-decoration: none;
-
-  font-weight: 600;
-
-  letter-spacing: 1px;
-
-
-
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-
-  color: white;
-
-
-
-  transition: 0.3s ease;
-
-}
-
-
-
-.sibio-btn:hover {
-
-  transform: translateY(-3px);
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-
-}
-
-.sibio2022-gallery {
-  display: none;
-  margin-top: 20px;
-  text-align: center;
-}
-.sibio2022-gallery h4 {
-  color: #a7ffe2;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-.sibio2022-gallery-images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-  min-height: 340px;
-}
-.sibio2022-gallery-images img {
-  width: min(31%, 300px);
-  aspect-ratio: 4 / 3;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-.sibio2022-gallery-images img.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-.sibio2022-slider-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: nowrap;
-  margin: 0 auto;
-  max-width: 1000px;
-}
-.slider-btn {
-  width: 50px;
-  height: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.97);
-  color: #2D5016;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.slider-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.slider-btn.prev {
-  order: 0;
-}
-.slider-btn.next {
-  order: 2;
-}
-
-  .footer {
-
-    background: linear-gradient(135deg, #061a14, #0b3d2e);
-
-    color: #fff;
-
-    padding: 60px 20px 30px;
-
-    position: relative;
-
-    overflow: hidden;
-
-  }
-
-
-
-  .footer::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background: url("https://www.transparenttextures.com/patterns/dark-leather.png");
-
-    opacity: 0.08;
-
-    pointer-events: none;
-
-  }
-
-
-
-  .footer-container {
-
-    max-width: 1100px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-
-    gap: 30px;
-
-    position: relative;
-
-    z-index: 2;
-
-  }
-
-
-
-  .footer-box h3 {
-
-    font-size: 18px;
-
-    margin-bottom: 15px;
-
-    color: #a7ffe2;
-
-    letter-spacing: 1px;
-
-  }
-
-
-
-  .footer-box p {
-
-    font-size: 14px;
-
-    opacity: 0.85;
-
-    line-height: 1.6;
-
-  }
-
-
-
-  .footer-links a {
-
-    display: block;
-
-    color: #fff;
-
-    text-decoration: none;
-
-    margin-bottom: 8px;
-
-    font-size: 14px;
-
-    opacity: 0.8;
-
-    transition: 0.3s;
-
-  }
-
-
-
-  .footer-links a:hover {
-
-    opacity: 1;
-
-    transform: translateX(5px);
-
-    color: #a7ffe2;
-
-  }
-
-
-
-  .footer-bottom {
-
-    text-align: center;
-
-    margin-top: 40px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid rgba(255,255,255,0.1);
-
-    font-size: 13px;
-
-    opacity: 0.7;
-
-  }
-
-
-
-  .badge-sibio {
-
-    display: inline-block;
-
-    margin-top: 0px;
-
-    padding: 6px 14px;
-
-    border-radius: 30px;
-
-    background: rgba(255,255,255,0.08);
-
-    border: 1px solid rgba(255,255,255,0.2);
-
-    font-size: 12px;
-
-  }
-
-</style>
-
-
-<footer class="footer">
-  <div class="footer-container">
-
-    <div class="footer-box">
-      <h3>SIBIO 2026</h3>
-      <p>Salon International du Bio dédié à la promotion de l’agriculture biologique et durable en Afrique.</p>
-      <span class="badge-sibio">Édition officielle</span>
     </div>
 
-    <div class="footer-box footer-links">
-      <h3>Navigation</h3>
-        <li><a href="#accueil">Accueil</a></li>
-        <li><a href="./boutique.html">Boutique</a></li>
-      <a href="#">Exposants</a>
-        <li><a href="#contact">Contact</a></li>
-    </div>
+    <section id="accueil" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h2 class="fap-bio">FAP-BIO</h2>
+        <p class="subtitle">Forum Africain pour la Promotion du Bio</p>
+        <p class="subtitle">présente le</p>
+        <h1 class="main-title">Salon International du Bio</h1>
+        <div class="sibio-line">
+          <h2 class="brand-title">SIBIO 2026</h2>
+          <span class="edition-badge">3ᵉ ÉDITION</span>
+          <img class="logo-png" src="./logo_sibio_nouveau_transparent.png" alt="Logo SIBIO 2026" />
+        </div>
+      </div>
+    </section>
 
-    <div class="footer-box footer-links">
-      <h3>Éditions</h3>
-      <a href="#sibio2022" id="sibio2022">SIBIO 2022</a>
-      <a href="#sibio2024">SIBIO 2024</a>
-      <a href="#">SIBIO 2026 en cours.....</a>
-      
-    </div>
-    
+    <main>
+      <section class="page-section section-alt">
+        <span class="eyebrow">FAP-BIO</span>
+        <h2>Une base institutionnelle claire pour tout le site</h2>
+        <p class="section-intro">
+          Le FAP-BIO coordonne la promotion de l'agriculture biologique, fédère
+          les acteurs du secteur et porte les grandes initiatives comme le
+          SIBIO. Cette page reste centrée sur l'organisation, ses membres et sa
+          présence territoriale.
+        </p>
+        <div class="split-grid">
+          <article class="content-card">
+            <h3>Ce que fait le FAP-BIO</h3>
+            <p>
+              Sensibiliser, former, structurer et connecter les acteurs du bio
+              autour d'actions concrètes, de projets communs et d'événements de
+              visibilité.
+            </p>
+          </article>
+          <article class="content-card">
+            <h3>Parcours utilisateur</h3>
+            <p>
+              Depuis cette page, on comprend l'organisation FAP-BIO avant de
+              basculer vers les pages SIBIO dédiées au programme, aux exposants
+              et aux réservations.
+            </p>
+          </article>
+        </div>
+        <div class="button-row">
+          <a class="btn btn-primary" href="./a-propos-fapbio.html">Découvrir le FAP-BIO</a>
+          <a class="btn btn-secondary" href="./salon.html">Explorer le SIBIO</a>
+        </div>
+      </section>
 
-    <div class="footer-box">
-      <h3>Engagement</h3>
-      <p>Créé pour promouvoir une agriculture responsable, durable et respectueuse de l’environnement.</p>
-    </div>
+      <section id="bureau-national" class="page-section team-hierarchy-section">
+        <div class="team-title-block">
+          <span class="eyebrow">Membres</span>
+          <h2>Bureau National FAP-BIO</h2>
+          <p>Organisation hiérarchique du bureau exécutif et des structures associées.</p>
+        </div>
 
-  </div>
+        <div class="team-level">
+          <h3>Président</h3>
+          <article class="team-card team-featured">
+            <img src="./WhatsApp Image 2026-04-13 at 16.56.35.jpeg" alt="Président du FAP-BIO" />
+            <h4>Constant Ibo Boga</h4>
+            <p><strong>Rôles</strong></p>
+            <p>• Président du FAP-BIO<br />• Commissaire Général du SIBIO</p>
+            <p><strong>Biographie</strong></p>
+            <p>
+              Acteur engagé dans la promotion de l'agriculture biologique en
+              Côte d'Ivoire, il assure la coordination stratégique du FAP-BIO
+              et supervise les grandes orientations du SIBIO.
+            </p>
+          </article>
+        </div>
 
-  <div class="footer-bottom">
-    &copy; 2026 Salon du Bio — Tous droits réservés | SIBIO 2023 • SIBIO 2024 • SIBIO 2026
-  </div>
-</footer>
+        <div class="team-level">
+          <h3>Vice-Présidents</h3>
+          <div class="team-grid">
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=32" alt="Vice-Présidente 1" />
+              <h4>Nathalie Kouamé</h4>
+              <p><strong>Rôles</strong><br />• Vice-Présidente 1</p>
+              <p>Appui stratégique et gouvernance institutionnelle.</p>
+            </article>
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=41" alt="Vice-Président 2" />
+              <h4>Yao Hervé Assi</h4>
+              <p><strong>Rôles</strong><br />• Vice-Président 2</p>
+              <p>Coordination des décisions majeures et partenariats.</p>
+            </article>
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=22" alt="Vice-Présidente 3" />
+              <h4>Amina Coulibaly</h4>
+              <p><strong>Rôles</strong><br />• Vice-Présidente 3</p>
+              <p>Suivi des projets et représentation externe.</p>
+            </article>
+          </div>
+        </div>
 
-<style>
-/* Ajustement ciblé: navbar + footer uniquement */
-.header {
-  background: linear-gradient(135deg, #e8f6ea, #d8efdf) !important;
-  box-shadow: 0 8px 24px rgba(25, 88, 53, 0.12) !important;
-}
+        <div class="team-level">
+          <h3>Secrétariat Général</h3>
+          <div class="team-grid">
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=5" alt="Secrétaire Général" />
+              <h4>Didier Dibi</h4>
+              <p><strong>Rôles</strong><br />• Secrétaire Général</p>
+              <p>Coordination administrative et organisation interne.</p>
+            </article>
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=56" alt="Secrétaire Général Adjoint" />
+              <h4>Fatoumata Touré</h4>
+              <p><strong>Rôles</strong><br />• Secrétaire Général Adjoint</p>
+              <p>Assistance et suivi administratif.</p>
+            </article>
+          </div>
+        </div>
 
-.nav-link {
-  color: #1d4f37 !important;
-}
+        <div class="team-level">
+          <h3>Trésorerie</h3>
+          <div class="team-grid">
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=18" alt="Trésorier Général" />
+              <h4>Jean-Marc Bamba</h4>
+              <p><strong>Rôles</strong><br />• Trésorier Général</p>
+              <p>Gestion financière et budget du FAP-BIO.</p>
+            </article>
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=45" alt="Trésorière Générale Adjointe" />
+              <h4>Clarisse Dacoury</h4>
+              <p><strong>Rôles</strong><br />• Trésorière Générale Adjointe</p>
+              <p>Suivi et contrôle des opérations financières.</p>
+            </article>
+          </div>
+        </div>
 
-.nav-link:hover {
-  background: rgba(47, 143, 85, 0.14) !important;
-}
+        <div class="team-level">
+          <h3>Secrétariats Techniques</h3>
+          <div class="team-grid">
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=67" alt="Communication" />
+              <h4>Ismaël Zadi</h4>
+              <p><strong>Rôles</strong><br />• Communication</p>
+              <p>Gestion de l'image et relations médias.</p>
+            </article>
+            <article class="team-card">
+              <img src="https://i.pravatar.cc/180?img=49" alt="Organisation" />
+              <h4>Emmanuelle Aka</h4>
+              <p><strong>Rôles</strong><br />• Organisation</p>
+              <p>Coordination des événements et logistique.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-.footer {
-  background: linear-gradient(135deg, #ebf7ee, #dbeee2) !important;
-  color: #1f3b2f !important;
-}
+      <section class="page-section">
+        <span class="eyebrow">Régions</span>
+        <h2>Représentations FAP-BIO</h2>
+        <p class="section-intro">
+          Les représentations régionales restent accessibles sans changer leur
+          logique actuelle.
+        </p>
+        <div class="region-links">
+          <a class="region-link" href="./region.html?region=Abidjan">Abidjan</a>
+          <a class="region-link" href="./region.html?region=Agn%C3%A9by-Tiassa">Agnéby-Tiassa</a>
+          <a class="region-link" href="./region.html?region=Bafing">Bafing</a>
+          <a class="region-link" href="./region.html?region=Bagou%C3%A9">Bagoué</a>
+          <a class="region-link" href="./region.html?region=B%C3%A9lier">Bélier</a>
+          <a class="region-link" href="./region.html?region=Bouak%C3%A9">Bouaké</a>
+          <a class="region-link" href="./region.html?region=Bounkani">Bounkani</a>
+          <a class="region-link" href="./region.html?region=Cavally">Cavally</a>
+          <a class="region-link" href="./region.html?region=Folon">Folon</a>
+          <a class="region-link" href="./region.html?region=Gb%C3%AAk%C3%AA">Gbêkê</a>
+          <a class="region-link" href="./region.html?region=G%C3%B4h">Gôh</a>
+          <a class="region-link" href="./region.html?region=G%C3%B4h-Djiboua">Gôh-Djiboua</a>
+          <a class="region-link" href="./region.html?region=Grands-Ponts">Grands-Ponts</a>
+          <a class="region-link" href="./region.html?region=Gu%C3%A9mon">Guémon</a>
+          <a class="region-link" href="./region.html?region=Hambol">Hambol</a>
+          <a class="region-link" href="./region.html?region=Haut-Sassandra">Haut-Sassandra</a>
+          <a class="region-link" href="./region.html?region=Ind%C3%A9ni%C3%A9-Djuablin">Indénié-Djuablin</a>
+          <a class="region-link" href="./region.html?region=Kabadougou">Kabadougou</a>
+          <a class="region-link" href="./region.html?region=La%20M%C3%A9">La Mé</a>
+          <a class="region-link" href="./region.html?region=L%C3%B4h-Djiboua">Lôh-Djiboua</a>
+          <a class="region-link" href="./region.html?region=Marahou%C3%A9">Marahoué</a>
+          <a class="region-link" href="./region.html?region=Moronou">Moronou</a>
+          <a class="region-link" href="./region.html?region=Nawa">Nawa</a>
+          <a class="region-link" href="./region.html?region=N%27zi">N'zi</a>
+          <a class="region-link" href="./region.html?region=Poro">Poro</a>
+          <a class="region-link" href="./region.html?region=San-P%C3%A9dro">San-Pédro</a>
+          <a class="region-link" href="./region.html?region=Sud-Como%C3%A9">Sud-Comoé</a>
+          <a class="region-link" href="./region.html?region=Tchologo">Tchologo</a>
+          <a class="region-link" href="./region.html?region=Tonkpi">Tonkpi</a>
+          <a class="region-link" href="./region.html?region=Worodougou">Worodougou</a>
+          <a class="region-link" href="./region.html?region=Yamoussoukro">Yamoussoukro</a>
+        </div>
+      </section>
+    </main>
 
-.footer-box h3,
-.footer-links a {
-  color: #1f6b40 !important;
-}
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <h3>FAP-BIO</h3>
+          <p>Organisation dédiée à la promotion du bio, de la biodiversité et de l'innovation durable en Afrique.</p>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Pages FAP-BIO</h3>
+          <a href="./index.html">Accueil FAP-BIO</a>
+          <a href="./a-propos-fapbio.html">À propos FAP-BIO</a>
+          <a href="./region.html">Représentations régionales</a>
+        </div>
+        <div class="footer-box footer-links">
+          <h3>Pages SIBIO</h3>
+          <a href="./salon.html">Accueil SIBIO</a>
+          <a href="./programme-editions.html">Programme & Éditions</a>
+          <a href="./reservation-infos.html">Réservation & Infos</a>
+        </div>
+        <div class="footer-box">
+          <h3>Engagement</h3>
+          <p>Un écosystème pensé pour découvrir, comprendre, explorer puis participer concrètement au salon.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 FAP-BIO / SIBIO - Structure multi-pages en place.</div>
+    </footer>
 
-.footer-box p,
-.footer-bottom {
-  color: #365949 !important;
-  opacity: 1 !important;
-}
-</style>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const dropdowns = document.querySelectorAll(".dropdown");
 
-  const dropdowns = document.querySelectorAll(".dropdown");
- // clic extérieur ferme tout
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".dropdown")) {
-      dropdowns.forEach((d) => d.classList.remove("active"));
-      subDropdowns.forEach((s) => s.classList.remove("open"));
-    }
-  });
-   /* HERO SLIDER */
-  const bg = document.querySelector(".hero-bg");
-  if (!bg) return; // sécurité
+        dropdowns.forEach((dropdown) => {
+          const trigger = dropdown.querySelector(".nav-link");
+          if (!trigger) return;
 
-  const images = [
-   "https://imgs.search.brave.com/uWlY8MH2quGPv3xzmJIrHIlM5LfvRlwq_lHXbpFh0UY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/YWZyaWNhLWJpLmNv/bS9zdG9yYWdlL2Fy/dGljbGVzL2NvdmVy/cy8xNjk1MDU1MDI3/LmpwZw"
-  ];
+          trigger.addEventListener("click", (event) => {
+            event.preventDefault();
+            dropdowns.forEach((item) => {
+              if (item !== dropdown) {
+                item.classList.remove("active");
+              }
+            });
+            dropdown.classList.toggle("active");
+          });
+        });
 
-  let slideIndex = 0;
-  bg.style.backgroundImage = `url(${images[0]})`;
-
-  function nextSlide() {
-    const nextIndex = (slideIndex + 1) % images.length;
-
-    const temp = document.createElement("div");
-    temp.className = "hero-bg";
-    temp.style.backgroundImage = `url(${images[nextIndex]})`;
-    document.querySelector(".hero").appendChild(temp);
-
-    gsap.fromTo(temp,
-      { x: "100%", scale: 1.01 },
-      { x: "0%", duration: 1.5, ease: "power3.out" }
-    );
-
-    gsap.to(bg, {
-      x: "-10%",
-      scale: 1.05,
-      duration: 1.5,
-      onComplete: () => {
-        bg.style.backgroundImage = temp.style.backgroundImage;
-        bg.style.transform = "scale(1)";
-        temp.remove();
-      }
-    });
-
-    slideIndex = nextIndex;
-  }
-
-  setInterval(nextSlide, 5000);
-
-});
-
-  
-
-document.addEventListener("DOMContentLoaded", () => {
-  const el = document.getElementById("typed-text");
-  if (!el) return;
-
-  const text = "La Côte d’Ivoire, leader du Bio en Afrique !\nAgir ensemble pour préserver notre biodiversité et nos terres";
-  let i = 0;
-  let started = false; // pour éviter que ça recommence
-
-  function typeEffect() {
-    el.innerHTML = text.substring(0, i).replace("\n", "<br>");
-    i++;
-
-    if (i <= text.length) {
-      setTimeout(typeEffect, 50);
-    }
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !started) {
-        started = true;
-        typeEffect();
-      }
-    });
-  }, {
-    threshold: 0.5 // déclenche quand 50% visible
-  });
-
-  observer.observe(el);
-});
-
-
-function typeEffect() {
-  const el = document.getElementById("typed-text");
-  if (!el) return;
-
-  el.innerHTML = text.substring(0, i).replace("\n", "<br>");
-  i++;
-
-  if (i <= text.length) {
-    setTimeout(typeEffect, 50);
-  }
-}
-
-// lancer quand page chargée totalement
-window.onload = () => {
-  typeEffect();
-};
-
-// attendre que le DOM soit chargé
-
-
-  
-
-
-
-</script>
-
-
-<script>
-// SLIDER D'IMAGES - SECTION EXPOSANTS
-document.addEventListener("DOMContentLoaded", () => {
-  const sliderTrack = document.getElementById("sliderTrack");
-  const slides = document.querySelectorAll(".slider-track .slide");
-  const prevBtn = document.querySelector(".slider-btn.prev");
-  const nextBtn = document.querySelector(".slider-btn.next");
-  
-  if (!sliderTrack || slides.length === 0) return; // sécurité
-  
-  let currentIndex = 0;
-  
-  function updateSlider() {
-    const offset = -currentIndex * 100;
-    sliderTrack.style.transform = `translateX(${offset}%)`;
-  }
-  
-  prevBtn?.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateSlider();
-  });
-  
-  nextBtn?.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider();
-  });
-});
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const teamSection = document.querySelector(".team-reveal");
-  if (!teamSection) return;
-
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          teamSection.classList.add("is-visible");
-          obs.unobserve(teamSection);
-        }
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".dropdown")) {
+            dropdowns.forEach((dropdown) => dropdown.classList.remove("active"));
+          }
+        });
       });
-    },
-    { threshold: 0.2 }
-  );
-
-  observer.observe(teamSection);
-});
-</script>
-
-<script src="./script.js"></script>
+    </script>
   </body>
 </html>
