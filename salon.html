@@ -192,6 +192,38 @@
         }
       }
 
+      @keyframes heartbeat {
+        0% {
+          transform: scale(1);
+          color: #145c3a;
+          text-shadow: 0 0 5px rgba(20, 92, 58, 0.3);
+        }
+        25% {
+          transform: scale(1.1);
+          color: #0b3d2e;
+          text-shadow: 0 0 20px #4CAF50, 0 0 30px rgba(76, 175, 80, 0.8);
+        }
+        50% {
+          transform: scale(1.05);
+          color: #145c3a;
+          text-shadow: 0 0 10px rgba(20, 92, 58, 0.5);
+        }
+        75% {
+          transform: scale(1.1);
+          color: #0b3d2e;
+          text-shadow: 0 0 20px #4CAF50, 0 0 30px rgba(76, 175, 80, 0.8);
+        }
+        100% {
+          transform: scale(1);
+          color: #145c3a;
+          text-shadow: 0 0 5px rgba(20, 92, 58, 0.3);
+        }
+      }
+
+      .hero-title {
+        animation: heartbeat 2s infinite;
+      }
+
       @media (max-width: 900px) {
         .hero-gallery {
           grid-template-columns: 1fr;
@@ -208,9 +240,10 @@
           </div>
 
           <div class="hero-title-block">
-            <p class="hero-kicker">Evenement officiel</p>
+            
             <h1 class="hero-title" id="site-dynamic-title">
-              <span class="hero-title-top">SIBIO </span>
+              <span class="hero-title-top">SIBIO 2026</span>
+              <span class="hero-title-middle">3E EDITION</span>
               <span class="hero-title-bottom">Salon International du Bio</span>
             </h1>
             <p class="hero-subtitle" id="site-dynamic-subtitle">
@@ -254,9 +287,10 @@
           <li><a href="./a-propos-fapbio.html">À propos FAP-BIO</a></li>
           <li><a href="./salon.html">Accueil SIBIO</a></li>
           <li><a href="./programme-editions.html">Programme & Éditions</a></li>
-          <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
+          <li><a href="./exposants-partenaires.html">Projet Carbon</a></li>
           <li><a href="./reservation-infos.html">Réservation & Infos</a></li>
           <li><a class="nav-shop" href="./boutique.html">Boutique 🛒</a></li>
+          <li><a href="./exposants-partenaires.html">Projet Carbon</a></li>
         </ul>
       </div>
     </nav>
