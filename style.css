@@ -625,35 +625,7 @@ body {
     margin: 0.5rem 0;
 }
 
-.sibio-pitch-btn {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 0.85rem 1.2rem;
-    margin: 0.5rem 0;
-    border-radius: 999px;
-    background: #0b7a4d;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
-    transition: transform 180ms ease, background 180ms ease;
-    white-space: nowrap;
-}
-
-.sibio-pitch-btn:hover,
-.sibio-pitch-btn:focus-visible {
-    background: #0f8c5a;
-    transform: translateY(-1px);
-}
-
-.sibio-pitch-hidden {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    user-select: none !important;
-}
+/* Styles du bouton pitch supprimés */
 
 @media (max-width: 768px) {
     .hamburger {

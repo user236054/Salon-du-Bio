@@ -184,28 +184,7 @@ if (document.readyState === 'loading') {
     startCountdown();
 }
 
-function injectHiddenPitchButton() {
-    const page = window.location.pathname.split('/').pop().toLowerCase();
-    const excluded = ['boutique.html', 'fapbio.html', 'projet_carbon.html', 'region.html'];
-    if (excluded.includes(page)) return;
-
-    const container = document.querySelector('.hero-title-block, .nav-inner, header.site-hero .hero-row, header.header, .site-nav, .nav-container');
-    if (!container || document.getElementById('sibio-pitch-cta')) return;
-
-    const pitchButton = document.createElement('a');
-    pitchButton.id = 'sibio-pitch-cta';
-    pitchButton.href = '#'; // Mettre le lien Google Form plus tard
-    pitchButton.className = 'sibio-pitch-btn';
-    pitchButton.innerText = 'Inscrivez-vous au pitch';
-    container.classList.add('has-sibio-pitch');
-
-    if (container.classList.contains('hero-title-block')) {
-        const referenceNode = container.querySelector('img[src$="PrixAdamaDiawara.png"]')?.closest('a');
-        container.insertBefore(pitchButton, referenceNode || container.lastElementChild);
-    } else {
-        container.appendChild(pitchButton);
-    }
-}
+// Fonction injectHiddenPitchButton supprimée
 
 document.addEventListener('DOMContentLoaded', () => {
     const qrContainer = document.getElementById('qrcode');
