@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prix Adama Diawara — FAP-BIO / SIBIO 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css" />
+  <style>
+    :root {
+      --bg: #faf6ef;
+      --surface: #ffffff;
+      --surface-dark: #0b2318;
+      --text: #1c1c1c;
+      --muted: #666;
+      --gold: #c9a044;
+      --gold-soft: #f3e6b8;
+      --border: rgba(0,0,0,.08);
+      --shadow: 0 30px 60px rgba(0,0,0,.08);
+      --radius: 22px;
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+     
+    }
+
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f8f4ec 0%, #faf6ef 100%);
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
+    .page-shell {
+      width: 100%;
+      padding-top: 80px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(11,35,24,.96);
+      backdrop-filter: blur(8px);
+      padding: 14px 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.15);
+      border-bottom: 1px solid rgba(201,160,68,.12);
+    }
+    .nav a {
+      font-family: "Dm Sans", Arial, Helvetica, sans-serif;
+      color: rgba(255,255,255,.78);
+      font-size: 0.75rem;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: background .25s ease, color .25s ease;
+      white-space: nowrap;
+
+    }
+    .nav a:hover,
+    .nav a.active {
+      background: rgba(201,160,68,.18);
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 20px;
+      border-radius: 0;
+      background: linear-gradient(135deg, #0b2318 0%, #1d3a26 100%);
+      color: #fff;
+      box-shadow: none;
+      width: 100%;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: radial-gradient(circle, var(--gold) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .hero-headline {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border: 1px solid rgba(201,160,68,.35);
+      border-radius: 999px;
+      color: var(--gold);
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,.05);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3rem, 5vw, 5.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; display: block; }
+    .hero-sub,
+    .hero-meta { position: relative; z-index: 1; }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 14px;
+    }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,.62);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .sec {
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .sec:nth-child(even) { background: rgba(255,255,255,.88); }
+    .sec:nth-child(odd) { background: transparent; }
+    .section-inner {
+      display: grid;
+      gap: 32px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 0;
+    }
+
+    .hero-grid,
+    .objet-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    .objet-grid { align-items: stretch; }
+    .objet-grid > * { min-height: 360px; }
+
+    .picture {
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 35px 80px rgba(0,0,0,.12);
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    }
+    .picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 460px;
+    }
+
+    .section-card {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      border: none;
+    }
+
+    .art-hd {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .art-n {
+      width: 54px;
+      height: 54px;
+      background: var(--gold);
+      color: #0b2318;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+    .art-t {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #0b2318;
+    }
+
+    .body {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 22px;
+    }
+    .dots {
+      list-style: none;
+      margin-top: 14px;
+      padding-left: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .dots li {
+      position: relative;
+      padding-left: 24px;
+      color: #333;
+      line-height: 1.7;
+    }
+    .dots li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .warn {
+      background: #fff4d7;
+      border: 1px solid rgba(201,160,68,.45);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 18px 20px;
+      color: #6d531f;
+      margin-top: 22px;
+    }
+
+    .infobox {
+      display: grid;
+      gap: 18px;
+      background: #0b2318;
+      border-radius: 22px;
+      padding: 28px;
+      color: #fff;
+    }
+    .inforow {
+      display: grid;
+      gap: 6px;
+    }
+    .inforow label {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .inforow span {
+      font-size: 0.95rem;
+      color: #fff;
+      line-height: 1.5;
+    }
+    .inforow a { color: #f7d77b; }
+
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      position: relative;
+    }
+    .step::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 18px;
+      bottom: 0;
+      width: 2px;
+      background: rgba(201,160,68,.2);
+    }
+    .step:last-child::before { height: 44px; }
+    .step-n {
+      z-index: 1;
+      width: 44px;
+      height: 44px;
+      background: var(--gold);
+      color: #0b2318;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .step-c h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #0b2318;
+    }
+    .step-c p { color: #4f4f4f; }
+
+    .prizes {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .prize {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 20px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 12px 28px rgba(0,0,0,.05);
+    }
+    .prize.top { border-left-width: 6px; border-left-color: var(--gold); background: linear-gradient(135deg, #fff9eb 0%, #ffffff 100%); }
+    .prize-ico { font-size: 1.75rem; }
+    .prize-nm { font-weight: 600; color: #1d2c22; }
+    .prize-amt { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); }
+    .prize-dt {
+      font-size: 0.82rem;
+      color: #7a7a7a;
+      text-align: right;
+      line-height: 1.45;
+    }
+    .total-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0b2318;
+      color: #fff;
+      border-radius: 18px;
+      padding: 20px 24px;
+      margin-top: 18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.12);
+    }
+    .total-bar span:first-child {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+    .total-bar span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .legal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .lcard {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.07);
+      border-radius: 18px;
+      padding: 22px;
+      min-height: 180px;
+    }
+    .lcard h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #142017;
+    }
+    .lcard p { color: #555; font-size: 0.95rem; line-height: 1.7; }
+    .lcard a { color: var(--surface-dark); text-decoration: underline; }
+
+    .consent-sec {
+      background: #0b2318;
+      padding: 0 20px;
+      border-radius: 0;
+      box-shadow: none;
+      margin-top: 0;
+    }
+    .consent-inn {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    .ct-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .ct-sub {
+      color: rgba(255,255,255,.65);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .ct-it {
+      display: grid;
+      gap: 12px;
+      padding: 18px 22px;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,.03);
+    }
+    .ct-it label {
+      color: rgba(255,255,255,.88);
+      font-size: 0.96rem;
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .ct-it input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .ct-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255,255,255,.16);
+      color: rgba(255,255,255,.7);
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: not-allowed;
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+    }
+    .ct-btn.on {
+      background: var(--gold);
+      color: #0b2318;
+      cursor: pointer;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      padding: 60px 20px 40px;
+      background: #071912;
+      border-radius: 0;
+      margin-top: 0;
+      color: rgba(255,255,255,.87);
+      width: 100%;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px;
+      max-width: 1280px;
+      margin: 0 auto 24px;
+    }
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-brand h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+    .footer-brand p { color: rgba(255,255,255,.63); }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .footer-col a {
+      color: rgba(255,255,255,.75);
+      transition: color .2s ease;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      text-align: center;
+      color: rgba(255,255,255,.48);
+      font-size: 0.82rem;
+      letter-spacing: .12em;
+      margin-top: 10px;
+    }
+
+    .reveal-left,
+    .reveal-right,
+    .reveal-up {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+    .reveal-right { transform: translateX(40px); }
+    .reveal-up { transform: translateY(30px); }
+    .is-revealed { opacity: 1; transform: translate(0,0); }
+
+    @media (max-width: 960px) {
+      .objet-grid,
+      .hero-grid,
+      .footer-grid,
+      .legal-grid { grid-template-columns: 1fr; }
+      .picture img { min-height: 320px; }
+      .page-shell { padding-top: 70px; }
+    }
+    @media (max-width: 720px) {
+      .nav { 
+        flex-direction: column;
+        padding: 8px 12px;
+        gap: 8px;
+      }
+      .nav a {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+      .hero { padding: 40px 20px; }
+      .sec { padding: 50px 20px; }
+      .consent-inn { padding: 40px 20px; }
+      .footer-grid { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div data-scroll-container class="page-shell">
+    <nav class="nav" data-scroll-section>
+      <a href="./fapbio.html">FAP-BIO</a>
+      <a href="./salon-bio-abidjan.html">SIBIO</a>
+      <a href="#objet">Objet</a>
+      <a href="#conditions">Conditions</a>
+      <a href="#soumission">Soumission</a>
+      <a href="#selection">Sélection</a>
+      <a href="#prix">Prix</a>
+      <a href="#juridique">Juridique</a>
+      <a href="#contact">Contact</a>
+      <a href="#consent-sec">Inscription</a>
+    </nav>
+
+    <section class="hero" data-scroll-section>
+      <div class="hero-headline" data-scroll data-scroll-speed="0.7" data-scroll-class="is-revealed">
+        <span class="badge">Forum Africain pour la Promotion du BIO — FAP-BIO</span>
+        <h1>PRIX <em>ADAMA DIAWARA</em></h1>
+        <p class="hero-sub">Concours de pitch entrepreneurial des étudiants</p>
+        <div class="hero-meta">
+          <span>3ème Édition</span><span>•</span>
+          <span>SIBIO 2026</span><span>•</span>
+          <span>28 Novembre 2026</span><span>•</span>
+          <span>Abidjan, Côte d'Ivoire</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="objet" data-scroll-section>
+      <div class="section-inner objet-grid">
+        <div class="picture reveal-left will-reveal" data-scroll data-scroll-speed="1" data-scroll-direction="horizontal">
+          <img src="https://imgs.search.brave.com/dAa7Ol_QA6G3HVXZ5uzmdYa-vARdHnnQVu-SP7XTtLg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9kdWJh/d2Eub3JnL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI1LzEwLzAt/Mi5qcGc" alt="Participants du concours Prix Adama Diawara" />
+        </div>
+        <div class="reveal-right will-reveal" data-scroll data-scroll-speed="0.6" data-scroll-direction="horizontal">
+          <div class="art-hd"><div class="art-n">01</div><div class="art-t">Objet du concours</div></div>
+          <p class="body">Le <strong>Prix Adama Diawara</strong> est une initiative du Forum Africain Pour la Promotion du BIO (FAP-BIO), organisée à l'occasion de la <strong>3ème édition du Salon International pour la Promotion du Bio (SIBIO 2026)</strong>. Ce concours de pitch de 3 minutes valorise l'entrepreneuriat étudiant ivoirien au service d'une agriculture durable et innovante.</p>
+          <ul class="dots">
+            <li>Promouvoir l'agriculture biologique et les pratiques agro-écologiques en Côte d'Ivoire</li>
+            <li>Valoriser l'intégration des nouvelles technologies (IA et NTIC) au service de l'agriculture</li>
+            <li>Encourager, soutenir et récompenser l'entrepreneuriat des jeunes étudiants ivoiriens innovants</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="conditions" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">02</div><div class="art-t">Conditions Générales de Participation</div></div>
+        <p class="body">Peut faire acte de candidature tout étudiant entrepreneur régulièrement inscrit dans une université ou Grande École de Côte d'Ivoire, répondant aux critères suivants :</p>
+        <ul class="dots">
+          <li>Être porteur d'un projet entrepreneurial innovant lié à l'agriculture biologique et/ou aux NTIC</li>
+          <li>Être ressortissant ou résident légal en Côte d'Ivoire</li>
+          <li>Accepter sans réserve l'intégralité des dispositions du présent règlement</li>
+        </ul>
+        <div class="warn">⚠ Toute fausse déclaration ou fraude constatée entraînera l'exclusion immédiate du candidat, sans recours possible.</div>
+      </div>
+    </section>
+
+    <section class="sec" id="soumission" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">03</div><div class="art-t">Modalités de soumission des dossiers</div></div>
+        <p class="body">Les candidatures sont reçues <strong>exclusivement en ligne</strong> via ce site. Aucun autre mode de dépôt ne sera accepté.</p>
+        <div class="infobox">
+         
+          <div class="inforow"><label>Contact</label><span><a href="mailto:info@fapbio.com">info@fapbio.com</a></span></div>
+          <div class="inforow"><label>Ouverture des candidatures</label><span>15 juin 2026 à 20h00 (GMT)</span></div>
+          <div class="inforow"><label>Clôture — délai de rigueur</label><span class="hi">15 juillet 2026 à 23h59 (GMT)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="selection" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">04</div><div class="art-t">Processus de sélection</div></div>
+        <p class="body">Le processus de sélection se déroule en quatre (4) étapes successives :</p>
+        <div class="timeline">
+          <div class="step"><div class="step-n">1</div><div class="step-c"><h3>Présélection</h3><p>Un comité d'experts évalue tous les dossiers reçus. Les <strong>20 meilleurs candidats</strong> sont sélectionnés et annoncés sur les canaux digitaux officiels du Forum FAP-BIO.</p></div></div>
+          <div class="step"><div class="step-n">2</div><div class="step-c"><h3>Demi-finale</h3><p>Les 20 présélectionnés passent un entretien approfondi (PowerPoint + questions du jury). À l'issue, <strong>7 finalistes</strong> sont retenus et ont 7 jours pour confirmer leur participation.</p></div></div>
+          <div class="step"><div class="step-n">3</div><div class="step-c"><h3>Formation intensive</h3><p>Une session de <strong>2 jours</strong> organisée à Abidjan, exclusivement pour les 7 finalistes, afin de les préparer à la grande finale.</p></div></div>
+          <div class="step"><div class="step-n">4</div><div class="step-c"><h3>Grande Finale — 28 novembre 2026</h3><p>À l'<strong>Amphithéâtre du District de l'Université Félix Houphouët-Boigny</strong>. Chaque finaliste : 3 min de pitch + 5 min de Q&R. Le Grand Jury désigne les <strong>3 lauréats</strong> par ordre de mérite.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="prix" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">05</div><div class="art-t">Prix et dotations</div></div>
+        <div class="prizes">
+          <div class="prize top"><div class="prize-ico">🏆</div><div><div class="prize-nm">Grand Prix Adama DIAWARA</div><div class="prize-amt">3 000 000 FCFA</div></div><div class="prize-dt">1 500 000 FCFA numéraire<br>+ 1 500 000 FCFA accompagnement</div></div>
+          <div class="prize"><div class="prize-ico">👩‍💼</div><div><div class="prize-nm">Prix Ecobank — Entrepreneuriat Féminin</div><div class="prize-amt">1 000 000 FCFA</div></div><div class="prize-dt">600 000 FCFA numéraire<br>+ 400 000 FCFA mentorat</div></div>
+          <div class="prize"><div class="prize-ico">🌿</div><div><div class="prize-nm">Prix BIO</div><div class="prize-amt">500 000 FCFA</div></div><div class="prize-dt">300 000 FCFA numéraire<br>+ 200 000 FCFA mentorat</div></div>
+          <div class="prize"><div class="prize-ico">🖥️</div><div><div class="prize-nm">Prix Agro-Tech</div><div class="prize-amt">300 000 FCFA</div></div><div class="prize-dt">200 000 FCFA numéraire<br>+ 100 000 FCFA mentorat</div></div>
+          <div class="prize"><div class="prize-ico">⭐</div><div><div class="prize-nm">Prix Encouragement</div><div class="prize-amt">200 000 FCFA</div></div><div class="prize-dt">100 000 FCFA numéraire<br>+ 100 000 FCFA mentorat</div></div>
+        </div>
+        <div class="total-bar"><span>Total des dotations</span><span>5 000 000 FCFA</span></div>
+      </div>
+    </section>
+
+    <section class="sec" id="juridique" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">06</div><div class="art-t">Articles 06 à 11 — Dispositions juridiques</div></div>
+        <div class="legal-grid">
+          <div class="lcard"><h3>06 — Données Personnelles</h3><p>Traitées selon la législation ivoirienne. Communicables aux partenaires et autorités. Conservation : 3 ans. Contact : <a href="mailto:info@fapbio.com">info@fapbio.com</a></p></div>
+          <div class="lcard"><h3>07 — Droit à l'Image</h3><p>Autorisation accordée au Forum FAP-BIO d'utiliser image, voix et propos pour la communication du concours pendant 3 ans, sans contrepartie.</p></div>
+          <div class="lcard"><h3>08 — Propriété Intellectuelle</h3><p>Le candidat garantit être titulaire de tous les droits de son projet. Le Forum FAP-BIO n'acquiert aucun droit de propriété sur les projets soumis.</p></div>
+          <div class="lcard"><h3>09 — Confidentialité</h3><p>Informations strictement confidentielles. Durée : toute la période du concours + 2 ans après sa clôture.</p></div>
+          <div class="lcard"><h3>10 — Responsabilité</h3><p>Le Forum FAP-BIO décline toute responsabilité pour dossiers non reçus, défaillances techniques ou annulation pour cause de force majeure.</p></div>
+          <div class="lcard"><h3>11 — Loi Applicable</h3><p>Régi par la législation de la République de Côte d'Ivoire. Litiges soumis aux juridictions compétentes d'Abidjan après tentative amiable (2 mois).</p></div>
+        </div>
+        <p class="body" style="margin-top: 20px; font-style: italic; color: #4d4d4d;">Fait à Abidjan, le 25/05/2026 — <strong>Constant BOGA</strong>, Président du FAP-BIO</p>
+      </div>
+    </section>
+
+    <section class="sec" id="contact" data-scroll-section>
+      <div class="section-inner reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="art-hd"><div class="art-n">07</div><div class="art-t">Contact & inscription</div></div>
+        <p class="body">Pour toute question, demande de partenariat ou inscription au concours, contactez directement l'équipe du FAP-BIO et du SIBIO.</p>
+        <div class="infobox">
+          <div class="inforow"><label>Mail</label><span><a href="mailto:info@fapbio.com">info@fapbio.com</a></span></div>
+          <div class="inforow"><label>Téléphone</label><span>+225 07 07 24 05 06</span></div>
+          <div class="inforow"><label>Formulaire</label><span><a href="#consent-sec" target="_blank" rel="noopener">S'inscrire au pitch</a></span></div>
+          <div class="inforow"><label>Site du salon</label><span><a href="./salon-bio-abidjan.html">Accueil SIBIO</a></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="consent-sec" id="consent-sec" data-scroll-section>
+      <div class="consent-inn reveal-up will-reveal" data-scroll data-scroll-speed="0.4">
+        <div class="ct-title">Politique, autorisation & consentement</div>
+        <div class="ct-sub">Veuillez lire et accepter toutes les dispositions avant de soumettre votre candidature.</div>
+        <div class="ct-it"><input type="checkbox" id="c1"><label for="c1"><strong>Règlement intérieur (Art. 01–05)</strong> — J'ai lu et j'accepte sans réserve l'intégralité du règlement du Prix Adama Diawara 3ème Édition.</label></div>
+        <div class="ct-it"><input type="checkbox" id="c2"><label for="c2"><strong>Données personnelles (Art. 06)</strong> — J'autorise le Forum FAP-BIO à traiter mes données conformément à la législation ivoirienne.</label></div>
+        <div class="ct-it"><input type="checkbox" id="c3"><label for="c3"><strong>Droit à l'image (Art. 07)</strong> — J'autorise l'utilisation de mon image, voix et propos dans la communication du concours pendant 3 ans.</label></div>
+        <div class="ct-it"><input type="checkbox" id="c4"><label for="c4"><strong>Propriété intellectuelle (Art. 08)</strong> — Je certifie être titulaire des droits liés à mon projet et m'engage à indemniser en cas de réclamation.</label></div>
+        <div class="ct-it"><input type="checkbox" id="c5"><label for="c5"><strong>Confidentialité & responsabilité (Art. 09–10)</strong> — Je m'engage à respecter la confidentialité et reconnais la responsabilité en cas de dossier incomplet.</label></div>
+        <button class="ct-btn" id="cBtn">J'accepte toutes les dispositions & je m'inscris →</button>
+      </div>
+    </section>
+
+    <footer data-scroll-section>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>FAP-BIO / SIBIO 2026</h3>
+          <p>Prix Adama Diawara — Concours national de pitch étudiant pour l'agriculture durable et l'agro-innovation.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Liens utiles</h4>
+          <ul>
+            <li><a href="./fapbio.html">FAP-BIO</a></li>
+            <li><a href="./salon-bio-abidjan.html">Accueil SIBIO</a></li>
+            <li><a href="#objet">Objet du concours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:info@fapbio.com">info@fapbio.com</a></li>
+            <li>+225 07 07 24 05 06</li>
+            <li>+225 07 07 42 18 82</li>
+            <li>+225 07 07 38 21 14</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 FAP-BIO • Salon International du Bio — SIBIO 2026. Tous droits réservés.</div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollContainer = document.querySelector('[data-scroll-container]');
+      let locoScroll;
+      if (scrollContainer && window.LocomotiveScroll) {
+        locoScroll = new LocomotiveScroll({
+          el: scrollContainer,
+          smooth: true,
+          multiplier: 0.9,
+          smartphone: { smooth: true },
+          tablet: { smooth: true }
+        });
+      }
+
+      const revealTargets = document.querySelectorAll('.will-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      revealTargets.forEach(el => observer.observe(el));
+
+      document.querySelectorAll('.nav a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(event) {
+          const targetId = this.getAttribute('href');
+          const target = document.querySelector(targetId);
+          if (target) {
+            event.preventDefault();
+            if (locoScroll) {
+              locoScroll.scrollTo(target, { offset: -80 });
+            } else {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }
+        });
+      });
+
+      const cbs = document.querySelectorAll('.ct-it input[type="checkbox"]');
+      const btn = document.getElementById('cBtn');
+      if (cbs.length && btn) {
+        const updateButton = () => {
+          const allChecked = Array.from(cbs).every(cb => cb.checked);
+          btn.classList.toggle('on', allChecked);
+          btn.disabled = !allChecked;
+        };
+        cbs.forEach(cb => cb.addEventListener('change', updateButton));
+        updateButton();
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('on')) {
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSdDqOnaerZcwnQCGYbZXLs1aiMmlzNEG4YDIgvjCYR_0FgA7A/viewform?usp=publish-editor', '_blank');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

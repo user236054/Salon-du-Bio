@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Représentation des Régions — FAP-BIO Côte d'Ivoire</title>
+   <link rel="shortBio icon" href="./fap-bio.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #C8973A;
+      --gold-light: #E8B96A;
+      --gold-pale: #F5E9D0;
+      --green-deep: #1A3A2A;
+      --green-mid: #2D5C3F;
+      --green-light: #4A8C5C;
+      --green-pale: #EBF5EE;
+      --cream: #FAF6EF;
+      --text-dark: #1A2518;
+      --text-mid: #3D5240;
+      --text-light: #7A9A7E;
+      --white: #FFFFFF;
+      --shadow-sm: 0 2px 12px rgba(26,58,42,0.08);
+      --shadow-md: 0 8px 32px rgba(26,58,42,0.12);
+      --shadow-lg: 0 20px 60px rgba(26,58,42,0.18);
+    }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: whitesmoke;
+  padding: 0 5vw;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  border-bottom: 1px solid rgba(200,151,58,0.3);
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--green-deep);
+  letter-spacing: 0.5px;
+}
+.logo-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.logo-sub {
+  font-size: 10px; color: var(--gold-light);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+nav a {
+  color: var(--green-light);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: 32px;
+  transition: color 0.2s;
+}
+nav a:hover, nav a.active { color: var(--gold-light); }
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(160deg, var(--green-deep) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+  padding: 90px 5vw 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-label {
+  display: inline-block;
+  background: rgba(200,151,58,0.15);
+  border: 1px solid rgba(200,151,58,0.4);
+  color: var(--gold-light);
+  font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 16px; border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 6vw, 72px);
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.hero p {
+  max-width: 600px;
+  color: rgba(255,255,255,0.65);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.hero-stats {
+  display: flex; gap: 48px;
+  margin-top: 48px;
+}
+.stat-item {
+  display: flex; flex-direction: column;
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px; font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.5);
+  letter-spacing: 1.5px; text-transform: uppercase;
+  margin-top: 4px;
+}
+.hero-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin: 40px 0 0;
+}
+
+/* ─── SEARCH / FILTER ─── */
+.search-zone {
+  background: var(--white);
+  padding: 28px 5vw;
+  border-bottom: 1px solid rgba(26,58,42,0.08);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.search-wrap {
+  position: relative; flex: 1; min-width: 240px;
+}
+.search-wrap input {
+  width: 80%;
+  padding: 12px 18px 12px 44px;
+  border: 1.5px solid rgba(26,58,42,0.12);
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; color: var(--text-dark);
+  background: var(--cream);
+  outline: none; transition: border-color 0.2s;
+}
+.search-wrap input:focus { border-color: var(--green-mid); }
+.search-wrap::before {
+  content: '🔍';
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 15px; opacity: 0.5;
+  pointer-events: none;
+}
+.filter-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.filter-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(26,58,42,0.12);
+  background: transparent;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-mid);
+  cursor: pointer; letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.filter-tab:hover, .filter-tab.active {
+  background: var(--green-deep); color: var(--white);
+  border-color: var(--green-deep);
+}
+
+/* ─── MAIN LAYOUT ─── */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 56px 5vw 80px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ─── SIDEBAR REGIONS LIST ─── */
+.sidebar {
+  position: sticky;
+  top: 88px;
+}
+.sidebar-title {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 16px;
+  padding-left: 4px;
+}
+.regions-list {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(26,58,42,0.06);
+}
+.region-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(26,58,42,0.05);
+  position: relative;
+}
+.region-item:last-child { border-bottom: none; }
+.region-item:hover { background: var(--green-pale); }
+.region-item.active {
+  background: var(--green-deep);
+}
+.region-item.active .region-name { color: var(--white); }
+.region-item.active .region-zone { color: rgba(255,255,255,0.5); }
+.region-item.active .rep-badge { background: rgba(255,255,255,0.15); color: var(--gold-light); }
+.region-item.has-rep { border-left: 3px solid var(--gold); }
+.region-left { display: flex; align-items: center; gap: 12px; }
+.region-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green-light);
+  flex-shrink: 0;
+}
+.region-item.has-rep .region-dot { background: var(--gold); }
+.region-name {
+  font-size: 14px; font-weight: 500; color: var(--text-dark);
+  transition: color 0.2s;
+}
+.region-zone {
+  font-size: 11px; color: var(--text-light);
+  margin-top: 1px;
+}
+.rep-badge {
+  font-size: 10px; letter-spacing: 0.5px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  padding: 3px 8px; border-radius: 10px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.diaspora-shortcut {
+  margin-top: 24px;
+}
+.diaspora-card {
+  display: block;
+  text-decoration: none;
+  background: var(--green-deep);
+  color: var(--white);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(200,151,58,0.22);
+  transition: all 0.2s;
+}
+.diaspora-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.diaspora-card strong {
+  display: block;
+  color: var(--gold-light);
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.diaspora-card span {
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+}
+
+/* ─── CONTENT PANEL ─── */
+.content-panel { min-height: 600px; }
+
+/* Region Header */
+.region-header {
+  background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+  border-radius: 20px;
+  padding: 40px 44px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.region-header::after {
+  content: '';
+  position: absolute; right: -20px; top: -20px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(200,151,58,0.08);
+}
+.region-breadcrumb {
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.region-breadcrumb span { color: var(--gold-light); }
+.region-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 300;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.region-meta-row {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  margin-top: 16px;
+}
+.meta-chip {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px; color: rgba(255,255,255,0.75);
+}
+.meta-chip .icon { font-size: 14px; }
+
+/* Region Info Box */
+.region-info-box {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(26,58,42,0.07);
+  box-shadow: var(--shadow-sm);
+}
+.info-box-title {
+  font-size: 11px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 16px;
+}
+.region-info-box p {
+  font-size: 14px; line-height: 1.8;
+  color: var(--text-mid); font-weight: 300;
+}
+.info-tags {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 16px;
+}
+.info-tag {
+  background: var(--green-pale);
+  color: var(--green-mid);
+  font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: 12px;
+  letter-spacing: 0.3px;
+}
+
+/* Section Title */
+.section-title-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--text-dark);
+}
+.section-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(26,58,42,0.15), transparent);
+}
+.rep-count {
+  font-size: 12px; color: var(--text-light);
+  background: var(--cream); border: 1px solid rgba(26,58,42,0.1);
+  padding: 4px 12px; border-radius: 12px;
+}
+
+/* Rep Cards */
+.reps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.rep-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(26,58,42,0.06);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+.rep-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.rep-card-top {
+  background: linear-gradient(145deg, var(--green-deep), var(--green-mid));
+  padding: 32px 28px 24px;
+  position: relative;
+  text-align: center;
+}
+.rep-card-top::before {
+  content: '';
+  position: absolute; 
+  bottom: -1px; 
+  left: 0; 
+  right: 0; 
+  height: 40px;
+  background: var(--white);
+  border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+}
+.photo-frame {
+  width: 140px; 
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.photo-frame img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.3);
+  transform: scale(1.7);
+  object-position: center;
+}
+
+.photo-frame img.portrait-boga,
+.modal-photo img.portrait-boga {
+  transform: scale(1.55);
+  object-position: 55% 34%;
+}
+
+.photo-frame img.portrait-fadika,
+.modal-photo img.portrait-fadika {
+  transform: scale(2.15);
+  object-position: 70% 28%;
+}
+
+.photo-frame img.portrait-henriette,
+.modal-photo img.portrait-henriette {
+  transform: scale(1.45);
+  object-position: 50% 20%;
+}
+
+.photo-frame img.portrait-christelle,
+.modal-photo img.portrait-christelle {
+  transform: scale(1.9);
+  object-position: 42% 28%;
+}
+
+.photo-frame img.portrait-diaspora,
+.modal-photo img.portrait-diaspora {
+  transform: scale(1.2);
+  object-position: 55% 30%;
+}
+.photo-placeholder {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(200,151,58,0.2), rgba(200,151,58,0.05));
+  border: 2px dashed rgba(200,151,58,0.5);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px;
+}
+.photo-placeholder .ph-icon {
+  font-size: 26px; opacity: 0.6;
+}
+.photo-placeholder .ph-text {
+  font-size: 9px; letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(200,151,58,0.8);
+  font-weight: 500;
+}
+.rep-role-badge {
+  display: inline-block;
+  background: rgba(200,151,58,0.18);
+  border: 1px solid rgba(200,151,58,0.35);
+  color: var(--gold-light);
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  position: relative; z-index: 1;
+}
+.rep-card-body {
+  padding: 20px 28px 28px;
+}
+.rep-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+.rep-section {
+  font-size: 12px; color: var(--green-light);
+  font-weight: 500; letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.rep-bio {
+  font-size: 13px; line-height: 1.75;
+  color: var(--text-mid); font-weight: 300;
+  margin-bottom: 20px;
+}
+.rep-details {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.rep-detail {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 12px; color: var(--text-mid);
+}
+.rep-detail .d-icon {
+  font-size: 14px; flex-shrink: 0;
+  margin-top: 1px;
+}
+.rep-detail strong {
+  color: var(--text-dark); font-weight: 500;
+}
+.lang-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-top: 16px;
+}
+.lang-tag {
+  background: var(--gold-pale); color: var(--gold);
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 8px;
+}
+.rep-awards {
+  margin-top: 18px;
+  border-top: 1px solid rgba(26,58,42,0.07);
+  padding-top: 18px;
+}
+.award-title {
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 10px;
+}
+.award-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 8px; font-size: 12px; color: var(--text-mid);
+}
+.award-item .a-icon { font-size: 15px; flex-shrink: 0; }
+.award-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 600;
+  color: var(--gold);
+  min-width: 34px;
+}
+.read-more-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: var(--green-deep);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+}
+.read-more-btn:hover {
+  background: var(--green-mid);
+  transform: none;
+}
+
+/* No rep card */
+.no-rep-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 48px 32px;
+  text-align: center;
+  border: 1.5px dashed rgba(26,58,42,0.12);
+}
+.no-rep-card .nr-icon {
+  font-size: 40px; opacity: 0.3; margin-bottom: 12px;
+}
+.no-rep-card p {
+  font-size: 14px; color: var(--text-light);
+}
+
+/* Placeholder panel */
+.empty-state {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 400px; text-align: center;
+  background: var(--white); border-radius: 20px;
+  border: 1px solid rgba(26,58,42,0.06);
+}
+.empty-state .es-icon { font-size: 56px; margin-bottom: 20px; opacity: 0.3; }
+.empty-state h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--text-mid); margin-bottom: 12px;
+}
+.empty-state p { font-size: 14px; color: var(--text-light); max-width: 320px; }
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,58,42,0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--white);
+  border-radius: 24px;
+  max-width: 680px; width: 100%;
+  max-height: 88vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s;
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+.modal-header {
+  background: linear-gradient(145deg, var(--green-deep), var(--green-mid));
+  padding: 40px 40px 32px;
+  position: relative;
+  text-align: center;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.12);
+  border: none; border-radius: 50%;
+  color: var(--white); font-size: 18px;
+  cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-close:hover { background: rgba(255,255,255,0.2); }
+.modal-photo {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+}
+.modal-photo {
+  overflow: hidden;
+}
+.modal-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.modal-photo .photo-placeholder { width: 100%; height: 100%; }
+.modal-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300;
+  color: var(--white); margin-bottom: 4px;
+}
+.modal-header .role {
+  font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold-light);
+}
+.modal-body { padding: 36px 40px 40px; }
+.modal-section { margin-bottom: 28px; }
+.modal-section-title {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 12px;
+}
+.modal-bio-text {
+  font-size: 15px; line-height: 1.85;
+  color: var(--text-mid); font-weight: 300;
+}
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.modal-info-item {
+  background: var(--cream);
+  border-radius: 12px; padding: 14px 16px;
+}
+.modal-info-label {
+  font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 4px;
+}
+.modal-info-value {
+  font-size: 14px; color: var(--text-dark); font-weight: 500;
+}
+
+/* Footer */
+footer {
+  padding: 40px 5vw;
+  text-align: center;
+  background-color: whitesmoke;
+  border-top: 1px solid rgba(200,151,58,0.2);
+}
+footer p {
+  font-size: 12px; 
+  color: var(--green-deep);
+  letter-spacing: 1px;
+}
+footer .f-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; color: var(--gold-light);
+  margin-bottom: 8px;
+}
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 0.4s ease forwards; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main-content { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .modal-grid { grid-template-columns: 1fr; }
+  .modal-body { padding: 24px; }
+  .modal-header { padding: 28px 24px 24px; }
+  .hero-stats { gap: 28px; }
+}
+@media (max-width: 600px) {
+  .regions-list { max-height: 260px; overflow-y: auto; }
+  nav { display: none; }
+}
+
+
+  </style>
+</head>
+<body>
+  
+
+<!-- HEADER -->
+<style>
+  img{
+    height: 70px;
+  }
+</style>
+<header>
+  <div class="logo-area">
+   <img src="./fap-bio.png" alt="">
+    <div>
+     
+     
+    </div>
+  </div>
+  <nav>
+    <a href="./fapbio.html">Retour</a>
+
+    
+    
+    <a href="./salon-bio-abidjan.html">SIBIO 2026</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-label">Réseau National</div>
+  <h1>Représentation<br/>des <em>Régions</em></h1>
+  <p>FAP-BIO est présente dans les 31 régions de Côte d'Ivoire à travers un réseau engagé de représentants locaux qui œuvrent pour le développement de l'agriculture biologique et durable.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">31</div>
+      <div class="stat-label">Régions</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">14</div>
+      <div class="stat-label">Districts</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">+200</div>
+      <div class="stat-label">Membres actifs</div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- SEARCH -->
+
+<div class="search-zone">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Rechercher une région…" oninput="filterRegions(this.value)" />
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="filterZone('all', this)">Toutes</button>
+    <button class="filter-tab" onclick="filterZone('Sud', this)">Sud</button>
+    <button class="filter-tab" onclick="filterZone('Nord', this)">Nord</button>
+    <button class="filter-tab" onclick="filterZone('Est', this)">Est</button>
+    <button class="filter-tab" onclick="filterZone('Ouest', this)">Ouest</button>
+    <button class="filter-tab" onclick="filterZone('Centre', this)">Centre</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+
+<div class="main-content">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Régions de Côte d'Ivoire</div>
+    <div class="regions-list" id="regionsList"></div>
+    <div class="diaspora-shortcut">
+      <div class="sidebar-title">Diaspora</div>
+      <a class="diaspora-card" href="./region.html?region=Montreal">
+        <strong>Montreal, Canada</strong>
+        <span>Représentation FAP-BIO diaspora</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Content -->
+
+  <main class="content-panel" id="contentPanel">
+    <div class="empty-state">
+      <div class="es-icon">🌍</div>
+      <h3>Choisissez une région</h3>
+      <p>Sélectionnez une région dans la liste pour découvrir ses représentants FAP-BIO.</p>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-header" id="modalHeader"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="f-logo">FAP-BIO</div>
+  <p>Forum Africain Pour la Promotion du Bio &nbsp;·&nbsp; Tous droits réservés © 2026</p>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const regionsData = [
+  {
+    id: "grandouest",
+    name: "Grand-Ouest",
+    zone: "Ouest",
+    district: "Man",
+    chef: "Duokoué",
+    superficie: "10 700 km²",
+    description: "Le Grand Ouest de Côte d'Ivoire, caractérisé par son relief montagneux et sa forêt dense, est une région à forte vocation agricole, mais avec une spécialisation différente du bassin cacaoyer de la Nawa.  Cette zone est le premier bassin de production d'hévéa (caoutchouc naturel) du pays, avec des plantations industrielles et des exploitations de petits producteurs. En plus de l'hévéa, la culture du cacao y est également très importante, pratiquée dans un système d'agroforesterie où les cacaoyers poussent à l'ombre des arbres de la forêt.  La région abrite également de vastes plantations de palmiers à huile, notamment autour du port de San-Pédro, qui en est devenu un centre logistique majeur.",
+    tags: ["Cacao", "Pisciculture", "Agriculture", "Hévéa", "Palmier à huile"],
+    reps: [
+      {
+        id: "fadika",
+        name: "M. Fadika Abdoulaye",
+        role: "Président pour le grand ouest de la Côte d’Ivoire &  PDG de Digital Ferme Tech Bio",
+        photo: "abdoulayeFadiko.jpeg",
+        photoPlaceholder: false,
+        shortBio: "Entrepreneur engagé dans le maraîchage, le bio et la promotion d'opportunités agricoles pour les jeunes.",
+        fullBio: `Je suis M. Fadika Abdoulaye, PDG de Digital Ferme Tech Bio. Fort d’un bac+2 en chimie, biologie et géologie, complété par une formation dans les travaux publics, j’ai un jour choisi de tout quitter pour répondre à un appel plus fort que moi : celui de la terre et de ma conscience.
+
+Un drame a brisé ma vie. Quatre membres de ma famille, pleins de vie et de courage, ont péri dans un naufrage en Méditerranée. Ils ne fuyaient ni les bombes ni la dictature, mais l’absence d’opportunités. Ce jour-là, ma conception de la réussite a basculé. J’ai compris qu’un homme ne vaut pas par ce qu’il accumule, mais par ce qu’il empêche les autres de risquer.
+
+J’ai donc regagné mon village natal, Touba. Là, j’ai imposé une conviction simple : l’agriculture peut sauver nos jeunes, mais pas n’importe laquelle. L’agriculture chimique tue les sols et les âmes. J’ai embrassé le bio, avec une bravoure que mes proches n’avaient jamais vue. Aujourd’hui, cinq ans plus tard, je produis plus de 20 tonnes par an, j’emploie dix jeunes qui vivent dignement, et je suis devenu un leader entrepreneurial dans mon territoire.
+
+Par abnégation, j’ai rejoint le Forum Africain pour la Promotion du Bio (FAP-BIO), où j’ai eu l’honneur d’être élu président pour le grand ouest de la Côte d’Ivoire. Mon ambition est simple : redonner toute sa valeur à l’agriculture durable, pour qu’aucun fils de la terre ne préfère les tombes salées de la Méditerranée à un champ fertile.
+
+Le dynamisme, je le porte jusque dans la tech. Je suis le concepteur d’une application intelligente qui va rendre l’agriculture plus rentable, plus sûre et plus sécurisée. Parce que protéger nos paysans, c’est aussi les outiller.
+
+Je viens au Salon international du Bio 2026 non pas pour raconter une histoire, mais pour bâtir un avenir où le courage ne s’embarque plus sur des bateaux de fortune, où l’abnégation se récolte à même le sol vivant. Je suis prêt à transformer chaque main tendue en moisson.`,
+        born: "—",
+        languages: ["Français"],
+        experience: "Fort d’un bac+2 en chimie, biologie et géologie, complété par une formation dans les travaux publics.",
+        awards: []
+      }
+    ]
+  },
+  {
+    id: "montreal",
+    name: "Montreal",
+    zone: "Diaspora",
+    district: "Canada",
+    chef: "Montreal",
+    superficie: "Section diaspora",
+    description: "La représentation FAP-BIO de Montreal accompagne la diaspora engagée dans la promotion du bio, des partenariats et des initiatives agricoles durables entre le Canada et la Côte d'Ivoire.",
+    tags: ["Diaspora", "Canada", "Partenariats", "Bio"],
+    reps: [
+      {
+        id: "marie-laurence",
+        name: "Marie Laurence Gnizako D",
+        role: "Représentante FAP-BIO Montreal",
+        photo: "./diaspora.jpeg",
+        photoPlaceholder: false,
+        shortBio: "Représentante de la diaspora FAP-BIO à Montreal, engagée dans les liens entre producteurs, partenaires et communautés.",
+        fullBio: `Marie Laurence Gnizako D est une femme d’affaires engagée, dotée d’un parcours riche de plus de quatre décennies d’expérience en Occident, notamment en France et au Canada. Après avoir exercé au sein du Rectorat en France, elle a su opérer une transition réussie vers le monde de l’entrepreneuriat, où elle évolue depuis plus de 30 ans avec détermination et résilience.
+
+Aujourd’hui âgée de 59 ans et résidant au Québec, elle incarne une vision humaine et durable du développement. Profondément attachée à la nature, elle nourrit une passion sincère pour les modes de vie sains et respectueux de l’environnement. Son engagement dépasse le cadre éco                                 ique : elle est également reconnue pour son esprit de solidarité, notamment à travers l’accueil et l’accompagnement bénévole de nouveaux arrivants, contribuant ainsi à leur intégration sociale et professionnelle.
+
+Convaincue que l’agriculture biologique représente bien plus qu’un secteur d’activité — un véritable engagement pour l’équilibre de l’être humain et de son environnement — Marie Laurence Gnizako D s’implique activement dans la promotion de ce modèle durable.
+
+En tant que représentante du FAP-BIO (Forum Africain pour la Promotion du Bio) au Canada, elle œuvre à renforcer les ponts entre l’Afrique et la diaspora, tout en valorisant les pratiques agricoles respectueuses de la santé, des sols et des écosystèmes. À travers cette mission, elle participe à la sensibilisation, à la mobilisation et à la structuration d’un réseau international engagé pour une agriculture plus saine, éthique et durable.
+
+Son parcours est le reflet d’un engagement profond : allier expérience, humanisme et vision écologique pour contribuer à un avenir meilleur.`,
+        born: "—",
+        languages: ["Français"],
+        experience: "Mobilisation diaspora, partenariats et promotion du bio",
+        awards: []
+      }
+    ]
+  },
+
+  {
+    id: "san-pedro",
+    name: "San-Pédro",
+    zone: "Sud",
+    district: "Bas-Sassandra",
+    chef: "San-Pédro",
+    superficie: "6 660 km²",
+    description: "La région de San-Pédro est connue pour son important port en eaux profondes, deuxième port de Côte d'Ivoire. Riche en ressources forestières et agricoles, elle constitue un pôle économique majeur du Sud-Ouest ivoirien, avec une forte production de cacao, de café et de palmier à huile.",
+    tags: ["Cacao", "Café", "Palmier à huile", "Pêche", "Forêt"],
+    reps: [
+      {
+        id: "henriette",
+        name: "Mme Beh Manwoudo Henriette",
+        role: "Présidente FAP-BIO San-Pédro",
+        photo: "./me_henriette.jpeg",
+        photoPlaceholder: false,
+        shortBio: "Femme engagée et passionnée par le développement agricole, lauréate de deux prix d'excellence en production et transformation agro-alimentaire.",
+        fullBio: `Mme Beh Manwoudo Henriette est une femme engagée, dynamique et passionnée par le développement agricole et la transformation des produits vivriers en Côte d'Ivoire. Née le 1er janvier 1965, elle s'est illustrée au fil des années par son courage, son sens du travail et son engagement au service des communautés rurales et du secteur agricole.
+
+Dotée d'une solide expérience dans la production et la transformation agroalimentaire, elle a travaillé de 2000 à 2010 dans la transformation de tomate à l'usine VALEPIANO en Italie, une expérience internationale qui lui a permis d'acquérir des compétences techniques et professionnelles importantes dans le domaine de l'agro-industrie.
+
+Avant cette expérience, Mme Henriette s'était déjà distinguée en Côte d'Ivoire grâce à son savoir-faire exceptionnel. Parlant plusieurs langues — le français, l'italien et l'allemand —, elle est reconnue pour son ouverture, son sens de l'organisation et sa capacité d'adaptation.
+
+Passionnée par l'agriculture, la cuisine et la transformation des produits, elle continue aujourd'hui de mettre son expérience et son expertise au service de sa communauté en tant que Présidente de la section FAP-BIO de San Pedro, où elle œuvre pour la promotion des femmes, du monde agricole et du développement local.`,
+        born: "1er janvier 1965",
+        languages: ["Français", "Italien", "Allemand"],
+        experience: "Transformation agroalimentaire (VALEPIANO, Italie 2000–2010)",
+        awards: [
+          { year: "1998", label: "Prix meilleure productrice du Sud-Ouest Café-Cacao" },
+          { year: "1999", label: "Prix Henri Konan Bédié de la meilleure productrice et transformatrice des produits vivriers" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nawa",
+    name: "Nawa",
+    zone: "Sud",
+    district: "Bas-Sassandra",
+    chef: "Soubré",
+    superficie: "10 700 km²",
+    description: "La région du Nawa est le premier bassin cacaoyer de Côte d'Ivoire et du monde entier. Soubré, son chef-lieu, est souvent surnommée la « capitale du cacao ». La région dispose également d'un potentiel important en pisciculture, aquaculture et productions animales.",
+    tags: ["Cacao", "Pisciculture", "Aquaculture", "Hévéa", "Palmier à huile"],
+    reps: [
+      {
+        id: "christelle",
+        name: "Mme Christelle Djeble",
+        role: "Présidente FAP-BIO Nawa",
+        photo: "./me_nawa2.jpeg",
+        photoPlaceholder: false,
+        shortBio: "Actrice engagée du secteur agro-pastoral, spécialisée en pisciculture et promotion de l'agriculture biologique.",
+        fullBio: `Mme Christelle Djeble est Présidente de la section FAP-BIO du Nawa. Actrice engagée du secteur agro-pastoral, elle est spécialisée en pisciculture et s'investit activement dans la promotion de l'agriculture biologique et la valorisation des productions animales.
+
+À travers ses actions et sa présence sur les réseaux sociaux, elle contribue à sensibiliser, former et inspirer une nouvelle génération d'acteurs agricoles en Côte d'Ivoire. Animée par une vision moderne du développement agricole, elle allie terrain et communication digitale pour porter haut les valeurs du bio et de l'agroécologie dans la région du Nawa.
+
+Son engagement au sein de FAP-BIO reflète sa conviction profonde que l'agriculture biologique est une voie d'avenir pour la Côte d'Ivoire, et que les femmes doivent en être les actrices centrales.`,
+        born: "—",
+        languages: ["Français"],
+        experience: "Pisciculture, productions animales, communication digitale agricole",
+        awards: []
+      }
+    ]
+  },
+  // ── Regions with no rep yet ─────────────────────────────────────
+  {
+    id: "abidjan",
+    name: "Abidjan",
+    zone: "Sud",
+    district: "Lagunes",
+    chef: "Abidjan",
+    superficie: "2 119 km²",
+    description: "District économique et capitale économique de la Côte d'Ivoire, carrefour commercial et financier de l'Afrique de l'Ouest.",
+    tags: ["Commerce", "Services", "Maraîchage"],
+    reps: [
+      {
+        id: "boga",
+        name: "Boga Ibo Constant",
+        role: "Président du FAP-BIO & Commissaire Général du SIBIO",
+        photo: "./Mr_Boga.jpeg",
+        photoPlaceholder: false,
+        shortBio: "Figure de référence dans la promotion de l’agriculture biologique, de la transition écologique et de la finance carbone agricole en Afrique.",
+        fullBio: `Boga Ibo Constant est une figure de référence dans la promotion de l’agriculture biologique, de la transition écologique et de la finance carbone appliquée au secteur agricole en Afrique.
+
+Ingénieur en commerce international et Manager des organisations, il dispose d’une expertise pointue renforcée par des certifications en bilan carbone, décarbonation et finance carbone agricole, lui permettant d’accompagner des initiatives structurantes en faveur de systèmes agricoles durables et résilients.
+
+En sa qualité de Président du Forum Africain pour la Promotion du Bio (FAP-BIO), il pilote une organisation engagée dans la transformation des modèles agricoles africains, en favorisant l’adoption de pratiques agroécologiques, la certification biologique, et la valorisation des chaînes de valeur durables.
+
+Par ailleurs, en tant que Commissaire Général du Salon International du Bio (SIBIO), il impulse une dynamique de coopération entre acteurs publics et privés, producteurs, investisseurs et institutions, autour des enjeux de consommation responsable, d’innovation agricole et de développement des marchés du bio en Afrique.
+
+Acteur engagé de la transition climatique, Boga Ibo Constant œuvre à l’intégration des mécanismes de finance carbone agricole, notamment à travers le développement de projets de crédits carbone.
+
+Visionnaire et stratège, il incarne un leadership orienté vers l’impact, avec pour ambition de faire de l’Afrique un acteur majeur d’une agriculture durable, compétitive et tournée vers le bien-être des populations.`,
+        born: "—",
+        languages: ["Français"],
+        experience: "Agriculture biologique, transition écologique, décarbonation et finance carbone agricole",
+        awards: []
+      }
+    ]
+  },
+  { id: "agneby-tiassa", name: "Agnéby-Tiassa", zone: "Sud", district: "Lagunes", chef: "Agboville", superficie: "9 080 km²", description: "Région riche en café, cacao et ananas, traversée par la rivière Agnéby.", tags: ["Café", "Cacao", "Ananas", "Hévéa"], reps: [] },
+  { id: "la-me", name: "La Mé", zone: "Sud", district: "Lagunes", chef: "Adzopé", superficie: "5 815 km²", description: "Région forestière avec une forte production de palmier à huile et d'hévéa.", tags: ["Palmier à huile", "Hévéa", "Forêt"], reps: [] },
+  { id: "grands-ponts", name: "Grands-Ponts", zone: "Sud", district: "Lagunes", chef: "Dabou", superficie: "7 650 km²", description: "Zone côtière avec un fort potentiel en pêche et cocotier.", tags: ["Pêche", "Cocotier", "Tourisme"], reps: [] },
+  { id: "marahoue", name: "Marahoué", zone: "Centre", district: "Vallée du Bandama", chef: "Bouaflé", superficie: "8 500 km²", description: "Carrefour agricole avec une forte production cotonnière et vivrière.", tags: ["Coton", "Vivrier", "Élevage"], reps: [] },
+  { id: "gbeke", name: "Gbêkê", zone: "Centre", district: "Vallée du Bandama", chef: "Bouaké", superficie: "9 125 km²", description: "Cœur économique du centre ivoirien, deuxième ville de Côte d'Ivoire, hub commercial.", tags: ["Commerce", "Vivrier", "Élevage"], reps: [] },
+  { id: "belier", name: "Bélier", zone: "Centre", district: "Lacs", chef: "Yamoussoukro", superficie: "6 500 km²", description: "Région de la capitale politique de Côte d'Ivoire, riche en cacao et culture vivrière.", tags: ["Cacao", "Vivrier", "Pêche"], reps: [] },
+  { id: "iffou", name: "Iffou", zone: "Centre", district: "Lacs", chef: "Dimbokro", superficie: "8 965 km²", description: "Région agricole avec une production importante de café et de cacao.", tags: ["Café", "Cacao", "Vivrier"], reps: [] },
+  { id: "n-zi", name: "N'Zi", zone: "Centre", district: "Lacs", chef: "Dimbokro", superficie: "7 900 km²", description: "Riche en biodiversité, traversée par le fleuve N'Zi.", tags: ["Vivrier", "Élevage", "Pêche"], reps: [] },
+  { id: "moronou", name: "Moronou", zone: "Centre", district: "Lacs", chef: "Bongouanou", superficie: "5 790 km²", description: "Région de l'ananas et du café, connue pour ses terres fertiles.", tags: ["Ananas", "Café", "Cacao"], reps: [] },
+  { id: "goh", name: "Gôh", zone: "Ouest", district: "Sassandra-Marahoué", chef: "Gagnoa", superficie: "5 850 km²", description: "Première région productrice de cacao en volume par hectare cultivé.", tags: ["Cacao", "Café", "Caoutchouc"], reps: [] },
+  { id: "loh-djiboua", name: "Lôh-Djiboua", zone: "Ouest", district: "Sassandra-Marahoué", chef: "Divo", superficie: "9 775 km²", description: "Région riche en hévéa, palmier à huile et forêts naturelles.", tags: ["Hévéa", "Palmier à huile", "Forêt"], reps: [] },
+  { id: "haut-sassandra", name: "Haut-Sassandra", zone: "Ouest", district: "Sassandra-Marahoué", chef: "Daloa", superficie: "15 200 km²", description: "Troisième ville de Côte d'Ivoire, grand bassin caféier et cacaoyer.", tags: ["Café", "Cacao", "Hévéa"], reps: [] },
+  { id: "guemon", name: "Guémon", zone: "Ouest", district: "Montagnes", chef: "Duékoué", superficie: "9 710 km²", description: "Région à fort potentiel forestier et agricole, porte d'entrée du Grand Ouest.", tags: ["Forêt", "Cacao", "Palmier"], reps: [] },
+  { id: "tonkpi", name: "Tonkpi", zone: "Ouest", district: "Montagnes", chef: "Man", superficie: "10 880 km²", description: "Région des montagnes ivoiriennes avec un tourisme en plein essor et des cultures de montagne.", tags: ["Tourisme", "Café", "Vivrier", "Cascade"], reps: [] },
+  { id: "cavally", name: "Cavally", zone: "Ouest", district: "Montagnes", chef: "Guiglo", superficie: "16 060 km²", description: "Grande région forestière à la frontière du Libéria, riche en biodiversité.", tags: ["Forêt", "Bois", "Cacao"], reps: [] },
+  { id: "bafing", name: "Bafing", zone: "Ouest", district: "Woroba", chef: "Touba", superficie: "8 720 km²", description: "Région montagneuse avec un potentiel hydroélectrique et des cultures de montagne.", tags: ["Mil", "Sorgho", "Élevage"], reps: [] },
+  { id: "bere", name: "Béré", zone: "Ouest", district: "Woroba", chef: "Mankono", superficie: "10 490 km²", description: "Zone de transition entre forêt et savane, potentiel en coton et élevage.", tags: ["Coton", "Élevage", "Vivrier"], reps: [] },
+  { id: "worodougou", name: "Worodougou", zone: "Nord", district: "Woroba", chef: "Séguéla", superficie: "13 675 km²", description: "Région aurifère et cotonnier, avec un sous-sol riche en minerais précieux.", tags: ["Or", "Coton", "Karité"], reps: [] },
+  { id: "hambol", name: "Hambol", zone: "Centre", district: "Vallée du Bandama", chef: "Katiola", superficie: "12 860 km²", description: "Région de savane avec forte production de noix de cajou et élevage extensif.", tags: ["Cajou", "Élevage", "Coton"], reps: [] },
+  { id: "poro", name: "Poro", zone: "Nord", district: "Savanes", chef: "Korhogo", superficie: "12 285 km²", description: "Korhogo, capitale du Nord, connue pour ses tissus artisanaux (pagne Kita) et sa production de coton et de mangue.", tags: ["Coton", "Mangue", "Artisanat"], reps: [] },
+  { id: "tchologo", name: "Tchologo", zone: "Nord", district: "Savanes", chef: "Ferkessédougou", superficie: "16 802 km²", description: "Région sucrière avec les grandes plantations de SUCAF, carrefour vers le Mali et le Burkina.", tags: ["Canne à sucre", "Coton", "Mangue"], reps: [] },
+  { id: "bagoue", name: "Bagoué", zone: "Nord", district: "Savanes", chef: "Boundiali", superficie: "11 640 km²", description: "Région cotonnière avec un fort potentiel en mangue et anacarde.", tags: ["Coton", "Cajou", "Mangue"], reps: [] },
+  { id: "kabadougou", name: "Kabadougou", zone: "Nord", district: "Denguelé", chef: "Odienné", superficie: "20 000 km²", description: "Grande région du Nord-Ouest riche en karité, anacarde et élevage.", tags: ["Karité", "Cajou", "Élevage"], reps: [] },
+  { id: "folon", name: "Folon", zone: "Nord", district: "Denguelé", chef: "Minignan", superficie: "8 890 km²", description: "Région transfrontalière avec la Guinée et le Mali, potentiel agropastoral.", tags: ["Mil", "Élevage", "Karité"], reps: [] },
+  { id: "gontougo", name: "Gontougo", zone: "Est", district: "Comoé", chef: "Bondoukou", superficie: "16 438 km²", description: "Région de l'igname et de l'anacarde, berceau de la culture lobi.", tags: ["Igname", "Cajou", "Élevage"], reps: [] },
+  { id: "indenie-djuablin", name: "Indénié-Djuablin", zone: "Est", district: "Comoé", chef: "Abengourou", superficie: "6 900 km²", description: "Cœur du pays Agni, riche en cacao et café avec un patrimoine culturel fort.", tags: ["Cacao", "Café", "Culture Agni"], reps: [] },
+  { id: "sud-comoe", name: "Sud-Comoé", zone: "Est", district: "Comoé", chef: "Aboisso", superficie: "6 969 km²", description: "Région frontalière avec le Ghana, production d'hévéa et de palmier à huile.", tags: ["Hévéa", "Palmier à huile", "Pêche"], reps: [] },
+  { id: "me", name: "Mé", zone: "Sud", district: "Lagunes", chef: "Tiassalé", superficie: "4 775 km²", description: "Région agricole du centre-sud, production de café, cacao et ananas.", tags: ["Café", "Cacao", "Ananas"], reps: [] },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let currentZone = 'all';
+let currentRegionId = null;
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function init() {
+  const selectedRegion = getRegionIdFromUrl();
+  if (selectedRegion) {
+    loadRegion(selectedRegion);
+    return;
+  }
+  renderRegionList();
+}
+
+function normalizeRegionKey(value) {
+  return decodeURIComponent(String(value || ''))
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function getRegionIdFromUrl() {
+  const regionParam = new URLSearchParams(window.location.search).get('region');
+  if (!regionParam) return null;
+
+  const aliases = {
+    montreal: 'montreal',
+    canada: 'montreal',
+    'san pedro': 'san-pedro',
+    nzi: 'n-zi',
+    'n zi': 'n-zi',
+    belier: 'belier',
+    yamoussoukro: 'belier',
+    bouake: 'gbeke',
+    'la me': 'la-me',
+    me: 'me'
+  };
+
+  const key = normalizeRegionKey(regionParam);
+  if (aliases[key]) return aliases[key];
+
+  const region = regionsData.find(r =>
+    normalizeRegionKey(r.id) === key ||
+    normalizeRegionKey(r.name) === key ||
+    normalizeRegionKey(r.chef) === key
+  );
+
+  return region ? region.id : null;
+}
+
+function renderRegionList(filter = '') {
+  const list = document.getElementById('regionsList');
+  list.innerHTML = '';
+  regionsData
+    .filter(r => {
+      const matchZone = currentZone === 'all'
+        ? r.zone !== 'Diaspora'
+        : r.zone === currentZone;
+      const matchSearch = r.name.toLowerCase().includes(filter.toLowerCase());
+      return matchZone && matchSearch;
+    })
+    .forEach(region => {
+      const div = document.createElement('div');
+      div.className = 'region-item' + (region.reps.length ? ' has-rep' : '') + (currentRegionId === region.id ? ' active' : '');
+      div.onclick = () => loadRegion(region.id);
+      div.innerHTML = `
+        <div class="region-left">
+          <div class="region-dot"></div>
+          <div>
+            <div class="region-name">${region.name}</div>
+            <div class="region-zone">${region.zone} · ${region.district}</div>
+          </div>
+        </div>
+        ${region.reps.length ? `<div class="rep-badge">${region.reps.length} rep.</div>` : ''}
+      `;
+      list.appendChild(div);
+    });
+}
+
+function filterZone(zone, btn) {
+  currentZone = zone;
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRegionList(document.getElementById('searchInput').value);
+}
+
+function filterRegions(val) {
+  renderRegionList(val);
+}
+
+function loadRegion(id) {
+  currentRegionId = id;
+  renderRegionList(document.getElementById('searchInput').value);
+  const region = regionsData.find(r => r.id === id);
+  if (!region) return;
+
+  const panel = document.getElementById('contentPanel');
+  panel.innerHTML = `
+    <div class="fade-in">
+      <div class="region-header">
+        <div class="region-breadcrumb">FAP-BIO Côte d'Ivoire &nbsp;›&nbsp; <span>${region.name}</span></div>
+        <h2>${region.name}</h2>
+        <div class="region-meta-row">
+          <div class="meta-chip"><span class="icon">🌍</span> District ${region.district}</div>
+          <div class="meta-chip"><span class="icon">📍</span> Chef-lieu : ${region.chef}</div>
+          <div class="meta-chip"><span class="icon">📐</span> ${region.superficie}</div>
+          <div class="meta-chip"><span class="icon">🧭</span> Zone ${region.zone}</div>
+        </div>
+      </div>
+
+      <div class="region-info-box">
+        <div class="info-box-title">À propos de la région</div>
+        <p>${region.description}</p>
+        <div class="info-tags">
+          ${region.tags.map(t => `<span class="info-tag">🌿 ${t}</span>`).join('')}
+        </div>
+      </div>
+
+      <div class="section-title-row">
+        <h3 class="section-title">Représentants FAP-BIO</h3>
+        <div class="section-line"></div>
+        <div class="rep-count">${region.reps.length} représentant${region.reps.length !== 1 ? 's' : ''}</div>
+      </div>
+
+      ${region.reps.length ? `
+        <div class="reps-grid">
+          ${region.reps.map(rep => renderRepCard(rep)).join('')}
+        </div>
+      ` : `
+        <div class="no-rep-card">
+          <div class="nr-icon">🌱</div>
+          <p>Aucun représentant enregistré pour cette région pour le moment.</p>
+        </div>
+      `}
+    </div>
+  `;
+}
+
+function getPortraitClass(rep) {
+  const portraitClasses = {
+    boga: 'portrait-boga',
+    fadika: 'portrait-fadika',
+    henriette: 'portrait-henriette',
+    christelle: 'portrait-christelle',
+    'marie-laurence': 'portrait-diaspora'
+  };
+
+  return portraitClasses[rep.id] || '';
+}
+
+function renderRepCard(rep) {
+  return `
+    <div class="rep-card">
+      <div class="rep-card-top">
+        <div class="photo-frame">
+          ${rep.photoPlaceholder ? `
+            <div class="photo-placeholder">
+              <div class="ph-icon">👤</div>
+              <div class="ph-text">Photo</div>
+            </div>
+          ` : `<img class="${getPortraitClass(rep)}" src="${rep.photo}" alt="${rep.name}" />`}
+        </div>
+        <div class="rep-role-badge">${rep.role}</div>
+      </div>
+      <div class="rep-card-body">
+        <div class="rep-name">${rep.name}</div>
+        <div class="rep-section">${rep.role.replace('Présidente FAP-BIO ', 'Section ')}  </div>
+        <div class="rep-bio">${rep.shortBio}</div>
+        <div class="rep-details">
+          ${rep.experience ? `<div class="rep-detail"><span class="d-icon">💼</span><span><strong>Expérience :</strong> ${rep.experience}</span></div>` : ''}
+          ${rep.born && rep.born !== '—' ? `<div class="rep-detail"><span class="d-icon">📅</span><span><strong>Née le :</strong> ${rep.born}</span></div>` : ''}
+        </div>
+        ${rep.languages.length ? `
+          <div class="lang-tags">
+            ${rep.languages.map(l => `<span class="lang-tag">${l}</span>`).join('')}
+          </div>
+        ` : ''}
+        ${rep.awards && rep.awards.length ? `
+          <div class="rep-awards">
+            <div class="award-title">Distinctions</div>
+            ${rep.awards.map(a => `
+              <div class="award-item">
+                <span class="a-icon">🏅</span>
+                <span class="award-year">${a.year}</span>
+                <span>${a.label}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
+        <button class="read-more-btn" onclick="openModal('${rep.id}', '${currentRegionId}')">Voir la biographie complète</button>
+      </div>
+    </div>
+  `;
+}
+
+function openModal(repId, regionId) {
+  const region = regionsData.find(r => r.id === regionId);
+  const rep = region.reps.find(r => r.id === repId);
+  if (!rep) return;
+
+  document.getElementById('modalHeader').innerHTML = `
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-photo">
+      ${rep.photoPlaceholder ? `
+        <div class="photo-placeholder">
+          <div class="ph-icon" style="font-size:34px">👤</div>
+          <div class="ph-text">Photo à venir</div>
+        </div>
+      ` : `<img class="${getPortraitClass(rep)}" src="${rep.photo}" alt="${rep.name}" />`}
+    </div>
+    <h2>${rep.name}</h2>
+    <div class="role">${rep.role}</div>
+  `;
+
+  const paragraphs = rep.fullBio.trim().split('\n\n').filter(Boolean);
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-section">
+      <div class="modal-section-title">Biographie</div>
+      <div class="modal-bio-text">
+        ${paragraphs.map(p => `<p style="margin-bottom:14px">${p.trim()}</p>`).join('')}
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Informations</div>
+      <div class="modal-grid">
+        ${rep.born && rep.born !== '—' ? `<div class="modal-info-item"><div class="modal-info-label">Date de naissance</div><div class="modal-info-value">${rep.born}</div></div>` : ''}
+        ${rep.experience ? `<div class="modal-info-item"><div class="modal-info-label">Domaine d'expertise</div><div class="modal-info-value">${rep.experience}</div></div>` : ''}
+        ${rep.languages.length ? `<div class="modal-info-item"><div class="modal-info-label">Langues parlées</div><div class="modal-info-value">${rep.languages.join(', ')}</div></div>` : ''}
+        <div class="modal-info-item"><div class="modal-info-label">Section FAP-BIO</div><div class="modal-info-value">${region.name}</div></div>
+      </div>
+    </div>
+    ${rep.awards && rep.awards.length ? `
+      <div class="modal-section">
+        <div class="modal-section-title">Distinctions & Prix</div>
+        ${rep.awards.map(a => `
+          <div class="award-item" style="margin-bottom:12px">
+            <span class="a-icon">🏅</span>
+            <span class="award-year">${a.year}</span>
+            <span style="font-size:14px;color:var(--text-mid)">${a.label}</span>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+  `;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+}
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+init();
+</script>
+</body>
+</html>

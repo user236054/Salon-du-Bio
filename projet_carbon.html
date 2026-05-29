@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarbonOva CI — Crédits Carbone Cacao Côte d'Ivoire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-950: #0a1f0d;
+    --green-900: #132b17;
+    --green-800: #1a4020;
+    --green-700: #235828;
+    --green-600: #2e7234;
+    --green-500: #3a8f42;
+    --green-400: #5ab362;
+    --green-300: #84d18c;
+    --green-200: #b5e8ba;
+    --green-100: #dff4e1;
+    --green-50: #f0faf1;
+    --gold-800: #7a4f00;
+    --gold-600: #b87800;
+    --gold-500: #d4950a;
+    --gold-400: #e8af2a;
+    --gold-300: #f5cc6a;
+    --gold-100: #fdf3d4;
+    --cream: #faf8f2;
+    --dark: #0d1a0f;
+    --text-primary: #0d1a0f;
+    --text-secondary: #3d5240;
+    --text-muted: #6b8570;
+    --border: rgba(46, 114, 52, 0.15);
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4%;
+    background: rgba(250, 248, 242, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--green-700);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .logo-mark::before {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 2.5px solid var(--gold-400);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .logo-mark::after {
+    content: 'C';
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; font-weight: 700;
+    color: var(--gold-300);
+    position: relative; z-index: 1;
+  }
+  .logo-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--green-900); }
+  .logo-text span { color: var(--gold-500); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green-700); }
+
+  .nav-cta {
+    display: flex; gap: 12px; align-items: center;
+  }
+  .btn-outline {
+    padding: 0.55rem 1.2rem;
+    border: 1.5px solid var(--green-600);
+    color: var(--green-700);
+    background: transparent;
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--green-50); }
+
+  .btn-primary {
+    padding: 0.55rem 1.4rem;
+    background: var(--green-700);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--green-800); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(35,88,40,0.25); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--green-800); border-radius: 2px; transition: all 0.3s; }
+
+  /* ───── HERO ───── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 4% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 65% 40%, #d0edcf 0%, transparent 65%),
+                radial-gradient(ellipse 50% 40% at 15% 80%, #efe8c0 0%, transparent 60%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.03;
+    background-image: repeating-linear-gradient(0deg, var(--green-900) 0, var(--green-900) 1px, transparent 1px, transparent 60px),
+                      repeating-linear-gradient(90deg, var(--green-900) 0, var(--green-900) 1px, transparent 1px, transparent 60px);
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold-100);
+    border: 1px solid var(--gold-400);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--gold-800);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; background: var(--gold-500); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--green-950);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--green-600); }
+  .hero h1 .gold { color: var(--gold-600); }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-hero {
+    padding: 0.85rem 2rem;
+    background: var(--green-700);
+    color: #fff;
+    border: none; border-radius: var(--radius-lg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-hero:hover { background: var(--green-800); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(35,88,40,0.3); }
+
+  .btn-hero-outline {
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--green-800);
+    border: 2px solid var(--green-300);
+    border-radius: var(--radius-lg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-hero-outline:hover { background: var(--green-50); border-color: var(--green-500); }
+
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+
+  .hero-card-stack {
+    position: relative; width: 340px; height: 360px;
+  }
+  .hcard {
+    position: absolute;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+    transition: transform 0.3s;
+  }
+  .hcard:nth-child(1) { width: 280px; top: 40px; left: 30px; transform: rotate(-4deg); background: var(--green-900); color: #fff; }
+  .hcard:nth-child(2) { width: 300px; top: 80px; left: 20px; transform: rotate(-1deg); z-index: 2; }
+  .hcard:nth-child(3) { width: 320px; top: 120px; left: 10px; z-index: 3; }
+
+  .hcard-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 0.4rem; }
+  .hcard-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
+  .hcard-sub { font-size: 0.82rem; margin-top: 0.5rem; opacity: 0.75; }
+  .hcard-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .hcard-badge { display: inline-block; background: var(--green-100); color: var(--green-800); font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-top: 0.75rem; }
+  .hcard:nth-child(1) .hcard-badge { background: rgba(255,255,255,0.15); color: var(--green-200); }
+
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--green-800); }
+  .stat-lbl { font-size: 0.78rem; color: var(--text-muted); }
+
+  /* ───── SECTIONS ───── */
+  section { padding: 6rem 4%; }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--green-600);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--green-950);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: normal; color: var(--green-600); }
+  .section-desc { font-size: 1rem; color: var(--text-secondary); max-width: 560px; line-height: 1.75; }
+
+  /* ───── VALUE PROPS ───── */
+  .value-section { background: var(--green-950); color: #fff; }
+  .value-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5px;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-top: 4rem;
+  }
+  .value-card {
+    background: rgba(255,255,255,0.03);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+  }
+  .value-card:hover { background: rgba(255,255,255,0.07); }
+  .value-icon {
+    width: 52px; height: 52px;
+    background: rgba(90, 179, 98, 0.15);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  .value-card h3 { font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 0.6rem; }
+  .value-card p { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+  .value-header { color: #fff; }
+  .value-header .section-label { color: var(--green-300); }
+  .value-header .section-title { color: #fff; }
+  .value-header .section-title em { color: var(--green-300); }
+  .value-header .section-desc { color: rgba(255,255,255,0.6); }
+
+  /* ───── PHASES ───── */
+  .phases-section { background: #fff; }
+  .phases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+  .phase-card {
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .phase-card.phase1 { background: var(--green-50); border: 1.5px solid var(--green-200); }
+  .phase-card.phase2 { background: var(--gold-100); border: 1.5px solid var(--gold-300); }
+
+  .phase-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 700;
+    opacity: 0.07;
+    position: absolute; top: -0.5rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .phase1 .phase-number { color: var(--green-800); }
+  .phase2 .phase-number { color: var(--gold-600); }
+
+  .phase-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+  .phase1 .phase-tag { background: var(--green-200); color: var(--green-800); }
+  .phase2 .phase-tag { background: var(--gold-300); color: var(--gold-800); }
+
+  .phase-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; }
+  .phase1 .phase-card h3, .phase1 h3 { color: var(--green-900); }
+  .phase2 .phase-card h3, .phase2 h3 { color: var(--gold-800); }
+
+  .phase-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .phase-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.9rem; color: var(--text-secondary);
+  }
+  .phase-list li::before {
+    content: '✓';
+    font-weight: 700; font-size: 0.8rem;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .phase1 .phase-list li::before { color: var(--green-600); }
+  .phase2 .phase-list li::before { color: var(--gold-500); }
+
+  /* ───── PARTNERS ───── */
+  .partners-section { background: var(--green-50); }
+  .partners-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .partner-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+    text-align: center;
+  }
+  .partner-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(46,114,52,0.1); border-color: var(--green-300); }
+  .partner-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .partner-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--green-900); margin-bottom: 0.35rem; }
+  .partner-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ───── FINANCEMENT ───── */
+  .finance-section { background: #fff; }
+  .finance-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .finance-card {
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    position: relative;
+  }
+  .finance-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .fc-green::before { background: var(--green-500); }
+  .fc-gold::before { background: var(--gold-500); }
+  .fc-blue::before { background: #1a73d1; }
+  .fc-purple::before { background: #7b5ea7; }
+  .fc-teal::before { background: #0f7d74; }
+
+  .finance-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--green-900); margin-bottom: 0.5rem; margin-top: 0.5rem; }
+  .finance-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ───── CALCULATOR ───── */
+  .calc-section { background: var(--green-950); }
+  .calc-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: start;
+  }
+  .calc-desc .section-label { color: var(--green-300); }
+  .calc-desc .section-title { color: #fff; }
+  .calc-desc .section-title em { color: var(--green-300); }
+  .calc-desc .section-desc { color: rgba(255,255,255,0.6); }
+
+  .calculator {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+  }
+  .calc-field { margin-bottom: 1.25rem; }
+  .calc-field label {
+    display: block; font-size: 0.82rem; font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 0.5rem;
+  }
+  .calc-field input[type="range"] {
+    width: 100%; accent-color: var(--green-400);
+    cursor: pointer;
+  }
+  .calc-field .range-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+  .calc-field .range-val { font-size: 0.85rem; font-weight: 600; color: var(--green-300); }
+  .calc-result {
+    background: rgba(90,179,98,0.12);
+    border: 1px solid rgba(90,179,98,0.25);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .calc-result-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+  .calc-result-value { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--green-300); margin: 0.25rem 0; }
+  .calc-result-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+  .calc-result-row { display: flex; justify-content: space-between; align-items: baseline; }
+
+  /* ───── INSCRIPTION ───── */
+  .inscription-section { background: var(--green-50); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: #fff;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--green-500); box-shadow: 0 0 0 3px rgba(58,143,66,0.1); }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .form-submit {
+    width: 100%; padding: 1rem;
+    background: var(--green-700);
+    color: #fff; border: none;
+    border-radius: var(--radius-lg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--green-800); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(35,88,40,0.25); }
+
+  .insc-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+  .insc-info h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--green-950); margin-bottom: 1rem; }
+  .insc-info p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.5rem; }
+  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+  .benefit-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 0.88rem; color: var(--text-secondary);
+  }
+  .benefit-list li .bicon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: var(--green-100); color: var(--green-700);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  /* ───── CTA ───── */
+  .cta-section {
+    background: var(--green-700);
+    padding: 6rem 4%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 70%);
+  }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 1rem; position: relative; }
+  .cta-section p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 520px; margin: 0 auto 2.5rem; position: relative; }
+  .cta-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
+  .btn-white {
+    padding: 0.9rem 2rem;
+    background: #fff; color: var(--green-800);
+    border: none; border-radius: var(--radius-lg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .btn-white-outline {
+    padding: 0.9rem 2rem;
+    background: transparent; color: #fff;
+    border: 2px solid rgba(255,255,255,0.45);
+    border-radius: var(--radius-lg);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: all 0.25s;
+  }
+  .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: var(--green-950); color: rgba(255,255,255,0.6);
+    padding: 4rem 4% 2rem;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand .logo-text { font-size: 1.1rem; }
+  .footer-brand p { font-size: 0.85rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+  .footer-col h5 { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.9); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+  .footer-badges { display: flex; gap: 0.75rem; }
+  .f-badge {
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    font-size: 0.72rem; color: rgba(255,255,255,0.45);
+  }
+
+  /* ───── TOAST ───── */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    background: var(--green-800); color: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem; font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ───── ANIMATIONS ───── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: none; }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .phases-grid { grid-template-columns: 1fr; }
+    .calc-inner { grid-template-columns: 1fr; }
+    .insc-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .nav-cta .btn-outline { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 5%; }
+    nav { padding: 0.9rem 5%; }
+    .hero { padding: 6rem 5% 3rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.2rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .btn-hero, .btn-hero-outline { width: 100%; text-align: center; justify-content: center; }
+    .hero-actions { flex-direction: column; }
+  }
+
+  /* mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed; inset: 0; z-index: 99;
+    background: var(--cream);
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--green-900); text-decoration: none; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 5%; font-size: 1.5rem; cursor: pointer; background: none; border: none; color: var(--green-800); }
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  <a href="#valeurs" onclick="closeMobileMenu()">Notre Mission</a>
+  <a href="#phases" onclick="closeMobileMenu()">Phases</a>
+  <a href="#partenaires" onclick="closeMobileMenu()">Partenaires</a>
+  <a href="#calculateur" onclick="closeMobileMenu()">Calculateur</a>
+  <a href="#inscription" onclick="closeMobileMenu()">S'inscrire</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Carbon<span>Ova</span> CI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#valeurs">Mission</a></li>
+    <li><a href="#phases">Phases</a></li>
+    <li><a href="#partenaires">Partenaires</a></li>
+    <li><a href="#financement">Financement</a></li>
+    <li><a href="#calculateur">Calculateur</a></li>
+     
+      <li><a href="./fapbio.html">Fap-Bio</a></li>
+       <li><a href="./salon-bio-abidjan.html">SIBIO 2026</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#inscription" class="btn-outline">Se connecter</a>
+    <a href="#inscription" class="btn-primary">Rejoindre →</a>
+  </div>
+  <div class="hamburger" onclick="openMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">🌿 Crédits Carbone Cacao · Côte d'Ivoire</div>
+      <h1>
+        Valorisez votre<br>
+        <em>forêt cacao</em><br>
+        en <span class="gold">revenus verts</span>
+      </h1>
+      <p class="hero-desc">
+        La première plateforme ivoirienne qui transforme les pratiques agricoles durables des producteurs de cacao en crédits carbone certifiés et en accès aux marchés internationaux.
+      </p>
+      <div class="hero-actions">
+        <a href="#inscription" class="btn-hero">🌱 Inscrire ma coopérative</a>
+        <a href="#calculateur" class="btn-hero-outline">Calculer mes crédits</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">500 ha</span>
+          <span class="stat-lbl">Pilote Phase 2</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100+</span>
+          <span class="stat-lbl">Producteurs cibles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3 sources</span>
+          <span class="stat-lbl">Revenus additionnels</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual fade-up">
+      <div class="hero-card-stack">
+        <div class="hcard">
+          <div class="hcard-icon">🌿</div>
+          <div class="hcard-label">Crédits générés</div>
+          <div class="hcard-value" style="color:var(--green-300)">248 tCO₂</div>
+          <div class="hcard-badge">Certifié Verra</div>
+        </div>
+        <div class="hcard">
+          <div class="hcard-label">Revenu additionnel</div>
+          <div class="hcard-value">2 480 000 F</div>
+          <div class="hcard-sub">Pour 100 producteurs · Saison 2024</div>
+          <div class="hcard-badge">+ traçabilité exportable</div>
+        </div>
+        <div class="hcard">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+            <div style="font-size:0.75rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em">Tableau de bord</div>
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--green-500);"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+            <div style="background:var(--green-50);border-radius:8px;padding:0.75rem;">
+              <div style="font-size:0.7rem;color:var(--text-muted)">Parcelles</div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--green-800)">47</div>
+            </div>
+            <div style="background:var(--gold-100);border-radius:8px;padding:0.75rem;">
+              <div style="font-size:0.7rem;color:var(--text-muted)">Hectares</div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold-700,#7a5000)">184</div>
+            </div>
+            <div style="background:#eef2ff;border-radius:8px;padding:0.75rem;grid-column:1/-1;">
+              <div style="font-size:0.7rem;color:var(--text-muted)">Score carbone moyen</div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+                <div style="flex:1;height:6px;background:#e0e7ff;border-radius:3px;overflow:hidden;">
+                  <div style="width:72%;height:100%;background:#4f46e5;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:0.82rem;font-weight:600;color:#4f46e5">72%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section class="value-section" id="valeurs">
+  <div class="container">
+    <div class="value-header fade-up">
+      <span class="section-label">Notre force différenciante</span>
+      <h2 class="section-title">Bien plus qu'une <em>plateforme</em></h2>
+      <p class="section-desc">CarbonOva CI crée un triple impact : revenus pour les producteurs, traçabilité pour les acheteurs, protection pour la planète.</p>
+    </div>
+    <div class="value-grid fade-up">
+      <div class="value-card">
+        <div class="value-icon">💰</div>
+        <h3>Revenus supplémentaires</h3>
+        <p>Chaque producteur génère des crédits carbone vendables sur les marchés volontaires internationaux, s'ajoutant aux revenus cacao traditionnels.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📍</div>
+        <h3>Traçabilité totale</h3>
+        <p>Géolocalisation parcelle par parcelle, données sols et couverture végétale, historique complet exportable pour les acheteurs premium.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3>Accès marchés internationaux</h3>
+        <p>Connexion directe aux acheteurs de cacao durable (Barry Callebaut, Nestlé, Mars) qui paient une prime pour l'origine vérifiée.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <h3>Protection climatique</h3>
+        <p>Certification selon les standards Verra/Gold Standard. Chaque tonne de CO₂ séquestrée contribue aux objectifs climatiques de la Côte d'Ivoire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="phases-section" id="phases">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Plan de déploiement</span>
+      <h2 class="section-title">Une stratégie en <em>deux phases</em> précises</h2>
+      <p class="section-desc">De la version pilote à l'opération à grande échelle — chaque étape est conçue pour valider et scaler intelligemment.</p>
+    </div>
+    <div class="phases-grid">
+      <div class="phase-card phase1 fade-up">
+        <div class="phase-number">01</div>
+        <span class="phase-tag">Phase 1 · Lancement</span>
+        <h3>Construire les fondations</h3>
+        <ul class="phase-list">
+          <li>Site web + application mobile légère (iOS & Android)</li>
+          <li>Système d'inscription en ligne des producteurs</li>
+          <li>Formulaire numérique de saisie des parcelles</li>
+          <li>Dashboard admin temps réel</li>
+          <li>Calculateur carbone basé sur les standards IPCC</li>
+          <li>Génération automatique des rapports MRV</li>
+        </ul>
+      </div>
+      <div class="phase-card phase2 fade-up">
+        <div class="phase-number">02</div>
+        <span class="phase-tag">Phase 2 · Pilote</span>
+        <h3>Valider à grande échelle</h3>
+        <ul class="phase-list">
+          <li>Déploiement avec 1 coopérative cacao partenaire</li>
+          <li>100 producteurs enrôlés et formés</li>
+          <li>500 hectares géolocalisés et documentés</li>
+          <li>Première émission de crédits carbone certifiés</li>
+          <li>Connexion acheteurs cacao durable premium</li>
+          <li>Rapport d'impact & levée de fonds Série A</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section class="partners-section" id="partenaires">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Écosystème partenaire</span>
+      <h2 class="section-title">Des alliés <em>stratégiques</em> à tous niveaux</h2>
+      <p class="section-desc">Notre approche multi-parties prenantes garantit la légitimité institutionnelle, l'accès aux financements et les débouchés commerciaux.</p>
+    </div>
+    <div class="partners-grid fade-up">
+      <div class="partner-card">
+        <div class="partner-icon">🏛️</div>
+        <h4>Ministère de l'Agriculture</h4>
+        <p>Cadre réglementaire et légitimité nationale pour les certifications carbone</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🌿</div>
+        <h4>ONG Climat</h4>
+        <p>Expertise terrain, accompagnement des producteurs, validation des pratiques</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🏦</div>
+        <h4>Banques Vertes</h4>
+        <p>Financement des investissements, prêts verts pour les coopératives</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🍫</div>
+        <h4>Acheteurs Cacao Durable</h4>
+        <p>Barry Callebaut, Touton, ECOM — prime pour l'origine traçable et durable</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🌍</div>
+        <h4>Programmes Carbone Afrique</h4>
+        <p>AFOLU, REDD+, Gold Standard Africa — accès aux registres internationaux</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-icon">🚀</div>
+        <h4>Incubateurs & Startups</h4>
+        <p>CIPMEN, Orange Corners, Seedstars Africa — mentoring et réseaux</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCEMENT -->
+<section class="finance-section" id="financement">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Modèle financier</span>
+      <h2 class="section-title">Cinq sources de <em>financement</em> identifiées</h2>
+      <p class="section-desc">Une stratégie de financement diversifiée pour assurer la pérennité du projet à chaque phase de développement.</p>
+    </div>
+    <div class="finance-grid fade-up">
+      <div class="finance-card fc-green">
+        <div class="partner-icon">🌱</div>
+        <h4>Subventions Climat</h4>
+        <p>GEF, Green Climate Fund, AFD — financement non-dilutif pour les projets d'adaptation climatique en Afrique subsaharienne</p>
+      </div>
+      <div class="finance-card fc-gold">
+        <div class="partner-icon">🏆</div>
+        <h4>Concours Startups</h4>
+        <p>Seedstars Africa, Tony Elumelu Foundation, Orange Corners — visibilité + funding de 10k à 100k USD</p>
+      </div>
+      <div class="finance-card fc-blue">
+        <div class="partner-icon">💼</div>
+        <h4>Investisseurs Impact</h4>
+        <p>Fonds impact Africa (Acumen, Novastar, DOB Equity) spécialisés dans l'agrotech et le climate tech</p>
+      </div>
+      <div class="finance-card fc-purple">
+        <div class="partner-icon">🏢</div>
+        <h4>CSR Entreprises</h4>
+        <p>Nestlé, Cargill, Mars ont des engagements "zéro déforestation" — financement de la traçabilité à la source</p>
+      </div>
+      <div class="finance-card fc-teal">
+        <div class="partner-icon">🌐</div>
+        <h4>Agences Développement</h4>
+        <p>USAID, UE, UNDP — programmes d'appui aux filières agricoles durables en Côte d'Ivoire</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATEUR -->
+<section class="calc-section" id="calculateur">
+  <div class="container">
+    <div class="calc-inner">
+      <div class="calc-desc fade-up">
+        <span class="section-label">Outil d'estimation</span>
+        <h2 class="section-title">Calculez vos <em>crédits carbone</em> en direct</h2>
+        <p class="section-desc">Estimez le potentiel de revenus carbone de vos parcelles cacao selon les pratiques agroforestières et la superficie cultivée.</p>
+        <div style="margin-top:2.5rem;display:flex;flex-direction:column;gap:1.2rem;">
+          <div style="display:flex;align-items:flex-start;gap:1rem;">
+            <div style="width:40px;height:40px;background:rgba(90,179,98,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;">📐</div>
+            <div>
+              <div style="font-weight:600;color:#fff;font-size:0.9rem;margin-bottom:0.25rem;">Basé sur IPCC Tier 2</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.82rem;line-height:1.6">Méthode de séquestration carbone reconnue internationalement pour les systèmes agroforestiers cacao</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:1rem;">
+            <div style="width:40px;height:40px;background:rgba(90,179,98,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;">🏅</div>
+            <div>
+              <div style="font-weight:600;color:#fff;font-size:0.9rem;margin-bottom:0.25rem;">Certifiable Verra / Gold Standard</div>
+              <div style="color:rgba(255,255,255,0.5);font-size:0.82rem;line-height:1.6">Les crédits générés sont éligibles aux principaux registres de carbone volontaire mondiaux</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="calculator fade-up">
+        <div class="calc-field">
+          <label>Superficie des parcelles (hectares)</label>
+          <input type="range" min="1" max="500" value="50" id="superficie" oninput="updateCalc()">
+          <div class="range-row">
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">1 ha</span>
+            <span class="range-val"><span id="superficieVal">50</span> ha</span>
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">500 ha</span>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Nombre de producteurs</label>
+          <input type="range" min="5" max="500" value="30" id="producteurs" oninput="updateCalc()">
+          <div class="range-row">
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">5</span>
+            <span class="range-val"><span id="producteursVal">30</span> producteurs</span>
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">500</span>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Niveau de pratiques agroforestières</label>
+          <input type="range" min="1" max="3" step="1" value="2" id="niveau" oninput="updateCalc()">
+          <div class="range-row">
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">Basique</span>
+            <span class="range-val" id="niveauVal">Intermédiaire</span>
+            <span style="font-size:0.75rem;color:rgba(255,255,255,0.35)">Avancé</span>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-row">
+            <div>
+              <div class="calc-result-label">Crédits carbone / an</div>
+              <div class="calc-result-value" id="credits">225 tCO₂</div>
+              <div class="calc-result-sub">tCO₂e séquestrées & évitées</div>
+            </div>
+            <div style="text-align:right">
+              <div class="calc-result-label">Revenu estimé</div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold-300)" id="revenu">2 025 000 F</div>
+              <div class="calc-result-sub">FCFA / an (≈ 15 $/tCO₂)</div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;gap:0.5rem;">
+            <a href="#inscription" style="flex:1;text-align:center;padding:0.7rem;background:var(--green-500);color:#fff;border-radius:10px;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='var(--green-400)'" onmouseout="this.style.background='var(--green-500)'">
+              Rejoindre la plateforme →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION -->
+<section class="inscription-section" id="inscription">
+  <div class="container">
+    <div class="insc-inner">
+      <div class="insc-info fade-up">
+        <span class="section-label">Inscription producteurs</span>
+        <h2>Rejoignez le mouvement <em style="color:var(--green-600);font-style:normal">cacao vert</em></h2>
+        <p>Inscrivez votre coopérative ou vos parcelles dès aujourd'hui pour être parmi les premiers producteurs à bénéficier de la plateforme CarbonOva CI.</p>
+        <ul class="benefit-list">
+          <li><span class="bicon">✓</span> Inscription gratuite — aucun engagement financier initial</li>
+          <li><span class="bicon">📍</span> Géolocalisation de vos parcelles assistée par nos équipes terrain</li>
+          <li><span class="bicon">💰</span> Revenus carbone versés trimestriellement en Mobile Money</li>
+          <li><span class="bicon">🌍</span> Accès prioritaire aux acheteurs premium internationaux</li>
+          <li><span class="bicon">📊</span> Tableau de bord personnel pour suivre vos crédits et revenus</li>
+        </ul>
+      </div>
+      <div class="fade-up">
+        <div style="background:#fff;border-radius:var(--radius-xl);padding:2.5rem;border:1px solid var(--border);box-shadow:0 4px 24px rgba(46,114,52,0.07);">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--green-950);margin-bottom:0.25rem">Formulaire d'inscription</h3>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:1.5rem">Remplissez ce formulaire et notre équipe vous contacte sous 48h</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Prénom et Nom *</label>
+              <input type="text" placeholder="Konan Kouadio">
+            </div>
+            <div class="form-group">
+              <label>Téléphone (WhatsApp) *</label>
+              <input type="tel" placeholder="+225 07 00 00 00 00">
+            </div>
+            <div class="form-group">
+              <label>Région / Département *</label>
+              <select>
+                <option value="">Sélectionnez votre région</option>
+                <option>Aboisso</option>
+                <option>Adzopé</option>
+                <option>Agboville</option>
+                <option>Daloa</option>
+                <option>Divo</option>
+                <option>Gagnoa</option>
+                <option>San-Pédro</option>
+                <option>Soubré</option>
+                <option>Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Type de structure *</label>
+              <select>
+                <option value="">Choisir...</option>
+                <option>Producteur individuel</option>
+                <option>Coopérative agricole</option>
+                <option>Groupement de femmes</option>
+                <option>ONG / Association</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Superficie totale (hectares)</label>
+              <input type="number" placeholder="Ex: 25">
+            </div>
+            <div class="form-group">
+              <label>Nombre de producteurs (si coop.)</label>
+              <input type="number" placeholder="Ex: 45">
+            </div>
+            <div class="form-group full">
+              <label>Message / Informations complémentaires</label>
+              <textarea placeholder="Décrivez vos pratiques actuelles, vos questions, ou vos attentes..."></textarea>
+            </div>
+          </div>
+          <button class="form-submit" onclick="submitForm()">
+            🌱 Soumettre mon inscription
+          </button>
+          <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:0.75rem">
+            Vos données sont sécurisées et ne seront jamais revendues.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Côte d'Ivoire, pionnière du<br>carbone cacao en Afrique</h2>
+  <p>Ensemble, valorisons les 3 millions d'hectares de cacao ivoirien comme un actif climatique mondial.</p>
+  <div class="cta-actions">
+    <a href="#inscription" class="btn-white">🌿 Inscrire ma coopérative</a>
+    <a href="#partenaires" class="btn-white-outline">Devenir partenaire</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0.75rem">
+          <div class="logo-mark"></div>
+          <span class="logo-text" style="color:#fff">Carbon<span>Ova</span> CI</span>
+        </div>
+        <p>La plateforme de crédits carbone cacao pour la Côte d'Ivoire — connecter les producteurs aux marchés climatiques mondiaux.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Plateforme</h5>
+        <ul>
+          <li><a href="#valeurs">Notre mission</a></li>
+          <li><a href="#phases">Phases projet</a></li>
+          <li><a href="#calculateur">Calculateur</a></li>
+          <li><a href="#inscription">S'inscrire</a></li>
+          
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Partenaires</h5>
+        <ul>
+          <li><a href="#">Ministère Agriculture</a></li>
+          <li><a href="#">ONG Climat</a></li>
+          <li><a href="#">Banques Vertes</a></li>
+          <li><a href="#">Acheteurs cacao</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:contact@carbonova.ci">contact@carbonova.ci</a></li>
+          <li><a href="tel:+22500000000">+225 00 00 00 00 00</a></li>
+          <li><a href="#">Abidjan, Côte d'Ivoire</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarbonOva CI — Tous droits réservés</p>
+      <div class="footer-badges">
+        <span class="f-badge">Verra Ready</span>
+        <span class="f-badge">Gold Standard</span>
+        <span class="f-badge">IPCC Tier 2</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✅ Inscription envoyée ! Notre équipe vous contacte sous 48h.</div>
+
+<script>
+  // NAV scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Fade-up observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Calculateur
+  const niveaux = ['', 'Basique', 'Intermédiaire', 'Avancé'];
+  const facteurs = [0, 2.5, 4.5, 6.8];
+  const prixTonne = 9000; // FCFA ≈ $15
+
+  function updateCalc() {
+    const s = parseInt(document.getElementById('superficie').value);
+    const p = parseInt(document.getElementById('producteurs').value);
+    const n = parseInt(document.getElementById('niveau').value);
+    document.getElementById('superficieVal').textContent = s;
+    document.getElementById('producteursVal').textContent = p;
+    document.getElementById('niveauVal').textContent = niveaux[n];
+    const credits = Math.round(s * facteurs[n]);
+    const revenu = credits * prixTonne;
+    document.getElementById('credits').textContent = credits.toLocaleString('fr') + ' tCO₂';
+    document.getElementById('revenu').textContent = revenu.toLocaleString('fr') + ' F';
+  }
+  updateCalc();
+
+  // Form submit
+  function submitForm() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  // Hover cards animation
+  document.querySelectorAll('.hero-card-stack .hcard').forEach((c, i) => {
+    c.addEventListener('mouseenter', () => { c.style.transform = `rotate(0deg) translateY(-6px)`; });
+    c.addEventListener('mouseleave', () => {
+      const rots = ['-4deg', '-1deg', '0deg'];
+      c.style.transform = `rotate(${rots[i]})`;
+    });
+  });
+</script>
+</body>
+</html>

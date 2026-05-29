@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <title>Lecture du rapport SIBIO</title>
+    <link rel="shortBio icon" href="./logo_sibio_nouveau_transparent.png" />
+    <style>
+      :root {
+        --green: #145c3a;
+        --dark: #071f17;
+        --gold: #facc15;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Poppins, Arial, sans-serif;
+        color: #183f30;
+        background: #edf7f1;
+      }
+
+      .reader-shell {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .reader-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 14px clamp(14px, 4vw, 34px);
+        background: linear-gradient(135deg, var(--dark), var(--green));
+        color: white;
+      }
+
+      .reader-title {
+        min-width: 0;
+      }
+
+      .reader-title p {
+        margin: 0 0 4px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .reader-title h1 {
+        margin: 0;
+        color: white;
+        font-size: clamp(1.05rem, 3vw, 1.7rem);
+        line-height: 1.2;
+      }
+
+      .reader-back {
+        flex: 0 0 auto;
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: #103927;
+        background: var(--gold);
+        text-decoration: none;
+        font-weight: 900;
+      }
+
+      .reader-frame-wrap {
+        position: relative;
+        min-height: 0;
+        padding: clamp(10px, 2vw, 18px);
+      }
+
+      .reader-frame {
+        width: 100%;
+        height: calc(100vh - 94px);
+        min-height: 520px;
+        display: block;
+        border: 0;
+        border-radius: 18px;
+        background: white;
+        box-shadow: 0 18px 48px rgba(15, 81, 50, 0.14);
+      }
+
+      .reader-message {
+        max-width: 760px;
+        margin: 40px auto;
+        padding: 24px;
+        border-radius: 18px;
+        background: white;
+        box-shadow: 0 18px 48px rgba(15, 81, 50, 0.14);
+        line-height: 1.7;
+      }
+
+      .reader-message h2 {
+        margin: 0 0 10px;
+        color: var(--green);
+      }
+
+      .reader-download {
+        display: inline-flex;
+        margin-top: 16px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--green);
+        color: white;
+        text-decoration: none;
+        font-weight: 900;
+      }
+
+      @media (max-width: 640px) {
+        .reader-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .reader-back {
+          width: 100%;
+          text-align: center;
+        }
+
+        .reader-frame {
+          height: calc(100vh - 150px);
+          min-height: 440px;
+          border-radius: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reader-shell">
+      <header class="reader-header">
+        <div class="reader-title">
+          <p>Lecture seule</p>
+          <h1 id="readerTitle">Rapport SIBIO</h1>
+        </div>
+        <a class="reader-back" href="./programme-editions.html">Retour aux éditions</a>
+      </header>
+
+      <main class="reader-frame-wrap" id="readerMount"></main>
+    </div>
+
+    <script>
+      const reports = {
+        "sibio-2022": {
+          title: "Rapport SIBIO 2022",
+          file: "SIBIO22 RAPPORT D'ACTIVITES.docx",
+          type: "docx"
+        },
+        "sibio-2024": {
+          title: "Rapport SIBIO 2024",
+          file: "Correction du rapport Sibio 2024_123632.pdf",
+          type: "pdf"
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const report = reports[params.get("report")] || reports["sibio-2024"];
+      const title = document.getElementById("readerTitle");
+      const mount = document.getElementById("readerMount");
+      const absoluteFileUrl = new URL(report.file, window.location.href).href;
+
+      title.textContent = report.title;
+      document.title = report.title + " | Lecture";
+
+      function showMessage(heading, text, downloadUrl) {
+        mount.innerHTML = "";
+        const box = document.createElement("section");
+        box.className = "reader-message";
+        box.innerHTML = "<h2></h2><p></p>";
+        box.querySelector("h2").textContent = heading;
+        box.querySelector("p").textContent = text;
+        if (downloadUrl) {
+          const link = document.createElement("a");
+          link.className = "reader-download";
+          link.href = downloadUrl;
+          link.download = "";
+          link.textContent = "Télécharger le rapport";
+          box.appendChild(link);
+        }
+        mount.appendChild(box);
+      }
+
+      if (report.type === "pdf") {
+        const frame = document.createElement("iframe");
+        frame.className = "reader-frame";
+        frame.title = report.title;
+        frame.src = absoluteFileUrl + "#toolbar=0&navpanes=0&scrollbar=1";
+        mount.appendChild(frame);
+      } else if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+        const frame = document.createElement("iframe");
+        frame.className = "reader-frame";
+        frame.title = report.title;
+        frame.src = "https://view.officeapps.live.com/op/embed.aspx?src=" + encodeURIComponent(absoluteFileUrl);
+        mount.appendChild(frame);
+      } else {
+        showMessage(
+          "Lecture Word indisponible en local",
+          "Le rapport 2022 est un fichier Word (.docx). Un navigateur ne peut pas l'afficher directement depuis un fichier local ; la lecture intégrée passera par Office en ligne une fois le site publié sur un domaine accessible.",
+          report.file
+        );
+      }
+    </script>
+  </body>
+</html>

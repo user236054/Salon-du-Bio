@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activités FAP-BIO</title>
+    <meta name="description" content="Rubrique évolutive des activités du FAP-BIO : sensibilisation, formation, marché du bio local, visites de plantations et traçabilité bio locale." />
+    <link rel="shortcut icon" href="./fap-bio.png" />
+    <style>
+      :root {
+        --green: #145c3a;
+        --green-dark: #0b3d2e;
+        --green-soft: #eaf6ed;
+        --gold: #d9660f;
+        --text: #163126;
+        --muted: #557165;
+        --white: #fff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Poppins, Arial, sans-serif;
+        background: #f6fbf7;
+        color: var(--text);
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255,255,255,.94);
+        border-bottom: 1px solid rgba(20,92,58,.12);
+        box-shadow: 0 10px 30px rgba(20,92,58,.08);
+      }
+
+      .nav {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--green);
+        text-decoration: none;
+        font-weight: 900;
+      }
+
+      .logo img {
+        width: 92px;
+        height: auto;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      .nav-links a {
+        color: var(--green);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        background: var(--green-soft);
+      }
+
+      .hero {
+        background:
+          linear-gradient(120deg, rgba(11,61,46,.92), rgba(20,92,58,.86)),
+          url("./bac.jpeg") center/cover;
+        color: var(--white);
+        padding: 86px 20px 74px;
+      }
+
+      .hero-inner {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.14);
+        color: #c8ffd8;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .08em;
+      }
+
+      h1 {
+        max-width: 820px;
+        margin: 18px 0 14px;
+        font-size: clamp(34px, 6vw, 64px);
+        line-height: 1.04;
+      }
+
+      .hero p {
+        max-width: 720px;
+        color: rgba(255,255,255,.82);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      main {
+        width: min(1120px, calc(100% - 32px));
+        margin: 42px auto 70px;
+      }
+
+      .intro {
+        max-width: 780px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 28px;
+      }
+
+      .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+      }
+
+      .activity-card {
+        background: var(--white);
+        border: 1px solid rgba(20,92,58,.12);
+        border-radius: 8px;
+        padding: 22px;
+        box-shadow: 0 14px 34px rgba(20,92,58,.08);
+        min-height: 210px;
+      }
+
+      .activity-icon {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--green-soft);
+        color: var(--green);
+        font-size: 22px;
+        margin-bottom: 14px;
+      }
+
+      .activity-card h2 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        color: var(--green-dark);
+      }
+
+      .activity-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+        font-size: 14px;
+      }
+
+      .status {
+        display: inline-flex;
+        margin-top: 16px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(217,102,15,.1);
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .archive-note {
+        margin-top: 28px;
+        padding: 22px;
+        border-radius: 8px;
+        background: #fff8ef;
+        border: 1px solid rgba(217,102,15,.18);
+        color: #6b4625;
+        line-height: 1.7;
+      }
+
+      footer {
+        padding: 28px 20px;
+        text-align: center;
+        background: var(--green-dark);
+        color: rgba(255,255,255,.76);
+      }
+
+      @media (max-width: 720px) {
+        .nav { align-items: flex-start; flex-direction: column; padding: 12px 0; }
+        .nav-links { justify-content: flex-start; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav">
+        <a class="logo" href="./fapbio.html">
+          <img src="./fap-bio.png" alt="Logo FAP-BIO" />
+          <span>FAP-BIO</span>
+        </a>
+        <div class="nav-links">
+          <a href="./fapbio.html">Accueil</a>
+          <a class="active" href="./activite.html">Activités</a>
+          <a href="./salon-bio-abidjan.html">SIBIO 2026</a>
+          <a href="./region.html">Sections</a>
+          <a href="./boutique.html">Boutique</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Rubrique évolutive</span>
+        <h1>Activités du FAP-BIO</h1>
+        <p>
+          Cette page centralise progressivement les actions menées par le FAP-BIO sur le terrain :
+          sensibilisation, formation, promotion du marché bio local, visites de plantations et
+          dispositifs de traçabilité.
+        </p>
+      </div>
+    </section>
+
+    <main>
+      <p class="intro">
+        Les activités seront enrichies au fur et à mesure avec des dates, lieux, comptes rendus,
+        photos et documents associés. La structure ci-dessous sert de base pour enregistrer chaque
+        nouvelle action de manière claire.
+      </p>
+
+      <div class="activity-grid">
+        <article class="activity-card">
+          <div class="activity-icon">📣</div>
+          <h2>Sensibilisation</h2>
+          <p>Actions d'information auprès des producteurs, consommateurs, écoles, collectivités et acteurs économiques autour du bio et de la santé naturelle.</p>
+          <span class="status">À alimenter</span>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">🎓</div>
+          <h2>Formation</h2>
+          <p>Sessions pratiques sur l'agroécologie, la transformation, la certification, la qualité, la gestion de projet et les bonnes pratiques agricoles.</p>
+          <span class="status">À alimenter</span>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">🛒</div>
+          <h2>Marché du bio local</h2>
+          <p>Espaces de vente, valorisation des produits locaux, rencontres entre producteurs, consommateurs, restaurateurs et partenaires.</p>
+          <span class="status">À alimenter</span>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">🌱</div>
+          <h2>Visite Plantation</h2>
+          <p>Sorties terrain pour observer les pratiques culturales, accompagner les producteurs et documenter les initiatives bio dans les régions.</p>
+          <span class="status">À alimenter</span>
+        </article>
+
+        <article class="activity-card">
+          <div class="activity-icon">🔎</div>
+          <h2>Traçabilité bio local</h2>
+          <p>Suivi de l'origine des produits, fiches producteurs, lieux de production, circuits de distribution et preuves de conformité locale.</p>
+          <span class="status">À alimenter</span>
+        </article>
+      </div>
+
+      <div class="archive-note">
+        Les prochaines mises à jour pourront ajouter pour chaque activité : date, lieu, responsable,
+        photos, documents, bilan, partenaires et liens vers les produits ou sections concernés.
+      </div>
+    </main>
+
+    <footer>
+      FAP-BIO · Activités et actions terrain
+    </footer>
+  </body>
+</html>

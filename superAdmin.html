@@ -1,0 +1,1368 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SIBIO — Superadmin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Orbitron:wght@400..900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f0d;
+      --bg2: #111810;
+      --panel: #141c17;
+      --panel2: #1a2420;
+      --border: rgba(255,255,255,.06);
+      --green: #2ecc71;
+      --green2: #27ae60;
+      --green-dim: rgba(46,204,113,.12);
+      --green-glow: rgba(46,204,113,.3);
+      --gold: #f0c040;
+      --gold-dim: rgba(240,192,64,.1);
+      --red: #e74c3c;
+      --red-dim: rgba(231,76,60,.15);
+      --blue: #3498db;
+      --blue-dim: rgba(52,152,219,.12);
+      --text: #e8f0eb;
+      --text2: #8fa898;
+      --text3: #5a7060;
+      --font: 'Dm Sans', sans-serif;
+      --body: 'DM Sans', sans-serif;
+      --radius: 14px;
+      --sidebar: 240px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    /* ── SIDEBAR ── */
+    #sidebar {
+      width: var(--sidebar);
+      min-height: 100vh;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      z-index: 100;
+      transition: transform .3s ease;
+    }
+
+    .logo {
+      padding: 28px 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--green), #1a7a40);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo-text { font-family: var(--font); font-weight: 800; font-size: 18px; color: var(--text); }
+    .logo-badge { font-size: 10px; color: var(--green); background: var(--green-dim); padding: 2px 6px; border-radius: 20px; font-weight: 600; margin-top: 2px; }
+
+    .nav { padding: 16px 12px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+    .nav-section { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; padding: 14px 8px 6px; }
+
+    .nav-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text2);
+      transition: all .2s;
+      position: relative;
+    }
+    .nav-item:hover { background: var(--panel2); color: var(--text); }
+    .nav-item.active { background: var(--green-dim); color: var(--green); }
+    .nav-item.active::before {
+      content: '';
+      position: absolute; left: 0; top: 20%; bottom: 20%;
+      width: 3px; border-radius: 0 3px 3px 0;
+      background: var(--green);
+    }
+    .nav-item .ico { width: 18px; text-align: center; font-size: 16px; }
+    .nav-badge { margin-left: auto; background: var(--green); color: #000; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 20px; }
+
+    .sidebar-bottom {
+      padding: 16px 12px;
+      border-top: 1px solid var(--border);
+    }
+    .user-pill {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--panel2);
+    }
+    .user-avatar {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--green), #1a7a40);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #fff;
+      font-family: var(--font);
+    }
+    .user-info { flex: 1; min-width: 0; }
+    .user-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .user-role { font-size: 11px; color: var(--green); }
+
+    /* ── MAIN ── */
+    #main {
+      margin-left: var(--sidebar);
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: rgba(11,15,13,.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .page-title { font-family: var(--font); font-size: 18px; font-weight: 700; }
+    .page-sub { font-size: 13px; color: var(--text2); }
+
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+    .status-dot {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.3)} }
+
+    .btn-icon {
+      width: 36px; height: 36px;
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 16px; color: var(--text2);
+      transition: all .2s;
+    }
+    .btn-icon:hover { background: var(--panel); color: var(--text); border-color: var(--green); }
+
+    /* ── CONTENT ── */
+    .content { padding: 28px; flex: 1; }
+    .page { display: none; animation: fadeIn .3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── STAT CARDS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .stat-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.12); }
+    .stat-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent, var(--green));
+    }
+    .stat-card.gold { --accent: var(--gold); }
+    .stat-card.blue { --accent: var(--blue); }
+    .stat-card.red { --accent: var(--red); }
+
+    .stat-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      margin-bottom: 14px;
+      background: var(--icon-bg, var(--green-dim));
+    }
+    .stat-card.gold .stat-icon { background: var(--gold-dim); }
+    .stat-card.blue .stat-icon { background: var(--blue-dim); }
+    .stat-card.red .stat-icon { background: var(--red-dim); }
+
+    .stat-label { font-size: 12px; color: var(--text2); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 6px; font-weight: 500; }
+    .stat-value { font-family: var(--font); font-size: 26px; font-weight: 800; color: var(--text); line-height: 1; }
+    .stat-sub { font-size: 12px; color: var(--text3); margin-top: 6px; }
+    .stat-change { font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+
+    /* ── CHARTS GRID ── */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 380px;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .chart-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .chart-card.full { grid-column: span 2; }
+    .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .card-title { font-family: var(--font); font-size: 15px; font-weight: 700; }
+    .card-sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+    .chart-wrap { position: relative; }
+    .chart-wrap canvas { max-width: 100%; }
+
+    .badge-pill {
+      font-size: 11px; padding: 3px 10px;
+      border-radius: 20px; font-weight: 600;
+    }
+    .badge-green { background: var(--green-dim); color: var(--green); }
+    .badge-gold { background: var(--gold-dim); color: var(--gold); }
+
+    /* ── CHARTS ROW 2 ── */
+    .charts-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* ── PRODUCTS TABLE ── */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title { font-family: var(--font); font-size: 20px; font-weight: 700; }
+
+    .search-bar {
+      display: flex; gap: 10px; align-items: center;
+    }
+    .search-input {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 8px 14px;
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 13px;
+      width: 220px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--green); }
+    .search-input::placeholder { color: var(--text3); }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: all .2s;
+    }
+    .btn-primary { background: var(--green); color: #000; }
+    .btn-primary:hover { background: #27ae60; transform: translateY(-1px); }
+    .btn-danger { background: var(--red-dim); color: var(--red); border: 1px solid rgba(231,76,60,.3); }
+    .btn-danger:hover { background: var(--red); color: #fff; }
+    .btn-ghost { background: var(--panel2); color: var(--text2); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,.15); }
+
+    .table-wrap {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: var(--panel2);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--panel2); }
+    tbody td { padding: 13px 16px; font-size: 13px; vertical-align: middle; }
+
+    .prod-name { font-weight: 600; color: var(--text); }
+    .prod-meta { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+    .price-tag {
+      font-family: var(--font); font-weight: 700;
+      color: var(--green); font-size: 14px;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--panel2);
+      color: var(--text2);
+      border: 1px solid var(--border);
+    }
+
+    .action-btns { display: flex; gap: 6px; }
+    .action-btn {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      color: var(--text2);
+      cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .action-btn:hover { background: var(--panel); color: var(--text); }
+    .action-btn.del:hover { background: var(--red-dim); color: var(--red); border-color: rgba(231,76,60,.3); }
+    .action-btn.edit:hover { background: var(--green-dim); color: var(--green); border-color: var(--green-glow); }
+
+    .empty-state {
+      text-align: center; padding: 48px 24px;
+      color: var(--text3);
+    }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: .5; }
+    .empty-text { font-size: 14px; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: none; align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      width: 520px;
+      max-width: 95vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: modalIn .25s ease;
+    }
+    @keyframes modalIn { from{transform:scale(.94);opacity:0} to{transform:scale(1);opacity:1} }
+    .modal-header {
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-title { font-family: var(--font); font-size: 17px; font-weight: 700; }
+    .modal-close {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--panel2); border: none; color: var(--text2);
+      cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-body { padding: 22px 24px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: span 2; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: .6px; }
+    .form-input {
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 10px 13px;
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 13px;
+      outline: none;
+      transition: border-color .2s;
+      width: 100%;
+    }
+    .form-input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-dim); }
+    .form-input::placeholder { color: var(--text3); }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 10px; justify-content: flex-end;
+    }
+
+    /* ── VISITORS ── */
+    .visitors-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .visitor-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .visitor-row:hover { background: var(--panel2); }
+    .visitor-row:last-child { border-bottom: none; }
+
+    .visitor-num {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--panel2); color: var(--text3);
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .visitor-main { flex: 1; min-width: 0; }
+    .visitor-path { font-size: 13px; font-weight: 600; color: var(--text); font-family: monospace; }
+    .visitor-details { font-size: 11px; color: var(--text3); margin-top: 3px; line-height: 1.5; }
+    .visitor-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+
+    .device-icon { display: inline-block; margin-right: 3px; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--panel2); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      transform: translateY(80px); opacity: 0;
+      transition: all .3s ease;
+      display: flex; align-items: center; gap: 10px;
+      max-width: 320px;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast .t-icon { font-size: 18px; }
+
+    /* ── LEGEND ── */
+    .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+    .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+    /* ── TOP PRODUCTS ── */
+    .top-prod-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .top-prod-item:last-child { border-bottom: none; }
+    .top-rank { font-family: var(--font); font-size: 14px; font-weight: 800; color: var(--text3); width: 22px; text-align: center; }
+    .top-rank.gold { color: var(--gold); }
+    .top-rank.silver { color: #a8b4b8; }
+    .top-rank.bronze { color: #cd7f32; }
+    .top-info { flex: 1; }
+    .top-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .top-cat { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .top-price { font-family: var(--font); font-size: 13px; font-weight: 700; color: var(--green); }
+    .progress-bar {
+      height: 3px; background: var(--panel2); border-radius: 2px; margin-top: 4px;
+    }
+    .progress-fill { height: 100%; border-radius: 2px; background: var(--green); transition: width .6s ease; }
+
+    /* ── ACTIVITY FEED ── */
+    .activity-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin-top: 5px; flex-shrink: 0;
+      background: var(--green);
+    }
+    .activity-dot.warn { background: var(--gold); }
+    .activity-dot.info { background: var(--blue); }
+    .activity-text { font-size: 13px; color: var(--text); flex: 1; }
+    .activity-time { font-size: 11px; color: var(--text3); }
+
+    /* ── KPI BLOCKS ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .kpi-block {
+      background: var(--panel2);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .kpi-val { font-family: var(--font); font-size: 20px; font-weight: 800; color: var(--text); }
+    .kpi-lbl { font-size: 11px; color: var(--text3); margin-top: 3px; }
+
+    @media (max-width: 1100px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .charts-grid { grid-template-columns: 1fr 1fr; }
+      .charts-grid .chart-card:last-child { grid-column: span 2; }
+    }
+    img{
+        height: 70px;
+        width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="logo">
+    <div class="logo-icon">
+        <img src="https://imgs.search.brave.com/WuNZnkeA3EIJO0wcslBFkbNt_OStywaOYEkjyiL4uBw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pY29u/cy5pY29uYXJjaGl2/ZS5jb20vaWNvbnMv/aWNvbnNob2NrL3N1/cGVyLXZpc3RhLWdl/bmVyYWwvMjU2L2Fk/bWluaXN0cmF0b3It/aWNvbi5wbmc" alt="">
+    </div>
+    <div>
+      <div class="logo-text">SIBIO</div>
+      <div class="logo-badge">SUPERADMIN</div>
+    </div>
+  </div>
+
+  <div class="nav">
+    <div class="nav-section">Navigation</div>
+    <div class="nav-item active" data-page="dashboard">
+      <span class="ico">📊</span> Dashboard
+    </div>
+    <div class="nav-item" data-page="products">
+      <span class="ico">📦</span> Produits
+      <span class="nav-badge" id="nav-prod-count">0</span>
+    </div>
+    <div class="nav-item" data-page="visitors">
+      <span class="ico">👥</span> Visiteurs
+      <span class="nav-badge" id="nav-visit-count">0</span>
+    </div>
+
+    <div class="nav-section" style="margin-top:8px">Système</div>
+    
+    <div class="nav-item" id="clearAllBtn">
+      <span class="ico">🗑️</span> Vider données
+    </div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="user-pill">
+      <div class="user-avatar">SA</div>
+      <div class="user-info">
+        <div class="user-name">Super Admin</div>
+        <div class="user-role">● En ligne</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div id="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div>
+        <div class="page-title" id="topTitle">Dashboard</div>
+        <div class="page-sub" id="topSub">Super Admin</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="status-dot"><div class="dot"></div> Système actif</div>
+      <div class="btn-icon" onclick="refreshAll()" title="Actualiser">↻</div>
+      <div class="btn-icon" onclick="openModal()" title="Ajouter produit">+</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══════════ DASHBOARD ═══════════ -->
+    <div class="page active" id="page-dashboard">
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📦</div>
+          <div class="stat-label">Total Produits</div>
+          <div class="stat-value" id="kpi-products">0</div>
+          <div class="stat-sub" id="kpi-cats">0 catégories</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-icon">💰</div>
+          <div class="stat-label">Valeur Catalogue</div>
+          <div class="stat-value" id="kpi-value">0</div>
+          <div class="stat-sub">FCFA total</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon">👁️</div>
+          <div class="stat-label">Visites Totales</div>
+          <div class="stat-value" id="kpi-visits">0</div>
+          <div class="stat-sub" id="kpi-unique">0 uniques</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon">📈</div>
+          <div class="stat-label">Prix Moyen</div>
+          <div class="stat-value" id="kpi-avg">0</div>
+          <div class="stat-sub">FCFA / produit</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Courbe des prix -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Prix par produit</div>
+              <div class="card-sub">Courbe des valeurs catalogue</div>
+            </div>
+            <span class="badge-pill badge-green">Actuel</span>
+          </div>
+          <div class="chart-wrap" style="height:200px">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Donut catégories -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Répartition</div>
+              <div class="card-sub">Produits par catégorie</div>
+            </div>
+          </div>
+          <div class="chart-wrap" style="height:200px; display:flex; align-items:center; justify-content:center;">
+            <canvas id="donutChart" style="max-height:200px;max-width:200px"></canvas>
+          </div>
+          <div class="legend" id="donutLegend"></div>
+        </div>
+
+        <!-- Top produits -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Top Produits</div>
+              <div class="card-sub">Par valeur prix</div>
+            </div>
+            <span class="badge-pill badge-gold">Classement</span>
+          </div>
+          <div id="topProds"></div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2">
+        <!-- Bar chart régions -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Produits par région</div>
+              <div class="card-sub">Distribution géographique</div>
+            </div>
+          </div>
+          <div class="chart-wrap" style="height:200px">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Activité récente -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Activité récente</div>
+              <div class="card-sub">Journal des actions</div>
+            </div>
+          </div>
+          <div id="activityFeed"></div>
+          <div class="kpi-row">
+            <div class="kpi-block">
+              <div class="kpi-val" id="kpi-sellers">0</div>
+              <div class="kpi-lbl">Vendeurs</div>
+            </div>
+            <div class="kpi-block">
+              <div class="kpi-val" id="kpi-max">0</div>
+              <div class="kpi-lbl">Prix max</div>
+            </div>
+            <div class="kpi-block">
+              <div class="kpi-val" id="kpi-min">0</div>
+              <div class="kpi-lbl">Prix min</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ PRODUITS ═══════════ -->
+    <div class="page" id="page-products">
+      <div class="section-header">
+        <div class="section-title">Gestion Produits</div>
+        <div class="search-bar">
+          <input class="search-input" id="searchInput" placeholder="🔍 Rechercher..." oninput="renderProducts()">
+          <button class="btn btn-ghost" id="filterCat">Catégorie ▾</button>
+          <button class="btn btn-primary" onclick="openModal()">＋ Ajouter</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Produit</th>
+              <th>Prix</th>
+              <th>Catégorie</th>
+              <th>Région</th>
+              <th>Vendeur</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+        <div id="productsEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">📭</div>
+          <div class="empty-text">Aucun produit trouvé</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ VISITEURS ═══════════ -->
+    <div class="page" id="page-visitors">
+      <div class="section-header">
+        <div class="section-title">Analyse Visiteurs</div>
+        <div class="search-bar">
+          <button class="btn btn-danger" id="clearVisitorsBtn">🗑 Effacer tout</button>
+        </div>
+      </div>
+
+      <div class="visitors-stats">
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-label">Total visites</div>
+          <div class="stat-value" id="vis-total">0</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon">💻</div>
+          <div class="stat-label">Plateformes</div>
+          <div class="stat-value" id="vis-platforms">—</div>
+          <div class="stat-sub" id="vis-platform-top">Top plateforme</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-icon">🌐</div>
+          <div class="stat-label">Langues</div>
+          <div class="stat-value" id="vis-langs">—</div>
+          <div class="stat-sub" id="vis-lang-top">Top langue</div>
+        </div>
+      </div>
+
+      <div class="charts-grid-2" style="margin-bottom:20px">
+        <div class="chart-card">
+          <div class="card-header">
+            <div class="card-title">Pages visitées</div>
+          </div>
+          <div class="chart-wrap" style="height:200px"><canvas id="pagesChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="card-header">
+            <div class="card-title">Résolutions écran</div>
+          </div>
+          <div class="chart-wrap" style="height:200px"><canvas id="screenChart"></canvas></div>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date & Heure</th>
+              <th>Page</th>
+              <th>Appareil</th>
+              <th>Navigateur / OS</th>
+              <th>Langue</th>
+              <th>Résolution</th>
+            </tr>
+          </thead>
+          <tbody id="visitorsBody"></tbody>
+        </table>
+        <div id="visitorsEmpty" class="empty-state" style="display:none">
+          <div class="empty-icon">👻</div>
+          <div class="empty-text">Aucun visiteur enregistré</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end content -->
+</div><!-- end main -->
+
+<!-- MODAL ADD/EDIT -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Nouveau produit</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="prod-id">
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">Nom du produit *</label>
+          <input class="form-input" id="prod-name" placeholder="Ex: Mangues fraîches" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prix (FCFA) *</label>
+          <input class="form-input" id="prod-price" type="number" placeholder="0" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Unité</label>
+          <input class="form-input" id="prod-unit" placeholder="Ex: Kg, L, Sac...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Région</label>
+          <input class="form-input" id="prod-region" placeholder="Ex: Abidjan">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Catégorie</label>
+          <input class="form-input" id="prod-category" placeholder="Ex: Fruits, Légumes...">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Vendeur</label>
+          <input class="form-input" id="prod-seller" placeholder="Nom du vendeur">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">Image (URL ou DataURI)</label>
+          <input class="form-input" id="prod-img" placeholder="https://...">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Annuler</button>
+      <button class="btn btn-primary" onclick="saveProduct()">💾 Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">
+  <span class="t-icon" id="toastIcon">✅</span>
+  <span id="toastMsg">Produit sauvegardé</span>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────
+const PROD_KEY = 'local_products';
+const VIS_KEY  = 'site_visitors';
+const CNT_KEY  = 'site_visit_count';
+const LOG_KEY  = 'sibio_activity_log';
+
+let charts = {};
+let currentPage = 'dashboard';
+
+function getProducts() { return JSON.parse(localStorage.getItem(PROD_KEY) || '[]'); }
+function saveProds(arr) { localStorage.setItem(PROD_KEY, JSON.stringify(arr)); }
+function getVisitors() { return JSON.parse(localStorage.getItem(VIS_KEY) || '[]'); }
+function getVisitCount() { return Number(localStorage.getItem(CNT_KEY) || 0); }
+function getLog() { return JSON.parse(localStorage.getItem(LOG_KEY) || '[]'); }
+function addLog(txt, type='') {
+  const log = getLog();
+  log.unshift({ ts: Date.now(), txt, type });
+  if(log.length > 50) log.pop();
+  localStorage.setItem(LOG_KEY, JSON.stringify(log));
+}
+
+// ─── NAVIGATION ──────────────────────────────────────
+document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  el.addEventListener('click', () => {
+    const page = el.dataset.page;
+    navigateTo(page);
+  });
+});
+
+function navigateTo(page) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector(`.nav-item[data-page="${page}"]`)?.classList.add('active');
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(`page-${page}`).classList.add('active');
+  currentPage = page;
+  const titles = {
+    dashboard: ['Dashboard', 'Vue d\'ensemble SIBIO'],
+    products:  ['Gestion Produits', 'Catalogue local'],
+    visitors:  ['Analyse Visiteurs', 'Trafic & comportement'],
+  };
+  document.getElementById('topTitle').textContent = titles[page][0];
+  document.getElementById('topSub').textContent = titles[page][1];
+  if(page === 'dashboard') renderDashboard();
+  if(page === 'products')  renderProducts();
+  if(page === 'visitors')  renderVisitors();
+}
+
+// ─── TOAST ────────────────────────────────────────────
+function toast(msg, icon='✅') {
+  const el = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  document.getElementById('toastIcon').textContent = icon;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ─── MODAL ────────────────────────────────────────────
+function openModal(prod=null) {
+  document.getElementById('prod-id').value = prod?.id || '';
+  document.getElementById('prod-name').value = prod?.name || '';
+  document.getElementById('prod-price').value = prod?.price || '';
+  document.getElementById('prod-unit').value = prod?.unit || '';
+  document.getElementById('prod-region').value = prod?.region || '';
+  document.getElementById('prod-category').value = prod?.category || '';
+  document.getElementById('prod-seller').value = prod?.seller || '';
+  document.getElementById('prod-img').value = prod?.img || '';
+  document.getElementById('modalTitle').textContent = prod ? 'Modifier produit' : 'Nouveau produit';
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+
+function saveProduct() {
+  const name = document.getElementById('prod-name').value.trim();
+  const price = Number(document.getElementById('prod-price').value) || 0;
+  if(!name) { toast('Le nom est requis', '⚠️'); return; }
+  const id = document.getElementById('prod-id').value;
+  const p = {
+    id: id || Date.now().toString(),
+    name,
+    price,
+    unit: document.getElementById('prod-unit').value.trim(),
+    region: document.getElementById('prod-region').value.trim(),
+    category: document.getElementById('prod-category').value.trim(),
+    seller: document.getElementById('prod-seller').value.trim(),
+    img: document.getElementById('prod-img').value.trim(),
+    createdAt: id ? undefined : Date.now(),
+    updatedAt: Date.now(),
+  };
+  const arr = getProducts();
+  if(id) {
+    const idx = arr.findIndex(x => x.id == id);
+    if(idx !== -1) arr[idx] = { ...arr[idx], ...p };
+    else arr.unshift(p);
+    addLog(`Produit modifié: ${name}`, 'warn');
+    toast(`"${name}" mis à jour`, '✏️');
+  } else {
+    arr.unshift(p);
+    addLog(`Nouveau produit ajouté: ${name}`, '');
+    toast(`"${name}" ajouté`, '✅');
+  }
+  saveProds(arr);
+  closeModal();
+  updateBadges();
+  if(currentPage === 'products') renderProducts();
+  if(currentPage === 'dashboard') renderDashboard();
+}
+
+function deleteProduct(id) {
+  if(!confirm('Supprimer ce produit ?')) return;
+  const arr = getProducts().filter(p => p.id != id);
+  saveProds(arr);
+  addLog(`Produit supprimé (id: ${id})`, 'warn');
+  toast('Produit supprimé', '🗑️');
+  updateBadges();
+  renderProducts();
+  if(currentPage === 'dashboard') renderDashboard();
+}
+
+// ─── BADGE UPDATE ─────────────────────────────────────
+function updateBadges() {
+  document.getElementById('nav-prod-count').textContent = getProducts().length;
+  document.getElementById('nav-visit-count').textContent = getVisitCount();
+}
+
+// ─── REFRESH ──────────────────────────────────────────
+function refreshAll() {
+  updateBadges();
+  if(currentPage === 'dashboard') renderDashboard();
+  if(currentPage === 'products')  renderProducts();
+  if(currentPage === 'visitors')  renderVisitors();
+  toast('Données actualisées', '🔄');
+}
+
+// ─── CHART COLORS ─────────────────────────────────────
+const COLORS = ['#2ecc71','#f0c040','#3498db','#e74c3c','#9b59b6','#1abc9c','#e67e22','#e91e63','#00bcd4','#ff9800'];
+function chartDefaults() {
+  Chart.defaults.color = '#8fa898';
+  Chart.defaults.font.family = "'DM Sans', sans-serif";
+  Chart.defaults.font.size = 11;
+}
+
+// ─── DASHBOARD ────────────────────────────────────────
+function renderDashboard() {
+  const prods = getProducts();
+  const visits = getVisitors();
+  const visitCount = getVisitCount();
+
+  // KPIs
+  const cats = [...new Set(prods.map(p=>p.category).filter(Boolean))];
+  const totalVal = prods.reduce((s,p)=>s+p.price,0);
+  const avgPrice = prods.length ? Math.round(totalVal/prods.length) : 0;
+  const sellers = [...new Set(prods.map(p=>p.seller).filter(Boolean))];
+  const maxP = prods.length ? Math.max(...prods.map(p=>p.price)) : 0;
+  const minP = prods.length ? Math.min(...prods.map(p=>p.price)) : 0;
+  const uniqueVis = [...new Set(visits.map(v=>v.screen?.w+'x'+v.screen?.h+v.lang))].length;
+
+  document.getElementById('kpi-products').textContent = prods.length;
+  document.getElementById('kpi-cats').textContent = `${cats.length} catégorie${cats.length!==1?'s':''}`;
+  document.getElementById('kpi-value').textContent = totalVal.toLocaleString('fr');
+  document.getElementById('kpi-visits').textContent = visitCount.toLocaleString('fr');
+  document.getElementById('kpi-unique').textContent = `${uniqueVis} profils distincts`;
+  document.getElementById('kpi-avg').textContent = avgPrice.toLocaleString('fr');
+  document.getElementById('kpi-sellers').textContent = sellers.length || '—';
+  document.getElementById('kpi-max').textContent = maxP.toLocaleString('fr');
+  document.getElementById('kpi-min').textContent = minP.toLocaleString('fr');
+
+  chartDefaults();
+
+  // Line chart: prix par produit (top 12)
+  const sortedByPrice = [...prods].sort((a,b)=>b.price-a.price).slice(0,12);
+  destroyChart('lineChart');
+  charts.line = new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+      labels: sortedByPrice.map(p => p.name.length>14 ? p.name.slice(0,14)+'…' : p.name),
+      datasets: [{
+        data: sortedByPrice.map(p=>p.price),
+        borderColor: '#2ecc71',
+        backgroundColor: 'rgba(46,204,113,.1)',
+        fill: true,
+        tension: .4,
+        pointBackgroundColor: '#2ecc71',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.parsed.y.toLocaleString('fr') + ' FCFA' } } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { maxRotation: 45 } },
+        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { callback: v => v.toLocaleString('fr') } },
+      }
+    }
+  });
+
+  // Donut: catégories
+  const catMap = {};
+  prods.forEach(p => {
+    const c = p.category || 'Autre';
+    catMap[c] = (catMap[c]||0)+1;
+  });
+  const catLabels = Object.keys(catMap);
+  const catData = Object.values(catMap);
+  destroyChart('donutChart');
+  charts.donut = new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: catLabels,
+      datasets: [{ data: catData, backgroundColor: COLORS, borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} produit${ctx.parsed!==1?'s':''}` } }
+      }
+    }
+  });
+  const legendEl = document.getElementById('donutLegend');
+  legendEl.innerHTML = catLabels.map((l,i) => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${COLORS[i%COLORS.length]}"></div>
+      <span>${l} (${catMap[l]})</span>
+    </div>
+  `).join('');
+
+  // Bar: régions
+  const regMap = {};
+  prods.forEach(p => { const r=p.region||'Inconnue'; regMap[r]=(regMap[r]||0)+1; });
+  destroyChart('barChart');
+  charts.bar = new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(regMap),
+      datasets: [{
+        data: Object.values(regMap),
+        backgroundColor: COLORS.map(c=>c+'bb'),
+        borderRadius: 6,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { stepSize: 1 } }
+      }
+    }
+  });
+
+  // Top produits
+  const top5 = [...prods].sort((a,b)=>b.price-a.price).slice(0,5);
+  const maxPrice = top5[0]?.price || 1;
+  const rankClasses = ['gold','silver','bronze','',''];
+  document.getElementById('topProds').innerHTML = top5.length ? top5.map((p,i) => `
+    <div class="top-prod-item">
+      <div class="top-rank ${rankClasses[i]}">${i+1}</div>
+      <div class="top-info">
+        <div class="top-name">${p.name}</div>
+        <div class="top-cat">${p.category||'—'} · ${p.region||'—'}</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(p.price/maxPrice*100)}%"></div></div>
+      </div>
+      <div class="top-price">${p.price.toLocaleString('fr')}</div>
+    </div>
+  `).join('') : '<div class="muted" style="color:var(--text3);font-size:13px;padding:20px 0">Aucun produit</div>';
+
+  // Activity feed
+  const log = getLog().slice(0,6);
+  const typeMap = { warn: 'warn', info: 'info', '': '' };
+  document.getElementById('activityFeed').innerHTML = log.length ? log.map(l => `
+    <div class="activity-item">
+      <div class="activity-dot ${typeMap[l.type]||''}"></div>
+      <div class="activity-text">${l.txt}</div>
+      <div class="activity-time">${timeAgo(l.ts)}</div>
+    </div>
+  `).join('') : '<div style="color:var(--text3);font-size:13px;padding:10px 0">Aucune activité récente</div>';
+}
+
+function destroyChart(id) {
+  if(charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+function timeAgo(ts) {
+  const s = Math.floor((Date.now()-ts)/1000);
+  if(s<60) return 'il y a ' + s + 's';
+  if(s<3600) return 'il y a ' + Math.floor(s/60) + 'min';
+  if(s<86400) return 'il y a ' + Math.floor(s/3600) + 'h';
+  return 'il y a ' + Math.floor(s/86400) + 'j';
+}
+
+// ─── PRODUCTS PAGE ────────────────────────────────────
+function renderProducts() {
+  const prods = getProducts();
+  const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+  const filtered = q ? prods.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    (p.category||'').toLowerCase().includes(q) ||
+    (p.region||'').toLowerCase().includes(q) ||
+    (p.seller||'').toLowerCase().includes(q)
+  ) : prods;
+
+  const body = document.getElementById('productsBody');
+  const empty = document.getElementById('productsEmpty');
+
+  if(!filtered.length) {
+    body.innerHTML = '';
+    empty.style.display = '';
+    return;
+  }
+  empty.style.display = 'none';
+  body.innerHTML = filtered.map((p,i) => `
+    <tr>
+      <td style="color:var(--text3);font-size:12px">${i+1}</td>
+      <td>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-meta">${p.unit ? p.unit : ''}</div>
+      </td>
+      <td><span class="price-tag">${p.price.toLocaleString('fr')} <span style="font-size:10px;color:var(--text3)">FCFA</span></span></td>
+      <td><span class="cat-pill">${p.category || '—'}</span></td>
+      <td style="color:var(--text2);font-size:13px">${p.region || '—'}</td>
+      <td style="color:var(--text2);font-size:13px">${p.seller || '—'}</td>
+      <td>
+        <div class="action-btns">
+          <button class="action-btn edit" onclick='editProduct("${p.id}")' title="Modifier">✏️</button>
+          <button class="action-btn del" onclick='deleteProduct("${p.id}")' title="Supprimer">🗑️</button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function editProduct(id) {
+  const p = getProducts().find(x => x.id == id);
+  if(p) { navigateTo('products'); openModal(p); }
+}
+
+// ─── VISITORS PAGE ────────────────────────────────────
+function renderVisitors() {
+  const visitors = getVisitors();
+  const total = getVisitCount();
+
+  document.getElementById('vis-total').textContent = total.toLocaleString('fr');
+
+  // Platforms
+  const platMap = {};
+  visitors.forEach(v => { const pl = v.platform||'Inconnu'; platMap[pl]=(platMap[pl]||0)+1; });
+  const topPlat = Object.entries(platMap).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('vis-platforms').textContent = Object.keys(platMap).length || '—';
+  document.getElementById('vis-platform-top').textContent = topPlat ? `Top: ${topPlat[0]}` : 'Aucune donnée';
+
+  // Languages
+  const langMap = {};
+  visitors.forEach(v => { const l=v.lang||'Inconnu'; langMap[l]=(langMap[l]||0)+1; });
+  const topLang = Object.entries(langMap).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('vis-langs').textContent = Object.keys(langMap).length || '—';
+  document.getElementById('vis-lang-top').textContent = topLang ? `Top: ${topLang[0]}` : 'Aucune donnée';
+
+  chartDefaults();
+
+  // Pages chart
+  const pageMap = {};
+  visitors.forEach(v => { const pg=v.path||'/'; pageMap[pg]=(pageMap[pg]||0)+1; });
+  const topPages = Object.entries(pageMap).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  destroyChart('pagesChart');
+  charts.pages = new Chart(document.getElementById('pagesChart'), {
+    type: 'bar',
+    data: {
+      labels: topPages.map(([k])=>k.length>20?k.slice(0,20)+'…':k),
+      datasets: [{ data: topPages.map(([,v])=>v), backgroundColor: '#3498dbbb', borderRadius: 5, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { stepSize: 1 } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Screen chart
+  const scrMap = {};
+  visitors.forEach(v => {
+    if(v.screen?.w) { const k=v.screen.w+'x'+v.screen.h; scrMap[k]=(scrMap[k]||0)+1; }
+  });
+  const topScr = Object.entries(scrMap).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  destroyChart('screenChart');
+  charts.screen = new Chart(document.getElementById('screenChart'), {
+    type: 'doughnut',
+    data: {
+      labels: topScr.map(([k])=>k),
+      datasets: [{ data: topScr.map(([,v])=>v), backgroundColor: COLORS, borderWidth: 0, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '60%',
+      plugins: { legend: { position: 'right', labels: { boxWidth: 10, padding: 8 } } }
+    }
+  });
+
+  // Table
+  const body = document.getElementById('visitorsBody');
+  const empty = document.getElementById('visitorsEmpty');
+  const recent = [...visitors].reverse().slice(0,200);
+
+  if(!recent.length) {
+    body.innerHTML=''; empty.style.display='';
+    return;
+  }
+  empty.style.display='none';
+
+  function detectDevice(ua='') {
+    if(/mobile|android|iphone|ipad/i.test(ua)) return '📱';
+    if(/tablet/i.test(ua)) return '📟';
+    return '💻';
+  }
+  function detectBrowser(ua='') {
+    if(ua.includes('Firefox')) return 'Firefox';
+    if(ua.includes('Edg')) return 'Edge';
+    if(ua.includes('Chrome')) return 'Chrome';
+    if(ua.includes('Safari')) return 'Safari';
+    if(ua.includes('Opera')) return 'Opera';
+    return 'Autre';
+  }
+  function detectOS(ua='') {
+    if(ua.includes('Windows')) return 'Windows';
+    if(ua.includes('Mac')) return 'macOS';
+    if(ua.includes('Linux')) return 'Linux';
+    if(ua.includes('Android')) return 'Android';
+    if(ua.includes('iPhone')||ua.includes('iPad')) return 'iOS';
+    return 'Autre';
+  }
+
+  body.innerHTML = recent.map(v => `
+    <tr>
+      <td style="font-size:12px;color:var(--text2);white-space:nowrap">${new Date(v.ts).toLocaleString('fr')}</td>
+      <td style="font-family:monospace;font-size:12px;color:var(--green)">${v.path||'/'}</td>
+      <td style="font-size:16px;text-align:center">${detectDevice(v.ua)}</td>
+      <td>
+        <div style="font-size:12px;font-weight:600;color:var(--text)">${detectBrowser(v.ua)}</div>
+        <div style="font-size:11px;color:var(--text3)">${detectOS(v.ua)}</div>
+      </td>
+      <td style="font-size:12px;color:var(--text2)">${v.lang||'—'}</td>
+      <td style="font-size:12px;color:var(--text2)">${v.screen ? v.screen.w+'×'+v.screen.h : '—'}</td>
+    </tr>
+  `).join('');
+}
+
+// Clear visitors
+document.getElementById('clearVisitorsBtn').addEventListener('click', () => {
+  if(!confirm('Effacer tous les visiteurs ?')) return;
+  localStorage.removeItem(VIS_KEY);
+  localStorage.removeItem(CNT_KEY);
+  addLog('Données visiteurs effacées', 'warn');
+  toast('Visiteurs effacés', '🗑️');
+  updateBadges();
+  renderVisitors();
+});
+
+// Clear all data
+document.getElementById('clearAllBtn').addEventListener('click', () => {
+  if(!confirm('⚠️ Tout effacer ? (produits + visiteurs)')) return;
+  localStorage.removeItem(PROD_KEY);
+  localStorage.removeItem(VIS_KEY);
+  localStorage.removeItem(CNT_KEY);
+  localStorage.removeItem(LOG_KEY);
+  toast('Toutes les données effacées', '🗑️');
+  updateBadges();
+  refreshAll();
+});
+
+// ─── INIT ─────────────────────────────────────────────
+addLog('Panel superadmin ouvert', 'info');
+updateBadges();
+renderDashboard();
+</script>
+</body>
+</html>
