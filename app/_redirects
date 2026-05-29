@@ -1,0 +1,5 @@
+# Redirection de la page d'accueil
+/     /salon-bio-abidjan.html   200
+
+# Redirection pour toutes les autres URLs (important pour éviter les 404)
+ /*   /salon-bio-abidjan.html   200
