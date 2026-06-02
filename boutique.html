@@ -514,6 +514,16 @@
       .btn-publish{background:linear-gradient(135deg,var(--accent),#0b7a4d);color:white;padding:10px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer}
       .btn-publish:disabled{opacity:0.6;cursor:default}
       .small-muted{font-size:0.85rem;color:var(--muted)}
+      @media(max-width:620px){
+        .modal-overlay{padding:10px;align-items:flex-start;}
+        .modal-card{max-height:calc(100vh - 20px);border-radius:16px;}
+        .modal-header{padding:16px;align-items:flex-start;}
+        .modal-header .icon{width:40px;height:40px;flex:0 0 auto;}
+        .modal-body{padding:16px;max-height:none;}
+        .form-grid{grid-template-columns:1fr;}
+        .modal-actions{padding:12px 16px;flex-direction:column-reverse;}
+        .btn-cancel,.btn-publish{width:100%;}
+      }
     </style>
   </head>
 

@@ -164,5 +164,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.querySelectorAll(".site-nav").forEach((siteNav) => {
+    const navInner = siteNav.querySelector(".nav-inner");
+    const navMenu = siteNav.querySelector(".nav-menu");
+
+    if (!navInner || !navMenu || navInner.querySelector(".nav-toggle")) {
+      return;
+    }
+
+    const navToggle = document.createElement("button");
+    navToggle.className = "nav-toggle";
+    navToggle.type = "button";
+    navToggle.setAttribute("aria-label", "Ouvrir le menu");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.innerHTML = "<span></span><span></span><span></span>";
+    navInner.insertBefore(navToggle, navMenu);
+
+    const closeMenu = () => {
+      siteNav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    };
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 640) closeMenu();
+    });
+  });
+
   // Fonction injectHiddenPitchButton supprimée
 });

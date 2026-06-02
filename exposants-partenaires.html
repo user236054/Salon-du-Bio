@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./style.css" />
      <link rel="shortBio icon" href="./logo_sibio_nouveau_transparent.png">
     <link rel="stylesheet" href="./site-shell.css" />
+    <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -452,6 +453,13 @@
         font-weight: 800;
         text-transform: uppercase;
       }
+      /* Full-width cards and reveal animations */
+      .card-edge-breakout { width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); padding-left:20px; padding-right:20px; box-sizing:border-box; }
+      .partner-card, .official-partner-card, .package-card { max-width:none; width:100%; box-sizing:border-box; padding-left:18px; padding-right:18px; margin:0; }
+      [data-scroll] { opacity:0; transform:translateY(18px); transition: transform .8s cubic-bezier(.2,.9,.2,1), opacity .8s; }
+      [data-scroll].is-inview { opacity:1; transform:none; }
+      [data-scroll].from-left { transform: translateX(-18px); }
+      [data-scroll].from-right { transform: translateX(18px); }
     </style>
   </head>
   <body
@@ -517,7 +525,9 @@
           <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
           <li><a href="./reservation-salon-bio-abidjan.html">Réservation & Infos</a></li>
           <li><a class="nav-shop" href="./boutique.html">Boutique 🛒</a></li>
-          <li><a href="./projet_carbon.html">Projet Carbon</a></li>
+          <!-- 
+            <li><a href="./projet_carbon.html">Projet Carbon</a></li>
+          -->
           <li class="nav-ticket-item"><a class="btn ticket-cta" href="./reservation-salon-bio-abidjan.html#buy">Réservez votre ticket</a></li>
         </ul>
       </div>
@@ -529,7 +539,7 @@
       </div>
     </div>
 
-    <main>
+    <main data-scroll-container>
       <section class="page-section section-alt">
         <span class="eyebrow">Positionnement</span>
         <h2>Rejoignez le mouvement du bio en associant votre marque à un évènement de référence : SIBIO 2026</h2>
@@ -668,5 +678,45 @@
     </footer>
 
     <script src="./site-shell.js"></script>
+    <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('[data-scroll-container]') || document.querySelector('main') || document.body;
+        let loco = null;
+        if (container && window.LocomotiveScroll) {
+          loco = new LocomotiveScroll({ el: container, smooth: true, multiplier: 0.9, smartphone: { smooth: true }, tablet: { smooth: true } });
+        }
+
+        document.querySelectorAll('section').forEach(s => s.setAttribute('data-scroll-section', ''));
+
+        const revealTargets = Array.from(document.querySelectorAll('[data-scroll], .partner-card, .official-partner-card, .package-card'));
+        revealTargets.forEach(el => el.classList.add('will-reveal'));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              entry.target.classList.add('is-inview');
+              if (loco && loco.update) loco.update();
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.will-reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              if (loco && loco.scrollTo) loco.scrollTo(target, { offset: -80 });
+              else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

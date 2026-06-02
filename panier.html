@@ -83,6 +83,28 @@
             align-items: center;
         }
 
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: white;
+            color: var(--bio-green);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 22px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+        }
+
         .nav-links a {
             text-decoration: none;
             color: var(--bio-green);
@@ -397,14 +419,41 @@
             }
 
             .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
+                position: relative;
+                gap: 12px;
+                text-align: left;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
             }
 
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                gap: 8px;
+                padding: 12px;
+                border-radius: 14px;
+                background: rgba(255,255,255,.98);
+                box-shadow: var(--shadow);
+                z-index: 10;
+            }
+
+            .header.nav-open .nav-links {
+                display: flex;
+            }
+
+            .nav-links a {
+                text-align: center;
+                background: rgba(45,90,39,.08);
             }
 
             .footer-content {
@@ -491,6 +540,9 @@
                 <img src="assets/logo.png" alt="SIBIO 2026" onerror="this.style.display='none'">
                 SIBIO 2026
             </a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <nav class="nav-links">
                 <a href="salon-bio-abidjan.html">Accueil</a>
                 <a href="boutique.html">Boutique</a>
@@ -975,6 +1027,19 @@
         }
 
         // Initialize
+        const header = document.querySelector(".header");
+        const navToggle = document.getElementById("navToggle");
+        navToggle?.addEventListener("click", () => {
+            const isOpen = header.classList.toggle("nav-open");
+            navToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                header.classList.remove("nav-open");
+                navToggle?.setAttribute("aria-expanded", "false");
+            });
+        });
+
         loadRegions();
         display();
         document.getElementById("delivery-region").addEventListener("change", updateDeliveryEstimate);

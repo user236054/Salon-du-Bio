@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./style.css" />
      <link rel="shortBio icon" href="./logo_sibio_nouveau_transparent.png">
     <link rel="stylesheet" href="./site-shell.css" />
+    <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -300,6 +301,14 @@
           height: 116px;
         }
       }
+
+      /* Full-width cards + reveal */
+      .card-edge-breakout { width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); padding-left:20px; padding-right:20px; box-sizing:border-box; }
+      .why-card, .experience-card, .person-card, .content-card { max-width:none; width:100%; box-sizing:border-box; padding-left:20px; padding-right:20px; margin:0; }
+      [data-scroll] { opacity:0; transform:translateY(18px); transition: transform .8s cubic-bezier(.2,.9,.2,1), opacity .8s; }
+      [data-scroll].is-inview { opacity:1; transform:none; }
+      [data-scroll].from-left { transform: translateX(-18px); }
+      [data-scroll].from-right { transform: translateX(18px); }
     </style>
   </head>
   <body>
@@ -356,7 +365,12 @@
 
     <nav class="site-nav" aria-label="Navigation principale">
       <div class="nav-inner">
-        <ul class="nav-menu">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Ouvrir le menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-menu" id="primary-navigation">
           <li><a href="./fapbio.html">FAP-BIO</a></li>
           <li><a href="./salon-bio-abidjan.html">Accueil</a></li>
           <li><a href="./programme-editions.html">Programme & Éditions</a></li>
@@ -381,7 +395,7 @@
       </div>
     </div>
 
-    <main>
+    <main data-scroll-container>
       <section class="page-section section-alt">
         <span class="eyebrow">Accueil</span>
         <h2 style="white-space: nowrap;">Une page d'accueil centrée sur l'expérience SIBIO 2026</h2>
@@ -608,27 +622,75 @@
     </footer>
 
     <script src="./site-shell.js"></script>
+    <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const rotations = {
-        
-        };
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('[data-scroll-container]') || document.querySelector('main') || document.body;
+        let loco = null;
+        if (container && window.LocomotiveScroll) {
+          loco = new LocomotiveScroll({ el: container, smooth: true, multiplier: 0.9, smartphone: { smooth: true }, tablet: { smooth: true } });
+        }
 
-        Object.entries(rotations).forEach(([id, images]) => {
-          const target = document.getElementById(id);
-          if (!target || images.length < 2) return;
+        document.querySelectorAll('section').forEach(s => s.setAttribute('data-scroll-section', ''));
 
-          let index = 0;
-          window.setInterval(() => {
-            index = (index + 1) % images.length;
-            target.style.opacity = "0.35";
-            window.setTimeout(() => {
-              target.src = images[index].src;
-              target.alt = images[index].alt;
-              target.style.opacity = "1";
-            }, 220);
-          }, 60000);
+        const revealTargets = Array.from(document.querySelectorAll('[data-scroll], .reveal-on-scroll, .why-card, .experience-card, .person-card, .content-card'));
+        revealTargets.forEach(el => el.classList.add('will-reveal'));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              entry.target.classList.add('is-inview');
+              if (loco && loco.update) loco.update();
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.will-reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              if (loco && loco.scrollTo) loco.scrollTo(target, { offset: -80 });
+              else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
         });
+
+        const nav = document.querySelector('.site-nav');
+        const toggle = nav?.querySelector('.nav-toggle');
+        const menuLinks = nav ? Array.from(nav.querySelectorAll('.nav-menu a')) : [];
+
+        if (toggle && nav) {
+          const setOpenState = (isOpen) => {
+            nav.classList.toggle('is-open', isOpen);
+            toggle.setAttribute('aria-expanded', String(isOpen));
+          };
+
+          toggle.addEventListener('click', () => {
+            setOpenState(!nav.classList.contains('is-open'));
+          });
+
+          document.addEventListener('click', (event) => {
+            if (nav.classList.contains('is-open') && !nav.contains(event.target)) {
+              setOpenState(false);
+            }
+          });
+
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+              setOpenState(false);
+            }
+          });
+
+          menuLinks.forEach(link => {
+            link.addEventListener('click', () => setOpenState(false));
+          });
+        }
       });
     </script>
   </body>

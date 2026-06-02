@@ -112,6 +112,28 @@ nav ul {
   gap: 6px;
 }
 
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(106,140,105,.18);
+  border-radius: 12px;
+  background: rgba(255,255,255,.76);
+  color: var(--sage-deep);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
 nav a {
   text-decoration: none;
   color: var(--text-muted);
@@ -172,11 +194,11 @@ main {
 /* ─── PRODUCT HERO ─── */
 .product-hero {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
   background: linear-gradient(135deg, #eef5ed 0%, #f8f3ec 100%);
   position: relative;
   overflow: hidden;
-  gap: 200px;
+  gap: clamp(24px, 6vw, 80px);
   
  
 }
@@ -202,9 +224,10 @@ main {
 }
 
 .product-image-wrap img {
-  width: 440px;
-  height: 340px;
-  margin-left: 100px;
+  width: min(100%, 440px);
+  aspect-ratio: 22 / 17;
+  height: auto;
+  margin-left: 0;
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 0 12px 40px rgba(0,0,0,.12), 0 0 0 6px rgba(255,255,255,.7);
@@ -736,14 +759,37 @@ footer {
 /* ─── RESPONSIVE ─── */
 @media (max-width: 760px) {
   .header { padding: 0 20px; }
-  nav ul { display: none; }
+  .nav-toggle { display: inline-flex; }
+  nav ul {
+    position: fixed;
+    top: 78px;
+    left: 16px;
+    right: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    border: 1px solid rgba(106,140,105,.15);
+    border-radius: 18px;
+    background: rgba(250,247,242,.98);
+    box-shadow: 0 18px 40px rgba(48,58,42,.18);
+  }
+  .header.nav-open nav ul { display: flex; }
+  nav a {
+    display: flex;
+    justify-content: center;
+    padding: 12px 14px;
+    background: white;
+  }
 
   .product-hero {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .product-image-wrap {
     padding: 28px 28px 12px;
+    margin-left: 0;
   }
 
   .product-details {
@@ -863,6 +909,9 @@ footer {
       </div>
     </a>
     <nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <ul>
         <li><a href="./salon-bio-abidjan.html">Accueil</a></li>
         <li><a href="boutique.html">Boutique</a></li>
@@ -1105,6 +1154,19 @@ footer {
   </footer>
 
   <script>
+    const header = document.querySelector(".header");
+    const navToggle = document.getElementById("navToggle");
+    navToggle?.addEventListener("click", () => {
+      const isOpen = header.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.querySelectorAll(".header nav a").forEach((link) => {
+      link.addEventListener("click", () => {
+        header.classList.remove("nav-open");
+        navToggle?.setAttribute("aria-expanded", "false");
+      });
+    });
+
     const params = new URLSearchParams(window.location.search);
     const productId = params.get("id");
     const localProducts = (() => {

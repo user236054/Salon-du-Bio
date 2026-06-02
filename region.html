@@ -87,6 +87,26 @@ nav a {
   transition: color 0.2s;
 }
 nav a:hover, nav a.active { color: var(--gold-light); }
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(20,92,58,.14);
+  border-radius: 12px;
+  background: white;
+  color: var(--green-deep);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
 
 /* ─── HERO ─── */
 .hero {
@@ -741,7 +761,30 @@ footer .f-logo {
 }
 @media (max-width: 600px) {
   .regions-list { max-height: 260px; overflow-y: auto; }
-  nav { display: none; }
+  .nav-toggle { display: inline-flex; }
+  nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 5vw;
+    right: 5vw;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid rgba(200,151,58,0.22);
+    border-radius: 16px;
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 18px 36px rgba(4,31,18,.16);
+  }
+  header.nav-open nav { display: flex; }
+  nav a {
+    margin-left: 0;
+    padding: 12px;
+    border-radius: 12px;
+    color: var(--green-deep);
+    text-align: center;
+    background: rgba(20,92,58,.08);
+  }
 }
 
 
@@ -764,6 +807,9 @@ footer .f-logo {
      
     </div>
   </div>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
   <nav>
     <a href="./fapbio.html">Retour</a>
 
@@ -1317,6 +1363,19 @@ function closeModalBtn() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+const header = document.querySelector('header');
+const navToggle = document.getElementById('navToggle');
+navToggle?.addEventListener('click', () => {
+  const isOpen = header.classList.toggle('nav-open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+document.querySelectorAll('header nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    header.classList.remove('nav-open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+  });
+});
 
 init();
 </script>

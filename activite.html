@@ -66,6 +66,28 @@
         justify-content: flex-end;
       }
 
+      .nav-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(20,92,58,.14);
+        border-radius: 12px;
+        background: white;
+        color: var(--green);
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .nav-toggle span {
+        width: 22px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+      }
+
       .nav-links a {
         color: var(--green);
         text-decoration: none;
@@ -200,8 +222,23 @@
       }
 
       @media (max-width: 720px) {
-        .nav { align-items: flex-start; flex-direction: column; padding: 12px 0; }
-        .nav-links { justify-content: flex-start; }
+        .nav { position: relative; min-height: 66px; padding: 10px 0; }
+        .nav-toggle { display: inline-flex; }
+        .nav-links {
+          position: absolute;
+          top: calc(100% + 8px);
+          left: 0;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          padding: 12px;
+          border: 1px solid rgba(20,92,58,.12);
+          border-radius: 16px;
+          background: rgba(255,255,255,.98);
+          box-shadow: 0 18px 36px rgba(20,92,58,.14);
+        }
+        header.nav-open .nav-links { display: flex; }
+        .nav-links a { text-align: center; background: var(--green-soft); }
       }
     </style>
   </head>
@@ -212,6 +249,9 @@
           <img src="./fap-bio.png" alt="Logo FAP-BIO" />
           <span>FAP-BIO</span>
         </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
         <div class="nav-links">
           <a href="./fapbio.html">Accueil</a>
           <a class="active" href="./activite.html">Activités</a>
@@ -287,5 +327,19 @@
     <footer>
       FAP-BIO · Activités et actions terrain
     </footer>
+    <script>
+      const header = document.querySelector("header");
+      const navToggle = document.getElementById("navToggle");
+      navToggle?.addEventListener("click", () => {
+        const isOpen = header.classList.toggle("nav-open");
+        navToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          header.classList.remove("nav-open");
+          navToggle?.setAttribute("aria-expanded", "false");
+        });
+      });
+    </script>
   </body>
 </html>

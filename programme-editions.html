@@ -17,6 +17,7 @@
     <meta name="google-site-verification" content="GOOGLE_SEARCH_CONSOLE_CODE" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./site-shell.css" />
+    <link rel="stylesheet" href="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.css" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -62,6 +63,11 @@
       .sibio-highlight h3 {
         color: white;
       }
+
+        /* Avoid horizontal scrolling on this page */
+        html, body {
+          overflow-x: hidden;
+        }
 
       .why-grid {
         display: grid;
@@ -270,12 +276,7 @@
         animation: heartbeat 2s infinite;
       }
 
-      .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin-top: 24px;
-      }
+      
 
       .video-item {
         border-radius: 18px;
@@ -292,6 +293,15 @@
         display: block;
         object-fit: cover;
         background: #0b1f17;
+      }
+      .video-item iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        background: #0b1f17;
+        border: 0;
       }
 
       .video-item figcaption {
@@ -556,6 +566,118 @@
           height: 116px;
         }
       }
+      /* --- Full width cards + Locomotive reveal (page-specific) --- */
+      .card-edge-breakout {
+        /* keep breakout helper but avoid forcing 100vw which causes overflow */
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      /* apply to programme cards and similar components */
+      .programme-card,
+      .programme-day-card,
+      .why-card,
+      .experience-card,
+      .content-card,
+      .person-card,
+      .stat-card {
+        max-width: none;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      /* locomotive reveal defaults */
+      [data-scroll] {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: transform 0.8s cubic-bezier(.2,.9,.2,1), opacity 0.8s;
+        will-change: transform, opacity;
+      }
+
+      [data-scroll].is-inview {
+        opacity: 1;
+        transform: none;
+      }
+
+      [data-scroll].from-left { transform: translateX(-18px); }
+      [data-scroll].from-right { transform: translateX(18px); }
+      /* Restore normal centered sections and card appearance on this page */
+      .page-section,
+      .section {
+        width: min(1180px, calc(100% - 32px));
+        margin: 40px auto 26px;
+        width: 100%;
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(15, 81, 50, 0.08);
+        box-shadow: var(--shell-shadow);
+        padding: 32px;
+        box-sizing: border-box;
+        overflow: visible;
+       
+      }
+
+      /* Restore compact card styling so content doesn't stretch full-bleed */
+      .programme-card,
+      .programme-day-card,
+      .why-card,
+      .experience-card,
+      .content-card,
+      .person-card,
+      .stat-card,
+      .video-item,
+      .archive-gallery-panel,
+      .edition-panel {
+        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(15,81,50,0.08);
+        box-shadow: var(--shell-shadow);
+        border-radius: 18px;
+        padding: 18px;
+        margin: 0 0 18px 0;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Videos: 3 per row on desktop, responsive to 2/1 columns. Prevent overflow. */
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .video-item iframe,
+      .video-item video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        background: #0b1f17;
+        border: 0;
+      }
+
+      @media (max-width: 900px) {
+        .video-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (max-width: 560px) {
+        .video-grid { grid-template-columns: 1fr; }
+        .page-section, .section { padding-left: 16px; padding-right: 16px; }
+      }
+
     </style>
   </head>
   <body
@@ -622,7 +744,9 @@
           <li><a href="./exposants-partenaires.html">Partenaires & Sponsoring</a></li>
           <li><a href="./reservation-salon-bio-abidjan.html">Réservation & Infos</a></li>
           <li><a class="nav-shop" href="./boutique.html">Boutique 🛒</a></li>
-          <li><a href="./projet_carbon.html">Projet Carbon</a></li>
+          <!-- 
+            <li><a href="./projet_carbon.html">Projet Carbon</a></li>
+          -->
           <li class="nav-ticket-item"><a class="btn ticket-cta" href="./reservation-salon-bio-abidjan.html#buy">Réservez votre ticket</a></li>
           
         </ul>
@@ -637,7 +761,7 @@
       </div>
     </div>
 
-    <main>
+    <main data-scroll-container>
       <section class="page-section section-alt">
         <span class="eyebrow">Programme</span>
         <h2>Programme officiel - 5 jours</h2>
@@ -1134,81 +1258,21 @@
         <span class="eyebrow">Vidéos</span>
         <h2></h2>
         <div class="video-grid">
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/SIBIO 1ère Edition .mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>SIBIO 1ère Édition</figcaption>
-          </figure>
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/1.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Passage de M. Boga Commissaire general du SIBIO</figcaption>
-          </figure>
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/v3.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Aperçu de quelques produits bio</figcaption>
-          </figure>
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/2022.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Dr OUNGBE Kary Venance
-• Secrétaire Général</figcaption>
-          </figure>
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/2.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Archive SIBIO 00555</figcaption>
-          </figure>
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/3.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Archive SIBIO 00558</figcaption>
-          </figure>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/yQ63S88kiJw?si=0ZZyzCfdICfOlj3D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/UBDOU5_aPs0?si=X7pBsYvgYPXeTx1p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/bnja1sAO678?si=FMOBiKmwk5q0aLRa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/salon2022.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>2e édition rapporté par la RTI</figcaption>
-          </figure>
+         
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/s5qaYbcd3cU?si=njcVqvQJ3WraYPpk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/DKS-yGj6QZ0?si=Aurt7_ldgpQaoAOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
+         
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OUv-r32z2vY?si=naPV7gs77f6HK8rw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/v1.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Aperçu de quelques stand</figcaption>
-          </figure>
-
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/v2.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Nos Produits BIO</figcaption>
-          </figure>
-
-          <figure class="video-item">
-            <video controls>
-              <source src="./videosSibio/ncisibio.mp4" type="video/mp4">
-              Votre navigateur ne supporte pas la balise vidéo.
-            </video>
-            <figcaption>Archive SIBIO NCI</figcaption>
-          </figure>
+          
 
 
         </div>
@@ -1262,5 +1326,51 @@
     </footer>
 
     <script src="./site-shell.js"></script>
+    <script src="https://unpkg.com/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('[data-scroll-container]') || document.querySelector('main') || document.body;
+        let loco = null;
+        if (container && window.LocomotiveScroll) {
+          loco = new LocomotiveScroll({ el: container, smooth: true, multiplier: 0.9, smartphone: { smooth: true }, tablet: { smooth: true } });
+        }
+
+        // mark all sections for locomotive
+        document.querySelectorAll('section').forEach(s => s.setAttribute('data-scroll-section', ''));
+
+        // set will-reveal on useful targets
+        const revealTargets = Array.from(document.querySelectorAll('[data-scroll], .reveal-on-scroll, .why-card, .experience-card, .programme-card, .programme-day-card, .person-card, .content-card, .stat-card'));
+        revealTargets.forEach(el => el.classList.add('will-reveal'));
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              entry.target.classList.add('is-inview');
+              if (loco && loco.update) loco.update();
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.18 });
+
+        document.querySelectorAll('.will-reveal').forEach(el => observer.observe(el));
+
+        // smooth anchor navigation
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+              e.preventDefault();
+              if (loco && loco.scrollTo) {
+                loco.scrollTo(target, { offset: -80 });
+              } else {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

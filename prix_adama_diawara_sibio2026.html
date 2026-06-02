@@ -68,6 +68,26 @@
       box-shadow: 0 10px 40px rgba(0,0,0,.15);
       border-bottom: 1px solid rgba(201,160,68,.12);
     }
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(201,160,68,.22);
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+    }
     .nav a {
       font-family: "Dm Sans", Arial, Helvetica, sans-serif;
       color: rgba(255,255,255,.78);
@@ -544,14 +564,20 @@
     }
     @media (max-width: 720px) {
       .nav { 
-        flex-direction: column;
+        justify-content: flex-end;
         padding: 8px 12px;
         gap: 8px;
       }
+      .nav-toggle { display: inline-flex; }
       .nav a {
+        display: none;
+        width: 100%;
         font-size: 0.7rem;
-        padding: 6px 10px;
+        padding: 9px 10px;
+        text-align: center;
+        background: rgba(255,255,255,.06);
       }
+      .nav.is-open a { display: block; }
       .hero { padding: 40px 20px; }
       .sec { padding: 50px 20px; }
       .consent-inn { padding: 40px 20px; }
@@ -562,6 +588,9 @@
 <body>
   <div data-scroll-container class="page-shell">
     <nav class="nav" data-scroll-section>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
       <a href="./fapbio.html">FAP-BIO</a>
       <a href="./salon-bio-abidjan.html">SIBIO</a>
       <a href="#objet">Objet</a>
@@ -766,7 +795,16 @@
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }
+          document.querySelector('.nav')?.classList.remove('is-open');
+          document.getElementById('navToggle')?.setAttribute('aria-expanded', 'false');
         });
+      });
+
+      const navToggle = document.getElementById('navToggle');
+      const nav = document.querySelector('.nav');
+      navToggle?.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
       });
 
       const cbs = document.querySelectorAll('.ct-it input[type="checkbox"]');
